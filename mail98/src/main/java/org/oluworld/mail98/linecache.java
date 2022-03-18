@@ -244,11 +244,11 @@ public class linecache extends java.lang.Object {
         Py.runCode(new _PyInner().getMain(), dict, dict);
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String[] newargs = new String[args.length+1];
         newargs[0] = "linecache";
         System.arraycopy(args, 0, newargs, 1, args.length);
-        Py.runMain("mail98.linecache$_PyInner", newargs, jpy$packages, jpy$properties, "mail98", new String[] {"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
+        Py.runMain(linecache._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[] {"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
     }
     
 }

@@ -23,11 +23,11 @@ public class Server {
       Py.runCode((new Server._PyInner()).getMain(), var0, var0);
    }
 
-   public static void main(String[] var0) {
+   public static void main(String[] var0) throws Exception {
       String[] var1 = new String[var0.length + 1];
       var1[0] = "Server";
       System.arraycopy(var0, 0, var1, 1, var0.length);
-      Py.runMain("mail98.DBi.Server$_PyInner", var1, jpy$packages, jpy$properties, "mail98.DBi", new String[]{"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
+      Py.runMain(Server._PyInner.class, var1, jpy$packages, jpy$properties, "mail98.DBi", new String[]{"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
    }
 
    public static class _PyInner extends PyFunctionTable implements PyRunnable {
