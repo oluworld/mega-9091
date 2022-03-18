@@ -1,590 +1,201 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-
-  <modelVersion>4.0.0</modelVersion>
-
-
-  <groupId>com.github.oluworld.mega9091</groupId>
-
-
-  <artifactId>mega-9091</artifactId>
-
-
-  <version>1.0.0-SNAPSHOT</version>
-
-
-  <packaging>pom</packaging>
-
-
-  <name>mega-9091</name>
-
-
-  <properties>
-
-
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-
-    <maven.compiler.source>11</maven.compiler.source>
-
-
-    <maven.compiler.target>11</maven.compiler.target>
-
-
-    <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
-
-
-    <maven.compiler.testTarget>${maven.compiler.testSource}</maven.compiler.testTarget>
-
-
-    <junit.jupiter.version>5.7.0</junit.jupiter.version>
-
-
-    <junit.platform.version>1.7.0</junit.platform.version>
-
-
-    <mainClass>com.github.oluworld.mega9091.App</mainClass>
-
-
-  </properties>
-
-
-  <dependencies>
-
-
-    <dependency>
-
-
-      <groupId>org.junit.jupiter</groupId>
-
-
-      <artifactId>junit-jupiter-engine</artifactId>
-
-
-      <version>${junit.jupiter.version}</version>
-
-
-      <scope>test</scope>
-
-
-    </dependency>
-
-
-    <dependency>
-
-
-      <groupId>org.junit.platform</groupId>
-
-
-      <artifactId>junit-platform-runner</artifactId>
-
-
-      <version>${junit.platform.version}</version>
-
-
-      <scope>test</scope>
-
-
-    </dependency>
-
-
-  </dependencies>
-
-
-  <build>
-
-
-    <pluginManagement>
-
-
-      <plugins>
-
-
-        <plugin>
-
-
-          <groupId>org.apache.maven.plugins</groupId>
-
-
-          <artifactId>maven-compiler-plugin</artifactId>
-
-
-          <version>3.8.0</version>
-
-
-          <configuration>
-
-
-            <source>11</source>
-
-
-            <target>11</target>
-
-
-          </configuration>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-clean-plugin</artifactId>
-
-
-          <version>3.1.0</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-resources-plugin</artifactId>
-
-
-          <version>3.0.2</version>
-
-
-        </plugin>
-
-
-
-        <plugin>
-
-
-          <artifactId>maven-surefire-plugin</artifactId>
-
-
-          <version>2.22.1</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-jar-plugin</artifactId>
-
-
-          <version>3.0.2</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-install-plugin</artifactId>
-
-
-          <version>2.5.2</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-deploy-plugin</artifactId>
-
-
-          <version>2.8.2</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-site-plugin</artifactId>
-
-
-          <version>3.7.1</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-
-
-          <version>3.0.0</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <groupId>org.apache.maven.plugins</groupId>
-
-
-          <artifactId>maven-assembly-plugin</artifactId>
-
-
-          <version>3.3.0</version>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <groupId>org.jacoco</groupId>
-
-
-          <artifactId>jacoco-maven-plugin</artifactId>
-
-
-          <version>0.8.6</version>
-
-
-          <executions>
-
-
-            <execution>
-
-
-              <goals>
-
-
-                <goal>prepare-agent</goal>
-
-
-              </goals>
-
-
-            </execution>
-
-
-            <execution>
-
-
-              <id>report</id>
-
-
-              <phase>prepare-package</phase>
-
-
-              <goals>
-
-
-                <goal>report</goal>
-
-
-              </goals>
-
-
-            </execution>
-
-
-          </executions>
-
-
-        </plugin>
-
-
-        <plugin>
-
-
-          <groupId>org.eluder.coveralls</groupId>
-
-
-          <artifactId>coveralls-maven-plugin</artifactId>
-
-
-          <version>4.3.0</version>
-
-
-          <configuration>
-
-
-            <repoToken>${coveralls.secret}</repoToken>
-
-
-          </configuration>
-
-
-          <dependencies>
-
-
-            <dependency>
-
-
-              <groupId>javax.xml.bind</groupId>
-
-
-              <artifactId>jaxb-api</artifactId>
-
-
-              <version>2.2.3</version>
-
-
-            </dependency>
-
-
-          </dependencies>
-
-
-        </plugin>
-
-
-      </plugins>
-
-
-    </pluginManagement>
-
-
-    <plugins>
-
-
-      <plugin>
-
-
-        <groupId>org.apache.maven.plugins</groupId>
-
-
-        <artifactId>maven-compiler-plugin</artifactId>
-
-
-        <version>2.3.2</version>
-
-
-        <configuration>
-
-
-          <showDeprecation>true</showDeprecation>
-
-
-        </configuration>
-
-
-      </plugin>
-
-
-    </plugins>
-
-
-  </build>
-
-
-  <profiles>
-
-
-    <profile>
-
-
-      <id>jar-with-dependencies</id>
-
-
-      <activation>
-
-
-        <activeByDefault>true</activeByDefault>
-
-
-      </activation>
-
-
-      <build>
-
-
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.oluworld.mega9091</groupId>
+    <artifactId>mega-9091</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>mega-9091</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
+        <maven.compiler.testTarget>${maven.compiler.testSource}</maven.compiler.testTarget>
+        <junit.jupiter.version>5.7.0</junit.jupiter.version>
+        <junit.platform.version>1.7.0</junit.platform.version>
+        <mainClass>com.github.oluworld.mega9091.App</mainClass>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <source>11</source>
+                        <target>11</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.6</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>4.3.0</version>
+                    <configuration>
+                        <repoToken>${coveralls.secret}</repoToken>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>javax.xml.bind</groupId>
+                            <artifactId>jaxb-api</artifactId>
+                            <version>2.2.3</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
-
-
-          <plugin>
-
-
-            <groupId>org.apache.maven.plugins</groupId>
-
-
-            <artifactId>maven-assembly-plugin</artifactId>
-
-
-            <configuration>
-
-
-              <archive>
-
-
-                <manifest>
-
-
-                  <mainClass>${mainClass}</mainClass>
-
-
-                </manifest>
-
-
-              </archive>
-
-
-              <descriptorRefs>
-
-
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-
-
-              </descriptorRefs>
-
-
-            </configuration>
-
-
-            <executions>
-
-
-              <execution>
-
-
-                <phase>package</phase>
-
-
-                <goals>
-
-
-                  <goal>single</goal>
-
-
-                </goals>
-
-
-              </execution>
-
-
-            </executions>
-
-
-          </plugin>
-
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
         </plugins>
-
-
-      </build>
-
-
-    </profile>
-
-
-  </profiles>
-
-
-  <modules>
-
-
-    <module>prevayler</module>
-
-
-    <module>thinMMS</module>
-
-
-    <module>rabbit-minimal</module>
-
-
-    <module>tripleo-util-001</module>
-
-
-    <module>tripleo-histore</module>
-
-
-    <module>tripleo-fs</module>
-
-
-    <module>tripleo-curr</module>
-
-
-    <module>tripleo-bobcat</module>
-
-
-    <module>tripleo-nio</module>
-
-
-    <module>tripleo-http</module>
-
-
-    <module>tripleo-space</module>
-
-
-    <module>tripleo-adt</module>
-
-
-    <module>tripleo-impohrt-ant</module>
-
-
-    <module>tripleo-impohrt-scache</module>
-
-
-    <module>tripleo-impohrt-elifarley</module>
-
-
-    <module>tripleo-impohrt-cl</module>
-
-
-    <module>tripleo-impohrt-andreasnibbles</module>
-
-
-    <module>tripleo-impohrt-pj</module>
-
-
-    <module>tripleo-impohrt-pacman1</module>
-
-
-    <module>tripleo-taliyah</module>
-
-
-    <module>tripleo-ope</module>
-
-
-    <module>tripleo-cottontail</module>
-
-
-    <module>tripleo-linuxtuples</module>
-
-
-    <module>tripleo-appz-net-number_server</module>
-
-
-    <module>tripleo-appz-net-urlsink</module>
-
-
-    <module>tripleo-appz-pythondebug</module>
-
-
-    <module>tripleo-freebase</module>
-
-
-    <module>tripleo-pyyaml</module>
-
-
-    <module>tripleo-mega9091-graphicalresources</module>
-
-
-    <module>thinlet</module>
-
-
-    <module>thinlet-examples</module>
-
-
-    <module>oswego-concurrent</module>
-
-
-    <module>org-gnu-rex</module>
-
-  </modules>
-
-
+    </build>
+    <profiles>
+        <profile>
+            <id>jar-with-dependencies</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <modules>
+        <module>prevayler</module>
+        <module>thinMMS</module>
+        <module>rabbit-minimal</module>
+        <module>tripleo-util-001</module>
+        <module>tripleo-histore</module>
+        <module>tripleo-fs</module>
+        <module>tripleo-curr</module>
+        <module>tripleo-bobcat</module>
+        <module>tripleo-nio</module>
+        <module>tripleo-http</module>
+        <module>tripleo-space</module>
+        <module>tripleo-adt</module>
+        <module>tripleo-impohrt-ant</module>
+        <module>tripleo-impohrt-scache</module>
+        <module>tripleo-impohrt-elifarley</module>
+        <module>tripleo-impohrt-cl</module>
+        <module>tripleo-impohrt-andreasnibbles</module>
+        <module>tripleo-impohrt-pj</module>
+        <module>tripleo-impohrt-pacman1</module>
+        <module>tripleo-taliyah</module>
+        <module>tripleo-ope</module>
+        <module>tripleo-cottontail</module>
+        <module>tripleo-linuxtuples</module>
+        <module>tripleo-appz-net-number_server</module>
+        <module>tripleo-appz-net-urlsink</module>
+        <module>tripleo-appz-pythondebug</module>
+        <module>tripleo-freebase</module>
+        <module>tripleo-pyyaml</module>
+        <module>tripleo-mega9091-graphicalresources</module>
+        <module>thinlet</module>
+        <module>thinlet-examples</module>
+        <module>oswego-concurrent</module>
+        <module>org-gnu-rex</module>
+        <module>mail98</module>
+        <module>tripleo-impohrt-games-bounce</module>
+    </modules>
 </project>
