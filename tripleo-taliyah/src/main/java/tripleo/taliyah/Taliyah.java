@@ -1,17 +1,21 @@
 package tripleo.taliyah;
 
-import tripleo.taliyah.swingui.TaliyahForm;
-import tripleo.util.Assert;
-
-import javax.swing.*;
-import javax.xml.parsers.*;
-import java.awt.*;
-import java.util.*;
-import java.io.IOException;
-
-import FreeBASE.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
+import tripleo.impohrt.FreeBASE.*;
+import tripleo.taliyah.swingui.TaliyahForm;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+import javax.xml.parsers.ParserConfigurationException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Date: Aug 1, 2005
@@ -20,9 +24,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * $Id: Taliyah.java,v 1.1 2005/08/06 18:30:45 olu Exp $
  */
 public class Taliyah {
-	private PlugIn defaultPlugIn=new PlugIn();
+	private final PlugIn defaultPlugIn = new PlugIn();
 
-	class HelloCommand {
+	static class HelloCommand {
 
 		void initialize() {}
 
@@ -37,7 +41,7 @@ public class Taliyah {
 		}
 
 		// Show the goodbye dialog
-		void say_goodbye(FreeBASE.Slot my_slot) {
+		void say_goodbye(Slot my_slot) {
 
 			Slot v_slot = my_slot.get("/system/properties/version");  // get the slot that holds the FreeRIDE version number
 			MenuManager cmd_mgr = (MenuManager) my_slot.get("/system/ui/commands").manager; // get the system command manager
@@ -48,22 +52,25 @@ public class Taliyah {
 		}
 
 	}
-	HelloCommand the_cmd_object=new HelloCommand();
+
+	HelloCommand the_cmd_object = new HelloCommand();
+
 	class a1 implements Invokable {
 
-		public void command(FreeBASE.Slot cmd_slot) {
+		public void command(Slot cmd_slot) {
 			// This code is executed whenever our command is invoked
 			the_cmd_object.say_hello(cmd_slot);
 			the_cmd_object.say_goodbye(cmd_slot);
 		}
 	}
+
 	void m() {
 		PlugIn plugin = defaultPlugIn;
 		plugin.get("/system/ui/commands").manager.add("Examples/Hello", "&Hello World", new a1());
 
-		FreeBASE.Manager tools_menu = plugin.get("/system/ui/components/MenuPane/Tools_menu").manager;
+		Manager tools_menu = plugin.get("/system/ui/components/MenuPane/Tools_menu").manager;
 		((MenuManager) tools_menu).add_command("Examples/Hello");
-		plugin.transition(FreeBASE.Constants.RUNNING);
+		plugin.transition(Constants.RUNNING);
 	}
 
 	public static void main(String[] args) {
@@ -95,9 +102,9 @@ public class Taliyah {
 		viewMenu.add(new JMenuItem(new TaliyahForm.MyPackAction(frame)));
 		viewMenu.addSeparator();
 		menuBar.add(viewMenu);
-		UIManager.LookAndFeelInfo lafs[] = (UIManager.LookAndFeelInfo[]) UIManager.getInstalledLookAndFeels();
-		for (int i = 0; i < lafs.length; i++)
-			viewMenu.add(new TaliyahForm.MySetLafAction(frame, lafs[i]));
+		UIManager.LookAndFeelInfo[] lafs = UIManager.getInstalledLookAndFeels();
+		for (UIManager.LookAndFeelInfo laf : lafs)
+			viewMenu.add(new TaliyahForm.MySetLafAction(frame, laf));
 
 		frame.pack();
 		frame.addWindowListener(new TaliyahForm.MyWindowListener());
@@ -136,7 +143,7 @@ the_cmd_object.say_goodbye(new Slot(nullManager));
 
 class xSink extends DefaultHandler implements ContentHandler {
 
-	public @Override void characters(char ch[], int start, int length) throws SAXException {
+	public @Override void characters(char[] ch, int start, int length) throws SAXException {
 		String s = new String(ch, start, length);
 		s.trim();
 		if (s.length() > 0)
@@ -168,14 +175,14 @@ class xSink extends DefaultHandler implements ContentHandler {
 			String /*Class*/ jclz;
 			path = (String) htab.get("path");
 			jclz = (String) htab.get("jclass");
-			cur = new Node(path,jclz,htab);
+			cur = new Node(path, jclz, htab);
 			cur.load();
 		}		if (qName.equals("list")) {
 			String path;
 			String /*Class*/ jclz;
 			path = (String) htab.get("path");
 			jclz = (String) htab.get("jitemclass");
-			cur = new ListNode(path,jclz,htab);
+			cur = new ListNode(path, jclz, htab);
 			cur.load();
 		} else {
 			for (int j = 0; j < attributes.getLength(); j++) {
@@ -192,7 +199,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 		void chars(String s);
 	}
 
-	class Node implements X {
+	static class Node implements X {
 		public Node(String aPath, String aJclz, Map aHtab) {
 			path = aPath;
 			jclz = aJclz;
@@ -217,7 +224,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 		}
 	}
 
-	class ListNode implements X {
+	static class ListNode implements X {
 		public void load() {}
 
 		public void chars(String s) {

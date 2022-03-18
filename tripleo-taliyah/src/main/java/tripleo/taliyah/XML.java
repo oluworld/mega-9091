@@ -1,17 +1,14 @@
 package tripleo.taliyah;
 
-import tripleo.taliyah.swingui.TaliyahForm;
-import tripleo.util.Assert;
-
-import javax.swing.*;
-import javax.xml.parsers.*;
-import java.awt.*;
-import java.util.*;
-import java.io.IOException;
-
-import FreeBASE.*;
-import org.xml.sax.*;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 
 final class XML {
@@ -25,7 +22,7 @@ final class XML {
 
 class Sink extends DefaultHandler implements ContentHandler {
 	@Override
-	        public void characters(char ch[], int start, int length) throws SAXException {
+	        public void characters(char[] ch, int start, int length) throws SAXException {
 		String s = new String(ch, start, length);
 		s.trim();
 		if (s.length() > 0)
