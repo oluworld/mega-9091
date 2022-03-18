@@ -1,6 +1,7 @@
 *.class
 /run
 /lib/cachedir
+/cachedir
 /target
 /tripleo-util-001/target
 /tripleo-fs/target
