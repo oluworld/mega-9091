@@ -1,0 +1,45 @@
+- ZeeProxy alpha 2 - 
+
+I wanted a way to store a web site in a compressed archive in my computer and browse it just as if I were browsing the on-line version of the site.
+I could simply decompress the archive inside a folder and browse the folder, but then why did I compress it in the first place? To save space, of course. Besides, if the pages use abolute URLs, like 
+<a href="http://www.mytestserver.com/afolder/index.html">a link</a>
+the browser would have to connect to the internet in order to get the URL.
+
+I developed ZeeProxy to solve this problem. It's a HTTP proxy that serves web sites stored inside archives, decompressing things on-the-fly, as needed.
+ZeeProxy currently can serve sites stored inside the following types of archives:
+
+	- ZIP files;
+	- TAR files;
+	- TAR files compressed with RAZip;
+	- TAR files compressed with GZIP (things go really slow if the GZIP file is large);
+
+To run ZeeProxy on a Macintosh, double click the "ZeeProxy app" icon. It will serve any of the supported archive types named "default-arc" you put on the same folder as zeeproxy.jar. Instead of putting the file, you can use an alias to it.
+
+To run ZeeProxy under an OS which has a command line interface, cd to the folder containing zeeproxy,jar, and type "java -cp zeeproxy.jar ZeeProxy [archive-name]", without quotes. If you ommit the optional archive-name parameter, it will try to use "default-arc" as the archive to serve.
+
+After launching ZeeProxy, all you have to do is to configure your browser to use a HTTP proxy. Set appropriately the IP (try 127.0.0.1 to use the same machine you are on) and the port to 443.
+
+
+CHANGES FROM LAST VERSION:
+
+ZeeProxy alpha 2 has been completely rewritten to take advantage of some new technologies, like:
+
+	- VersaStreamFactory (automatically detects compression format used in archive);
+	- RAZip format (improved random access performance);
+	- VersaFSFactory (automatically detects and mounts TAR and ZIP file systems; other file systems are planned in the future);
+	- Jandy web application framework (allows you to easily create web clients and servers);
+
+For further information regarding these technologies, please visit
+	http://www.geocities.com/elifarley/javalibs/
+
+CONVERTING FILES TO RAZIP FORMAT:
+
+To create RAZip files or to convert your GZIP files to RAZip format (in order to get faster performance, for example), please take a look at
+
+http://razip.sourceforge.net/
+
+If you have any comments, please let me know.
+
+Elifarley C. Coelho
+Belo Horizonte, Brazil
+03 / 19 / 2001
