@@ -1,4 +1,4 @@
-package pyyaml;
+package tripleo.impohrt.pyyaml;
 
 import org.python.core.*;
 
@@ -504,11 +504,11 @@ public class stream extends java.lang.Object {
         Py.runCode(new _PyInner().getMain(), dict, dict);
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String[] newargs = new String[args.length+1];
         newargs[0] = "stream";
         System.arraycopy(args, 0, newargs, 1, args.length);
-        Py.runMain("yaml.stream$_PyInner", newargs, jpy$packages, jpy$properties, "yaml", new String[] {"socket", "ftplib", "yaml.klass", "yaml.__init__", "dummy", "macurl2path", "rfc822", "string", "yaml.inline", "yaml.dump", "tempfile", "yaml.load", "base64", "sre", "StringIO", "copy_reg", "random", "getopt", "nturl2path", "httplib", "mimetools", "sre_parse", "sre_compile", "quopri", "yaml.implicit", "sre_constants", "javapath", "yaml.ypath", "urllib", "re", "mimetypes", "posixpath", "errno", "gopherlib", "yaml.stream", "stat", "yaml.timestamp", "javaos"});
+        Py.runMain(stream._PyInner.class, newargs, jpy$packages, jpy$properties, "yaml", new String[] {"socket", "ftplib", "yaml.klass", "yaml.__init__", "dummy", "macurl2path", "rfc822", "string", "yaml.inline", "yaml.dump", "tempfile", "yaml.load", "base64", "sre", "StringIO", "copy_reg", "random", "getopt", "nturl2path", "httplib", "mimetools", "sre_parse", "sre_compile", "quopri", "yaml.implicit", "sre_constants", "javapath", "yaml.ypath", "urllib", "re", "mimetypes", "posixpath", "errno", "gopherlib", "yaml.stream", "stat", "yaml.timestamp", "javaos"});
     }
     
 }

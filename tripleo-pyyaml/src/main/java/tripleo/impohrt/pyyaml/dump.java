@@ -1,4 +1,4 @@
-package pyyaml;
+package tripleo.impohrt.pyyaml;
 
 import org.python.core.*;
 
