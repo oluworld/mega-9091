@@ -4,8 +4,8 @@
 
 package tripleo.linuxtuples.example;
 
-import tripleo.linuxtuples.gen.*;
 import tripleo.linuxtuples.TupleFactory;
+import tripleo.linuxtuples.gen.tuple;
 import tripleo.linuxtuples.quick;
 
 import java.util.Arrays;

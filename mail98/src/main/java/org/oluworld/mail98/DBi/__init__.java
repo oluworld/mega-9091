@@ -1,4 +1,4 @@
-package mail98.DBi;
+package org.oluworld.mail98.DBi;
 
 import org.python.core.Py;
 import org.python.core.PyCode;

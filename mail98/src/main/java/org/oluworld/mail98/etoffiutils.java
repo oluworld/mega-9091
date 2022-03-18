@@ -1,4 +1,4 @@
-package mail98;
+package org.oluworld.mail98;
 
 import org.python.core.*;
 

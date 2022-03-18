@@ -49,7 +49,7 @@ import java.io.IOException;
 class tuple_client {
 	static final int PARALLEL = 4;
 	static final int N = 8 * 1024;
-	private int sizeof_double=8 ; //TODO: impl in swig
+	private final int sizeof_double=8 ; //TODO: impl in swig
 
 	{System.loadLibrary("tuple");}
 
