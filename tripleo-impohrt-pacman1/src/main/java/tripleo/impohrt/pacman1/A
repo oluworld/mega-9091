@@ -1,0 +1,678 @@
+Index: HighScore.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/HighScore.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 HighScore.java
+--- HighScore.java	19 Feb 2005 21:09:23 -0000	1.1.1.1
++++ HighScore.java	13 Sep 2005 23:47:26 -0000
+@@ -8,7 +8,7 @@
+  * highscore class for the game
+  */
+ public class HighScore {
+-	private Vector vector = null;
++	private Vector<Score> vector = null;
+ 	private File file = null;
+ 
+ 	/**
+@@ -27,12 +27,12 @@
+ 	public void load() {
+ 		try {
+ 			ObjectInputStream fileIn = new ObjectInputStream(new FileInputStream(file));
+-			vector = (Vector) fileIn.readObject();
++			vector = (Vector<Score>) fileIn.readObject();
+ 		} catch (IOException e) {} catch (ClassNotFoundException f) {
+ 			System.err.println(f);
+ 		}
+ 		if (vector == null) {
+-			vector = new Vector();
++			vector = new Vector<Score>();
+ 		}
+ 	}
+ 
+@@ -73,7 +73,7 @@
+ 		if (pos > vector.size() - 1) {
+ 			return new Score("NoName", 0, 0);
+ 		} else {
+-			return (Score) vector.get(pos);
++			return vector.get(pos);
+ 		}
+ 	}
+ }
+Index: Level.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/Level.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 Level.java
+--- Level.java	19 Feb 2005 21:09:24 -0000	1.1.1.1
++++ Level.java	16 Sep 2005 12:42:15 -0000
+@@ -5,11 +5,10 @@
+ import java.util.Vector;
+ 
+ /**
+- * Level class take care of the level
+- * load levels and take care of hit-detection
++ * Level class take care of the level load levels and take care of hit-detection
+  */
+ public class Level {
+-	private Vector titles = new Vector();
++	private Vector<Title> titles = new Vector<Title>();
+ 	private File file = null;
+ 	private int playerStartTitle = 0;
+ 	private int ghostStartTitle = 0;
+@@ -26,64 +25,81 @@
+ 		ghostStartTitle = 0;
+ 		coinCount = 0;
+ 
+-		String path = "../resources/levels/" + level;
+-		file = new File(path);
+-		System.out.print("Loading level...");
+-		if (file.exists()) // load file if it exists
+-		{
++		String path = "resources/levels/" + level;
++		File xfile = new File(path);
++		System.out.print("Loading level (" + xfile.getAbsolutePath() + ")...");
++		if (xfile.exists()) { // load file if it exists
++			loadLevel(xfile);
++		}
++	}
++
++	private void loadLevel(File xfile) {
++		try {
++			file = xfile;
+ 			BufferedReader reader = null;
+-			try {reader = new BufferedReader(new FileReader(file));} catch (FileNotFoundException ex) {
+-				System.out.println(ex);
+-			}
++			reader = new BufferedReader(new FileReader(file));
+ 
+ 			String lineText;
+-			try {
+-				while ((lineText = reader.readLine()) != null) // for each line of text
+-				{
+-					char[] charLine = lineText.toCharArray();
+-					for (int i = 0; i < charLine.length; i++) // for each char in line
+-					{
+-						if (charLine[i] == '#') { // wall
+-							Title title = new Title(Gfx.wall_img, false, false, false, false);
+-							addTitle(title);
+-						}
+-						if (charLine[i] == '*') { // floor with coin
+-							Title title = new Title(Gfx.floor_img, true, true, false, false);
+-							addTitle(title);
+-							coinCount += 1;
+-						}
+-						if (charLine[i] == '-') { // floor with out coin
+-							Title title = new Title(Gfx.floor_img, true, false, false, false);
+-							addTitle(title);
+-						}
+-						if (charLine[i] == '@') {	// Player stating point
+-							Title title = new Title(Gfx.floor_img, true, false, false, false);
+-							addTitle(title);
+-							playerStartTitle = titles.size() - 1;
+-						}
+-						if (charLine[i] == '$') {	// ghost stating point
+-							Title title = new Title(Gfx.floor_img, true, false, false, false);
+-							addTitle(title);
+-							ghostStartTitle = titles.size() - 1;
+-						}
+-						if (charLine[i] == '&') { // cherry
+-							Title title = new Title(Gfx.floor_img, true, false, true, false);
+-							addTitle(title);
+-						}
+-						if (charLine[i] == '¤') { // powerup
+-							Title title = new Title(Gfx.floor_img, true, false, false, true);
+-							addTitle(title);
+-						}
+-					}
+-				}
+-			} catch (IOException ex1) {}
++			lineText = reader.readLine();
++			while (lineText != null) {
++				// for each line of text
++
++				for (int i = 0; i < lineText.length(); i++)
++					klkl(lineText.charAt(i));
++			}
++			System.out.print("Done!\n");
++		} catch (IOException e) {
++			e.printStackTrace();
++		}
++	}
++
++	private void klkl(char c) {
++		switch (c) {
++		case ('#'): { // wall
++			Title title = new Title(Gfx.wall_img, false, false, false, false);
++			addTitle(title);
++			break;
++		}
++		case '*': { // floor with coin
++			Title title = new Title(Gfx.coin_img, true, true, false, false);
++			addTitle(title);
++			coinCount += 1;
++			break;
++		}
++		case ('-'): { // floor without coin
++			Title title = new Title(Gfx.floor_img, true, false, false, false);
++			addTitle(title);
++			break;
++		}
++		case ('@'): { // Player stating point
++			Title title = new Title(Gfx.floor_img, true, false, false, false);
++			addTitle(title);
++			playerStartTitle = titles.size() - 1;
++			break;
++		}
++		case ('$'): { // ghost stating point
++			Title title = new Title(Gfx.floor_img, true, false, false, false);
++			addTitle(title);
++			ghostStartTitle = titles.size() - 1;
++			break;
++		}
++		case ('&'): { // cherry
++			Title title = new Title(Gfx.cherry_img, true, false, true, false);
++			addTitle(title);
++			break;
++		}
++		case ('?'): { // powerup
++			Title title = new Title(Gfx.powerup_img, true, false, false, true);
++			addTitle(title);
++			break;
++		}
++		default:
+ 		}
+-		System.out.print("Done!\n");
+ 	}
+ 
+ 	/**
+-	 * reset a level after we have played it once
+-	 * we simply reload the same level
++	 * reset a level after we have played it once we simply reload the same
++	 * level
+ 	 */
+ 	public void reset() {
+ 		synchronized (titles) {
+@@ -100,83 +116,92 @@
+ 
+ 	/**
+ 	 * return the image of the title
+-	 *
++	 * 
+ 	 * @return Image
+ 	 */
+ 	public Image getTitleImage(int pos) {
+-		Title t = (Title) titles.elementAt(pos);
++		if (titles.isEmpty())
++			throw new NullPointerException();
++		Title t = titles.elementAt(pos);
+ 		return t.getImage();
+ 	}
+ 
+ 	/**
+ 	 * check if the title at pos contain coin
+-	 *
+-	 * @param int the title
++	 * 
++	 * @param int
++	 *            the title
+ 	 * @return if there is a coin there
+ 	 */
+ 	public boolean coinAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
++		Title title = titles.elementAt(pos);
+ 		return title.getCoin();
+ 	}
+ 
+ 	/**
+ 	 * check if the title at pos contain cherry
+-	 *
+-	 * @param int the title
++	 * 
++	 * @param int
++	 *            the title
+ 	 * @return if there is a cherry there
+ 	 */
+ 	public boolean cherryAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
++		Title title = titles.elementAt(pos);
+ 		return title.getCherry();
+ 	}
+ 
+ 	/**
+ 	 * check if the title at pos contain powerup
+-	 *
+-	 * @param int the title
++	 * 
++	 * @param int
++	 *            the title
+ 	 * @return if there is a powerup there
+ 	 */
+ 	public boolean powerupAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
++		Title title = titles.elementAt(pos);
+ 		return title.getPowerup();
+ 	}
+ 
+ 	/**
+ 	 * grab the item at a pos
+-	 *
+-	 * @param int pos
++	 * 
++	 * @param int
++	 *            pos
+ 	 */
+ 	public void grabCoinAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
+-		//boolean coin = title.getCoin();
++		Title title = titles.elementAt(pos);
++		// boolean coin = title.getCoin();
+ 		title.setCoin(false);
+ 	}
+ 
+ 	/**
+ 	 * grab the item at a pos
+-	 *
+-	 * @param int pos
++	 * 
++	 * @param int
++	 *            pos
+ 	 */
+ 	public void grabCherryAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
+-		//boolean cherry = title.getCherry();
++		Title title = titles.elementAt(pos);
++		// boolean cherry = title.getCherry();
+ 		title.setCherry(false);
+ 	}
+ 
+ 	/**
+ 	 * grab the item at a pos
+-	 *
+-	 * @param int pos
++	 * 
++	 * @param int
++	 *            pos
+ 	 */
+ 	public void grabPowerupAt(int pos) {
+-		Title title = (Title) titles.elementAt(pos);
++		Title title = titles.elementAt(pos);
+ 		title.setPowerup(false);
+ 	}
+ 
+ 	/**
+ 	 * return the player startpos from the level
+-	 *
+-	 * @return XYpos @see XYpos
++	 * 
++	 * @return XYpos
++	 * @see XYpos
+ 	 */
+ 	public XYpos getPlayerStartPos() {
+ 		return titleToXy(playerStartTitle);
+@@ -184,16 +209,18 @@
+ 
+ 	/**
+ 	 * return the Ghost startpos from the level
+-	 *
+-	 * @return XYpos @see XYpos
++	 * 
++	 * @return XYpos
++	 * @see XYpos
+ 	 */
+ 	public XYpos getGhostStartPos() {
+ 		return titleToXy(ghostStartTitle);
+ 	}
+ 
+ 	/**
+-	 * return the total number of coins on the level
+-	 * So the @see Player object know when he got them all
++	 * return the total number of coins on the level So the
++	 * 
++	 * @see Player object know when he got them all
+ 	 */
+ 	public int getCoins() {
+ 		return coinCount;
+@@ -201,15 +228,17 @@
+ 
+ 	/**
+ 	 * convert a title pos to screen xy cordinate
+-	 *
+-	 * @return @see XYpos
++	 * 
++	 * @return
++	 * @see XYpos
+ 	 */
+ 	public XYpos titleToXy(int requested) {
+ 		int pos = 0;
+ 		for (int y = 0; y < Const.HEIGHT; y++) {
+ 			for (int x = 0; x < Const.WIDTH; x++) {
+ 				if (requested == pos) {
+-					XYpos xypos = new XYpos(x * Const.TITLE_SIZE, y * Const.TITLE_SIZE);
++					XYpos xypos = new XYpos(x * Const.TITLE_SIZE, y
++							* Const.TITLE_SIZE);
+ 					return xypos;
+ 				}
+ 				pos += 1;
+@@ -220,53 +249,56 @@
+ 
+ 	/**
+ 	 * convert x,y pos to a title nummber
+-	 *
++	 * 
+ 	 * @return int the title nummber
+ 	 */
+ 	public int xyToTitle(int x, int y) {
+ 		int pos = 0;
+ 		for (int ytit = 0; ytit < Const.HEIGHT; ytit++) {
+-			for (int xtit = 0; xtit < Const.WIDTH; xtit++) {
+-				if (between(x, xtit * Const.TITLE_SIZE, xtit * Const.TITLE_SIZE + 20) &&
+-				        between(y, ytit * Const.TITLE_SIZE, ytit * Const.TITLE_SIZE + 20)) {
++		for (int xtit = 0; xtit < Const.WIDTH; xtit++) {
++final int xx = xtit * Const.TITLE_SIZE;
++final int yy = ytit * Const.TITLE_SIZE;
++				if (between(x, xx, xx + 20) && between(y, yy, yy + 20)) {
+ 					return pos;
+ 				}
+-				pos += 1;
++				pos++;
+ 			}
+ 		}
+ 		return 0;
+ 	}
+ 
+ 	/**
+-	 * check if is is possible to move from the possition given in the
+-	 * specifyed direction
+-	 *
++	 * check if is is possible to move from the possition given in the specifyed
++	 * direction
++	 * 
+ 	 * @return true if it is possible
+ 	 */
+ 	public boolean checkMove(int direction, int x, int y) {
+ 		int pos = 0;
+ 		for (int ytit = 0; ytit < Const.HEIGHT; ytit++) {
+ 			for (int xtit = 0; xtit < Const.WIDTH; xtit++) {
+-				if (between(x, xtit * Const.TITLE_SIZE, xtit * Const.TITLE_SIZE + 21) &&
+-				        between(y, ytit * Const.TITLE_SIZE, ytit * Const.TITLE_SIZE + 21)) {
++				if (between(x, xtit * Const.TITLE_SIZE, xtit * Const.TITLE_SIZE
++						+ 21)
++						&& between(y, ytit * Const.TITLE_SIZE, ytit
++								* Const.TITLE_SIZE + 21)) {
+ 					int nextTitle = 0;
+ 					switch (direction) {
+-						case Const.RIGHT:
+-							nextTitle = pos + 1;
+-							break;
+-						case Const.DOWN:
+-							nextTitle = pos + 19;
+-							break;
+-						case Const.LEFT:
+-							nextTitle = pos - 1;
+-							break;
+-						case Const.UP:
+-							nextTitle = pos - 19;
+-							break;
++					case Const.RIGHT:
++						nextTitle = pos + 1;
++						break;
++					case Const.DOWN:
++						nextTitle = pos + 19;
++						break;
++					case Const.LEFT:
++						nextTitle = pos - 1;
++						break;
++					case Const.UP:
++						nextTitle = pos - 19;
++						break;
+ 					}
+ 
+ 					if (between(nextTitle, 0, Const.TITLES + 1)) {
+-						Title title = (Title) titles.elementAt(nextTitle);
++						Title title = titles.elementAt(nextTitle);
+ 						return title.getWalkable();
+ 					} else
+ 						return false;
+@@ -281,9 +313,6 @@
+ 	 * check if tal is between intS and intE
+ 	 */
+ 	private boolean between(int tal, int intS, int intE) {
+-		if (tal > intS && tal < intE)
+-			return true;
+-		else
+-			return false;
+-	}
++		return (tal > intS && tal < intE)
++;	}
+ }
+Index: NewGameGui.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/NewGameGui.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 NewGameGui.java
+--- NewGameGui.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ NewGameGui.java	13 Sep 2005 23:47:25 -0000
+@@ -49,8 +49,8 @@
+ 	 * Read all levels from the level dir and add to combobox.
+ 	 * Level files is all files with extention .lev
+ 	 */
+-	private Vector getLevels() {
+-		Vector v = new Vector();
++	private Vector<String> getLevels() {
++		Vector<String> v = new Vector<String>();
+ 		File dir = new File("../resources/levels/");
+ 		String files[] = dir.list();
+ 
+Index: Player.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/Player.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 Player.java
+--- Player.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ Player.java	16 Sep 2005 13:03:38 -0000
+@@ -4,6 +4,8 @@
+ import java.awt.event.KeyEvent;
+ import java.util.Timer;
+ import java.util.TimerTask;
++import java.util.concurrent.ScheduledThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
+ 
+ /**
+  * Player gameobject
+@@ -19,7 +21,8 @@
+ 	private int moveDirection = 0;
+ 	private boolean killable = true;
+ 	private Font font = new Font("score_font", Font.BOLD, 22);
+-	private Timer timer = new Timer();
++//	private Timer timer = new Timer();
++	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
+ 
+ 	/**
+ 	 * constructor for player objects
+@@ -122,7 +125,7 @@
+ 		// check if player grab powerup
+ 		if (world.containPowerup(getXpos() + 10, getYpos() + 10)) {
+ 			killable = false;
+-			timer.schedule(new Powerup(), Const.POWERUPTIME);
++			sch.schedule(new Powerup(), Const.POWERUPTIME, TimeUnit.NANOSECONDS);
+ 		}
+ 	}
+ 
+Index: ScreenText.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/ScreenText.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 ScreenText.java
+--- ScreenText.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ ScreenText.java	16 Sep 2005 13:02:55 -0000
+@@ -3,6 +3,8 @@
+ import java.awt.*;
+ import java.util.Timer;
+ import java.util.TimerTask;
++import java.util.concurrent.ScheduledThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
+ 
+ /**
+  * ScreenText show a text on the screen at a point and a given time
+@@ -15,7 +17,8 @@
+ 	private int xpos = 0;
+ 	private int ypos = 0;
+ 	private int count = 0;
+-	private Timer timer = new Timer();
++//	private Timer timer = new Timer();
++	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
+ 
+ 	/**
+ 	 * constructor to screentext objects
+@@ -29,7 +32,8 @@
+ 		ypos = y;
+ 		xpos = x;
+ 		text = t;
+-		timer.schedule(new done(), secs * 1000);
++//		timer.schedule(new done(), secs * 1000);
++		sch.schedule(new done(), secs * 1000, TimeUnit.NANOSECONDS);
+ 		visible = true;
+ 	}
+ 
+@@ -69,7 +73,8 @@
+ 	private class done extends TimerTask {
+ 		public void run() {
+ 			visible = false;
+-			timer.cancel();
++//			timer.cancel();
++			sch.shutdownNow();
+ 		}
+ 	}
+ }
+Index: Title.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/Title.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 Title.java
+--- Title.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ Title.java	16 Sep 2005 12:18:49 -0000
+@@ -1,6 +1,6 @@
+ package tripleo.impohrt.pacman1;
+ 
+-import java.awt.*;
++import java.awt.Image;
+ 
+ /**
+  * Title class represent a 20x20 pixel size square
+Index: WavePlayer.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/WavePlayer.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 WavePlayer.java
+--- WavePlayer.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ WavePlayer.java	16 Sep 2005 13:02:52 -0000
+@@ -5,6 +5,8 @@
+ import java.io.File;
+ import java.util.Timer;
+ import java.util.TimerTask;
++import java.util.concurrent.ScheduledThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
+ 
+ /**
+  * Very simple class that play a wav file
+@@ -12,7 +14,8 @@
+ public class WavePlayer implements AudioClip {
+ 	private AudioClip clip1 = null;
+ 	private boolean looping = false;
+-	private Timer timer = new Timer();
++//	private Timer timer = new Timer();
++	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
+ 	private boolean debug = false;
+ 	private String file;
+ 
+@@ -67,7 +70,8 @@
+ 	public void play(int time) {
+ 		looping = true;
+ 		new WaveThread();
+-		timer.schedule(new LoopTime(), time);
++		sch.schedule(new LoopTime(), time, TimeUnit.MILLISECONDS);
++//		timer.schedule(new LoopTime(), time);
+ 	}
+ 
+ 	/**
+Index: World.java
+===================================================================
+RCS file: /local/system/code/cvs/Rabbit3/src-tripleo/tripleo/impohrt/pacman1/World.java,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 World.java
+--- World.java	19 Feb 2005 21:09:25 -0000	1.1.1.1
++++ World.java	14 Sep 2005 00:48:55 -0000
+@@ -10,7 +10,7 @@
+  * this is the world class, the entire game "lives" in this class.
+  */
+ class World extends JPanel implements Runnable {
+-	private Vector objects = new Vector();
++	private Vector<GameObject> objects = new Vector<GameObject>();
+ 	private Level level = new Level();
+ 	private Player player = null;
+ 	private Thread thread = null;
+@@ -38,26 +38,30 @@
+ 		int pos = 0; // draw the level
+ 		for (int y = 0; y < Const.HEIGHT; y++) {
+ 			for (int x = 0; x < Const.WIDTH; x++) {
+-				g.drawImage(level.getTitleImage(pos), x * Const.TITLE_SIZE, y * Const.TITLE_SIZE, this);
+-
+-				if (level.coinAt(pos)) // draw coin here ?
++				final int yy = y * Const.TITLE_SIZE;
++				final int xx = x * Const.TITLE_SIZE;
++				g.drawImage(level.getTitleImage(pos), xx, yy, this);
++
++				Image image=null;
++				// draw what here?
++				if (level.coinAt(pos)) 
+ 				{
+-					g.drawImage(Gfx.coin_img, x * Const.TITLE_SIZE, y * Const.TITLE_SIZE, this);
+-				} else if (level.cherryAt(pos)) // else draw cherry here ?
++					image = Gfx.coin_img;
++				} else if (level.cherryAt(pos))
+ 				{
+-					g.drawImage(Gfx.cherry_img, x * Const.TITLE_SIZE, y * Const.TITLE_SIZE, this);
+-				} else if (level.powerupAt(pos)) // else draw powerup here ?
++					image = Gfx.cherry_img;
++				} else if (level.powerupAt(pos))
+ 				{
+-					g.drawImage(Gfx.powerup_img, x * Const.TITLE_SIZE, y * Const.TITLE_SIZE, this);
++					image = Gfx.powerup_img;
+ 				}
++				assert image!=null;
++				g.drawImage(image, xx, yy, this);
+ 
+-				pos += 1; // next title
++				pos++; // next title
+ 			}
+ 		}
+ 
+-		for (int i = 0; i < objects.size(); i++)  // game objects
+-		{
+-			GameObject o = (GameObject) objects.elementAt(i);
++		for (GameObject o : objects) {   // game objects
+ 			o.tick();       // move game object
+ 			o.draw(g, this); // draw game object
+ 		}
+@@ -99,8 +103,8 @@
+ 			if (!player.gameOver()) {
+ 				round += 1;
+ 				new ScreenText(this, "New round: " + round, Const.STXPOS, Const.STYPOS, 3);
+-				ghost = new Ghost(this, ghost_pos, player); // add 2 new ghosts per completed level
+-				ghost = new Ghost(this, ghost_pos, player); // to make it a bit more difficult
++				/*ghost =*/ new Ghost(this, ghost_pos, player); // add 2 new ghosts per completed level
++				/*ghost =*/ new Ghost(this, ghost_pos, player); // to make it a bit more difficult
+ 				level.reset(); // prepare the level for the next round
+ 			} else { objects.clear(); }
+ 		}
+@@ -210,9 +214,7 @@
+ 	 * reset the starting possisions for all GameObjects
+ 	 */
+ 	public void reset() {
+-		for (int i = 0; i < objects.size(); i++)  // draw the game objects
+-		{
+-			GameObject o = (GameObject) objects.elementAt(i);
++		for (GameObject o : objects) {   // draw the game objects
+ 			o.reset();
+ 		}
+ 	}

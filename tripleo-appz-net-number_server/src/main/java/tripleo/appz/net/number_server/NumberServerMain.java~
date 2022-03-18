@@ -1,0 +1,18 @@
+/*
+ * Created May 21, 2004 -- Time: 12:33:13 PM
+ */
+
+package tripleo.appz.net.number_server;
+
+/**
+ * Run the application in command-line mode
+ * 
+ * @author alimoe
+ *
+ */
+public class NumberServerMain {
+
+	public static void main(String[] args) {
+		new NumberServerApp().run_program(args);
+	}
+}

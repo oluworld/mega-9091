@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<panel name='top' gap="4" top="4" left="4" columns="1" >
+	<panel gap='4'>
+		<checkbox name='Proxy' action='fixvis()'/>
+		<label text='Proxy enabled' /><panel gap='2' name='pr_pnl'>
+		<!-- <vbar /> -->
+		<label text='hostname'/><textfield name="proxy-root" text='localhost'/>
+		<label text='portnum' /><textfield name="proxy-port" text='8080' columns='7'/>
+		<button text="Launch"/><!--xaction="connectToNewRoot(proxy-root.text, proxy-port.text)" />-->
+		</panel>
+	</panel>
+	<panel gap='4'>
+		<checkbox name='SimpleTestClient'/>
+		<label text='SimpleTestClient' />
+		<!-- <vbar /> -->
+		<label text='hostname'/><textfield name="stc-root" text='localhost'/>
+		<label text='portnum' /><textfield name="stc-port" text='66080' columns='7'/>
+		<button name='stc-launch' text='Launch' action='start_stc()' enabled='false' />
+	</panel>
+	<panel gap='4'>
+		<checkbox name='XmlRpcServer'/>
+		<label text='XmlRpcServer' />
+		<!-- <vbar /> -->
+		<label text='hostname'/><textfield name="proxy-root" text='localhost'/>
+		<label text='portnum' /><textfield name="proxy-port" text='8080' columns='7'/>
+		<button text='Launch' action='start_xmlsrv()'/>
+	</panel>
+	<panel>
+		<label text="Root"/>
+		<textfield name="root"/>
+		<textfield name="portnum" columns='5'/>
+		<button text="Connect" action="connectToNewRoot(root.text, portnum.text)"/>
+	</panel>
+	<panel>
+		<button name='run' action='stc-launch=true;run_();'/>
+		<button name='pyrun' action='pyrun()'/>
+	</panel>
+	<panel>
+		<checkbox name="timeout_cb" text="timeout" action="checkcheckBox(timeout, timeout_cb.enabled)" />
+		<textfield name="timeout" text="10:00" />
+		<button name='exit' action='ShutDown'/>
+	</panel>
+	<panel>
+		<!--	<label text="+" />
+			<textfield name="number1" columns="4" />
+			<textfield name="number2" columns="4" />
+			<button text="=" action="calculate(number1.text, number2.text, result)" />
+			<textfield name="result" editable="false" /> -->
+
+		<list name='status'/>
+		<textarea name="errors" editable="false"/>
+	</panel>
+</panel>

@@ -1,0 +1,12 @@
+<panel gap="4" top="4" left="4">
+	<label text="Root" />
+	<textfield name="root"  />
+	<textfield name="portnum" columns='5'  />
+	<button text="Connect" action="connectToNewRoot(root.text, portnum.text)" />
+	<label text="+" />
+	<textfield name="number1" columns="4" />
+	<textfield name="number2" columns="4"
+	/>
+	<button text="=" action="calculate(number1.text, number2.text, result)" />
+	<textfield name="result" editable="false" />
+</panel>

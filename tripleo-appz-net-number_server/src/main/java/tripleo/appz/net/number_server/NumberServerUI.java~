@@ -1,0 +1,123 @@
+/**
+ *  $Id$
+ *   ========================================================================
+ *  $Log$
+ */ 
+package tripleo.appz.net.number_server;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import thinlet.FrameLauncher;
+import thinlet.Thinlet;
+
+/**
+ * Run the application in GUI mode (using Thinlet)
+ * 
+ * @author alimoe
+ */
+public class NumberServerUI extends Thinlet {
+	private final boolean useProxy = true;
+	private STC_Parent p;
+	private final NumberServerApp app = new NumberServerApp();
+	private SimpleTestClient c;
+	private Timer m_my_Timer;
+
+	public void start_ui() throws Exception {
+		try {
+			final Object component = parse(path);
+			add(component);
+			t();
+		} catch (Exception exc) {
+			exc.printStackTrace();
+			throw exc;
+		}
+	}
+
+	public void run_() {
+		p = new STC_Parent(useProxy, app.space);
+		//
+		NumberServer f = new NumberServer(app);
+		f.doWork();
+	}
+	
+	public void ShutDown() {
+		t().cancel();
+		System.exit(1);//close();
+	}
+
+	boolean tx = true;
+	Timer t() {
+		if (m_my_Timer==null) {
+			m_my_Timer = new Timer();
+			TimerTask ttsk = new TimerTask() {
+				int n=60*10*1000; // sec * min * msec (10 minutes)
+				public void run() {
+					Object comp = find("timeout");
+					assert comp != null;
+					final String value = ""+(n-=1000)+"  "+n/60000;
+					if (n<1) ShutDown();
+					setString(comp, "text", value);
+				}
+			};
+			m_my_Timer.scheduleAtFixedRate(ttsk, 1000, 1000);
+		}
+		return m_my_Timer;
+	}
+
+	public void checkcheckBox(Object o, boolean userJustChecked) {
+		if (userJustChecked) { // use just clicked it on
+			// TODO parse the time in the box ((String)(o.text))
+			tx=true;
+			setBoolean(o, "editable", false);
+
+		} else {
+			tx=false;
+			setBoolean(o, "editable", true);
+		}
+	}
+
+	public void pyrun() {}
+	public void exit() {}
+	public void start_stc() {
+		c = new SimpleTestClient(useProxy, app, p);
+		//
+		System.out.print(100100+" ");
+		System.out.print(c+" ");
+		System.out.println(c.responses());
+		//
+		c.doWork();
+	}
+
+	public void start_xmlsrv() {
+		app.k(c);
+	}
+
+
+	public void calculate(String number1, String number2, Object result) {
+		try {
+			int i1 = Integer.parseInt(number1);
+			int i2 = Integer.parseInt(number2);
+			setString(result, "text", String.valueOf(i1 + i2));
+		} catch (NumberFormatException nfe) {
+			getToolkit().beep();
+		}
+	}
+
+	public void connectToNewRoot(String rootName, String sportnum) {
+		try {
+			int portnum = Integer.parseInt(sportnum);
+		} catch (NumberFormatException nfe) {
+			getToolkit().beep();
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		final NumberServerUI ui = new NumberServerUI();
+		ui.start_ui();
+		new FrameLauncher("number_server", ui, 360, 240);
+	}
+
+	private final String path = "NumberServerUI.xml";
+
+}

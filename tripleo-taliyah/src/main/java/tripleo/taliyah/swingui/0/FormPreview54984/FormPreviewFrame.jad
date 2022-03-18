@@ -1,0 +1,136 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   FormPreviewFrame.java
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class FormPreviewFrame
+{
+    private static final class MySetLafAction extends AbstractAction
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                UIManager.setLookAndFeel(myInfo.getClassName());
+                SwingUtilities.updateComponentTreeUI(myFrame);
+                Dimension prefSize = myFrame.getPreferredSize();
+                if(prefSize.width > myFrame.getWidth() || prefSize.height > myFrame.getHeight())
+                    myFrame.pack();
+            }
+            catch(Exception exc)
+            {
+                JOptionPane.showMessageDialog(myFrame, "Cannot change LookAndFeel.\nReason: " + exc.getMessage(), "Error", 0);
+            }
+        }
+
+        private final JFrame myFrame;
+        private final javax.swing.UIManager.LookAndFeelInfo myInfo;
+
+        public MySetLafAction(JFrame frame, javax.swing.UIManager.LookAndFeelInfo info)
+        {
+            super(info.getName());
+            myFrame = frame;
+            myInfo = info;
+        }
+    }
+
+    private static final class MyPackAction extends AbstractAction
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            myFrame.pack();
+        }
+
+        private final JFrame myFrame;
+
+        public MyPackAction(JFrame frame)
+        {
+            super("Pack");
+            myFrame = frame;
+        }
+    }
+
+    private static final class MyExitAction extends AbstractAction
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            System.exit(0);
+        }
+
+        public MyExitAction()
+        {
+            super("Exit");
+        }
+    }
+
+    private static final class MyWindowListener extends WindowAdapter
+    {
+
+        public void windowClosing(WindowEvent e)
+        {
+            System.exit(0);
+        }
+
+        private MyWindowListener()
+        {
+        }
+
+    }
+
+
+    public FormPreviewFrame()
+    {
+        $$$setupUI$$$();
+    }
+
+    public static void main(String args[])
+    {
+        FormPreviewFrame f = new FormPreviewFrame();
+        JFrame frame = new JFrame("Form Preview");
+        frame.setContentPane(f.myComponent);
+        JMenuBar menuBar = new JMenuBar();
+        frame.setJMenuBar(menuBar);
+        JMenu menuFile = new JMenu("File");
+        menuFile.setMnemonic(70);
+        JMenuItem menuItemExit = new JMenuItem(new MyExitAction());
+        menuFile.add(menuItemExit);
+        menuBar.add(menuFile);
+        JMenu viewMenu = new JMenu("View");
+        viewMenu.setMnemonic(86);
+        viewMenu.add(new JMenuItem(new MyPackAction(frame)));
+        viewMenu.addSeparator();
+        menuBar.add(viewMenu);
+        javax.swing.UIManager.LookAndFeelInfo lafs[] = (javax.swing.UIManager.LookAndFeelInfo[])UIManager.getInstalledLookAndFeels();
+        for(int i = 0; i < lafs.length; i++)
+            viewMenu.add(new MySetLafAction(frame, lafs[i]));
+
+        frame.pack();
+        frame.addWindowListener(new MyWindowListener());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation((screenSize.width - frame.getWidth()) / 2, (screenSize.height - frame.getHeight()) / 2);
+        frame.show();
+    }
+
+    private void $$$setupUI$$$()
+    {
+        JPanel jpanel = new JPanel();
+        myComponent = jpanel;
+        jpanel.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1, false, false));
+        JPanel jpanel1 = new JPanel();
+        jpanel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1, false, false));
+        jpanel.add(jpanel1, new GridConstraints(1, 0, 1, 1, 0, 3, 3, 3, null, null, null));
+        JPanel jpanel2 = new JPanel();
+        jpanel1.add(jpanel2, new GridConstraints(0, 1, 1, 1, 0, 3, 3, 3, null, null, null));
+    }
+
+    private JComponent myComponent;
+}
