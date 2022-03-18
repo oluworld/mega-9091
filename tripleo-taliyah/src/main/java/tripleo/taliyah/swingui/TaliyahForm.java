@@ -70,7 +70,7 @@ public class TaliyahForm {
 				if (prefSize.width > myFrame.getWidth() || prefSize.height > myFrame.getHeight())
 					myFrame.pack();
 			} catch (Exception exc) {
-				JOptionPane.showMessageDialog(myFrame, "Cannot change LookAndFeel.\nReason: " + exc.getMessage(), "Error", 0);
+				JOptionPane.showMessageDialog(myFrame, "Cannot change LookAndFeel.\nReason: " + exc.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
