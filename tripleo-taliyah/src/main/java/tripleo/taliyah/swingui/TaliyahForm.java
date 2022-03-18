@@ -119,9 +119,9 @@ public class TaliyahForm {
 
 	}
 
-	class TreeModel_Main extends DefaultTreeModel {
+	static class TreeModel_Main extends DefaultTreeModel {
 		private final String root_ = "root";
-		private List rootChildren;
+		private List<String> rootChildren;
 
 		public TreeModel_Main() {
 			super(new DefaultMutableTreeNode());
@@ -138,9 +138,9 @@ public class TaliyahForm {
 			return null;
 		}
 
-		private List rootChildren() {
+		private List<String> rootChildren() {
 			if (rootChildren == null) {
-				rootChildren = new ArrayList();
+				rootChildren = new ArrayList<String>();
 				rootChildren.add("Editor");
 				rootChildren.add("Recent Files");
 				rootChildren.add("Other Recent Resources");
