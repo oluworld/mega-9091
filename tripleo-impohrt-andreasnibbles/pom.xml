@@ -6,8 +6,7 @@
     <groupId>com.github.oluworld.mega9091</groupId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
- 
-    <groupId>com.github.oluworld.mega9091</groupId>
+
     <artifactId>tripleo-impohrt-andreasnibbles</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>

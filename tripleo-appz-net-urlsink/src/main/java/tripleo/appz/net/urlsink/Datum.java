@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import rabbit.http.HTTPHeader;
@@ -39,7 +38,7 @@ class Datum implements Serializable {
 			else
 				cont = content.getBytes();
 		} else {
-			List<byte[]> l = new ArrayList();
+			List<byte[]> l = new ArrayList<>();
 			int ba, ta = 0;
 			try {
 				while ((ba = xa.available()) > 0) {
@@ -53,11 +52,11 @@ class Datum implements Serializable {
 			} finally {
 				int x0 = 0;
 				cont = new byte[ta];
-				for (Iterator<byte[]> it = l.iterator(); it.hasNext();) {
-					byte[] bytes = /*(byte[])*/ it.next();
-					System.arraycopy(bytes, 0, cont, x0, bytes.length);
-					x0 += bytes.length;
-				}
+                /*(byte[])*/
+                for (byte[] bytes : l) {
+                    System.arraycopy(bytes, 0, cont, x0, bytes.length);
+                    x0 += bytes.length;
+                }
 //				while (x0<ta)
 //					System.arraycopy();
 			}
@@ -65,7 +64,18 @@ class Datum implements Serializable {
 	}
 
 	public String toString() {
-		return "Datum (" + a + ") (" + b + ") (" //+ header + ") ("
-				+ category + ") (" + active + ")";
+		final StringBuilder sb = new StringBuilder();
+		sb.append("Datum (");
+		sb.append(a);
+		sb.append(") (");
+		sb.append(b);
+		sb.append(") (");
+//		sb.append(header);
+//		sb.append(") (");
+		sb.append(category);
+		sb.append(") (");
+		sb.append(active);
+		sb.append(")");
+		return sb.toString();
 	}
 }

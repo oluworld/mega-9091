@@ -8,9 +8,9 @@ import java.io.Serializable;
  * name, score and how many rounds the player made
  */
 class Score implements Serializable, Comparable {
-	private String name;
-	private int points;
-	private int round;
+	private final String name;
+	private final int points;
+	private final int round;
 
 	/**
 	 * constructor for Score objects
@@ -48,8 +48,7 @@ class Score implements Serializable, Comparable {
 	 * @return String score
 	 */
 	public String getScore() {
-		Integer strscore = new Integer(points);
-		return strscore.toString();
+		return Integer.toString(points);
 	}
 
 	/**
@@ -58,8 +57,7 @@ class Score implements Serializable, Comparable {
 	 * @return String round
 	 */
 	public String getRound() {
-		Integer strround = new Integer(round);
-		return strround.toString();
+		return Integer.toString(round);
 	}
 
 	/**

@@ -8,7 +8,7 @@ import java.util.Vector;
  * Level class take care of the level load levels and take care of hit-detection
  */
 public class Level {
-	private Vector<Title> titles = new Vector<Title>();
+	private final Vector<Title> titles = new Vector<Title>();
 	private File file = null;
 	private int playerStartTitle = 0;
 	private int ghostStartTitle = 0;

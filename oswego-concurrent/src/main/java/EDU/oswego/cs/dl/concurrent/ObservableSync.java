@@ -11,7 +11,7 @@
   1Aug1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.*;
 
 /**
@@ -47,12 +47,12 @@ public class ObservableSync implements Sync {
      * Method called upon acquire or successful attempt of Sync
      **/
 
-    public void onAcquire(Object arg);
+    void onAcquire(Object arg);
 
     /**
      * Method called upon release of Sync.
      **/
-    public void onRelease(Object arg);
+    void onRelease(Object arg);
   }
 
   protected final CopyOnWriteArraySet observers_ = new CopyOnWriteArraySet();

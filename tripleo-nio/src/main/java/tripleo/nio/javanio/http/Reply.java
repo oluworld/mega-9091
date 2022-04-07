@@ -22,8 +22,8 @@ public class Reply implements Sendable {
 	 */
 	public static class Code {
 
-		private int number;
-		private String reason;
+		private final int number;
+		private final String reason;
 
 		public Code(int i, String r) {
 			number = i;
@@ -40,9 +40,9 @@ public class Reply implements Sendable {
 
 	}
 
-	private Code code;
+	private final Code code;
 	protected Content content;
-	private boolean headersOnly;
+	private final boolean headersOnly;
 
 	public Reply(Code rc, Content c) {
 		this(rc, c, null);
@@ -54,8 +54,8 @@ public class Reply implements Sendable {
 		headersOnly = (head == JN_Request.Action.HEAD);
 	}
 
-	private static String CRLF = "\r\n";
-	private static Charset ascii = Charset.forName("US-ASCII");
+	private static final String CRLF = "\r\n";
+	private static final Charset ascii = Charset.forName("US-ASCII");
 
 	protected ByteBuffer hbb = null;
 

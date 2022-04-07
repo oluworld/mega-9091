@@ -6,9 +6,7 @@
 package tripleo.cottontail.viewer;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.util.*;
-import java.util.List;
 
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.custom.StyledText;
@@ -29,7 +27,7 @@ public class ResourceViewHelper
 	private       Object         initial = null;
 	private       ResourceObject mSelection;
 	final static  KeyChain       keychain = new KeyChain();
-	private       Map<ResourceObject, Pair> opentabs=new HashMap();
+	private final Map<ResourceObject, Pair> opentabs=new HashMap<>();
 
 	public ResourceViewHelper(ControlExample aExample) {
 		mExample = aExample;

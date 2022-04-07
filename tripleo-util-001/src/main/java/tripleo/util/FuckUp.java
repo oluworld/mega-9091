@@ -26,7 +26,7 @@ public class FuckUp extends RuntimeException {
 			StringWriter sw = new StringWriter();
 			PrintWriter sos = new PrintWriter(sw);
 			ae.printStackTrace(sos);
-			R+=sw.toString()+"\n\n";
+			R+= sw +"\n\n";
 		}
 		if (payload!=null) {
 			R+=payload;

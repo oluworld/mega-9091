@@ -21,7 +21,7 @@
   24Nov2001 dl                Increase some default values
 */
 
-package EDU.oswego.cs.dl.util.concurrent.misc;
+package EDU.oswego.cs.dl.concurrent.misc;
 
 // Swap the following sets of imports if necessary.
 
@@ -35,7 +35,6 @@ import  EDU.oswego.cs.dl.util.concurrent.*;
 import  java.awt.*;
 import  java.awt.event.*;
 import  java.io.*;
-import  java.net.*;
 import  java.lang.reflect.*;
 
 /**
@@ -751,13 +750,13 @@ public class SynchronizationTimer {
   
   
   
-  JComboBox syncModePanel() {
-    JComboBox syncModeComboBox = new JComboBox();
-    
-    for (int j = 0; j < syncModes.length; ++j) {
-      String lab = "Locks: " + modeToString(syncModes[j]);
-      syncModeComboBox.addItem(lab);
-    }
+  JComboBox<String> syncModePanel() {
+    JComboBox<String> syncModeComboBox = new JComboBox<String>();
+
+      for (int syncMode : syncModes) {
+          String lab = "Locks: " + modeToString(syncMode);
+          syncModeComboBox.addItem(lab);
+      }
     syncModeComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -771,13 +770,13 @@ public class SynchronizationTimer {
     return syncModeComboBox;
   }
 
-  JComboBox producerSyncModePanel() {
-    JComboBox producerSyncModeComboBox = new JComboBox();
-    
-    for (int j = 0; j < syncModes.length; ++j) {
-      String lab = "Producers: " + modeToString(syncModes[j]);
-      producerSyncModeComboBox.addItem(lab);
-    }
+  JComboBox<String> producerSyncModePanel() {
+    JComboBox<String> producerSyncModeComboBox = new JComboBox<String>();
+
+      for (int syncMode : syncModes) {
+          String lab = "Producers: " + modeToString(syncMode);
+          producerSyncModeComboBox.addItem(lab);
+      }
     producerSyncModeComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -791,13 +790,13 @@ public class SynchronizationTimer {
     return producerSyncModeComboBox;
   }
 
-  JComboBox consumerSyncModePanel() {
-    JComboBox consumerSyncModeComboBox = new JComboBox();
-    
-    for (int j = 0; j < syncModes.length; ++j) {
-      String lab = "Consumers: " + modeToString(syncModes[j]);
-      consumerSyncModeComboBox.addItem(lab);
-    }
+  JComboBox<String> consumerSyncModePanel() {
+    JComboBox<String> consumerSyncModeComboBox = new JComboBox<String>();
+
+      for (int syncMode : syncModes) {
+          String lab = "Consumers: " + modeToString(syncMode);
+          consumerSyncModeComboBox.addItem(lab);
+      }
     consumerSyncModeComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -813,7 +812,7 @@ public class SynchronizationTimer {
 
 
   
-  JComboBox contentionBox() {
+  JComboBox<String> contentionBox() {
     final  Fraction[] contentionChoices = { 
       new Fraction(0, 1),
       new Fraction(1, 16),
@@ -823,13 +822,13 @@ public class SynchronizationTimer {
       new Fraction(1, 1)
     };
     
-    JComboBox contentionComboBox = new JComboBox();
-    
-    for (int j = 0; j < contentionChoices.length; ++j) {
-      String lab = contentionChoices[j].asDouble() * 100.0 + 
-        "% contention/sharing";
-      contentionComboBox.addItem(lab);
-    }
+    JComboBox<String> contentionComboBox = new JComboBox<String>();
+
+      for (Fraction contentionChoice : contentionChoices) {
+          String lab = contentionChoice.asDouble() * 100.0 +
+                  "% contention/sharing";
+          contentionComboBox.addItem(lab);
+      }
     contentionComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -843,7 +842,7 @@ public class SynchronizationTimer {
     return contentionComboBox;
   }
   
-  JComboBox itersBox() {
+  JComboBox<String> itersBox() {
     final int[] loopsPerTestChoices = { 
       1,
       16,
@@ -861,13 +860,13 @@ public class SynchronizationTimer {
       1024 * 1024, 
     };
     
-    JComboBox precComboBox = new JComboBox();
-    
-    for (int j = 0; j < loopsPerTestChoices.length; ++j) {
-      String lab = p2ToString(loopsPerTestChoices[j]) + 
-        " calls per thread per test";
-      precComboBox.addItem(lab);
-    }
+    JComboBox<String> precComboBox = new JComboBox<>();
+
+      for (int loopsPerTestChoice : loopsPerTestChoices) {
+          String lab = p2ToString(loopsPerTestChoice) +
+                  " calls per thread per test";
+          precComboBox.addItem(lab);
+      }
     precComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -882,7 +881,7 @@ public class SynchronizationTimer {
     return precComboBox;
   }
   
-  JComboBox cloopBox() {
+  JComboBox<String> cloopBox() {
     final int[] computationsPerCallChoices = { 
       1,
       2,
@@ -903,13 +902,13 @@ public class SynchronizationTimer {
       64 * 1024,
     };
     
-    JComboBox cloopComboBox = new JComboBox();
-    
-    for (int j = 0; j < computationsPerCallChoices.length; ++j) {
-      String lab = p2ToString(computationsPerCallChoices[j]) + 
-        " computations per call";
-      cloopComboBox.addItem(lab);
-    }
+    JComboBox<String> cloopComboBox = new JComboBox<String>();
+
+      for (int computationsPerCallChoice : computationsPerCallChoices) {
+          String lab = p2ToString(computationsPerCallChoice) +
+                  " computations per call";
+          cloopComboBox.addItem(lab);
+      }
     cloopComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -923,7 +922,7 @@ public class SynchronizationTimer {
     return cloopComboBox;
   }
   
-  JComboBox barrierBox() {
+  JComboBox<String> barrierBox() {
     final int[] itersPerBarrierChoices = { 
       1,
       2,
@@ -948,13 +947,13 @@ public class SynchronizationTimer {
       1024 * 1024,
     };
     
-    JComboBox barrierComboBox = new JComboBox();
-    
-    for (int j = 0; j < itersPerBarrierChoices.length; ++j) {
-      String lab = p2ToString(itersPerBarrierChoices[j]) + 
-        " iterations per barrier";
-      barrierComboBox.addItem(lab);
-    }
+    JComboBox<String> barrierComboBox = new JComboBox<String>();
+
+      for (int itersPerBarrierChoice : itersPerBarrierChoices) {
+          String lab = p2ToString(itersPerBarrierChoice) +
+                  " iterations per barrier";
+          barrierComboBox.addItem(lab);
+      }
     barrierComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -972,7 +971,7 @@ public class SynchronizationTimer {
     return barrierComboBox;
   }
   
-  JComboBox exchangeBox() {
+  JComboBox<String> exchangeBox() {
     final int[] exchangerChoices = { 
       1,
       2,
@@ -987,13 +986,13 @@ public class SynchronizationTimer {
       1024,
     };
     
-    JComboBox exchComboBox = new JComboBox();
-    
-    for (int j = 0; j < exchangerChoices.length; ++j) {
-      String lab = p2ToString(exchangerChoices[j]) + 
-        " max threads per barrier";
-      exchComboBox.addItem(lab);
-    }
+    JComboBox<String> exchComboBox = new JComboBox<String>();
+
+      for (int exchangerChoice : exchangerChoices) {
+          String lab = p2ToString(exchangerChoice) +
+                  " max threads per barrier";
+          exchComboBox.addItem(lab);
+      }
     exchComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -1007,7 +1006,7 @@ public class SynchronizationTimer {
     return exchComboBox;
   }
   
-  JComboBox biasBox() {
+  JComboBox<String> biasBox() {
     final int[] biasChoices = { 
       -1, 
       0, 
@@ -1015,12 +1014,12 @@ public class SynchronizationTimer {
     };
     
     
-    JComboBox biasComboBox = new JComboBox();
-    
-    for (int j = 0; j < biasChoices.length; ++j) {
-      String lab = biasToString(biasChoices[j]);
-      biasComboBox.addItem(lab);
-    }
+    JComboBox<String> biasComboBox = new JComboBox<>();
+
+      for (int biasChoice : biasChoices) {
+          String lab = biasToString(biasChoice);
+          biasComboBox.addItem(lab);
+      }
     biasComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -1034,7 +1033,7 @@ public class SynchronizationTimer {
     return biasComboBox;
   }
   
-  JComboBox capacityBox() {
+  JComboBox<String> capacityBox() {
     
     final int[] bufferCapacityChoices = {
       1,
@@ -1049,13 +1048,13 @@ public class SynchronizationTimer {
       1024 * 1024,
     };
     
-    JComboBox bcapComboBox = new JComboBox();
-    
-    for (int j = 0; j < bufferCapacityChoices.length; ++j) {
-      String lab = p2ToString(bufferCapacityChoices[j]) + 
-        " element bounded buffers";
-      bcapComboBox.addItem(lab);
-    }
+    JComboBox<String> bcapComboBox = new JComboBox<>();
+
+      for (int bufferCapacityChoice : bufferCapacityChoices) {
+          String lab = p2ToString(bufferCapacityChoice) +
+                  " element bounded buffers";
+          bcapComboBox.addItem(lab);
+      }
     bcapComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -1070,7 +1069,7 @@ public class SynchronizationTimer {
     return bcapComboBox;
   }
   
-  JComboBox timeoutBox() {
+  JComboBox<String> timeoutBox() {
     
     
     final long[] timeoutChoices = {
@@ -1084,12 +1083,12 @@ public class SynchronizationTimer {
     };
     
     
-    JComboBox timeoutComboBox = new JComboBox();
-    
-    for (int j = 0; j < timeoutChoices.length; ++j) {
-      String lab = timeoutChoices[j] + " msec timeouts";
-      timeoutComboBox.addItem(lab);
-    }
+    JComboBox<String> timeoutComboBox = new JComboBox<String>();
+
+      for (long timeoutChoice : timeoutChoices) {
+          String lab = timeoutChoice + " msec timeouts";
+          timeoutComboBox.addItem(lab);
+      }
     timeoutComboBox.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent evt) {
         JComboBox src = (JComboBox)(evt.getItemSelectable());
@@ -1131,7 +1130,7 @@ public class SynchronizationTimer {
 
   private final JButton startstop_ = new JButton("Start");
   
-  private WaitableInt testNumber_ = new WaitableInt(1);
+  private final WaitableInt testNumber_ = new WaitableInt(1);
 
   private void runOneTest(Runnable tst) throws InterruptedException { 
     int nt = testNumber_.get(); 
@@ -1143,7 +1142,7 @@ public class SynchronizationTimer {
     testNumber_.increment();
   }
 
-  private SynchronizedBoolean running_ = new SynchronizedBoolean(false);
+  private final SynchronizedBoolean running_ = new SynchronizedBoolean(false);
 
   void cancel() { 
     //  not stable enough to cancel during construction

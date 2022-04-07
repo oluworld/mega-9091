@@ -11,7 +11,7 @@
   30Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Interface describing any class that can generate
@@ -27,5 +27,5 @@ public interface ThreadFactory {
   /** 
    * Create a new thread that will run the given command when started
    **/
-  public Thread newThread(Runnable command);
+  Thread newThread(Runnable command);
 }

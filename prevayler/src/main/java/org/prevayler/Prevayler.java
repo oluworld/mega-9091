@@ -16,7 +16,7 @@ public interface Prevayler {
   /**
    * Returns the underlying PrevalentSystem.
    */
-  public PrevalentSystem system();
+  PrevalentSystem system();
 
 
   /**
@@ -25,5 +25,5 @@ public interface Prevayler {
    * @throws IOException if there is trouble writing the command to one of the log files.
    * @throws Exception if the execution of command throws an Exception.
    */
-  public Serializable executeCommand(Command command) throws Exception;
+  Serializable executeCommand(Command command) throws Exception;
 }

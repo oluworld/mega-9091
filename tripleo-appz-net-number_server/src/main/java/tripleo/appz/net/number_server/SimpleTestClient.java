@@ -6,8 +6,8 @@
  */
 package tripleo.appz.net.number_server;
 
-import EDU.oswego.cs.dl.util.concurrent.FJTask;
-import EDU.oswego.cs.dl.util.concurrent.FJTaskRunnerGroup;
+import EDU.oswego.cs.dl.concurrent.FJTask;
+import EDU.oswego.cs.dl.concurrent.FJTaskRunnerGroup;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -37,7 +37,7 @@ class MyFJTask extends FJTask {
 
 	public void run() {
 		STC_Response resp = p.send_request(x);
-		SpaceNugget spaceNugget = new SpaceNugget("responses", resp);
+		SpaceNugget<STC_Response> spaceNugget = new SpaceNugget<>("responses", resp);
 		p.space().add(spaceNugget);
 		p.responses.add(resp);
 	}
@@ -45,7 +45,7 @@ class MyFJTask extends FJTask {
 
 public final class SimpleTestClient implements STC_Constants {
 
-	final static private List<STC_Response> EmptyList = new Vector();
+	final static private List<STC_Response> EmptyList = new Vector<>();
 
 //	private volatile boolean cont = true;
 	final private STC_Parent p;
@@ -53,7 +53,7 @@ public final class SimpleTestClient implements STC_Constants {
 	final private boolean useProxy;
 
 	TasksWatcher<FJTask> xx1;
-	private NumberServerApp app;
+	private final NumberServerApp app;
 
 	/**
 	 * ctor assigns final values
@@ -128,7 +128,7 @@ public final class SimpleTestClient implements STC_Constants {
 			}
 		}
 
-	private final void loop(final int iter) {
+	private void loop(final int iter) {
 		final STC_Request req = new STC_Request(new Integer(iter));
 		p.add_request(req);
 	}
@@ -175,11 +175,11 @@ public final class SimpleTestClient implements STC_Constants {
 }
 
 interface STC_Constants {
-	static final String HOSTNAME = "localhost";
-	static final int HTTP_OK = 200;
-	static final int PORT = 8081;
-	static final int PROXYPORT = 8080;
-	static final int TEST_ITERATIONS = 100;
+	String HOSTNAME = "localhost";
+	int HTTP_OK = 200;
+	int PORT = 8081;
+	int PROXYPORT = 8080;
+	int TEST_ITERATIONS = 100;
 }
 
 final class STC_Parent implements STC_Constants {
@@ -248,8 +248,8 @@ final class STC_Parent implements STC_Constants {
 
 	void make() {
 		hc = new HttpClient();
-		requests = new Vector();
-		responses = new Vector();
+		requests = new Vector<>();
+		responses = new Vector<>();
 		//
 		if (usingProxy)
 			hc.startSession(HOSTNAME, PORT, HOSTNAME, PROXYPORT);

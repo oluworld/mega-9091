@@ -54,10 +54,10 @@ import tripleo.nio.javanio.http.RequestHandler;
  */
 class AcceptHandler implements Handler {
 
-	private ServerSocketChannel channel;
-	private Dispatcher dsp;
+	private final ServerSocketChannel channel;
+	private final Dispatcher dsp;
 
-	private SSLContext sslContext;
+	private final SSLContext sslContext;
 
 	AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp,
 	              SSLContext sslContext) {

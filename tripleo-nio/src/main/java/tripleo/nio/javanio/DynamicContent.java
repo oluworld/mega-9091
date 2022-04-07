@@ -22,7 +22,7 @@ public class DynamicContent implements Content {
 		parts = uri.getPath().split("/");
 	}
 
-	private H cur = def_cur();
+	private final H cur = def_cur();
 
 	private H def_cur() {
 		if (def_cur == null) def_cur = new H0();
@@ -45,7 +45,7 @@ public class DynamicContent implements Content {
 	}
 
 //	private FileChannel fc = null;
-	private long length = -1;
+	private final long length = -1;
 	private long position = -1;		// NB only; >= 0 if transferring
 
 	public long length() {
@@ -84,7 +84,7 @@ public class DynamicContent implements Content {
 	}
 
 	interface H {}
-	class H0 implements H {}
+	static class H0 implements H {}
 
 }
 

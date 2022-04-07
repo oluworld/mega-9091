@@ -115,7 +115,7 @@ public final class garbage {
 	}
 
 /*  vycisti prazdne modifikatory */
-	private final void optimise() {
+	private void optimise() {
 		if (dummyMod(lopact1)) lopact1 = null;
 		if (dummyMod(lopact2)) lopact2 = null;
 		if (lopact1 == null) lopsize = Integer.MAX_VALUE;
@@ -133,7 +133,7 @@ public final class garbage {
 		if (dummyMod(redirpenal)) redirpenal = null;
 	}
 
-	private final void read_config(String cfgfile) {
+	private void read_config(String cfgfile) {
 		try {
 			String line, token;
 			StringTokenizer st;
@@ -276,7 +276,7 @@ public final class garbage {
 
 	}
 
-	private final regexp[] fixup_urls(regexp what[]) {
+	private regexp[] fixup_urls(regexp what[]) {
 		if (what == null) return null;
 		for (int i = 0; i < what.length; i++) {
 			regexp r;
@@ -316,7 +316,7 @@ public final class garbage {
 	}
 
 
-	private final void dump_gcarray() {
+	private void dump_gcarray() {
 		System.out.println("\n" + new Date() + " Dumping garbage collection memory array:\nComputed LRU value in days\t\tURL\n");
 		for (int i = gcused; i >= 0; i--) {
 			if (gcarray[i] == null) continue;
@@ -325,7 +325,7 @@ public final class garbage {
 		System.out.println("\n" + new Date() + "   ... End of dump.");
 	}
 
-	private final void import0(String improot, String dirname) {
+	private void import0(String improot, String dirname) {
 		File myroot = new File(dirname);
 		if (!myroot.isDirectory()) return;
 
@@ -354,8 +354,8 @@ public final class garbage {
 				return;
 			}
 			// spocitat crc32 hash
-			StringBuffer result;
-			result = new StringBuffer(80);
+			StringBuilder result;
+			result = new StringBuilder(80);
 			result.append(root);
 			int ii;
 
@@ -386,7 +386,7 @@ public final class garbage {
 
 	}
 
-	private final void rebalance0(String dirname) {
+	private void rebalance0(String dirname) {
 		File myroot = new File(dirname);
 		boolean goodlevel = false;
 
@@ -408,12 +408,12 @@ public final class garbage {
 		/* rekurzivne do adresaru */
 		String dirfilez[] = myroot.list();
 
-		for (int i = 0; i < dirfilez.length; i++) {
-			if (!new File(myroot, dirfilez[i]).isDirectory()) continue;
+		for (String s : dirfilez) {
+			if (!new File(myroot, s).isDirectory()) continue;
 			if (goodlevel == true) {
 				// extract hostname from filename
 				String hn;
-				hn = dirfilez[i];
+				hn = s;
 				if (hn.indexOf('_') > -1)
 					hn = hn.substring(0, hn.indexOf('_'));
 
@@ -427,16 +427,16 @@ public final class garbage {
 				result.append(root);
 
 				/* 1. spocitat hash z host stringu */
-				java.util.zip.CRC32 crc = new CRC32();
+				CRC32 crc = new CRC32();
 				crc.update(hn.getBytes());
 				/* mame hash - rozdelime ho na adresar */
 				int ii;
 				ii = (int) (crc.getValue() / (0x100000000L / (mgr.swap_level1_dirs * mgr.swap_level2_dirs)));
-				result.append(File.separator + (ii / mgr.swap_level2_dirs) + File.separator + (ii % mgr.swap_level2_dirs) + File.separator + dirfilez[i]);
+				result.append(File.separator + (ii / mgr.swap_level2_dirs) + File.separator + (ii % mgr.swap_level2_dirs) + File.separator + s);
 				// System.out.println("crc="+crc.getValue()+" units="+ii+" np="+result);
-				if (!result.toString().equals(dirname + File.separator + dirfilez[i])) {
+				if (!result.toString().equals(dirname + File.separator + s)) {
 					File f1, f2;
-					f1 = new File(myroot, dirfilez[i]); // old
+					f1 = new File(myroot, s); // old
 					f2 = new File(result.toString());
 					new File(f2.getParent()).mkdirs();
 					if (!f1.renameTo(f2))
@@ -445,7 +445,7 @@ public final class garbage {
 				}
 
 			} else /* goodleve==false */
-				rebalance0(dirname + File.separator + (String) dirfilez[i]);
+				rebalance0(dirname + File.separator + (String) s);
 		}
 		myroot.delete();
 	}
@@ -454,7 +454,7 @@ public final class garbage {
 /* ALERT: Synchronize by hand with mgr!! */
 /* ************************************* */
 
-	private final String encodechars(String urldir) {
+	private String encodechars(String urldir) {
 		// System.out.println("Encode in="+urldir);
 		/* get protocol if any */
 		int i = urldir.indexOf("://", 0);
@@ -524,7 +524,7 @@ public final class garbage {
 		}
 	}
 
-	private final void print_gc_outro() {
+	private void print_gc_outro() {
 		long high = (long) ((float) cachesize * (float) highmark / 100f);
 		System.out.println(new Date() + " CACHE SCAN SUMMARY:");
 		System.out.println(new Date() + "      High watermark: " + high + " B (" + highmark + "%)");
@@ -542,7 +542,7 @@ public final class garbage {
 		        new Float(gcvalues[gcused]));
 	}
 
-	private final void print_gc_intro() {
+	private void print_gc_intro() {
 		long bot = (long) ((float) cachesize * (float) lowmark / 100f);
 		long high = (long) ((float) cachesize * (float) highmark / 100f);
 		System.out.println(new Date() + " Cache size watermarks:");
@@ -574,7 +574,7 @@ public final class garbage {
 		fake_delete_files();
 	}
 
-	private final void delete_files() {
+	private void delete_files() {
 		long bot = (long) ((float) cachesize * (float) lowmark / 100f);
 		long high = (long) ((float) cachesize * (float) highmark / 100f);
 		int files = 0;
@@ -619,7 +619,7 @@ public final class garbage {
 			if (mgr.loglevel > 1) System.out.println(new Date() + " WARNING: Another rescan cache needed to finish GC.\nIf this happens frequently increase gcarraysize in gc.cnf.\ngcarraysize is now set to " + gcarray.length + ", good practice is add 20% to it.\nLowering reference_age value somewhat also helps.");
 	}
 
-	private final void fake_delete_files() {
+	private void fake_delete_files() {
 		long bot = (long) ((float) cachesize * (float) lowmark / 100f);
 		long high = (long) ((float) cachesize * (float) highmark / 100f);
 
@@ -646,7 +646,7 @@ public final class garbage {
 	}
 
 /* proscanuje rekurzivne cache a naplni gcarray */
-	private final void scan_cache(String dirname) {
+	private void scan_cache(String dirname) {
 		oursize += dirsize;
 		cachedir cd;
 		File thisdir = new File(dirname);
@@ -860,7 +860,7 @@ public final class garbage {
 	}
 
 /* vraci true pokud modifikator nic nedela */
-	private final boolean dummyMod(String mod) {
+	private boolean dummyMod(String mod) {
 		float f;
 
 		if (mod != null)
@@ -876,7 +876,7 @@ public final class garbage {
 			return false;
 	}
 
-	private final float applyMod(float f, String mod) {
+	private float applyMod(float f, String mod) {
 		if (mod == null) return f;
 		float m;
 		try {
@@ -908,7 +908,7 @@ public final class garbage {
 		return f;
 	}
 
-	private final cachedir kill_unref_dir(String dirname, boolean recurse) {
+	private cachedir kill_unref_dir(String dirname, boolean recurse) {
 		File lroot = new File(dirname);
 
 		String dirfilez[];
@@ -987,32 +987,36 @@ public final class garbage {
 		return rc;
 	}
 
-	private final void importcache0(String dirname) {
+	private void importcache0(String dirname) {
 		File myroot = new File(dirname);
 		if (!myroot.isDirectory()) return;
 
 		/* rekurzivne do adresaru */
 		String dirfilez[] = myroot.list();
-		for (int i = 0; i < dirfilez.length; i++) {
-			if (!new File(myroot, dirfilez[i]).isDirectory()) continue;
+		for (String value : dirfilez) {
+			if (!new File(myroot, value).isDirectory()) continue;
 			try {
-				Integer.valueOf(dirfilez[i]);
-			} catch (Exception exx) { continue;}
+				Integer.valueOf(value);
+			} catch (Exception exx) {
+				continue;
+			}
 			String subdirz[];
-			subdirz = new File(dirname, dirfilez[i]).list();
-			for (int j = 0; j < subdirz.length; j++) {
-				if (!new File(new File(myroot , dirfilez[i]), subdirz[j]).isDirectory()) continue;
+			subdirz = new File(dirname, value).list();
+			for (String s : subdirz) {
+				if (!new File(new File(myroot, value), s).isDirectory()) continue;
 				try {
-					Integer.valueOf(subdirz[j]);
-				} catch (Exception exx) { continue;}
-				import0(dirname + File.separator + dirfilez[i] + File.separator + subdirz[j],
-				        dirname + File.separator + dirfilez[i] + File.separator + subdirz[j]);
+					Integer.valueOf(s);
+				} catch (Exception exx) {
+					continue;
+				}
+				import0(dirname + File.separator + value + File.separator + s,
+						dirname + File.separator + value + File.separator + s);
 			}
 		}
 	} /* import cache 0 */
 
 /* export */
-	private final void export_one_dir(String dirname, String to, int type, long difftime) {
+	private void export_one_dir(String dirname, String to, int type, long difftime) {
 		File lroot = new File(dirname);
 
 		if (!lroot.isDirectory()) return;
@@ -1064,7 +1068,7 @@ public final class garbage {
 	}
 
 /* parses verbose timestring 1d, 2M,  ... */
-	public final static long timestring(String s) {
+	public static long timestring(String s) {
 		int multi;
 		double value = 0;
 		int i;
@@ -1083,7 +1087,7 @@ public final class garbage {
 	}
 
 /* parses verbose sizestring 1KB, 2bytes,  ... */
-	public final static long sizestring(String s) {
+	public static long sizestring(String s) {
 		int multi;
 		double value = 0;
 		int i;
@@ -1102,7 +1106,7 @@ public final class garbage {
 	}
 
 /* prevede time unitu na sekundy */
-	private static final int parseTimeUnits(String unit) {
+	private static int parseTimeUnits(String unit) {
 		if (unit == null) return 60;
 		if (unit.length() == 0) return 60;
 		if (unit.length() == 1) {
@@ -1155,7 +1159,7 @@ public final class garbage {
 	}
 
 /* prevede size unitu na bajty */
-	private static final int parseSizeUnits(String unit) {
+	private static int parseSizeUnits(String unit) {
 		if (unit == null) return 1;
 		if (unit.length() == 0) return 1;
 		char c;

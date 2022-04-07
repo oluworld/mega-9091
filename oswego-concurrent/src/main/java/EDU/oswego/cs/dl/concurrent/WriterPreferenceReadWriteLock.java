@@ -15,7 +15,7 @@
 
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** 
  * A ReadWriteLock that prefers waiting writers over
@@ -147,7 +147,7 @@ public class WriterPreferenceReadWriteLock implements ReadWriteLock {
    * to perform the notifications.  This base class simplifies mechanics.
    **/
 
-  protected abstract class Signaller  { // base for ReaderLock and WriterLock
+  protected abstract static class Signaller  { // base for ReaderLock and WriterLock
     abstract void signalWaiters();
   }
 

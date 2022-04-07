@@ -13,7 +13,7 @@
                               version based on one by Alexander Terekhov
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 
 /**

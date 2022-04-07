@@ -1,6 +1,6 @@
 package tripleo.appz.net.number_server;
 
-import EDU.oswego.cs.dl.util.concurrent.FJTask;
+import EDU.oswego.cs.dl.concurrent.FJTask;
 import tripleo.space.SpaceWatcher;
 import tripleo.space.Space;
 import tripleo.space.SpaceNugget;

@@ -106,7 +106,7 @@ class ChannelIOSecure extends ChannelIO {
 	private SSLEngine sslEngine = null;
 
 	private int appBBSize;
-	private int netBBSize;
+	private final int netBBSize;
 
 	/*
 	 * All I/O goes through these buffers.
@@ -117,15 +117,15 @@ class ChannelIOSecure extends ChannelIO {
 	 * We use our superclass' requestBB for our application input buffer.
 	 * Outbound application data is supplied to us by our callers.
 	 */
-	private ByteBuffer inNetBB;
-	private ByteBuffer outNetBB;
+	private final ByteBuffer inNetBB;
+	private final ByteBuffer outNetBB;
 
 	/*
 	 * An empty ByteBuffer for use when one isn't available, say
 	 * as a source buffer during initial handshake wraps or for close
 	 * operations.
 	 */
-	private static ByteBuffer hsBB = ByteBuffer.allocate(0);
+	private static final ByteBuffer hsBB = ByteBuffer.allocate(0);
 
 	/*
 	 * The FileChannel we're currently transferTo'ing (reading).

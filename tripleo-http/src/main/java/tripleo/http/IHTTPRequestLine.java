@@ -10,9 +10,9 @@ package tripleo.http;
 public interface IHTTPRequestLine {
 
 	String method();
-	public String version();
+	String version();
 
-	public String uri();
+	String uri();
 
 
 }

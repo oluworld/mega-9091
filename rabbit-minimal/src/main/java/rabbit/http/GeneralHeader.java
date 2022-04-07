@@ -1,6 +1,8 @@
 package rabbit.http;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,14 +21,14 @@ abstract public class GeneralHeader implements Serializable {
 	/** The headers of this Header in order.
 	 * @serial
 	 */
-	protected List<Header> headers = new Vector();     // the headers in order
+	protected List<Header> headers = new Vector<>();     // the headers in order
 
 	/** The String consisting of \r and \n */
 	public static final String CRLF = "\r\n";
 
 	/** This class holds a header value, that is a &quot;type: some text&quot;
 	 */
-	protected class Header implements IHeader, Serializable {
+	protected static class Header implements IHeader, Serializable {
 		/**
 		 * Comment for <code>serialVersionUID</code>
 		 */
@@ -97,7 +99,7 @@ abstract public class GeneralHeader implements Serializable {
 	}
 
 	public static String readLine(DataInputStream in) throws IOException {
-		StringBuffer sb = new StringBuffer(50);
+		StringBuilder sb = new StringBuilder(50);
 		int l = -1;
 		int count = 0;
 		while (true) {
@@ -203,15 +205,15 @@ abstract public class GeneralHeader implements Serializable {
 	 * @return a String describing this GeneralHeader.
 	 */
 	public String toString() {
-		StringBuffer ret = new StringBuffer();
+		StringBuilder ret = new StringBuilder();
 		int hsize = headers.size();
-		for (int i = 0; i < hsize; i++) {
-			Header h = (Header) headers.get(i);
-			ret.append(h.type);
-			ret.append(": ");
-			ret.append(h.value);
-			ret.append(CRLF);
-		}
+        for (Header header : headers) {
+            Header h = (Header) header;
+            ret.append(h.type);
+            ret.append(": ");
+            ret.append(h.value);
+            ret.append(CRLF);
+        }
 		ret.append(CRLF);
 		return ret.toString();
 	}
@@ -222,11 +224,11 @@ abstract public class GeneralHeader implements Serializable {
 	 */
 	public String getHeader(String type) {
 		int s = headers.size();
-		for (int i = 0; i < s; i++) {
-			Header h = (Header) headers.get(i);
-			if (h.type.equalsIgnoreCase(type))
-				return h.value;
-		}
+        for (Header header : headers) {
+            Header h = (Header) header;
+            if (h.type.equalsIgnoreCase(type))
+                return h.value;
+        }
 		return null;
 	}
 
@@ -236,13 +238,13 @@ abstract public class GeneralHeader implements Serializable {
 	 */
 	public void setHeader(String type, String value) {
 		int s = headers.size();
-		for (int i = 0; i < s; i++) {
-			Header h = (Header) headers.get(i);
-			if (h.type.equalsIgnoreCase(type)) {
-				h.value = value;
-				return;
-			}
-		}
+        for (Header header : headers) {
+            Header h = (Header) header;
+            if (h.type.equalsIgnoreCase(type)) {
+                h.value = value;
+                return;
+            }
+        }
 		Header h = new Header(type, value);
 		headers.add(h);
 	}
@@ -304,15 +306,15 @@ abstract public class GeneralHeader implements Serializable {
 	/** Get all headers of a specified type...
 	 * @param type the type of the headers to get, eg. "Cache-Control".
 	 */
-	public Vector getHeaders(String type) {
-		Vector ret = new Vector();
+	public Vector<String> getHeaders(String type) {
+		Vector<String> ret = new Vector<String>();
 		int s = headers.size();
-		for (int i = 0; i < s; i++) {
-			Header h = (Header) headers.get(i);
-			if (h.type.equalsIgnoreCase(type)) {
-				ret.add(h.value);
-			}
-		}
+        for (Header header : headers) {
+            Header h = (Header) header;
+            if (h.type.equalsIgnoreCase(type)) {
+                ret.add(h.value);
+            }
+        }
 		return ret;
 	}
 
@@ -320,10 +322,10 @@ abstract public class GeneralHeader implements Serializable {
 	 * @param to the GeneralHeader to add headers to.
 	 */
 	public void copyHeader(GeneralHeader to) {
-		for (int i = 0; i < headers.size(); i++) {
-			Header h = (Header) headers.get(i);
-			to.addHeader(h.type, h.value);
-		}
+        for (Header header : headers) {
+            Header h = (Header) header;
+            to.addHeader(h.type, h.value);
+        }
 	}
 
 

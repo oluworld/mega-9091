@@ -13,7 +13,7 @@
   23jan04    dl               synchronize self-swap case for swap
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A class useful for offloading synch for long instance variables.

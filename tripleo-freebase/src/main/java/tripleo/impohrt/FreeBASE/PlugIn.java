@@ -1,5 +1,5 @@
 /* -*- Mode: Java; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-package FreeBASE;
+package tripleo.impohrt.FreeBASE;
 
 /**
  * Created 9/27/21 6:09 AM

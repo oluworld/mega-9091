@@ -1,3 +1,4 @@
+package EDU.oswego.cs.dl.concurrent.taskDemo;
 
 import java.awt.*;
 import javax.swing.*;
@@ -80,7 +81,7 @@ public class Microscope extends JPanel {
   synchronized void setMover(Mover m) { mover = m; }
   synchronized boolean isMoving() { return mover != null; }
 
-  Vector history = new Vector();    // List of completed moves;
+  Vector<Move> history = new Vector<>();    // List of completed moves;
 
   boolean demoMode = true;
   synchronized boolean getDemoMode() { return demoMode; }
@@ -251,7 +252,7 @@ public class Microscope extends JPanel {
     if (mover == null) {
       if (history.size() > 1) {
         history.removeElementAt(history.size()-1);
-        Move m = (Move)(history.lastElement());
+        Move m = (history.lastElement());
         setPlayer(m.player().opponent());
         setBoard(m.board());
       }
@@ -978,25 +979,24 @@ public class Microscope extends JPanel {
            */
           
           byte[] dests = Board.jumpDestinations[k];
-          for (int j = 0; j < dests.length; ++j) {
-            byte d = dests[j];
-            long dest = 1L << d;
+            for (byte d : dests) {
+                long dest = 1L << d;
 
-            if ( (dest & open) != 0) {
-              long adjacent = Board.adjacentMasks[d];
+                if ((dest & open) != 0) {
+                    long adjacent = Board.adjacentMasks[d];
 
-              long nTheirs = theirs & ~adjacent;
-              long nOurs = (ours & ~here) | dest | (theirs & adjacent);
+                    long nTheirs = theirs & ~adjacent;
+                    long nOurs = (ours & ~here) | dest | (theirs & adjacent);
 
-              if (level > 1) 
-                (forked = new Finder(nTheirs, nOurs, level-1, forked)).fork();
+                    if (level > 1)
+                        (forked = new Finder(nTheirs, nOurs, level - 1, forked)).fork();
 
-              else {
-                int sc = Board.score(nOurs, nTheirs);
-                if (sc > best) best = sc;
-              }
+                    else {
+                        int sc = Board.score(nOurs, nTheirs);
+                        if (sc > best) best = sc;
+                    }
+                }
             }
-          }
         }
 
         else if ((here & open) != 0) {

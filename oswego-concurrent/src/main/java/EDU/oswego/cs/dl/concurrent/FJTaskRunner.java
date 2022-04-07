@@ -26,7 +26,7 @@
                                 implement read-after-write of 2 volatiles.
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 import java.util.Random;
 
@@ -966,8 +966,8 @@ public class FJTaskRunner extends Thread {
    **/
 
   protected void slowCoInvoke(FJTask[] tasks) {
-    for (int i = 0; i < tasks.length; ++i) push(tasks[i]);
-    for (int i = 0; i < tasks.length; ++i) taskJoin(tasks[i]);
+      for (FJTask fjTask : tasks) push(fjTask);
+      for (FJTask task : tasks) taskJoin(task);
   }
 
 }

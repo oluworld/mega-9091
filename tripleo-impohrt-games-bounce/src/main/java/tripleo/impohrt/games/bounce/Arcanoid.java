@@ -1,11 +1,17 @@
 // ------------------------------------------------------------------------------
 // Andreas Swensson 1998
 // ------------------------------------------------------------------------------
+
+package tripleo.impohrt.games.bounce;
+
+import javax.swing.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Event;
+import java.awt.Graphics;
 
-public class Arcanoid extends Applet
+public class Arcanoid extends JApplet //Component
 {
 	public Ball ball;		// The bouncing ball.
 	public Paddle paddle;	// The paddle.

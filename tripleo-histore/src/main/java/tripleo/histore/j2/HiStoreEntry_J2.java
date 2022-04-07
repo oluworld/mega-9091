@@ -36,7 +36,7 @@ public class HiStoreEntry_J2 implements HiStoreEntry, Serializable {
 //	Vector metaDomains
 
 	// TODO: what to do with this??
-	transient private final List umd = new Vector();
+	transient private final List<Triplet<Object, Object, Object>> umd = new Vector<Triplet<Object, Object, Object>>();
 	transient private Object uc = null;
 
 	public HiStoreEntry advance() {
@@ -124,13 +124,12 @@ public class HiStoreEntry_J2 implements HiStoreEntry, Serializable {
 		PrintWriter pw;
 		pw = new PrintWriter(aWriter);
 		// TODO: _writeHelper(FOR_METADATA, aa, "789789 content  ");
-		Iterator it = umd.iterator();
-		while (it.hasNext()) {
-			Triplet triplet = (Triplet) it.next();
-			c_put((String) triplet.o3, pw); // domain
-			c_put((triplet.o1).toString(), pw); // key
-			c_put(triplet.o2.toString(), pw); // value
-		}
+        for (Object o : umd) {
+            Triplet triplet = (Triplet) o;
+            c_put((String) triplet.o3, pw); // domain
+            c_put((triplet.o1).toString(), pw); // key
+            c_put(triplet.o2.toString(), pw); // value
+        }
 		pw.close();
 	}
 

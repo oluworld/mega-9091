@@ -8,7 +8,7 @@ import java.awt.event.*;
  */
 public class FrameLauncher extends Frame implements WindowListener {
 	
-	private transient Thinlet content;
+	private final transient Thinlet content;
 	private transient Image doublebuffer;
 	
 	/**

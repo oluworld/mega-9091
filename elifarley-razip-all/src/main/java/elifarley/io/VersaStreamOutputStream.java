@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 public class VersaStreamOutputStream extends OutputStream {
 
-    private VersaStream vs;
+    private final VersaStream vs;
     private long pos;
 
     VersaStreamOutputStream(VersaStream vs, long pos) {

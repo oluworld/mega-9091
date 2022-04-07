@@ -5,17 +5,22 @@ package tripleo.histore;
  * 2005/02/09 04:19:19 olu Exp $
  */
 public class InitializationFailure extends HiStoreException {
-	private Exception because_of;
+	private final Exception because_of;
 
-	// @Override
-	@Unique public Exception getReason() {
+//	// @Override
+//	@Unique public Exception getReason() {
+//		return because_of;
+//	}
+
+	@Override
+	public synchronized Throwable getCause() {
 		return because_of;
 	}
 
-	public InitializationFailure(Exception aE) {
-		because_of = aE;
+	public InitializationFailure(final Exception aException) {
+		because_of = aException;
 	}
 }
 
-@interface Unique {
-}
+//@interface Unique {
+//}

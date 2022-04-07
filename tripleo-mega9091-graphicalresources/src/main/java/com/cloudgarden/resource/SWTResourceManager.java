@@ -1,7 +1,6 @@
 package com.cloudgarden.resource;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Vector;
 
 import org.eclipse.swt.events.DisposeEvent;
@@ -21,11 +20,11 @@ import org.eclipse.swt.widgets.Widget;
  */
 public class SWTResourceManager {
 
-	private static HashMap resources = new HashMap();
-	private static Vector users = new Vector();
-	private static SWTResourceManager instance = new SWTResourceManager();
+	private static final HashMap resources = new HashMap();
+	private static final Vector<Widget> users = new Vector<Widget>();
+	private static final SWTResourceManager instance = new SWTResourceManager();
 
-	private static DisposeListener disposeListener = new DisposeListener() {
+	private static final DisposeListener disposeListener = new DisposeListener() {
 		public void widgetDisposed(DisposeEvent e) {
 			users.remove(e.getSource());
 			if (users.size() == 0)
@@ -51,18 +50,17 @@ public class SWTResourceManager {
 	}
 
 	public static void dispose() {
-		Iterator it = resources.keySet().iterator();
-		while (it.hasNext()) {
-			Object resource = resources.get(it.next());
-			if (resource instanceof Font)
-				 ((Font) resource).dispose();
-			else if (resource instanceof Color)
-				 ((Color) resource).dispose();
-			else if (resource instanceof Image)
-				 ((Image) resource).dispose();
-			else if (resource instanceof Cursor)
-				 ((Cursor) resource).dispose();
-		}
+        for (Object o : resources.keySet()) {
+            Object resource = resources.get(o);
+            if (resource instanceof Font)
+                ((Font) resource).dispose();
+            else if (resource instanceof Color)
+                ((Color) resource).dispose();
+            else if (resource instanceof Image)
+                ((Image) resource).dispose();
+            else if (resource instanceof Cursor)
+                ((Cursor) resource).dispose();
+        }
 		resources.clear();
 	}
 
@@ -77,7 +75,7 @@ public class SWTResourceManager {
 		FontData fd = new FontData(name, size, style);
 		if (strikeout || underline) {
 			try {
-				Class lfCls = Class.forName("org.eclipse.swt.internal.win32.LOGFONT");
+				Class<?> lfCls = Class.forName("org.eclipse.swt.internal.win32.LOGFONT");
 				Object lf = FontData.class.getField("data").get(fd);
 				if (lf != null && lfCls != null) {
 					if (strikeout)

@@ -10,7 +10,7 @@ package tripleo.linuxtuples.gen;
 
 
 public class SWIGTYPE_p___timezone_ptr_t {
-  private long swigCPtr;
+  private final long swigCPtr;
 
   protected SWIGTYPE_p___timezone_ptr_t(long cPtr, boolean bFutureUse) {
     swigCPtr = cPtr;

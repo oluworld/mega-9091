@@ -24,7 +24,7 @@ import java.net.Socket;
  */
 public class NumberServer implements /*Runnable,*/ IAcceptable {
 
-	private int mPort;
+	private final int mPort;
 	BlockingAcceptor acptr;
 
 	static final String server_string = "Server: NumberServer";

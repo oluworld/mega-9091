@@ -14,7 +14,7 @@
 */
 
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** 
  * Abstract base class for semaphores relying on queued wait nodes.

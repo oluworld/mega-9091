@@ -14,7 +14,7 @@
   27Jan1999  dl               Undo last change
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Interface for runnable actions that bear results and/or throw Exceptions.

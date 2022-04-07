@@ -14,7 +14,7 @@
   10dec2002  dl                 Throw IllegalStateException on extra release
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.*;
 
 /** 
@@ -68,7 +68,7 @@ public class ReentrantWriterPreferenceReadWriteLock extends WriterPreferenceRead
   protected long writeHolds_ = 0;  
 
   /** Number of acquires on read lock by any reader thread **/
-  protected HashMap readers_ = new HashMap();
+  protected HashMap<Thread, Integer> readers_ = new HashMap<>();
 
   /** cache/reuse the special Integer value one to speed up readlocks **/
   protected static final Integer IONE = new Integer(1);

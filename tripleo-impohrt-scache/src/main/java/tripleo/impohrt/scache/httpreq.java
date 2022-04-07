@@ -79,13 +79,13 @@ public final class httpreq implements Runnable {
 
 /* ======== private data ========== */
 
-	private Socket socket;
+	private final Socket socket;
 
 	httpreq(Socket socket) {
 		this.socket = socket;
 	}
 
-	final public static String methodToString(int method) {
+	public static String methodToString(int method) {
 		switch (method) {
 			case REQUEST_GET:
 				return "GET";
@@ -269,7 +269,7 @@ public final class httpreq implements Runnable {
 
 				try {
 					mgr.process_request(rq);
-				} catch (EOFException DONE) {/* break keepalive*/;} catch (IOException transfer_error) {
+				} catch (EOFException DONE) {/* break keepalive*/} catch (IOException transfer_error) {
 					// System.out.println("[debug] I/O error when serving "+rq.getURL());
 					socket.setSoLinger(true, 0);
 					throw transfer_error;
@@ -291,12 +291,11 @@ public final class httpreq implements Runnable {
 			} catch (IOException jejda) {}
 			log_this(rq);
 		}
-		;
-		return;
+        return;
 	}
 
 /* posle error, vyhodi exception a skonci! */
-	public final static void server_error(int httpv, int err, String msg, DataOutputStream out) throws java.io.IOException {
+	public static void server_error(int httpv, int err, String msg, DataOutputStream out) throws java.io.IOException {
 		request rq;
 		rq = new request(httpv, REQUEST_GET, "smartcache://url-parse-error", new Vector<String>(), null, out);
 		rq.keepalive = false;
@@ -304,7 +303,7 @@ public final class httpreq implements Runnable {
 	}
 
 /* pokusi se otevrit protokolacni soubor */
-	public final static boolean
+	public static boolean
 	        open_logfile(String xlogfilenames[], DataOutputStream xlogfilez[], int i) {
 		if (xlogfilez[i] != null) return true; // allready open
 		if (xlogfilenames[i] == null) return false; // unknown name
@@ -321,19 +320,20 @@ public final class httpreq implements Runnable {
 		return true;
 	}
 
-	public final static void flush(DataOutputStream xlogfilez[]) {
+	public static void flush(DataOutputStream xlogfilez[]) {
 
 		if (xlogfilez != null)
-			for (int z = 0; z < xlogfilez.length; z++) {
-				if (xlogfilez[z] != null)
+			for (DataOutputStream dataOutputStream : xlogfilez) {
+				if (dataOutputStream != null)
 					try {
-						xlogfilez[z].flush();
-					} catch (IOException e) {}
+						dataOutputStream.flush();
+					} catch (IOException e) {
+					}
 			}
 	}
 
 
-	public final static void close(DataOutputStream xlogfilez[]) {
+	public static void close(DataOutputStream xlogfilez[]) {
 
 		if (xlogfilez != null)
 			for (int z = 0; z < xlogfilez.length; z++) {
@@ -346,7 +346,7 @@ public final class httpreq implements Runnable {
 			}
 	}
 
-	private final void log_this(request rq) {
+	private void log_this(request rq) {
 		/* zalogovat do access.logu */
 		if (logpatterns != null && rq != null) {
 			int j = logpatterns.length;

@@ -62,7 +62,7 @@ public class ChannelIO {
 	 * caller.
 	 */
 	protected ByteBuffer requestBB;
-	static private int requestBBSize = 4096;
+	static private final int requestBBSize = 4096;
 
 	protected ChannelIO(SocketChannel sc, boolean blocking)
 	        throws IOException {

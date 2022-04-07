@@ -123,19 +123,19 @@ public class PythonDebug /*implements AnimationListener*/ {
 	static final String litTextType = "litT";
 
 	/*L&F data*/
-	static Font smallFont = new Font("Dialog", 0, 10);
-	static Font tinyFont = new Font("Dialog", 0, 9);
+	static Font smallFont = new Font("Dialog", Font.PLAIN, 10);
+	static Font tinyFont = new Font("Dialog", Font.PLAIN, 9);
 
 	/*Font used in VTM view - info also used when generating the DOT file for GraphViz*/
 	static String vtmFontName = "Dialog";
 	static int vtmFontSize = 10;
-	static Font vtmFont = new Font(vtmFontName, 0, vtmFontSize);
+	static Font vtmFont = new Font(vtmFontName, Font.PLAIN, vtmFontSize);
 	/*Font used in Swing components that need to be able to receive i18n content*/
 	static String swingFontName = "Dialog";
 	static int swingFontSize = 10;
-	static Font swingFont = new Font(swingFontName, 0, swingFontSize);
+	static Font swingFont = new Font(swingFontName, Font.PLAIN, swingFontSize);
 	static int tinySwingFontSize = 9;
-	static Font tinySwingFont = new Font(swingFontName, 0, tinySwingFontSize);
+	static Font tinySwingFont = new Font(swingFontName, Font.PLAIN, tinySwingFontSize);
 
 	static boolean ANTIALIASING = false;  //sets antialiasing in VTM views
 
@@ -2981,15 +2981,15 @@ class Dummy {
 
 interface ILiteral {
 
-	public String getLang() ;
-	public RDFDatatype getDatatype() ;
-	public void setDatatype(String aString) ;
-	public void setLanguage(String aString) ;
-	public void setDatatype(RDFDatatype aDt) ;
-	public String getValue() ;
+	String getLang() ;
+	RDFDatatype getDatatype() ;
+	void setDatatype(String aString) ;
+	void setLanguage(String aString) ;
+	void setDatatype(RDFDatatype aDt) ;
+	String getValue() ;
 
 }
 
 interface RDFDatatype {
-	public String getURI() ;
+	String getURI() ;
 }

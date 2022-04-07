@@ -102,8 +102,7 @@ public final class cachedir {
 				}
 			} catch (IOException z) {}
 		}
-		;
-	} /* konstruktor */
+    } /* konstruktor */
 
 	final public synchronized void save() {
 		if (localdir == null || readonly == true) {
@@ -171,9 +170,9 @@ public final class cachedir {
 		if (filez == null) return 1;
 
 		/* delete any files found there */
-		for (int i = 0; i < filez.length; i++) {
+		for (String s : filez) {
 			//   System.out.println("/debug/ Cleandir: Trying to delete "+filez[i]);
-			if (!((new File(thisdir, filez[i])).delete())) {
+			if (!((new File(thisdir, s)).delete())) {
 				rc = 0;
 			}
 		}
@@ -395,7 +394,7 @@ public final class cachedir {
 		}
 	} /* merge */
 
-	private final static boolean copyfile(File f, File f2) {
+	private static boolean copyfile(File f, File f2) {
 		System.out.println("[INFO] Copying " + f + " -> " + f2);
 		try {
 			DataInputStream is = new DataInputStream(new BufferedInputStream(f.fis(), 4096));
@@ -422,7 +421,7 @@ public final class cachedir {
  * odklidi soubor pryc aby se mohl vytvorit adresar,
  * - prejmenuje ho a updatne .cacheinfo 
  */
-	private final static boolean moveOutOfWay(File what) {
+	private static boolean moveOutOfWay(File what) {
 		if (!what.exists()) return false;
 		if (what.isDirectory()) return false; // no way to rename directory
 		/* 1. ziskat jeho adresar */

@@ -12,7 +12,7 @@
   28aug1998  dl               factored out ThreadFactoryUser
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * 

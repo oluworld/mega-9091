@@ -15,7 +15,7 @@
   14Mar1999   dl                 first release
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 import java.beans.VetoableChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -130,7 +130,7 @@ public class VetoableChangeMulticaster implements Serializable {
    * Maps property names to VetoableChangeMulticaster objects.
    * @serial
    */
-  protected HashMap children;
+  protected HashMap<String, VetoableChangeMulticaster> children;
 
   /**
    * Return the child associated with property, or null if no such
@@ -138,7 +138,7 @@ public class VetoableChangeMulticaster implements Serializable {
 
   protected synchronized VetoableChangeMulticaster getChild(String propertyName) {
     return (children == null)? null : 
-      ((VetoableChangeMulticaster)children.get(propertyName));
+      (children.get(propertyName));
   }
 
 
@@ -265,9 +265,9 @@ public class VetoableChangeMulticaster implements Serializable {
 
     synchronized(this) {
       if (children == null) 
-        children = new HashMap();
+        children = new HashMap<String, VetoableChangeMulticaster>();
       else 
-        child = (VetoableChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
       
       if (child == null) {
         child = new VetoableChangeMulticaster(source);
@@ -298,9 +298,9 @@ public class VetoableChangeMulticaster implements Serializable {
 
     synchronized(this) {
       if (children == null) 
-        children = new HashMap();
+        children = new HashMap<String, VetoableChangeMulticaster>();
       else 
-        child = (VetoableChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
       
       if (child == null) {
         child = new VetoableChangeMulticaster(source);
@@ -345,7 +345,7 @@ public class VetoableChangeMulticaster implements Serializable {
       array = listeners;
 
       if (children != null && evt.getPropertyName() != null)
-        child = (VetoableChangeMulticaster)children.get(evt.getPropertyName());
+        child = children.get(evt.getPropertyName());
     }
 
     // Loop through array, and then cascade to child.
@@ -529,7 +529,7 @@ public class VetoableChangeMulticaster implements Serializable {
       else if (propertyName == null || children == null)
         return false;
       else {
-        child = (VetoableChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
         if (child == null)
           return false;
       }
@@ -548,13 +548,12 @@ public class VetoableChangeMulticaster implements Serializable {
    */
   private synchronized void writeObject(ObjectOutputStream s) throws IOException {
     s.defaultWriteObject();
-    
-    for (int i = 0; i < listeners.length; i++) {
-      VetoableChangeListener l = listeners[i];
-      if (listeners[i] instanceof Serializable) {
-        s.writeObject(listeners[i]);
+
+      for (VetoableChangeListener l : listeners) {
+          if (l instanceof Serializable) {
+              s.writeObject(l);
+          }
       }
-    }
     s.writeObject(null);
   }
   

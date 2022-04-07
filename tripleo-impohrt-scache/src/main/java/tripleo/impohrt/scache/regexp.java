@@ -97,8 +97,7 @@ public final class regexp {
 	public String dump() {
 		String result = "exact=" + exact + " prefix=" + prefix + " suffix=" + suffix + "  elements=";
 		if (elements == null) return result += "null";
-		for (int i = 0; i < elements.length; i++)
-			result += elements[i] + ",";
+        for (String element : elements) result += element + ",";
 
 		return result;
 	}
@@ -112,8 +111,7 @@ public final class regexp {
 			result = prefix + "*";
 		/* pridat elementy */
 		if (elements != null)
-			for (int i = 0; i < elements.length; i++)
-				result += elements[i] + "*";
+            for (String element : elements) result += element + "*";
 
 		/* suffix */
 		if (suffix != null) result += suffix;
@@ -134,10 +132,10 @@ public final class regexp {
 				pos = prefixlen;
 		if (elements != null) {
 			int j = elements.length;
-			for (int i = 0; i < j; i++) {
-				if ((pos = str.indexOf(elements[i], pos)) == -1) return false;
-				pos += elements[i].length();
-			}
+            for (String element : elements) {
+                if ((pos = str.indexOf(element, pos)) == -1) return false;
+                pos += element.length();
+            }
 		}
 		if (suffix == null) return true;
 		if (str.length() - pos < suffixlen) return false;
@@ -187,13 +185,13 @@ public final class regexp {
 
 		if (elements != null) {
 			int j = elements.length;
-			for (int i = 0; i < j; i++) {
-				int npos;
-				npos = str.indexOf(elements[i], pos);
-				if (npos == -1) return null;
-				result[rpos++] = origstr.substring(pos, npos);
-				pos = npos + elements[i].length();
-			}
+            for (String element : elements) {
+                int npos;
+                npos = str.indexOf(element, pos);
+                if (npos == -1) return null;
+                result[rpos++] = origstr.substring(pos, npos);
+                pos = npos + element.length();
+            }
 		}
 
 		if (suffix == null) {

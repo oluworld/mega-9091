@@ -12,7 +12,7 @@ import tripleo.util.UT;
 //import pyyaml.dummy;
 
 public class EntryMap {
-	private Map<String,J2_System.lazyEntry> _m = new Hashtable();
+	private Map<String,J2_System.lazyEntry> _m = new Hashtable<>();
 
 	public void load(final String fn) {
 //		Map m=new Hashtable();
@@ -28,7 +28,7 @@ public class EntryMap {
 		} else if (false) {getI();
 			PyDictionary locals = new PyDictionary();
 
-			final PyObject yaml_mod = imp.import_name("yaml", true, null);
+			final PyObject yaml_mod = imp.importName("yaml", true, null);
 //			final PyObject yaml_mod = imp.import_name("pyyaml.__init__", true, null);
 			_m.clear();
 			locals.__setitem__("yaml", yaml_mod);
@@ -36,7 +36,7 @@ public class EntryMap {
 			PyFile fp = null;
 			try {
 				fp = __builtin__.open(fn);
-				PyString contents = fp.read();
+				String contents = fp.read();
 				fp.close();
 				locals.__setitem__("f", yaml_mod.__getattr__("load").__call__(new PyObject[]{Py.java2py(contents)}));
 				PyTuple o = (PyTuple)locals.__getitem__(new PyString("f")).__getattr__("next").__call__();
@@ -64,7 +64,7 @@ public class EntryMap {
 
 	public void store(final String fn) {
 		if (false) {
-			final List m=new ArrayList();
+			final List<List<Object>> m=new ArrayList<>();
 			final Map<String, J2_System.lazyEntry> M = this._m;
 
 			for(String s: M.keySet()) {
@@ -79,7 +79,7 @@ public class EntryMap {
 
 			PyDictionary locals = new PyDictionary();
 
-			final PyObject yaml_mod = imp.import_name("pyyaml.__init__", true, null);
+			final PyObject yaml_mod = imp.importName("pyyaml.__init__", true, null);
 			locals.__setitem__("yaml", yaml_mod);
 			locals.__setitem__("d", yaml_mod.__getattr__("dump").__call__(new PyObject[]{Py.java2py(m)}));
 			this.x(((PyString)locals.__getitem__(Py.java2py("d"))).toString());
@@ -136,6 +136,6 @@ public class EntryMap {
 	public void clear()                                              { _m.clear(); }
 	public J2_System.lazyEntry get(String aKey)             { return _m.get(aKey); }
 	public boolean containsKey(String aKey)         { return _m.containsKey(aKey); }
-	public Map unmodifiable()            { return Collections.unmodifiableMap(_m); }
+	public Map<String, J2_System.lazyEntry> unmodifiable()            { return Collections.unmodifiableMap(_m); }
 	public void remove(String aKey)                             { _m.remove(aKey); }
 }

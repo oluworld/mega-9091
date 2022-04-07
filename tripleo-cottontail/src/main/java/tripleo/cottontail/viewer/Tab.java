@@ -37,11 +37,11 @@ abstract class Tab {
 
 		};
 		Control children[] = styleGroup.getChildren();
-		for (int i = 0; i < children.length; i++)
-			if (children[i] instanceof Button) {
-				Button button = (Button) children[i];
-				button.addSelectionListener(selectionListener);
-			}
+        for (Control child : children)
+            if (child instanceof Button) {
+                Button button = (Button) child;
+                button.addSelectionListener(selectionListener);
+            }
 
 	}
 
@@ -456,8 +456,7 @@ abstract class Tab {
 
 	void disposeExampleWidgets() {
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++)
-			controls[i].dispose();
+        for (Control control : controls) control.dispose();
 
 	}
 
@@ -495,12 +494,10 @@ abstract class Tab {
 	void hookExampleWidgetListeners() {
 		if (logging) {
 			Control exampleControls[] = getExampleWidgets();
-			for (int i = 0; i < exampleControls.length; i++)
-				hookListeners(exampleControls[i]);
+            for (Control exampleControl : exampleControls) hookListeners(exampleControl);
 
 			Item exampleItems[] = getExampleWidgetItems();
-			for (int i = 0; i < exampleItems.length; i++)
-				hookListeners(exampleItems[i]);
+            for (Item exampleItem : exampleItems) hookListeners(exampleItem);
 
 			String customNames[] = getCustomEventNames();
 			for (int i = 0; i < customNames.length; i++)
@@ -665,8 +662,7 @@ abstract class Tab {
 		if (backgroundButton == null)
 			return;
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++)
-			controls[i].setBackground(backgroundColor);
+        for (Control control : controls) control.setBackground(backgroundColor);
 
 		Color color = backgroundColor;
 		if (controls.length == 0)
@@ -679,8 +675,7 @@ abstract class Tab {
 
 	void setExampleWidgetEnabled() {
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++)
-			controls[i].setEnabled(enabledButton.getSelection());
+        for (Control control : controls) control.setEnabled(enabledButton.getSelection());
 
 	}
 
@@ -690,10 +685,9 @@ abstract class Tab {
 		if (fontButton == null)
 			return;
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++) {
-			Control control = controls[i];
-			control.setFont(font);
-		}
+        for (Control control : controls) {
+            control.setFont(font);
+        }
 
 	}
 
@@ -701,8 +695,7 @@ abstract class Tab {
 		if (foregroundButton == null)
 			return;
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++)
-			controls[i].setForeground(foregroundColor);
+        for (Control control : controls) control.setForeground(foregroundColor);
 
 		Color color = foregroundColor;
 		if (controls.length == 0)
@@ -726,39 +719,39 @@ abstract class Tab {
 		if (largeButton.getSelection())
 			size = 100;
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++) {
-			GridData gridData;
-			if (fillButton.getSelection()) {
-				gridData = new GridData(1808);
-			} else {
-				gridData = new GridData();
-				gridData.widthHint = size;
-				gridData.heightHint = size;
-			}
-			controls[i].setLayoutData(gridData);
-		}
+        for (Control item : controls) {
+            GridData gridData;
+            if (fillButton.getSelection()) {
+                gridData = new GridData(1808);
+            } else {
+                gridData = new GridData();
+                gridData.widthHint = size;
+                gridData.heightHint = size;
+            }
+            item.setLayoutData(gridData);
+        }
 
 		int seenCount = 0;
 		Composite seen[] = new Composite[4];
-		for (int i = 0; i < controls.length; i++) {
-			for (Control control = controls[i]; control != exampleGroup; control = control.getParent()) {
-				Composite parent = control.getParent();
-				int index;
-				for (index = 0; index < seenCount; index++)
-					if (seen[index] == parent)
-						break;
+        for (Control value : controls) {
+            for (Control control = value; control != exampleGroup; control = control.getParent()) {
+                Composite parent = control.getParent();
+                int index;
+                for (index = 0; index < seenCount; index++)
+                    if (seen[index] == parent)
+                        break;
 
-				if (index == seenCount)
-					parent.layout();
-				if (seenCount == seen.length) {
-					Composite newSeen[] = new Composite[seen.length + 4];
-					System.arraycopy(seen, 0, newSeen, 0, seen.length);
-					seen = newSeen;
-				}
-				seen[seenCount++] = parent;
-			}
+                if (index == seenCount)
+                    parent.layout();
+                if (seenCount == seen.length) {
+                    Composite newSeen[] = new Composite[seen.length + 4];
+                    System.arraycopy(seen, 0, newSeen, 0, seen.length);
+                    seen = newSeen;
+                }
+                seen[seenCount++] = parent;
+            }
 
-		}
+        }
 
 	}
 
@@ -773,8 +766,7 @@ abstract class Tab {
 
 	void setExampleWidgetVisibility() {
 		Control controls[] = getExampleWidgets();
-		for (int i = 0; i < controls.length; i++)
-			controls[i].setVisible(visibleButton.getSelection());
+        for (Control control : controls) control.setVisible(visibleButton.getSelection());
 
 	}
 

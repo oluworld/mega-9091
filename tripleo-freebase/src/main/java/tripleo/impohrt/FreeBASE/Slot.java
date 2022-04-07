@@ -7,9 +7,7 @@
  * http://www.gnu.org/licenses/lgpl.html from `Version 3, 29 June 2007'
  *
  */
-package FreeBASE;
-
-import javax.net.ssl.ManagerFactoryParameters;
+package tripleo.impohrt.FreeBASE;
 
 /**
  * Created 9/27/21 6:09 AM

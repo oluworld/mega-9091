@@ -117,7 +117,7 @@ class ConfigManager implements ComponentListener {
 
 	static void initLookAndFeel() {
 		String key;
-		for (Enumeration e = UIManager.getLookAndFeelDefaults().keys(); e.hasMoreElements();) {
+		for (Enumeration<Object> e = UIManager.getLookAndFeelDefaults().keys(); e.hasMoreElements();) {
 			key = (String) e.nextElement();
 			if (key.endsWith(".font") || key.endsWith("Font")) {
 				UIManager.put(key, Editor.smallFont);

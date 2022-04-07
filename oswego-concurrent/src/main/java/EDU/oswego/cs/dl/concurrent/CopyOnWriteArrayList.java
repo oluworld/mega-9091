@@ -22,7 +22,7 @@
   29jun2001  dl               Serialization methods now private
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.*;
 
 /**
@@ -570,9 +570,8 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
   public boolean containsAll(Collection c) {
     Object[] elementData = array();
     int len = elementData.length;
-    Iterator e = c.iterator();
-    while (e.hasNext())
-      if(indexOf(e.next(), elementData, len) < 0)
+    for (Object o : c)
+      if (indexOf(o, elementData, len) < 0)
         return false;
     
     return true;
@@ -595,8 +594,7 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
     // temp array holds those elements we know we want to keep
     Object[] temp = new Object[len];
     int newlen = 0;
-    for (int i = 0; i < len; ++i) {
-      Object element = elementData[i];
+    for (Object element : elementData) {
       if (!c.contains(element)) {
         temp[newlen++] = element;
       }
@@ -625,8 +623,7 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
 
     Object[] temp = new Object[len];
     int newlen = 0;
-    for (int i = 0; i < len; ++i) {
-      Object element = elementData[i];
+    for (Object element : elementData) {
       if (c.contains(element)) {
         temp[newlen++] = element;
       }
@@ -659,9 +656,7 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
 
     Object[] temp = new Object[numNew];
     int added = 0;
-    Iterator e = c.iterator();
-    while (e.hasNext()) {
-      Object element = e.next();
+    for (Object element : c) {
       if (indexOf(element, elementData, len) < 0) {
         if (indexOf(element, temp, added) < 0) {
           temp[added++] = element;
@@ -768,8 +763,7 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
     s.writeInt(elementData.length);
 
     // Write out all elements in the proper order.
-    for (int i=0; i<elementData.length; i++)
-      s.writeObject(elementData[i]);
+    for (Object elementDatum : elementData) s.writeObject(elementDatum);
   }
 
   /**
@@ -795,12 +789,12 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
    * the String representation of each element.
    */
   public String toString() {
-    StringBuffer buf = new StringBuffer();
+    StringBuilder buf = new StringBuilder();
     Iterator e = iterator();
     buf.append("[");
     int maxIndex = size() - 1;
     for (int i = 0; i <= maxIndex; i++) {
-      buf.append(String.valueOf(e.next()));
+      buf.append(e.next());
       if (i < maxIndex)
         buf.append(", ");
     }
@@ -859,10 +853,8 @@ public class CopyOnWriteArrayList implements List, Cloneable, java.io.Serializab
    */
   public int hashCode() {
     int hashCode = 1;
-    Iterator i = iterator();
-    while (i.hasNext()) {
-      Object obj = i.next();
-      hashCode = 31*hashCode + (obj==null ? 0 : obj.hashCode());
+    for (Object obj : this) {
+      hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
     }
     return hashCode;
   }

@@ -11,14 +11,14 @@ package tripleo.linuxtuples.gen;
 
 public interface tuplesConstants {
   // enums and constants
-  public final static String SERVERNAME_ENVVAR = "LINUXTUPLES_HOST";
-  public final static String PORTNUMBER_ENVVAR = "LINUXTUPLES_PORT";
-  public final static int PUT = 0;
-  public final static int GET = 1;
-  public final static int READ = 2;
-  public final static int GET_NB = 3;
-  public final static int READ_NB = 4;
-  public final static int DUMP = 5;
-  public final static int COUNT = 6;
-  public final static int LOG = 7;
+  String SERVERNAME_ENVVAR = "LINUXTUPLES_HOST";
+  String PORTNUMBER_ENVVAR = "LINUXTUPLES_PORT";
+  int PUT = 0;
+  int GET = 1;
+  int READ = 2;
+  int GET_NB = 3;
+  int READ_NB = 4;
+  int DUMP = 5;
+  int COUNT = 6;
+  int LOG = 7;
 }

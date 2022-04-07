@@ -9,7 +9,7 @@ public interface SchedulerListener {
 	void handleSuccess();
 	//void expired(Scheduler sch);
 
-	public static class NullListener implements SchedulerListener {
+	class NullListener implements SchedulerListener {
 		public void handlerError(Exception e) {
 		}
 

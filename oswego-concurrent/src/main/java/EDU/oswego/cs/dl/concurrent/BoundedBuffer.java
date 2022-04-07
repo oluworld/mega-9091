@@ -14,7 +14,7 @@
    5May1999  dl               replace % with conditional (slightly faster)
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Efficient array-based bounded buffer class.

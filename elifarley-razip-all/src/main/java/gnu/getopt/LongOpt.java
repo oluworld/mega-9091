@@ -100,7 +100,7 @@ protected int val;
 /**
   * Localized strings for error messages
   */
-private ResourceBundle _messages = PropertyResourceBundle.getBundle(
+private final ResourceBundle _messages = PropertyResourceBundle.getBundle(
                             "gnu/getopt/MessagesBundle", Locale.getDefault());
 
 /**************************************************************************/

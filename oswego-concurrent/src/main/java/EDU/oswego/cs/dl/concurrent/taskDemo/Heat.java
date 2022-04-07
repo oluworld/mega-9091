@@ -1,4 +1,4 @@
-/*
+package EDU.oswego.cs.dl.concurrent.taskDemo;/*
   Converted from heat.cilk, which is
     Copyright (c) 1996 Massachusetts Institute of Technology
   with the following notice:
@@ -29,7 +29,8 @@
    *  
 */
 
-import EDU.oswego.cs.dl.util.concurrent.*;
+import EDU.oswego.cs.dl.concurrent.FJTask;
+import EDU.oswego.cs.dl.concurrent.FJTaskRunnerGroup;
 
 public class Heat {
 
@@ -129,25 +130,25 @@ public class Heat {
 
 
   // the function being applied across the cells
-  static final double f(double x, double y) { 
+  static double f(double x, double y) {
     return Math.sin(x) * Math.sin(y); 
   }
 
   // random starting values
 
-  static final double randa(double x, double t) { 
+  static double randa(double x, double t) {
     return 0.0; 
   }
-  static final double randb(double x, double t) { 
+  static double randb(double x, double t) {
     return Math.exp(-2*t) * Math.sin(x); 
   }
-  static final double randc(double y, double t) { 
+  static double randc(double y, double t) {
     return 0.0; 
   }
-  static final double randd(double y, double t) { 
+  static double randd(double y, double t) {
     return Math.exp(-2*t) * Math.sin(y); 
   }
-  static final double solu(double x, double y, double t) { 
+  static double solu(double x, double y, double t) {
     return Math.exp(-2*t) * Math.sin(x) * Math.sin(y); 
   }
 

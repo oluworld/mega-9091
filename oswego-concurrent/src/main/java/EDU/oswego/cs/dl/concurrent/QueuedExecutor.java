@@ -15,7 +15,7 @@
   20may2004  dl               can shutdown even if thread not created yet
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * 

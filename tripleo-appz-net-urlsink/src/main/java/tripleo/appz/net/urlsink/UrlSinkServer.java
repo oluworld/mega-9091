@@ -14,13 +14,14 @@ import java.net.Socket;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 import rabbit.http.GeneralHeader;
 import rabbit.http.HTTPHeader;
 import rabbit.io.HTTPInputStream;
-import tripleo.util.*;
+import tripleo.util.Assert;
+import tripleo.util.Pair;
+import tripleo.util.UT;
 
 /**
  * This is a very simple webserver used for some simple testing of RabbIT2
@@ -28,9 +29,9 @@ import tripleo.util.*;
 
 public class UrlSinkServer implements Runnable {
 
-    class PickApartList {
+    static class PickApartList {
 
-        private List mList;
+        private List<Datum> mList;
 
         private int mStart;
 
@@ -40,12 +41,12 @@ public class UrlSinkServer implements Runnable {
          * @param aList
          *            the list to break
          */
-        public void pick_apart_list(final List aList) {
+        public void pick_apart_list(final List<Datum> aList) {
             final int MAXSIZE = 10;
             //
             final int size = aList.size();
             final int a1 = Math.max(0, size - MAXSIZE);
-            final List subList = aList.subList(a1, size);
+            final List<Datum> subList = aList.subList(a1, size);
             //
             Assert.postcondition("sublist_size", subList.size() >= 0
                     && subList.size() <= MAXSIZE);
@@ -60,7 +61,7 @@ public class UrlSinkServer implements Runnable {
     static final  String  ct   = "text/plain";
     static           int  nn   = 0;
     private ServerSocket  ss;
-    private PickApartList pal  = new PickApartList();
+    private final PickApartList pal  = new PickApartList();
 //    private static String basedir = null;
 
     /* private */
@@ -131,7 +132,7 @@ public class UrlSinkServer implements Runnable {
         UT.vvv("finished serving " + requesturi);
     }
 
-    private Pair pick_apart_list(final List aList) {
+    private Pair pick_apart_list(final List<Datum> aList) {
         pal.pick_apart_list(aList);
 
 //        List l1 = new Vector();
@@ -145,8 +146,8 @@ public class UrlSinkServer implements Runnable {
 
     private String preserve_list(List a, int n) {
         String R = "";
-        for (Iterator ia = a.iterator(); ia.hasNext();) {
-            Datum datum = (Datum) ia.next();
+        for (Object o : a) {
+            Datum datum = (Datum) o;
             R += "<b>" + n++ + "</b> " + datum + " <br>";
         }
         return R;
@@ -193,14 +194,14 @@ public class UrlSinkServer implements Runnable {
      */
     private void view_action(OutputStream os, HTTPHeader header, String requesturi) throws IOException {
         int n=0, max=10;
-        Dictionary<String,String> d=new Hashtable();
+        Dictionary<String,String> d=new Hashtable<>();
         String m=requesturi.substring(("http://view.view/").length());
         if (m.charAt(0)=='?') {
             String[] ml = m.substring(1).split("&");
-            for (int i = 0; i < ml.length; i++) {
-                String[] ml2 = ml[i].split("=");
-                for (int j = 0; j < ml2.length; j+=2) {
-                    if (ml2.length==2)
+            for (String s : ml) {
+                String[] ml2 = s.split("=");
+                for (int j = 0; j < ml2.length; j += 2) {
+                    if (ml2.length == 2)
                         d.put(ml2[0], ml2[1]);
                 }
             }
@@ -268,7 +269,7 @@ public class UrlSinkServer implements Runnable {
         //
         final VecVecVecStore store = (VecVecVecStore) UrlSinkMain.D.prevayler
                 .system();
-        final List reqs = store.requests;
+        final List<Datum> reqs = store.requests;
         
         int n=Math.max(0,start);
         while (n<start+aMax) {

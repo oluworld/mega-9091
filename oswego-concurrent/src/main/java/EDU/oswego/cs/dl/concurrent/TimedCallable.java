@@ -13,7 +13,7 @@
 
  */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * TimedCallable runs a Callable function for a given length of time.

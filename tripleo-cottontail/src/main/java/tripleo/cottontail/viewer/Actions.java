@@ -4,7 +4,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 class SourceViewAction extends Action {
-	private SourceViewWindow window;
+	private final SourceViewWindow window;
 
 	public SourceViewAction(SourceViewWindow w) {
 		window = w;
@@ -20,7 +20,7 @@ class SourceViewAction extends Action {
 }
 
 class ExitAction extends Action {
-	private ControlExample window;
+	private final ControlExample window;
 
 	public ExitAction(ControlExample w) {
 		window = w;
@@ -34,7 +34,7 @@ class ExitAction extends Action {
 	}
 }
 class PreferencesAction extends Action {
-	private ControlExample window;
+	private final ControlExample window;
 
 	public PreferencesAction(ControlExample w) {
 		window = w;

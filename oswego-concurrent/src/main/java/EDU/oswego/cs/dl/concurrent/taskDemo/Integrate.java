@@ -1,3 +1,5 @@
+package EDU.oswego.cs.dl.concurrent.taskDemo;
+
 import EDU.oswego.cs.dl.util.concurrent.*;
 
 
@@ -48,7 +50,7 @@ public class Integrate {
   */
 
   /** A function to be integrated **/
-  static interface Function {
+  interface Function {
     double compute(double x);
   }
 

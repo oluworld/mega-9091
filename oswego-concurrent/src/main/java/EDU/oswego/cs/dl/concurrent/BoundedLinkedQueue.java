@@ -15,7 +15,7 @@
   27jan2000  dl               setCapacity forces immediate permit reconcile
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A bounded variant of 

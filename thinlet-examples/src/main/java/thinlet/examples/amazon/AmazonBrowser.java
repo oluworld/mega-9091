@@ -22,7 +22,7 @@ public class AmazonBrowser extends Thinlet {
 	int level = -1;
 	String name1;
 	boolean listmode;
-	Vector details = new Vector();
+	Vector<Details> details = new Vector<Details>();
 
 	/**
 	 *
@@ -93,7 +93,7 @@ public class AmazonBrowser extends Thinlet {
 		String mode = MODES[getInteger(find("product"), "selected")];
 		String searchby = SEARCHBY[getInteger(find("searchType"), "selected")];
 		String text = getString(find("searchText"), "text");
-		StringBuffer converted = new StringBuffer(text.length());
+		StringBuilder converted = new StringBuilder(text.length());
 		for (int i = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
 			if (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) ||
@@ -127,7 +127,7 @@ public class AmazonBrowser extends Thinlet {
 	public void resultSelected() {
 		int selected = getSelectedIndex(find("resultList"));
 		if (selected != -1) {
-			Details detail = (Details) details.elementAt(selected);
+			Details detail = details.elementAt(selected);
 			showProduct(detail);
 		}
 	}
@@ -156,7 +156,7 @@ public class AmazonBrowser extends Thinlet {
 	/**
 	 *
 	 */
-	protected void startElement(String name, Hashtable attributelist) {
+	protected void startElement(String name, Hashtable<String, String> attributelist) {
 		level++;
 		this.name1 = name;
 
@@ -248,7 +248,7 @@ public class AmazonBrowser extends Thinlet {
 	 *
 	 */
 	private Details getLastDetails() {
-		return (Details) details.elementAt(details.size() - 1);
+		return details.elementAt(details.size() - 1);
 	}
 
 	/**

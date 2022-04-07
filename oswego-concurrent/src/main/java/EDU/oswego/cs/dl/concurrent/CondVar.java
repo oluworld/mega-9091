@@ -11,7 +11,7 @@
   11Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * This class is designed for fans of POSIX pthreads programming.

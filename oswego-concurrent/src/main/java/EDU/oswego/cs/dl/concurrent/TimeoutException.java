@@ -12,7 +12,7 @@
    4Aug1998  dl               Change to extend InterruptedException
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Thrown by synchronization classes that report

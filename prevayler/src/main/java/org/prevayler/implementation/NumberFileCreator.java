@@ -15,7 +15,7 @@ class NumberFileCreator {
     public static final DecimalFormat SNAPSHOT_FORMAT = new DecimalFormat("000000000000000000000'.'" + SNAPSHOT_SUFFIX); //21 zeros (enough for a long number).
     public static final DecimalFormat LOG_FORMAT = new DecimalFormat("000000000000000000000'.'commandLog");  //21 zeros (enough for a long number).
 
-    private File directory;
+    private final File directory;
     private long nextFileNumber;
 
     public NumberFileCreator(File directory, long firstFileNumber) {
@@ -25,9 +25,9 @@ class NumberFileCreator {
 
     File newLog() throws IOException {
 	File log = new File(directory, LOG_FORMAT.format(nextFileNumber));
-	if(!log.createNewFile()) throw new IOException("Attempt to create command log file that already existed: " + log);;
+	if(!log.createNewFile()) throw new IOException("Attempt to create command log file that already existed: " + log);
 
-	++nextFileNumber;
+        ++nextFileNumber;
 	return log;
     }
 

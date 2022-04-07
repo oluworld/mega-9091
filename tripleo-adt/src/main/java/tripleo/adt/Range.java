@@ -12,5 +12,5 @@ public class Range<T> {
 		backing.add(t);
 	}
 
-	List<T> backing=new ArrayList();
+	List<T> backing=new ArrayList<>();
 }

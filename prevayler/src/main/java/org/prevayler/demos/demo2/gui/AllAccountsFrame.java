@@ -32,10 +32,9 @@ class AllAccountsFrame extends JInternalFrame implements BankListener, AccountLi
 	}
   
 	private void listenToAccounts() {
-		java.util.Iterator it = accounts().iterator();
-		while (it.hasNext()) {
-			((Account)it.next()).addAccountListener(this);
-		}
+        for (Object o : accounts()) {
+            ((Account) o).addAccountListener(this);
+        }
 	}
 
 	private void refreshAccounts() {

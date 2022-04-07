@@ -20,10 +20,10 @@ import tripleo.util.DomainMap;
 
 
 public class SourceViewWindow extends ControlExample {
-	private ExitAction exit_action;
+	private final ExitAction exit_action;
 //	private OpenAction open_action;
 //	private RefreshAction refresh_action;
-	private SourceViewAction source_view_action; 
+	private final SourceViewAction source_view_action;
 	
 	public SourceViewWindow() {
 		super(null);
@@ -188,7 +188,7 @@ abstract class ControlExample extends ApplicationWindow {
 	VersionViewHelper  vvh = new VersionViewHelper(this);
 
 	void initResources() {
-		Class clazz = ControlExample.class;
+		Class<ControlExample> clazz = ControlExample.class;
 //		if (resourceBundle != null)
 			try {
 				if (images == null) {

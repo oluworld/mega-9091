@@ -33,7 +33,7 @@ public abstract class AbstractLayout
 		return myHGap;
 	}
 
-	protected static final int getHGapImpl(Container container)
+	protected static int getHGapImpl(Container container)
 	{
 		if(container == null)
 			throw new IllegalArgumentException("container cannot be null");
@@ -65,7 +65,7 @@ public abstract class AbstractLayout
 		return myVGap;
 	}
 
-	protected static final int getVGapImpl(Container container)
+	protected static int getVGapImpl(Container container)
 	{
 		if(container == null)
 			throw new IllegalArgumentException("container cannot be null");

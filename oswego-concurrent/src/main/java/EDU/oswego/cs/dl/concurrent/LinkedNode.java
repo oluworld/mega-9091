@@ -13,7 +13,7 @@
   26nov2001  dl               Added no-arg constructor, all public access.
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** A standard linked list node used in various queue classes **/
 public class LinkedNode { 

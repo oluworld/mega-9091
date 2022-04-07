@@ -59,7 +59,7 @@ public final class ConnectionHandler extends Thread {
 	/**
 	 * Create a new ConnectionHandler for use.
 	 */
-	public final static void init() {
+	public static void init() {
 		if (activeConnections != null) return; //
 		activeConnections = new Hashtable<String, Vector<WebConnection>>();
 		cleaner = new ConnectionHandler();
@@ -70,7 +70,7 @@ public final class ConnectionHandler extends Thread {
 	/**
 	 * Check if the cleaner of this ConnectionHandler is running.
 	 */
-	public final static boolean isCleanerRunning() {
+	public static boolean isCleanerRunning() {
 		if (cleaner != null)
 			if (cleaner.isAlive())
 				return true;
@@ -82,14 +82,14 @@ public final class ConnectionHandler extends Thread {
 	 *
 	 * @return an Enumeration of Vectors with WebConnections.
 	 */
-	public final static Enumeration<Vector<WebConnection>> getConnections() {
+	public static Enumeration<Vector<WebConnection>> getConnections() {
 		return activeConnections.elements();
 	}
 
 	/**
 	 * Get the addresses we have connections to.
 	 */
-	public final static Enumeration<String> getAddresses() {
+	public static Enumeration<String> getAddresses() {
 		return activeConnections.keys();
 	}
 
@@ -97,7 +97,7 @@ public final class ConnectionHandler extends Thread {
 	 * Get the pool for an Address.
 	 * NOTE! synchronize on the pool if you are taking connections from it.
 	 */
-	public final static Vector<WebConnection> getPool(String a) {
+	public static Vector<WebConnection> getPool(String a) {
 		return activeConnections.get(a);
 	}
 
@@ -106,7 +106,7 @@ public final class ConnectionHandler extends Thread {
 	 *
 	 * @return a WebConnection.
 	 */
-	public final static WebConnection getConnection(InetAddress ia, int port) throws IOException {
+	public static WebConnection getConnection(InetAddress ia, int port) throws IOException {
 		WebConnection wc = null;
 		String a;
 		if (ia == null) throw new java.net.UnknownHostException("Host not found");
@@ -132,7 +132,7 @@ public final class ConnectionHandler extends Thread {
 	 *
 	 * @param wc the WebConnection to return.
 	 */
-	public final static void releaseConnection(WebConnection wc) {
+	public static void releaseConnection(WebConnection wc) {
 		if (!wc.keepalive || keepalivetime <= 0)
 			try {
 				wc.close();
@@ -145,11 +145,7 @@ public final class ConnectionHandler extends Thread {
 			System.out.println("[TRACE " + Thread.currentThread().getName() + "] * Puting " + a + " to pool.");
 		}
 		synchronized (activeConnections) {
-			Vector<WebConnection> pool = activeConnections.get(a);
-			if (pool == null) {
-				pool = new Vector<WebConnection>();
-				activeConnections.put(a, pool);
-			}
+			Vector<WebConnection> pool = activeConnections.computeIfAbsent(a, k -> new Vector<WebConnection>());
 			pool.addElement(wc);
 		}
 	}

@@ -8,8 +8,8 @@
 package tripleo.space;
 
 public class SpaceNugget<T> {
-	private String mName;
-	private T      mObject;
+	private final String mName;
+	private final T      mObject;
 
 	public SpaceNugget(String spot_name, T o) {
 		mName   = spot_name;

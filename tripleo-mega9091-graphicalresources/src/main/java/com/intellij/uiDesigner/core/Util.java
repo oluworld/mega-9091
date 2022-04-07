@@ -51,7 +51,7 @@ public final class Util
 		size.height = Math.min(size.height, maximumSize.height);
 	}
 
-	public static int eliminate(int cellIndices[], int spans[], ArrayList elimitated)
+	public static int eliminate(int cellIndices[], int spans[], ArrayList<Integer> elimitated)
 	{
 		int size = ((int[])cellIndices).length;
 		if(size != ((int[])spans).length)

@@ -173,7 +173,7 @@ public final class cacheobject {
 	}
 
 
-	final private synchronized File genTmp() {
+	private synchronized File genTmp() {
 		File out;
 		String ld = dir.getLocalDir();
 		if (ld == null) return null;
@@ -380,7 +380,7 @@ public final class cacheobject {
 
 /* L O A D ! */
 
-	final private void load_object(request r) throws IOException {
+	private void load_object(request r) throws IOException {
 		WebConnection wc;
 		c_miss++;
 		if (localname == null) localname = RESERVED; /* prevents from async dir cleaning */
@@ -553,7 +553,7 @@ public final class cacheobject {
 
 /* R E F R E S H ! */
 
-	final private void refresh_object(request r) throws IOException {
+	private void refresh_object(request r) throws IOException {
 		WebConnection wc;
 		dir.dirty = true;
 		try {
@@ -586,8 +586,7 @@ public final class cacheobject {
 		}
 
 		if (r.reload && force_ims_on_reloads == false && clims == 1) {
-			;
-		} else {
+        } else {
 			r.etag = etag; // use our ETag when validating URL
 			r.add_ims(lastmod); // use our lastmod
 		}
@@ -756,7 +755,7 @@ public final class cacheobject {
 
 /*    S E N D    F R O M    C A C H E    */
 
-	final private void send_fromcache(request r) throws IOException {
+	private void send_fromcache(request r) throws IOException {
 		dir.dirty = true;
 		long clims;
 		String et = r.etag;
@@ -828,7 +827,7 @@ public final class cacheobject {
 			fin.close();
 	}
 
-	final private void setInfo(request r) {
+	private void setInfo(request r) {
 		httprc = r.httprc;
 		ctype = r.ctype;
 		encoding = r.encoding;
@@ -843,7 +842,7 @@ public final class cacheobject {
 	}
 
 /* vraci true pokud by se mela stranka obnovit */
-	final private boolean needRefresh(request r, long reload_age, long min_age, long max_age, float percent, long expire_age, long redir_age) {
+	private boolean needRefresh(request r, long reload_age, long min_age, long max_age, float percent, long expire_age, long redir_age) {
 		long now = System.currentTimeMillis();
 		long age = now - date;
 
@@ -993,7 +992,7 @@ public final class cacheobject {
 		if (location != null) return true; else return false;
 	}
 
-	final public static String printDelta(long delta) {
+	public static String printDelta(long delta) {
 		long mdelta = delta / 60000L; // delta in minutes
 
 		if (mdelta > 60 * 24 * 7 * 4 * 12 * 2)

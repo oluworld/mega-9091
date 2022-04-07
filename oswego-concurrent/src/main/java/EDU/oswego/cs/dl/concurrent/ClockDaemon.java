@@ -12,7 +12,7 @@
   17dec1998  dl               null out thread after shutdown
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.Comparator;
 import java.util.Date;
 

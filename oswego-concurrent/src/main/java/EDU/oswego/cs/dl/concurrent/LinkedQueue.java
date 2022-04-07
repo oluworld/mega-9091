@@ -14,7 +14,7 @@
   10oct1999  dl               lock on node object to ensure visibility
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A linked list based channel implementation.

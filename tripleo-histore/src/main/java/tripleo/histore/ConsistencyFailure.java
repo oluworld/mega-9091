@@ -8,7 +8,7 @@ package tripleo.histore;
  * $Id: ConsistencyFailure.java,v 1.1.1.1 2005/02/09 04:19:16 olu Exp $
  */
 public class ConsistencyFailure extends HiStoreException {
-	private Constants because_of;
+	private final Constants because_of;
 
 	@Unique
 	public Constants getReason() {

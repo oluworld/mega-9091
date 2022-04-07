@@ -15,7 +15,7 @@ class VecVecVecStore extends AbstractPrevalentSystem {
 
 //    private static final long serialVersionUID = 3690480199305476150L;
 	
-    /*private*/ final List<Datum> requests = new ArrayList();
+    /*private*/ final List<Datum> requests = new ArrayList<>();
 
 
 	void deactivate(String aDate, String aURI) {
@@ -27,7 +27,7 @@ class VecVecVecStore extends AbstractPrevalentSystem {
 		requests.add(new Datum(aDate, aURI, header, true, "falsecat"));
 	}
 
-	List storage() {
+	List<Datum> storage() {
 		return requests;
 	}
 

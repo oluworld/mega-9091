@@ -1162,30 +1162,29 @@ class StateMachine
 	// System.out.println("Ciao! from/to=" + start + "/" +
 	//	offset + "; stop=" + stop);
 
-	for( ; stop >= 0 && offset >= start; )
-	{
-		if(matchSubs(start, stop, result, 1) < 0)
+	 while (stop >= 0 && offset >= start) {
+		 if(matchSubs(start, stop, result, 1) < 0)
+			 break;
+
+		 /* System.out.println("\\" + n + ": " +
+			 (result.start[n]+start) + "," +
+			 (result.start[n]+result.leng[n]+start)); */
+
+		 if(matchBackRef(stop, lim, result.start[n]+start,
+				 result.start[n]+result.leng[n]+start) >= 0)
+		 {
+			 retv = stop + result.leng[n] - 1;
+
+			 /* System.out.println("qui: " + stop +
+				 "+" + result.leng[n]); */
+
 			break;
+		 }
+		 else
+			 stop = match(start, --offset, this.startState);
+	 }
 
-		/* System.out.println("\\" + n + ": " +
-			(result.start[n]+start) + "," +
-			(result.start[n]+result.leng[n]+start)); */
-
-		if(matchBackRef(stop, lim, result.start[n]+start,
-				result.start[n]+result.leng[n]+start) >= 0)
-		{
-			retv = stop + result.leng[n] - 1;
-
-			/* System.out.println("qui: " + stop +
-				"+" + result.leng[n]); */
-
-		   break;
-		}
-		else
-			stop = match(start, --offset, this.startState);
-	}
-
-	restoreTables();
+	 restoreTables();
 	acceptingState.setAccept();
 	st.resetAccept();
 

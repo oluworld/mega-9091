@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.io.IOException;
 
 public class PythonScript {
-	private IContainer ctr;
+	private final IContainer ctr;
 
 	public PythonScript(String aName, IContainer actr) {
 		script_name = aName;
@@ -22,9 +22,9 @@ public class PythonScript {
 
 	void set_content(String s) {content = s;}
 
-	Map<String,Param> params=new HashMap();
+	Map<String,Param> params=new HashMap<>();
 
-	class Param {
+	static class Param {
 		/**
 		 * @param aS
 		 * @param aT
@@ -42,7 +42,7 @@ public class PythonScript {
 
 
 	void add_param(String s, String t, boolean aReq) {
-		params.put(s, new Param(s,t,aReq));
+		params.put(s, new Param(s, t, aReq));
 	}
 
 	void write() throws AllocationFailure, ConsistencyFailure, IOException {

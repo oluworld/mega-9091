@@ -1,9 +1,7 @@
 package thinlet.examples.demo;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.net.*;
 import java.util.*;
 
 import thinlet.*;
@@ -44,7 +42,7 @@ public class Demo extends Thinlet {
 					inputstream = getClass().getResourceAsStream("dialog.xml");
 				} catch (Throwable e) {}
 				BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
-				StringBuffer text = new StringBuffer();
+				StringBuilder text = new StringBuilder();
 				for (int c = reader.read(); c != -1; c = reader.read()) {
 					if (((c > 0x1f) && (c < 0x7f)) ||
 							((c > 0x9f) && (c < 0xffff)) || (c == '\n')) {
@@ -233,7 +231,7 @@ public class Demo extends Thinlet {
 		setInteger(find("pb_brightness"), "value", (int) (100f * hsb[2]));
 	}
 	
-	Hashtable name2component = new Hashtable();
+	Hashtable<String, Object> name2component = new Hashtable<>();
 
 	/**
 	 *

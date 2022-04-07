@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
  * used to draw ingame messages
  */
 public class ScreenText extends GameObject {
-	private Font font = new Font("score_font", Font.BOLD, 22);
+	private final Font font = new Font("score_font", Font.BOLD, 22);
 	private boolean visible = false;
 	private String text = null;
 	private int xpos = 0;
 	private int ypos = 0;
-	private int count = 0;
+	private final int count = 0;
 //	private Timer timer = new Timer();
 	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
 

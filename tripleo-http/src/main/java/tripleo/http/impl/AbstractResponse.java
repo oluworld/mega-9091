@@ -14,7 +14,7 @@ import tripleo.http.*;
 abstract public class AbstractResponse implements IResponse {
 	private static final Object CRLF = "\r\n";
 	final private StringBuilder _cont= new StringBuilder();
-	final private Map<String,List<String>> _hdrs=new HashMap();
+	final private Map<String,List<String>> _hdrs=new HashMap<>();
 	protected final OutputStream  _conduit;
 
 	public AbstractResponse(OutputStream a_conduit, IRequest a_req) {
@@ -62,7 +62,7 @@ abstract public class AbstractResponse implements IResponse {
 	}
 
 	public List<IHeader> copyOfHeaders() {
-		List<IHeader> r=new ArrayList();
+		List<IHeader> r=new ArrayList<>();
 		for (Map.Entry<String, List<String>> h : _hdrs.entrySet()) {
 			r.add(DefaultHeaderImpl.make(h.getKey(), _singleHeader(h.getValue())));
 		}
@@ -76,6 +76,7 @@ abstract public class AbstractResponse implements IResponse {
 	/**
 	 * @see Reply#headers
 	 */
+        @Override
 	public void send() throws HttpException {
 		StringBuilder xx = new StringBuilder();
 		xx.append(firstline())
@@ -122,7 +123,7 @@ abstract public class AbstractResponse implements IResponse {
 	}
 
 	public IResponse setHeader(String aName, String aValue) {
-		List<String> l=new ArrayList();
+		List<String> l=new ArrayList<>();
 		l.add(aValue);
 		_hdrs.put(aName, l);
 		return this;

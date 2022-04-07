@@ -50,8 +50,8 @@ package gnu.rex;
 
 public class Rex
 {
- private Expr expression;
- private StateMachine machine;
+ private final Expr expression;
+ private final StateMachine machine;
 
  private Rex(Expr expression)
 	{ machine = StateMachine.buildMachine(this.expression = expression); }
@@ -73,7 +73,7 @@ public class Rex
   * @param alt the default value is "\|"
   */
 
- public static final void config_Alternative(String alt)
+ public static void config_Alternative(String alt)
 	{ Parser.config_Alternative(alt); }
 
  /**

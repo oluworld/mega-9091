@@ -6,7 +6,11 @@
  */
 package tripleo.http;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import tripleo.util.Pair;
 
@@ -21,7 +25,7 @@ class CGI_PY {
 	 * qs: URL-encoded query string to be parsed
 	 * 
 	 * keep_blank_values: flag indicating whether blank values in URL encoded
-	 * queries should be treated as blank strings. A true value inicates that
+	 * queries should be treated as blank strings. A true value indicates that
 	 * blanks should be retained as blank strings. The default false value
 	 * indicates that blank values are to be ignored and treated as if they were
 	 * not included.
@@ -32,7 +36,7 @@ class CGI_PY {
 	 */
 	Map<String, List<String>> parse_qs(String qs, boolean keep_blank_values,
 			boolean strict_parsing) {
-		Map<String, List<String>> dict = new HashMap();
+		Map<String, List<String>> dict = new HashMap<>();
 		List<Pair/* <String,String> */> _t0 = parse_qsl(qs, keep_blank_values,
 				strict_parsing);
 		//
@@ -43,7 +47,7 @@ class CGI_PY {
 			if (dict.containsKey(name)) {
 				dict.get(name).add(value);
 			} else {
-				final ArrayList<String> _t2 = new ArrayList();
+				final ArrayList<String> _t2 = new ArrayList<>();
 				_t2.add(value);
 				dict.put(name, _t2);
 			}
@@ -60,7 +64,7 @@ class CGI_PY {
 	 * qs: URL-encoded query string to be parsed
 	 * 
 	 * keep_blank_values: flag indicating whether blank values in URL encoded
-	 * queries should be treated as blank strings. A true value inicates that
+	 * queries should be treated as blank strings. A true value indicates that
 	 * blanks should be retained as blank strings. The default false value
 	 * indicates that blank values are to be ignored and treated as if they were
 	 * not included.
@@ -74,7 +78,7 @@ class CGI_PY {
 	List<Pair> parse_qsl(String qs, boolean keep_blank_values,
 			boolean strict_parsing) {
 		String[] name_value_pairs = qs.split("&");
-		List<Pair> r = new ArrayList();
+		List<Pair> r = new ArrayList<>();
 		for (String name_value : name_value_pairs) {
 			String[] nv = name_value.split("=");
 			if (nv.length != 2) {
@@ -93,11 +97,17 @@ class CGI_PY {
 
 	static String urllib_unquote(String s) {
 		String[] xlist = s.split("%");
-		List<String> res = new ArrayList();
+		List<String> res = new ArrayList<>();
 		res.add(xlist[1]);
 		List<String> list = Arrays.asList(xlist);
 		list.remove(0); // java-ism: this is always ''
 		list.remove(0);
+
+		// replace res.add below?
+//		StringBuilder sb = new StringBuilder();
+//		sb.delete(0, sb.length());
+//		sb.length();
+
 		for (String item : list) {
 			try {
 				int x = Integer.valueOf(item.substring(0, 2), 16).intValue();
@@ -113,15 +123,16 @@ class CGI_PY {
 		return x.toString();
 	}
 
-	class ValueError extends RuntimeException {
+	static class ValueError extends RuntimeException {
+		private final String reason;
 
-		private String reason;
-
-		/**
-		 * @param aString
-		 */
-		public ValueError(String aString) {
+		public ValueError(final String aString) {
 			reason = aString;
+		}
+
+		@Override
+		public String getMessage() {
+			return reason;
 		}
 	}
 }

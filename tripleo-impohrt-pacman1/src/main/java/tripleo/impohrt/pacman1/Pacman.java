@@ -14,12 +14,12 @@ import javax.swing.*;
  */
 
 public class Pacman {
-	private boolean playMusic = true;
+	private final boolean playMusic = true;
 	private JFrame frame = null;
-	private JPanel northPanel = new JPanel();
-	private JPanel mainpanel = new JPanel();
-	private World world = new World();
-	private JMenuBar menubar = new JMenuBar();
+	private final JPanel northPanel = new JPanel();
+	private final JPanel mainpanel = new JPanel();
+	private final World world = new World();
+	private final JMenuBar menubar = new JMenuBar();
 	private final JFrame jFrame;
 
 	// removed until we get it working in Windows (Works in linux)
@@ -39,15 +39,15 @@ public class Pacman {
 		menu.setMnemonic(KeyEvent.VK_F);
 		menuItem = new JMenuItem("New Game");
 		menuItem.addActionListener(new NewListener());
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		menu.add(menuItem);
 		menuItem = new JMenuItem("Highscore");
 		menuItem.addActionListener(new HighScoreListener());
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_MASK));
 		menu.add(menuItem);
 		menuItem = new JMenuItem("Quit");
 		menuItem.addActionListener(new ExitListener());
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		menu.add(menuItem);
 		menubar.add(menu);
 
@@ -55,7 +55,7 @@ public class Pacman {
 		menu.setMnemonic(KeyEvent.VK_H);
 		menuItem = new JMenuItem("About");
 		menuItem.addActionListener(new AboutListener());
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		menu.add(menuItem);
 		menubar.add(menu);
 

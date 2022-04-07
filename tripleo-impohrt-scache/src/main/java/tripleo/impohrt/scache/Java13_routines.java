@@ -1,7 +1,6 @@
 package tripleo.impohrt.scache;
 
 import java.lang.reflect.Method;
-import tripleo.fs.File;
 
 public class Java13_routines extends Thread {
 	public Thread directory_saver_thread;
@@ -14,7 +13,7 @@ public class Java13_routines extends Thread {
 			directory_saver_thread.join(15000);
 			System.out.println("[INFO] shutdown hook is done.");
 		} catch (Exception ex) {
-			System.out.println("[ERROR] shutdown hook join failed:" + ex.toString());
+			System.out.println("[ERROR] shutdown hook join failed:" + ex);
 		}
 	}
 
@@ -23,7 +22,7 @@ public class Java13_routines extends Thread {
 		th.setName("shutdown_hook");
 		th.directory_saver_thread = saver;
 		Runtime rt = Runtime.getRuntime();
-		Class rt_class = rt.getClass();
+		Class<? extends Runtime> rt_class = rt.getClass();
 		Class[] par_cl = {Thread.class};
 
 		try {

@@ -1,4 +1,4 @@
-// Jacobi iteration on a mesh. Based loosely on a Filaments demo
+package EDU.oswego.cs.dl.concurrent.taskDemo;// Jacobi iteration on a mesh. Based loosely on a Filaments demo
 
 import EDU.oswego.cs.dl.util.concurrent.*;
 

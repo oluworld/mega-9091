@@ -6,7 +6,7 @@ package tripleo.histore;
 
 public class CreationFailure extends Exception {
 
-	private Exception ae;
+	private final Exception ae;
 
 	public CreationFailure(Exception aException) {
 		ae= aException;

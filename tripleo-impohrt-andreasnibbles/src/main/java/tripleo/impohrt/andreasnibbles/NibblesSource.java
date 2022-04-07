@@ -24,11 +24,11 @@ class Grid extends Canvas {
 	public Grid(int cols, int rows, int width, int height, Color backcolor) {
 		this.cols = cols;
 		this.rows = rows;
-		if (width < cols)		// Så att inte antalet kolumner och rader
-			width = cols;		// är större än bredden och höjden i pixels.
+		if (width < cols)		// Sï¿½ att inte antalet kolumner och rader
+			width = cols;		// ï¿½r stï¿½rre ï¿½n bredden och hï¿½jden i pixels.
 		if (height < rows)		//
 			height = rows;		//
-		r_width = (int) (width / cols);     	// Kollar så att width och height är multiplar
+		r_width = (int) (width / cols);     	// Kollar sï¿½ att width och height ï¿½r multiplar
 		width = r_width * cols;		// av r_width och r_height.
 		r_height = (int) (height / rows);	//
 		height = r_height * rows;		//
@@ -37,7 +37,7 @@ class Grid extends Canvas {
 		resize(width, height);
 		setBackground(backcolor);
 		color = new Color[cols][rows];
-		for (int i = 0; i < cols; i++)		// Nollställer griden.
+		for (int i = 0; i < cols; i++)		// Nollstï¿½ller griden.
 			for (int j = 0; j < rows; j++)	//
 				color[i][j] = null;	//
 		show();
@@ -102,10 +102,11 @@ class Worm {
 	final static int UP = 2;
 	final static int RIGHT = 3;
 	final static int LEFT = 4;
-	private int[] x;
-	private int[] y;
-	private int cols, rows;
-	private int length;
+	private final int[] x;
+	private final int[] y;
+	private final int cols;
+    private final int rows;
+	private final int length;
 	public Color color;
 	public Grid grid;
 	public int score = 0;
@@ -118,8 +119,8 @@ class Worm {
 		rows = xgrid.getRows();
 		x = new int[xlength];
 		y = new int[xlength];
-		if ((startx >= xgrid.getCols()) || (startx < 0))	// Kollar så att startpositionerna
-			startx = 0;				// inte ligger utanför griden.
+		if ((startx >= xgrid.getCols()) || (startx < 0))	// Kollar sï¿½ att startpositionerna
+			startx = 0;				// inte ligger utanfï¿½r griden.
 		if ((starty >= xgrid.getRows()) || (starty < 0))	//
 			starty = 0;				//
 		for (int i = 0; i < xlength; i++) {
@@ -129,7 +130,7 @@ class Worm {
 		xgrid.setColor(startx, starty, xcolor);
 	}
 
-	public boolean move(int direction) 		// 1=Ner 2=Upp 3=Höger 4=Vänster
+	public boolean move(int direction) 		// 1=Ner 2=Upp 3=Hï¿½ger 4=Vï¿½nster
 	{						// Returnerar False vid krock.
 		int col, row;
 		switch (direction) {

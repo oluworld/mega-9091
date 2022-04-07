@@ -13,7 +13,7 @@
   29aug1998  dl               pulled heap mechanics into separate class
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.Comparator;
 import java.lang.reflect.*;
 
@@ -98,8 +98,8 @@ public class BoundedPriorityQueue extends SemaphoreControlledChannel {
    * exception
    **/
 
-  public BoundedPriorityQueue(int capacity, Comparator cmp, 
-                              Class semaphoreClass) 
+  public BoundedPriorityQueue(int capacity, Comparator cmp,
+                              Class<Semaphore> semaphoreClass)
    throws IllegalArgumentException, 
           NoSuchMethodException, 
           SecurityException, 

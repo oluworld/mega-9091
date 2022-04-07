@@ -70,6 +70,6 @@ class CommandInputStream {
 	System.out.println(obj);
     }
 
-    private NumberFileFinder fileFinder;
+    private final NumberFileFinder fileFinder;
     private ObjectInputStream currentLogStream;
 }

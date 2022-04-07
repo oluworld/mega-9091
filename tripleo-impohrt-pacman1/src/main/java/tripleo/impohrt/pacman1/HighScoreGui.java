@@ -11,11 +11,11 @@ import javax.swing.*;
  * Gui for the highscore
  */
 public class HighScoreGui extends JDialog {
-	private HighScore highScore = new HighScore("highscore.dat");
-	private JButton cancelButton = new JButton("Cancel");
-	private JLabel nameLabel = new JLabel("Name:");
-	private JLabel roundLabel = new JLabel("Round:");
-	private JLabel scoreLabel = new JLabel("Score:");
+	private final HighScore highScore = new HighScore("highscore.dat");
+	private final JButton cancelButton = new JButton("Cancel");
+	private final JLabel nameLabel = new JLabel("Name:");
+	private final JLabel roundLabel = new JLabel("Round:");
+	private final JLabel scoreLabel = new JLabel("Score:");
 	private JLabel tempLabel = null;
 
 	/**

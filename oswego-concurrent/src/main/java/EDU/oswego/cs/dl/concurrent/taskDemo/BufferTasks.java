@@ -1,5 +1,7 @@
-import EDU.oswego.cs.dl.util.concurrent.*;
-import java.util.*;
+package EDU.oswego.cs.dl.concurrent.taskDemo;
+
+import EDU.oswego.cs.dl.concurrent.FJTask;
+import EDU.oswego.cs.dl.concurrent.FJTaskRunnerGroup;
 
 public class BufferTasks extends FJTask {
 
@@ -19,8 +21,7 @@ public class BufferTasks extends FJTask {
       }
 
       System.out.print("pairs:");
-      for (int p = 0; p < pairs.length; ++p) 
-        System.out.print("\t" + pairs[p]);
+      for (int pair : pairs) System.out.print("\t" + pair);
       System.out.print("\n");
 
 
@@ -31,13 +32,13 @@ public class BufferTasks extends FJTask {
   }
 
   public void run() {
-    for (int s = 0; s < sizes.length; ++s) {
-      System.out.println("cap: " + sizes[s]);
+    for (int size : sizes) {
+      System.out.println("cap: " + size);
 
-      for (int p = 0; p < pairs.length; ++p) {
+      for (int pair : pairs) {
 
-        buffer = new Buffer(sizes[s]);
-        int npairs = pairs[p];
+        buffer = new Buffer(size);
+        int npairs = pair;
         int iters = niters / npairs;
 
         long startTime = System.currentTimeMillis();
@@ -47,7 +48,7 @@ public class BufferTasks extends FJTask {
           new Producer(iters).fork();
           new Consumer(iters).fork();
         }
-        
+
         while (!checkDone()) yield();
 
         long now = System.currentTimeMillis();

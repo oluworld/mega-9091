@@ -10,8 +10,7 @@ import java.io.InputStream;
 class Images {
 
 	public void freeAll() {
-		for (int i = 0; i < AllBitmaps.length; i++)
-			AllBitmaps[i].dispose();
+        for (Image allBitmap : AllBitmaps) allBitmap.dispose();
 
 		AllBitmaps = null;
 	}

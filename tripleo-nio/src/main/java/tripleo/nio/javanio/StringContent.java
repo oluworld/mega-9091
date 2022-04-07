@@ -50,9 +50,9 @@ import java.nio.charset.Charset;
  */
 public class StringContent implements Content {
 
-	private static Charset ascii = Charset.forName("US-ASCII");
+	private static final Charset ascii = Charset.forName("US-ASCII");
 
-	private String type;		// MIME type
+	private final String type;		// MIME type
 	private String content;
 
 	public StringContent(CharSequence c, String t) {

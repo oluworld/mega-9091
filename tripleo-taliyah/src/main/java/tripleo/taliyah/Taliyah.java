@@ -164,7 +164,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 
 	public @Override void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		print("startElement", qName);
-		final Map htab = new Hashtable();
+		final Map<String, String> htab = new Hashtable<String, String>();
 		for (int j = 0; j < attributes.getLength(); j++) {
 			String qname = attributes.getQName(j),
 			        value = attributes.getValue(j);
@@ -173,15 +173,15 @@ class xSink extends DefaultHandler implements ContentHandler {
 		if (qName.equals("node")) {
 			String path;
 			String /*Class*/ jclz;
-			path = (String) htab.get("path");
-			jclz = (String) htab.get("jclass");
+			path = htab.get("path");
+			jclz = htab.get("jclass");
 			cur = new Node(path, jclz, htab);
 			cur.load();
 		}		if (qName.equals("list")) {
 			String path;
 			String /*Class*/ jclz;
-			path = (String) htab.get("path");
-			jclz = (String) htab.get("jitemclass");
+			path = htab.get("path");
+			jclz = htab.get("jitemclass");
 			cur = new ListNode(path, jclz, htab);
 			cur.load();
 		} else {
@@ -200,7 +200,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 	}
 
 	static class Node implements X {
-		public Node(String aPath, String aJclz, Map aHtab) {
+		public Node(String aPath, String aJclz, Map<String, String> aHtab) {
 			path = aPath;
 			jclz = aJclz;
 			htab = aHtab;
@@ -208,12 +208,12 @@ class xSink extends DefaultHandler implements ContentHandler {
 
 		String path;
 		String jclz;
-		Map htab;
+		Map<String, String> htab;
 
 		public void load() {
 			Class jclzz;
 			try {
-				jclzz = Class.forName((String) htab.get("jclass"));
+				jclzz = Class.forName(htab.get("jclass"));
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -231,7 +231,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 			//To change body of implemented methods use File | Settings | File Templates.
 		}
 
-		public ListNode(String aPath, String aJclz, Map aHtab) {
+		public ListNode(String aPath, String aJclz, Map<String, String> aHtab) {
 			path = aPath;
 			jclz = aJclz;
 			htab = aHtab;
@@ -239,7 +239,7 @@ class xSink extends DefaultHandler implements ContentHandler {
 
 		String path;
 		String jclz;
-		Map htab;
+		Map<String, String> htab;
 
 	}
 

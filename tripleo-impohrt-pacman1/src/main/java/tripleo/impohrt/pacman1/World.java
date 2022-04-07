@@ -10,8 +10,8 @@ import java.util.*;
  * this is the world class, the entire game "lives" in this class.
  */
 class World implements Runnable {
-	private java.util.List<GameObject> objects = new ArrayList<GameObject>();
-	private Level level = new Level();
+	private final java.util.List<GameObject> objects = new ArrayList<GameObject>();
+	private final Level level = new Level();
 	private Player player = null;
 	private String world_name = "";
 	final MyJPanel jPanel;

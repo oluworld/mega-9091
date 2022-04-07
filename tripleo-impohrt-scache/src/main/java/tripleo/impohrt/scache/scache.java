@@ -248,7 +248,7 @@ public final class scache {
 		        "\"Abandon all varieties of religion and just surrender unto Me. I shall deliver\nyou from all sinful reactions. Do not fear.\"\n\t\t\t\t- Bhagavad-gita 18.66"
 	        };
 
-	final public static void main(String argv[]) {
+	public static void main(String argv[]) {
 		faststart = false;
 
 		// System.runFinalizersOnExit(true);

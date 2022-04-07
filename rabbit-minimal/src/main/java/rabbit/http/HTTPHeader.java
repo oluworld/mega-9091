@@ -82,7 +82,7 @@ public class HTTPHeader extends GeneralHeader {
 	 * @return a String describing this HTTP-Header.
 	 */
 	public String toString() {
-		StringBuffer ret = new StringBuffer(getRequestLine());
+		StringBuilder ret = new StringBuilder(getRequestLine());
 		ret.append(CRLF);
 		ret.append(super.toString());
 		if (content != null)
@@ -365,7 +365,7 @@ public class HTTPHeader extends GeneralHeader {
 	 *
 	 * @param fun specifies a predicate that can terminate the loop
 	 */
-	public void iterateHeaders(final BinaryFunctor fun) {
+	public void iterateHeaders(final BinaryFunctor<String, String> fun) {
 		for (Header h : copyOfHeaders())
 			if (!fun.call(h.type, h.value)) return;
 	}

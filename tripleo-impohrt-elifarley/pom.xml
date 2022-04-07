@@ -6,8 +6,7 @@
     <groupId>com.github.oluworld.mega9091</groupId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
- 
-    <groupId>com.github.oluworld.mega9091</groupId>
+
     <artifactId>tripleo-impohrt-elifarley</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -56,6 +55,12 @@
             <artifactId>junit-jupiter-params</artifactId>
             <version>${junit}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.elifarley</groupId>
+            <artifactId>elifarley-razip-all</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     

@@ -10,8 +10,8 @@ import java.util.Iterator;
  * $Id: Version.java,v 1.1.1.1 2005/03/11 07:38:06 olu Exp $
  */
 class Version implements IVersion {
-	private VerKey rv;
-	private Resource res;
+	private final VerKey rv;
+	private final Resource res;
 
 	Version(VerKey arv, Resource aResource) {
 		rv  = arv;

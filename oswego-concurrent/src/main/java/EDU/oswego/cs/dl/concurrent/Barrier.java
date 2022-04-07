@@ -12,7 +12,7 @@
   11Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Barriers serve
@@ -45,7 +45,7 @@ public interface Barrier {
    * point. The number of parties is always at least 1.
    **/
 
-  public int parties();
+  int parties();
 
   /**
    * Returns true if the barrier has been compromised
@@ -57,5 +57,5 @@ public interface Barrier {
    * to clear this status.
    **/
 
-  public boolean broken();
+  boolean broken();
 }

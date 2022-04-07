@@ -203,7 +203,7 @@ public class ZeeProxy implements RAZipConstants {
 			contentLength = (int) myVFSE.getSize();
 		} catch (IOException ioe) {
 			rspi.setResponseNo(404);
-			rspi.setContentText("<B>" + rspi.getResponseText() + "</B><P>" + ioe.toString());
+			rspi.setContentText("<B>" + rspi.getResponseText() + "</B><P>" + ioe);
 			return;
 		}
 
@@ -233,7 +233,7 @@ public class ZeeProxy implements RAZipConstants {
 			rspi.setContentStream(cvs);
 		} catch (IOException ioe) {
 			rspi.setResponseNo(500);
-			rspi.setContentText("Error sending stream: " + ioe.toString());
+			rspi.setContentText("Error sending stream: " + ioe);
 		}
 
 

@@ -18,7 +18,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class BrowserExample implements OpenWindowListener {
-	private String F1 = "org.eclipse.swt.examples.browserexample.BrowserApplication";
+	private final String F1 = "org.eclipse.swt.examples.browserexample.BrowserApplication";
 
 	private Display open_display;
 
@@ -300,18 +300,17 @@ public class BrowserExample implements OpenWindowListener {
 
 	void freeResources() {
 		if (images != null) {
-			for (int i = 0; i < images.length; i++) {
-				Image image = images[i];
-				if (image != null)
-					image.dispose();
-			}
+            for (Image image : images) {
+                if (image != null)
+                    image.dispose();
+            }
 
 			images = null;
 		}
 	}
 
 	void initResources() {
-		Class clazz = getClass();
+		Class<? extends BrowserExample> clazz = getClass();
 		if (resourceBundle != null)
 			try {
 				if (images == null) {

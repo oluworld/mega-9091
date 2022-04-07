@@ -13,7 +13,7 @@
   08dec2001  dl               reflective constructor now uses longs too.
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.lang.reflect.*;
 
 /**
@@ -55,7 +55,7 @@ public abstract class SemaphoreControlledChannel implements BoundedChannel {
    * @exception InvocationTargetException if semaphore constructor throws an
    * exception
    **/
-  public SemaphoreControlledChannel(int capacity, Class semaphoreClass) 
+  public SemaphoreControlledChannel(int capacity, Class<Semaphore> semaphoreClass)
    throws IllegalArgumentException, 
           NoSuchMethodException, 
           SecurityException, 
@@ -65,11 +65,11 @@ public abstract class SemaphoreControlledChannel implements BoundedChannel {
     if (capacity <= 0) throw new IllegalArgumentException();
     capacity_ = capacity;
     Class[] longarg = { Long.TYPE };
-    Constructor ctor = semaphoreClass.getDeclaredConstructor(longarg);
+    Constructor<Semaphore> ctor = semaphoreClass.getDeclaredConstructor(longarg);
     Long[] cap = { new Long(capacity) };
-    putGuard_ = (Semaphore)(ctor.newInstance(cap));
+    putGuard_ = (ctor.newInstance(cap));
     Long[] zero = { new Long(0) };
-    takeGuard_ = (Semaphore)(ctor.newInstance(zero));
+    takeGuard_ = (ctor.newInstance(zero));
   }
 
 

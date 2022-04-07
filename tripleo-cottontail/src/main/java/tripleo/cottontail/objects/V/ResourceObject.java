@@ -10,7 +10,7 @@ import java.util.Vector;
 public class ResourceObject {
 	File file;
 	WeakReference<ResourceObject> parent;
-	private ResourceViewHelper allocator;
+	private final ResourceViewHelper allocator;
 
 	public ResourceObject(File aFile, WeakReference<ResourceObject> aParent, ResourceViewHelper anAllocator) {
 		file = aFile;
@@ -39,7 +39,7 @@ public class ResourceObject {
 			R = new Object[kids1.length]; // TODO: change Object here and watch idea4 fail
 			for (int i1 = 0; i1 < kids1.length; i1++) {
 				final File kid1 = (File) kids1[i1];
-				final ResourceObject K = new ResourceObject(kid1, new WeakReference(this), allocator);
+				final ResourceObject K = new ResourceObject(kid1, new WeakReference<>(this), allocator);
 
 				Object or = allocator.keychain().allocate();
 				allocator.keychain().write(or, K);

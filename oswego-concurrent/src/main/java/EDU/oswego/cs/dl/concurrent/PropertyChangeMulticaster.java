@@ -15,7 +15,7 @@
   14Mar1999   dl                 first release
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -94,7 +94,7 @@ public class PropertyChangeMulticaster implements Serializable {
    * Maps property names to PropertyChangeMulticaster objects.
    * @serial
    */
-  protected HashMap children;
+  protected HashMap<String, PropertyChangeMulticaster> children;
 
   /**
    * Return the child associated with property, or null if no such
@@ -102,7 +102,7 @@ public class PropertyChangeMulticaster implements Serializable {
 
   protected synchronized PropertyChangeMulticaster getChild(String propertyName) {
     return (children == null)? null : 
-      ((PropertyChangeMulticaster)children.get(propertyName));
+      (children.get(propertyName));
   }
 
 
@@ -230,9 +230,9 @@ public class PropertyChangeMulticaster implements Serializable {
 
     synchronized(this) {
       if (children == null) 
-        children = new HashMap();
+        children = new HashMap<String, PropertyChangeMulticaster>();
       else 
-        child = (PropertyChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
       
       if (child == null) {
         child = new PropertyChangeMulticaster(source);
@@ -263,9 +263,9 @@ public class PropertyChangeMulticaster implements Serializable {
 
     synchronized(this) {
       if (children == null) 
-        children = new HashMap();
+        children = new HashMap<String, PropertyChangeMulticaster>();
       else 
-        child = (PropertyChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
       
       if (child == null) {
         child = new PropertyChangeMulticaster(source);
@@ -309,11 +309,10 @@ public class PropertyChangeMulticaster implements Serializable {
       array = listeners;
 
       if (children != null && evt.getPropertyName() != null)
-        child = (PropertyChangeMulticaster)children.get(evt.getPropertyName());
+        child = children.get(evt.getPropertyName());
     }
-    
-    for (int i = 0; i < array.length; ++i) 
-      array[i].propertyChange(evt);
+
+      for (PropertyChangeListener propertyChangeListener : array) propertyChangeListener.propertyChange(evt);
     
     if (child != null) 
       child.multicast(evt);
@@ -418,7 +417,7 @@ public class PropertyChangeMulticaster implements Serializable {
       else if (propertyName == null || children == null)
         return false;
       else {
-        child = (PropertyChangeMulticaster)children.get(propertyName);
+        child = children.get(propertyName);
         if (child == null)
           return false;
       }
@@ -437,13 +436,12 @@ public class PropertyChangeMulticaster implements Serializable {
    */
   private synchronized void writeObject(ObjectOutputStream s) throws IOException {
     s.defaultWriteObject();
-    
-    for (int i = 0; i < listeners.length; i++) {
-      PropertyChangeListener l = listeners[i];
-      if (listeners[i] instanceof Serializable) {
-        s.writeObject(listeners[i]);
+
+      for (PropertyChangeListener l : listeners) {
+          if (l instanceof Serializable) {
+              s.writeObject(l);
+          }
       }
-    }
     s.writeObject(null);
   }
   

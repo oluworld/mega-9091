@@ -1,5 +1,5 @@
 
-package EDU.oswego.cs.dl.util.concurrent.misc;
+package EDU.oswego.cs.dl.concurrent.misc;
 import EDU.oswego.cs.dl.util.concurrent.*;
 
 import java.io.*;

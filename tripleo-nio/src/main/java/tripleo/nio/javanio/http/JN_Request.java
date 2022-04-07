@@ -41,6 +41,7 @@ import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +65,7 @@ public class JN_Request implements Request {
 	 */
 	public static class Action {
 
-		private String name;
+		private final String name;
 
 		private Action(String name) { this.name = name; }
 
@@ -88,9 +89,9 @@ public class JN_Request implements Request {
 		}
 	}
 
-	private Action action;
-	private String version;
-	private URI uri;
+	private final Action action;
+	private final String version;
+	private final URI uri;
 
 	/* (non-Javadoc)
 	 * @see tripleo.nio.javanio.http.Request#action()
@@ -131,7 +132,7 @@ public class JN_Request implements Request {
 		        (bb.get(p + 3) == '\n')));
 	}
 
-	private static Charset ascii = Charset.forName("US-ASCII");
+	private static final Charset ascii = StandardCharsets.US_ASCII;
 
 	/*
 	 * The expected message format is first compiled into a pattern,
@@ -154,7 +155,7 @@ public class JN_Request implements Request {
 	 *
 	 * The text in between the parens are used to captured the regexp text.
 	 */
-	private static Pattern requestPattern
+	private static final Pattern requestPattern
 	        = Pattern.compile("\\A([A-Z]+) +([^ ]+) +HTTP/([0-9\\.]+)$"
 	        + ".*^Host: ([^ ]+)$.*\r\n\r\n\\z",
 	                Pattern.MULTILINE | Pattern.DOTALL);

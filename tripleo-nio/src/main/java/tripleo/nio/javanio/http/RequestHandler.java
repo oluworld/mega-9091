@@ -36,16 +36,17 @@ package tripleo.nio.javanio.http;
  * nuclear facility.
  */
 
+import org.jetbrains.annotations.NotNull;
+import tripleo.http.HttpException;
+import tripleo.nio.javanio.ChannelIO;
+import tripleo.nio.javanio.Handler;
+import tripleo.nio.javanio.StringContent;
+import tripleo.nio.javanio.http.CustomRequest.CRR;
+import tripleo.util.Assert;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
-
-import tripleo.http.HttpException;
-import tripleo.nio.javanio.*;
-import tripleo.nio.javanio.http.CustomRequest.CRR;
-import tripleo.util.Assert;
-import tripleo.util.Pair;
-import tripleo.annotation.NotNull;
 
 /**
  * Primary driver class used by non-blocking Servers to receive,
@@ -119,7 +120,7 @@ public class RequestHandler implements Handler {
 	}
 
 	private CustomRequest mCustom = null;
-	private CustomRequest mDefCustom = new DefaultCustomReuest();
+	private final CustomRequest mDefCustom = new DefaultCustomReuest();
 
 	// When parse is successfull, saves request and returns true
 	//
@@ -207,7 +208,7 @@ public class RequestHandler implements Handler {
 			String m = x.getMessage();
 			if (!m.equals("Broken pipe") &&
 					!m.equals("Connection reset by peer")) {
-				System.err.println("RequestHandler: " + x.toString());
+				System.err.println("RequestHandler: " + x);
 			}
 
 			try {

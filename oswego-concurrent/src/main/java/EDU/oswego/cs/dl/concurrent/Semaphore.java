@@ -13,7 +13,7 @@
   24Aug1999  dl               release(n): screen arguments
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Base class for counting semaphores.

@@ -14,7 +14,7 @@
                               that counted pointers are unnecessary.
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A wait-free linked list based queue implementation.

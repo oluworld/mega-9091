@@ -1,10 +1,17 @@
 package tripleo.cottontail;
 
-import tripleo.histore.*;
+import tripleo.cottontail.webserver.CottonServer;
+import tripleo.cottontail.webserver.IContainer;
+import tripleo.cottontail.webserver.PythonScript;
+import tripleo.cottontail.webserver.Transaction;
+import tripleo.histore.AllocationFailure;
+import tripleo.histore.ConsistencyFailure;
+import tripleo.histore.HiStore;
+import tripleo.histore.HiStoreEntry;
+import tripleo.histore.InitializationFailure;
 import tripleo.histore.j1.HiStore_J1;
 import tripleo.util.Pair;
 import tripleo.util.Assert;
-import tripleo.cottontail.webserver.*;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -16,10 +23,10 @@ import org.python.core.PyException;
 import org.python.core.PyObject;
 
 public class Cottontail implements IContainer {
-	private String  root;
-	private HiStore store;
+	private final String  root;
+	private final HiStore store;
 	private Script  script;
-	public Map<String, Pair/*<Long,Map>*/> tree = new HashMap();
+	public Map<String, Pair/*<Long,Map>*/> tree = new HashMap<>();
 
 	public HiStoreEntry alloc(String aS) throws AllocationFailure, ConsistencyFailure {
 		return store.alloc(aS);
@@ -37,7 +44,7 @@ public class Cottontail implements IContainer {
 
 	
 
-	class Resp {
+	static class Resp {
 		public void set_content_type(String s) {
 			//To change body of created methods use File | Settings | File Templates.
 			// TODO: implement me

@@ -11,8 +11,8 @@ import java.util.*;
  * $Id: Source.java,v 1.1.1.1 2005/02/28 00:06:42 olu Exp $
  */
 public class Source implements FilenameFilter {
-	private String source;
-	private File f;
+	private final String source;
+	private final File f;
 
 	public Source(String s) {
 		source = s;

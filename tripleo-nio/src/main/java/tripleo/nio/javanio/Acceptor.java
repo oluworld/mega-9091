@@ -54,10 +54,10 @@ import tripleo.nio.javanio.http.RequestHandler;
  */
 class Acceptor implements Runnable {
 
-	private ServerSocketChannel ssc;
-	private Dispatcher d;
+	private final ServerSocketChannel ssc;
+	private final Dispatcher d;
 
-	private SSLContext sslContext;
+	private final SSLContext sslContext;
 
 	Acceptor(ServerSocketChannel assc, Dispatcher ad, SSLContext asslContext) {
 		this.ssc        = assc;

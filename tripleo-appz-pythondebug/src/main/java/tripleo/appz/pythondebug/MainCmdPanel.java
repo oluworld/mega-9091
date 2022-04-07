@@ -88,15 +88,15 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		mnb.add(fileMenu);
 		resetMn = new JMenuItem("New Project");
 		resetMn.addActionListener(this);
-		resetMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		resetMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		fileMenu.add(resetMn);
 		loadMn = new JMenuItem("Open Project...");
 		loadMn.addActionListener(this);
-		loadMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+		loadMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		fileMenu.add(loadMn);
 		saveMn = new JMenuItem("Save Project");
 		saveMn.addActionListener(this);
-		saveMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		saveMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		fileMenu.add(saveMn);
 		saveAsMn = new JMenuItem("Save Project As...");
 		saveAsMn.addActionListener(this);
@@ -214,12 +214,12 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		fileMenu.add(exportMenu);
 		fileMenu.addSeparator();
 		printMn = new JMenuItem("Print...");
-		printMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		printMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		printMn.addActionListener(this);
 		fileMenu.add(printMn);
 		fileMenu.addSeparator();
 		exitMn = new JMenuItem("Exit");
-		exitMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		exitMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		fileMenu.add(exitMn);
 		exitMn.addActionListener(this);
 
@@ -229,21 +229,21 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 
 
 		undoMn = new JMenuItem("Undo");
-		undoMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		undoMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK));
 		undoMn.addActionListener(a2);
 		editMenu.add(undoMn);
 		undoMn.setEnabled(false);
 		editMenu.addSeparator();
 		cutMn = new JMenuItem("Cut");
-		cutMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		cutMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
 		cutMn.addActionListener(a2);
 		editMenu.add(cutMn);
 		copyMn = new JMenuItem("Copy");
-		copyMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		copyMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
 		copyMn.addActionListener(a2);
 		editMenu.add(copyMn);
 		pasteMn = new JMenuItem("Paste");
-		pasteMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		pasteMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
 		pasteMn.addActionListener(a2);
 		editMenu.add(pasteMn);
 		pasteMn.setEnabled(false);
@@ -253,7 +253,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		editMenu.add(deleteMn);
 		editMenu.addSeparator();
 		selectAllNMn = new JMenuItem("Select All Nodes");
-		selectAllNMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		selectAllNMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		selectAllNMn.addActionListener(a2);
 		editMenu.add(selectAllNMn);
 		selectAllEMn = new JMenuItem("Select All Edges");
@@ -278,7 +278,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		viewMenu.setMnemonic(KeyEvent.VK_V);
 		mnb.add(viewMenu);
 		backMn = new JMenuItem("Back");
-		backMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
+		backMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK));
 		backMn.addActionListener(this);
 		viewMenu.add(backMn);
 		getGlobVMn = new JMenuItem("Global View");
@@ -295,7 +295,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		viewMenu.add(zminVMn);
 		radVMn = new JMenuItem("Radar View");
 		radVMn.addActionListener(this);
-		radVMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+		radVMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
 		viewMenu.add(radVMn);
 		viewMenu.addSeparator();
 		layoutMn = new JMenuItem("Suggest Layout");
@@ -307,7 +307,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 		viewMenu.add(rawrdfMn);
 		errorMn = new JMenuItem("Show Error log");
 		errorMn.addActionListener(this);
-		errorMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		errorMn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
 		viewMenu.add(errorMn);
 		viewMenu.addSeparator();
 		showTablesMn = new JCheckBoxMenuItem("Show Definitions Window");
@@ -681,12 +681,12 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 			String s;
 			Object plgInstance = null;
 			//for each of these JAR files
-			for (int i = 0; i < jars.length; i++) {
+			for (File jar : jars) {
 				try {
-					jf = new JarFile(jars[i]);
+					jf = new JarFile(jar);
 					//get all CLASS entries
-					for (Enumeration e = jf.entries(); e.hasMoreElements();) {
-						s = ((JarEntry) e.nextElement()).getName();
+					for (Enumeration<JarEntry> e = jf.entries(); e.hasMoreElements(); ) {
+						s = (e.nextElement()).getName();
 						if (s.endsWith(".class")) {
 							//replace directory / by package .
 							s = Utils.replaceString(s, "/", ".");
@@ -698,23 +698,25 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 								Class[] interfaces = c.getInterfaces();
 								try {
 									//find out if it implements ImportPlugin and/or ExportPlugin (if it does, instantiate and store it)
-									for (int j = 0; j < interfaces.length; j++) {
-										if (interfaces[j].getName().equals("org.w3c.IsaViz.ImportPlugin")) {
+									for (Class anInterface : interfaces) {
+										if (anInterface.getName().equals("org.w3c.IsaViz.ImportPlugin")) {
 											plgInstance = c.newInstance();
 											iplgs.add(plgInstance);
-										} else if (interfaces[j].getName().equals("org.w3c.IsaViz.ExportPlugin")) {
-											if (plgInstance == null) {plgInstance = c.newInstance();}
+										} else if (anInterface.getName().equals("org.w3c.IsaViz.ExportPlugin")) {
+											if (plgInstance == null) {
+												plgInstance = c.newInstance();
+											}
 											eplgs.add(plgInstance);
 										}
 									}
 									plgInstance = null;
 								} catch (InstantiationException ie) {
 									System.err.println("Unable to create plug-in object for class " +
-									        s + ": " + ie.getMessage());
+											s + ": " + ie.getMessage());
 									//ie.printStackTrace();
 								} catch (IllegalAccessException ie) {
 									System.err.println("Unable to create plug-in object for class " +
-									        s + ": " + ie.getMessage());
+											s + ": " + ie.getMessage());
 									//ie.printStackTrace();
 								}
 							} catch (ClassNotFoundException ex) {
@@ -723,7 +725,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 						}
 					}
 				} catch (IOException ex2) {
-					System.err.println("Failed to load plug-in from JAR file " + jars[i].getAbsolutePath());
+					System.err.println("Failed to load plug-in from JAR file " + jar.getAbsolutePath());
 				} catch (NoClassDefFoundError ex2) {
 					System.err.println("One or more plugins might have failed to initialize because of the following error:\nNo Class Definition Found for " + ex2.getMessage());
 				} catch (ClassFormatError ex2) {
@@ -1189,7 +1191,7 @@ class MainCmdPanel extends JFrame implements ActionListener, ItemListener, KeyLi
 	}
 
 	void displayPluginInfo() {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("----------------------------------------\nImport Plug-ins:\n----------------------------------------\n");
 /*
 		for (int i = 0; i < importPlugins.length; i++) {

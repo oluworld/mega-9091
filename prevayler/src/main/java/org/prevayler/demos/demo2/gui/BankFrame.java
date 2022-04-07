@@ -24,7 +24,7 @@ public class BankFrame extends JFrame {
 		setVisible(true);
 	}
 	
-	private class RobustnessFrame extends JInternalFrame {
+	private static class RobustnessFrame extends JInternalFrame {
 		RobustnessFrame() {
 			super("Robustness Reminder", false, false, false, true);
 			setContentPane(Box.createVerticalBox());

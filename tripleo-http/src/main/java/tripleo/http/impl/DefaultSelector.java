@@ -1,19 +1,23 @@
 package tripleo.http.impl;
 
-import java.io.*;
-import java.nio.channels.*;
-import java.util.Iterator;
-
-import org.apache.commons.logging.*;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import tripleo.annotation.CtorSet;
-import tripleo.nio.javanio.*;
-import tripleo.nio.javanio.http.*;
+import tripleo.nio.javanio.Handler;
+import tripleo.nio.javanio.http.RequestHandler;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.channels.ClosedChannelException;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
+import java.util.Iterator;
 
 /**
  * Date: Aug 22, 2005
  * Time: 1:51:04 AM
- * <p/>
+ * <p></p>
  * $Id: UrlSinkSelector.java,v 1.1 2005/10/16 14:24:59 olu Exp $
  */
 public class DefaultSelector implements Runnable {
@@ -24,7 +28,7 @@ public class DefaultSelector implements Runnable {
 
 	void dispatch() throws IOException {
 		sel.select();
-		for (Iterator i = sel.selectedKeys().iterator(); i.hasNext();) {
+		for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
 			SelectionKey sk = (SelectionKey) i.next();
 			i.remove();
 			final Handler h = (Handler) sk.attachment();

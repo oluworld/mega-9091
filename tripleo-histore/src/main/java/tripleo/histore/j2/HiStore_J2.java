@@ -13,7 +13,7 @@ import java.util.*;
 
 public class HiStore_J2 implements HiStore {
 
-	transient private static Log log = LogFactory.getLog(HiStore_J2.class);
+	final transient private static Log log = LogFactory.getLog(HiStore_J2.class);
 
 	static class Prevayler {
 		PrevalentSystem syst;
@@ -289,7 +289,7 @@ public class HiStore_J2 implements HiStore {
 	}
 
 
-	public Map getEntrymap() {
+	public Map<String, J2_System.lazyEntry> getEntrymap() {
 		return entries().unmodifiable();// TODO: used in RCache
 	}
 
@@ -304,7 +304,7 @@ public class HiStore_J2 implements HiStore {
 		psystem().remove_entry_for_key(aKey);
 	}
 
-	public static interface IExceptionHandler {
+	public interface IExceptionHandler {
 		void handleException(Throwable throwable);
 	}
 

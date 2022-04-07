@@ -11,7 +11,7 @@
   19Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * Interface for objects that execute Runnables,
@@ -61,6 +61,6 @@ public interface Executor {
    * suppress, or abort execution if interruption is detected
    * in any controllable context surrounding execution.
    **/
-  public void execute(Runnable command) throws InterruptedException;
+  void execute(Runnable command) throws InterruptedException;
 
 }

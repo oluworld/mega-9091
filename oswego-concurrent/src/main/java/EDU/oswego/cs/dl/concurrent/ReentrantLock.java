@@ -12,7 +12,7 @@
    5Aug1998  dl               replaced int counters with longs
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A lock with the same semantics as builtin

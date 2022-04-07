@@ -171,8 +171,8 @@ class FileContentWrapper <T> {
 
 // ------------------------------
 	private Object[] kids;
-	private T kid;
-	private int id;
+	private final T kid;
+	private final int id;
 	private boolean checked;
 	private static int i = 1;
 // ------------------------------

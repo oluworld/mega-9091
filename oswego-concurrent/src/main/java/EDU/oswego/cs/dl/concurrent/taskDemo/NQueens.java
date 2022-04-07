@@ -1,4 +1,4 @@
-// Adapted from a cilk demo
+package EDU.oswego.cs.dl.concurrent.taskDemo;// Adapted from a cilk demo
 
 import EDU.oswego.cs.dl.util.concurrent.*;
 
@@ -34,9 +34,9 @@ class NQueens extends FJTask {
 
       System.out.print("Result:");
 
-      for (int i = 0; i < board.length; ++i) {
-        System.out.print(" " + board[i]);
-      }
+        for (int j : board) {
+            System.out.print(" " + j);
+        }
       System.out.println();
 
     }

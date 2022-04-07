@@ -116,8 +116,8 @@ public class SnapshotPrevayler implements Prevayler {
 */
 class ClockRecoveryCommand implements Command {
 
-	private Command command;
-	private long millis;
+	private final Command command;
+	private final long millis;
 
 	public ClockRecoveryCommand(Command command, Date date) {
 		this.command = command;

@@ -14,21 +14,21 @@ import java.util.*;
  */
 class NumberKeeper extends AbstractPrevalentSystem {
 
-  private final List numbers = new ArrayList();
+  private final List<Integer> numbers = new ArrayList<>();
 
 
   void keep(int nextNumber) {
     numbers.add(new Integer(nextNumber));
   }
 
-  List numbers() {
+  List<Integer> numbers() {
     return numbers;
   }
 
   int lastNumber() {
     return numbers.isEmpty()
       ? 0
-      : ((Integer)numbers.get(numbers.size() - 1)).intValue();
+      : (numbers.get(numbers.size() - 1)).intValue();
   }
 
 }

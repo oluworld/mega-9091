@@ -9,8 +9,8 @@ public class Account implements java.io.Serializable {
 	private final AlarmClock clock;
 	private String holder;
 	private long balance = 0;
-	private List transactionHistory = new ArrayList();
-	private transient Set listeners;
+	private final List<Transaction> transactionHistory = new ArrayList<Transaction>();
+	private transient Set<AccountListener> listeners;
     
 	Account(long number, String holder, AlarmClock clock) throws InvalidHolder {
 		this.clock = clock;
@@ -69,7 +69,7 @@ public class Account implements java.io.Serializable {
 		if (amount > 10000) throw new InvalidAmount("Amount maximum (10000) exceeded.");
 	}
 
-    public List transactionHistory() {
+    public List<Transaction> transactionHistory() {
         return transactionHistory;
     }
 
@@ -81,19 +81,18 @@ public class Account implements java.io.Serializable {
 		listeners().remove(listener);
 	}
 	
-	private Set listeners() {
-		if (listeners == null) listeners = new HashSet();
+	private Set<AccountListener> listeners() {
+		if (listeners == null) listeners = new HashSet<AccountListener>();
 		return listeners;
 	}
 	
 	private void notifyListeners() {
-		Iterator it = listeners().iterator();
-		while (it.hasNext()) {
-			((AccountListener)it.next()).accountChanged();
-		}
+        for (Object o : listeners()) {
+            ((AccountListener) o).accountChanged();
+        }
 	}
 
-	public class InvalidAmount extends Exception {
+	public static class InvalidAmount extends Exception {
 		InvalidAmount(String message) {
 			super(message);
 		}
@@ -103,7 +102,7 @@ public class Account implements java.io.Serializable {
 		if (holder == null || holder.equals("")) throw new InvalidHolder();
 	}
 
-	public class InvalidHolder extends Exception {
+	public static class InvalidHolder extends Exception {
 		InvalidHolder() {
 			super("Invalid holder name.");
 		}

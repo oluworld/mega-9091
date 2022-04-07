@@ -151,10 +151,10 @@ class Parser
 	return specStr.substring(0,off) + specStr.substring(off+1);
  }
 
- static final void delSpecEscs(char c)
+ static void delSpecEscs(char c)
 	{ SPEC_ESCS = delSpec(c, SPEC_ESCS); }
 
- static final void delSpecChrs(char c)
+ static void delSpecChrs(char c)
 	{ SPEC_CHARS = delSpec(c, SPEC_CHARS); }
 
 
@@ -232,7 +232,7 @@ class Parser
   */
 
  private Stack exprStack;
- private Vector subExpr = new Vector(10);
+ private final Vector<Expr> subExpr = new Vector<>(10);
 
  private void push(Expr exp)
 	{ exprStack.push((Object)exp); subExpr.addElement(exp); }
@@ -371,7 +371,7 @@ class Parser
  private Atom backRef(int bref)
  {
 	if((bref -= '0') < subExpr.size() && bref > 0)
-		return new AtomBackRef((Expr)subExpr.elementAt(bref), bref);
+		return new AtomBackRef(subExpr.elementAt(bref), bref);
 
 	errMessage = "Invalid back reference: \\" + bref;
 

@@ -52,7 +52,7 @@ import java.util.Iterator;
  */
 class Dispatcher1 implements Dispatcher {
 
-	private Selector sel;
+	private final Selector sel;
 
 	Dispatcher1() throws IOException {
 		sel = Selector.open();
@@ -71,7 +71,7 @@ class Dispatcher1 implements Dispatcher {
 
 	private void dispatch() throws IOException {
 		sel.select();
-		for (Iterator i = sel.selectedKeys().iterator(); i.hasNext();) {
+		for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
 			SelectionKey sk = (SelectionKey) i.next();
 			i.remove();
 			Handler h = (Handler) sk.attachment();

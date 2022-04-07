@@ -8,8 +8,8 @@ package tripleo.space;
 import java.util.*;
 
 public class Space {
-	Map<String, Collection<SpaceWatcher>> watchers=new TreeMap();
-	Map<String, Collection<SpaceNugget>>  nuggets =new TreeMap();
+	Map<String, Collection<SpaceWatcher>> watchers=new TreeMap<>();
+	Map<String, Collection<SpaceNugget>>  nuggets =new TreeMap<>();
 
 	public void addWatcher(SpaceWatcher aW, String aFor) {
 		synchronized (watchers) {
@@ -17,7 +17,7 @@ public class Space {
 				Collection<SpaceWatcher> wl = watchers.get(aFor);
 				wl.add(aW);
 			} else {
-				Collection<SpaceWatcher> wl = new ArrayList();
+				Collection<SpaceWatcher> wl = new ArrayList<>();
 				wl.add(aW);
 				watchers.put(aFor, wl);
 			}
@@ -40,7 +40,7 @@ public class Space {
 				m = nuggets.get(aFor);
 //				m.add(aNugget);
 			} else {
-				m = new ArrayList();
+				m = new ArrayList<>();
 				nuggets.put((String)aNugget.key(), m);
 			}
 			m.add(aNugget);

@@ -35,7 +35,7 @@ public abstract class DimensionInfo
 		for(int i = 0; i < ((int[])myStretches).length; i++)
 			((int[])myStretches)[i] = 1;
 
-		ArrayList elimitated = new ArrayList();
+		ArrayList<Integer> elimitated = new ArrayList<Integer>();
 		mySpansAfterElimination = (int[])(int[])((int[])mySpan).clone();
 		Util.eliminate((int[])(int[])((int[])myCell).clone(), (int[])mySpansAfterElimination, elimitated);
 		for(int i = 0; i < ((int[])myCellSizePolicies).length; i++)
@@ -97,10 +97,10 @@ public abstract class DimensionInfo
 		return ((int[])myCellSizePolicies)[cellIndex];
 	}
 
-	private int getCellSizePolicyImpl(int cellIndex, ArrayList eliminatedCells)
+	private int getCellSizePolicyImpl(int cellIndex, ArrayList<Integer> eliminatedCells)
 	{
 		for(int i = eliminatedCells.size() - 1; i >= 0; i--)
-			if(cellIndex == ((Integer)eliminatedCells.get(i)).intValue())
+			if(cellIndex == (eliminatedCells.get(i)).intValue())
 				return 1;
 
 		boolean canShrink = true;

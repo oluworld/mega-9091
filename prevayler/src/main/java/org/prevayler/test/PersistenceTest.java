@@ -84,9 +84,9 @@ public class PersistenceTest {
 
 
     static private void clearPrevalenceBase() throws Exception{
-	Iterator it = prevaylers.iterator();
+	Iterator<SnapshotPrevayler> it = prevaylers.iterator();
 	while (it.hasNext()) {
-	    ((SnapshotPrevayler)it.next()).takeSnapshot(); //Closes the open log file.
+	    (it.next()).takeSnapshot(); //Closes the open log file.
 	    it.remove();
 	}
 
@@ -97,9 +97,9 @@ public class PersistenceTest {
 	}
 
     static private void delete(File[] files) {
-	for(int i = 0; i < files.length; ++i){
-	    verify(files[i].delete(), "Unable to delete " + files[i]);
-	}
+        for (File file : files) {
+            verify(file.delete(), "Unable to delete " + file);
+        }
     }
 
 
@@ -118,7 +118,7 @@ public class PersistenceTest {
 	}
 
     static private SnapshotPrevayler prevayler;
-    static private final Set prevaylers = new HashSet();
+    static private final Set<SnapshotPrevayler> prevaylers = new HashSet<>();
     static private final String prevalenceBase = System.getProperty("user.dir") + "\\prevalenceBase";
 
 }

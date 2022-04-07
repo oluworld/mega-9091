@@ -16,7 +16,7 @@ public class WavePlayer implements AudioClip {
 //	private Timer timer = new Timer();
 	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
 	private boolean debug = false;
-	private String file;
+	private final String file;
 
 	/**
 	 * constructor take a path to the wav file to play

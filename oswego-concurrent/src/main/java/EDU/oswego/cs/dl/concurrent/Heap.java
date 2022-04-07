@@ -13,7 +13,7 @@
   03feb2002  dl               Also null out in clear
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.Comparator;
 
 /**

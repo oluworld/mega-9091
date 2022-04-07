@@ -54,13 +54,13 @@ public class Timeout implements Runnable, Process {
 		return lk;
 	}
 
-	class It {
+	static class It {
 		long inc, pros;
 		Process cont;
 		Object value;
 	}
 
-	List<It> its = new ArrayList();
+	List<It> its = new ArrayList<>();
 
 	public void add(long ainc, Process aproc, Object avalue) {
 		It it = new It();

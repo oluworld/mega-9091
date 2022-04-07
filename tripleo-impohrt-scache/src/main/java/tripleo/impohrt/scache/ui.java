@@ -48,7 +48,7 @@ public class ui implements Runnable {
 	public static final int DEL_LEN = 3;
 	public static final String DEL_STR = "dEl";
 
-	private static DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+	private static final DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
 
 	public static int uiport;
 	public static InetAddress uiadr;
@@ -123,7 +123,7 @@ public class ui implements Runnable {
 		}  /* listen */
 	}
 
-	public final static String process(String URL) {
+	public static String process(String URL) {
 		if (URL.startsWith("/loader/setdepth?")) {
 			String t = getparam(URL, "type");
 			URL = getparam(URL, "depth");
@@ -193,7 +193,7 @@ public class ui implements Runnable {
 				}
 			}
 		} else if (URL.startsWith("/loader/queue/show")) {
-			StringBuffer result = new StringBuffer(512);
+			StringBuilder result = new StringBuilder(512);
 			Hashtable<String,String> q;
 
 			if (loader_queue_file == null)
@@ -231,7 +231,7 @@ public class ui implements Runnable {
 				}
 			}
 		} else if (URL.startsWith("/dmachine/queue/show")) {
-			StringBuffer result = new StringBuffer(512);
+			StringBuilder result = new StringBuilder(512);
 			Hashtable<String,String> q;
 
 			if (mgr.dmachine_queue == null)
@@ -280,7 +280,7 @@ public class ui implements Runnable {
 			}
 			if (URL.indexOf("..") > -1)
 				return "Unsecure directory name.";
-			StringBuffer ans = new StringBuffer(2048);
+			StringBuilder ans = new StringBuilder(2048);
 			ans.append("<title>Smart Cache directory browsing</title>\n<h2>Browsing cache directory ");
 			ans.append(URL);
 			ans.append("</h2>\n");
@@ -310,14 +310,14 @@ public class ui implements Runnable {
 				/* subdirs links */
 				String filez[] = f.list();
 				if (filez != null) {
-					for (int i = 0; i < filez.length; i++) {
-						z = new File(f, filez[i]);
+					for (String s : filez) {
+						z = new File(f, s);
 						if (z.isDirectory()) {
 							// handle delete sign
 							if (del == true) {
 								ans.append("<a href=\"/store/rmdir?dir=");
 								ans.append(escape(URL));
-								ans.append(escape(filez[i]));
+								ans.append(escape(s));
 								ans.append(escape(File.separator));
 								ans.append("\">");
 								ans.append(DEL_STR);
@@ -328,10 +328,10 @@ public class ui implements Runnable {
 							ans.append(text_align("DIR", DIR_LEN));
 							ans.append("<a href=\"/store/browse?dir=");
 							ans.append(escape(URL));
-							ans.append(escape(filez[i]));
+							ans.append(escape(s));
 							ans.append(escape(File.separator));
 							ans.append("\">");
-							ans.append(filez[i]);
+							ans.append(s);
 							ans.append("</a>\n");
 						}
 					}
@@ -622,7 +622,7 @@ public class ui implements Runnable {
 		return "<title>Bad URL</title>\nERROR: Your requested URL " + URL + " was not recogized as UI valid command!<p><a href=\"/\">Go to the UI homepage</a>.";
 	}
 
-	public final static String getparam(String URL, String arg) {
+	public static String getparam(String URL, String arg) {
 		int i1 = URL.lastIndexOf(arg + '=');
 		if (i1 == -1) return null;
 		int i2 = URL.indexOf('&', i1);
@@ -631,9 +631,9 @@ public class ui implements Runnable {
 		return unescape(part);
 	}
 
-	public final static String escape(String URL) {
+	public static String escape(String URL) {
 		if (URL == null) return "";
-		StringBuffer result = new StringBuffer(80);
+		StringBuilder result = new StringBuilder(80);
 		char c;
 		int l = URL.length();
 		for (int i = 0; i < l; i++) {
@@ -648,8 +648,8 @@ public class ui implements Runnable {
 		return result.toString();
 	}
 
-	public final static String unescape(String URL) {
-		StringBuffer result = new StringBuffer(80);
+	public static String unescape(String URL) {
+		StringBuilder result = new StringBuilder(80);
 		char c;
 		int l = URL.length();
 		for (int i = 0; i < l; i++) {
@@ -672,7 +672,7 @@ public class ui implements Runnable {
 
 /* konverze localdir na URL */
 /* /2/3/www.lakret.cz_2345/ -> http://www.lakret.cz:2345/ */
-	final static public String directoryToURL(String dir) {
+	static public String directoryToURL(String dir) {
 		String urlpart;
 		if (dir.startsWith(mgr.cache_dir)) {
 			dir = dir.substring(mgr.cache_dir.length());
@@ -715,7 +715,7 @@ public class ui implements Runnable {
 		return (proto == null ? "http" : proto) + "://" + hn + (port == null ? "" : ":" + port) + urlpart;
 	}
 
-	final static Hashtable<String,String> load_ldr_queue() {
+	static Hashtable<String,String> load_ldr_queue() {
 		Hashtable<String,String> result = new Hashtable<String, String>(20);
 		String line;
 		int i;
@@ -739,7 +739,7 @@ public class ui implements Runnable {
 		return result;
 	}
 
-	final static void save_ldr_queue(Hashtable<String,String> data) throws IOException {
+	static void save_ldr_queue(Hashtable<String,String> data) throws IOException {
 		DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(loader_queue_file), 4096));
 		String URL;
 		for (Enumeration<String> keys = data.keys(); keys.hasMoreElements();) {
@@ -753,7 +753,7 @@ public class ui implements Runnable {
 		dos.close();
 	}
 
-	final static Hashtable<String,String> load_dm_queue() {
+	static Hashtable<String,String> load_dm_queue() {
 		Hashtable<String,String> result = new Hashtable<String, String>(20);
 		String line;
 		int i;
@@ -774,7 +774,7 @@ public class ui implements Runnable {
 		return result;
 	}
 
-	final static void save_dm_queue(Hashtable<String,String> data) throws IOException {
+	static void save_dm_queue(Hashtable<String,String> data) throws IOException {
 		if (mgr.dmachine_queue == null) return;
 
 		DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(mgr.dmachine_queue)));
@@ -789,16 +789,16 @@ public class ui implements Runnable {
 	}
 
 
-	final static public String text_align(String text, int data) {
+	static public String text_align(String text, int data) {
 		if (text.length() >= data) return text.substring(0, data);
-		StringBuffer sb = new StringBuffer(data);
+		StringBuilder sb = new StringBuilder(data);
 		sb.append(text);
 		for (int i = data - text.length(); i > 0; i--)
 			sb.append(' ');
 		return sb.toString();
 	}
 
-	final static private void display_trace_switch(String title, StringBuffer ans, boolean val, int conf) {
+	static private void display_trace_switch(String title, StringBuffer ans, boolean val, int conf) {
 		ans.append("<tr><td>");
 		ans.append(title);
 		ans.append("</td><td>");
@@ -817,7 +817,7 @@ public class ui implements Runnable {
 /* Search machine functions */
 
 /* vygeneruje Vector() skladajici se z adresaru o dane hloubce */
-	public final static Vector<String> search_buildcache(String dir, int depth, Vector<String> v) {
+	public static Vector<String> search_buildcache(String dir, int depth, Vector<String> v) {
 		Thread.yield();
 		if (v == null) v = new Vector<String>(100);
 		if (depth < 0) return v;
@@ -839,7 +839,7 @@ public class ui implements Runnable {
 	}
 
 /* prohleda cache */
-	public final static void search_searchcache(Vector<String> cache, String str, StringBuffer ans) {
+	public static void search_searchcache(Vector<String> cache, String str, StringBuffer ans) {
 		Enumeration<String> e;
 		String s;
 		String bURL;
@@ -864,7 +864,7 @@ public class ui implements Runnable {
 	}
 
 /* zasejvuje cache na disk */
-	public static final void search_savecache(Vector<String> cache, int depth, long scan) {
+	public static void search_savecache(Vector<String> cache, int depth, long scan) {
 		try {
 			DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new File(mgr.cache_dir , SEARCHCACHE + depth).fos(), 4096));
 			dos.writeUTF(SEARCHCACHEMAGIC);
@@ -880,7 +880,7 @@ public class ui implements Runnable {
 		} catch (IOException ignore) {}
 	}
 
-	public static final Vector<String> search_loadcache(int depth) {
+	public static Vector<String> search_loadcache(int depth) {
 		Vector<String> v;
 		File f;
 		long scantime;

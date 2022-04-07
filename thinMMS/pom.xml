@@ -57,6 +57,11 @@
             <version>${junit}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.oluworld.mega9091</groupId>
+            <artifactId>thinlet</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     
     <build>

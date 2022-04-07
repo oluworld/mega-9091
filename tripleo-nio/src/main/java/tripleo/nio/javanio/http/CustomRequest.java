@@ -1,9 +1,8 @@
 package tripleo.nio.javanio.http;
 
-import tripleo.util.Triplet;
-import tripleo.http.*;
-import tripleo.http.impl.HeaderRequest;
-import tripleo.http.impl.SB_Response;
+import tripleo.http.HttpException;
+import tripleo.http.IRequest;
+import tripleo.http.IResponse;
 
 import java.nio.ByteBuffer;
 

@@ -23,7 +23,7 @@
   24oct2003  dl               Segment implements Serializable
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 import java.util.Map;
 import java.util.AbstractMap;
@@ -404,8 +404,7 @@ public class ConcurrentHashMap
    */
   public int size() {
     int c = 0;
-    for (int i = 0; i < segments.length; ++i) 
-      c += segments[i].getCount();
+      for (Segment segment : segments) c += segment.getCount();
     return c;
   }
 
@@ -415,9 +414,9 @@ public class ConcurrentHashMap
    * @return <tt>true</tt> if this map contains no key-value mappings.
    */
   public boolean isEmpty() {
-    for (int i = 0; i < segments.length; ++i) 
-      if (segments[i].getCount() != 0)
-        return false;
+      for (Segment segment : segments)
+          if (segment.getCount() != 0)
+              return false;
     return true;
   }
 
@@ -604,42 +603,40 @@ public class ConcurrentHashMap
      * reader thread that may be in the midst of traversing table
      * right now.)
      */
-    
-    for (int i = 0; i < oldCapacity ; i++) {
-      // We need to guarantee that any existing reads of old Map can
-      //  proceed. So we cannot yet null out each bin.  
-      Entry e = oldTable[i];
-      
-      if (e != null) {
-        int idx = e.hash & mask;
-        Entry next = e.next;
-        
-        //  Single node on list
-        if (next == null) 
-          newTable[idx] = e;
-        
-        else {    
-          // Reuse trailing consecutive sequence of all same bit
-          Entry lastRun = e;
-          int lastIdx = idx;
-          for (Entry last = next; last != null; last = last.next) {
-            int k = last.hash & mask;
-            if (k != lastIdx) {
-              lastIdx = k;
-              lastRun = last;
-            }
+
+      for (Entry e : oldTable) {
+          // We need to guarantee that any existing reads of old Map can
+          //  proceed. So we cannot yet null out each bin.
+          if (e != null) {
+              int idx = e.hash & mask;
+              Entry next = e.next;
+
+              //  Single node on list
+              if (next == null)
+                  newTable[idx] = e;
+
+              else {
+                  // Reuse trailing consecutive sequence of all same bit
+                  Entry lastRun = e;
+                  int lastIdx = idx;
+                  for (Entry last = next; last != null; last = last.next) {
+                      int k = last.hash & mask;
+                      if (k != lastIdx) {
+                          lastIdx = k;
+                          lastRun = last;
+                      }
+                  }
+                  newTable[lastIdx] = lastRun;
+
+                  // Clone all remaining nodes
+                  for (Entry p = e; p != lastRun; p = p.next) {
+                      int k = p.hash & mask;
+                      newTable[k] = new Entry(p.hash, p.key,
+                              p.value, newTable[k]);
+                  }
+              }
           }
-          newTable[lastIdx] = lastRun;
-          
-          // Clone all remaining nodes
-          for (Entry p = e; p != lastRun; p = p.next) {
-            int k = p.hash & mask;
-            newTable[k] = new Entry(p.hash, p.key, 
-                                    p.value, newTable[k]);
-          }
-        }
       }
-    }
     
     table = newTable;
   }
@@ -799,10 +796,10 @@ public class ConcurrentHashMap
       resize(0, tab);
     }
 
-    for (Iterator it = t.entrySet().iterator(); it.hasNext();) {
-      Map.Entry entry = (Map.Entry) it.next();
-      put(entry.getKey(), entry.getValue());
-    }
+      for (Object o : t.entrySet()) {
+          Map.Entry entry = (Map.Entry) o;
+          put(entry.getKey(), entry.getValue());
+      }
   }
 
   /**

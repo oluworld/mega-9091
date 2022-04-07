@@ -9,9 +9,8 @@ import tripleo.http.IHTTPRequestLine;
 public final class DefaultHeaderLine implements IHTTPRequestLine {
 	private final HTTPHeader _header;
 
-	public DefaultHeaderLine(HTTPHeader _header) {
-		super();
-		this._header = _header;
+	public DefaultHeaderLine(HTTPHeader aHeader) {
+		this._header = aHeader;
 	}
 
 	public String method() {

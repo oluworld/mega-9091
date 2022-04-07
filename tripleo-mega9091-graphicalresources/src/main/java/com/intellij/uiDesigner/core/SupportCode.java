@@ -52,7 +52,7 @@ public final class SupportCode
 		if(textWithMnemonic == null)
 			throw new IllegalArgumentException("textWithMnemonic cannot be null");
 		int index = -1;
-		StringBuffer plainText = new StringBuffer();
+		StringBuilder plainText = new StringBuilder();
 		for(int i = 0; i < textWithMnemonic.length(); i++)
 		{
 			char ch = textWithMnemonic.charAt(i);

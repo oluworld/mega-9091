@@ -16,11 +16,11 @@ public interface PrevalentSystem extends Serializable {
   /**
    * Sets the clock to be used by this system for ALL its date/time related functions. This method is called only once by Prevayler during the first system initialization.
    */
-  public void clock(AlarmClock clock);
+  void clock(AlarmClock clock);
 
   /**
    * Returns the clock used by this system for ALL its date/time related functions.
    */
-  public AlarmClock clock();
+  AlarmClock clock();
 
 }

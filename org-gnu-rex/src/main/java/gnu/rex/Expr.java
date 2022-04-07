@@ -84,9 +84,9 @@ class Expr extends Range
 
  final int getAltLevel() { return altLevel; }
 
- final private String listToString()
+ private String listToString()
  {
-    StringBuffer ret = new StringBuffer("");
+    StringBuilder ret = new StringBuilder("");
 
 	for(Atom rc = list; rc != null; rc = rc.cdr())
 	{

@@ -11,17 +11,20 @@
 
 package tripleo.appz.net.number_server;
 
+import org.apache.xmlrpc.WebServer;
+import org.apache.xmlrpc.XmlRpcHandler;
+import org.apache.xmlrpc.XmlRpcServer;
+import org.python.util.PythonInterpreter;
 import tripleo.space.Space;
 import tripleo.util.UT;
-import org.python.util.PythonInterpreter;
-import org.apache.xmlrpc.*;
 
-import java.util.concurrent.*;
-import java.util.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
-import java.net.*;
-import java.lang.management.ClassLoadingMXBean;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Hold all the application logic
@@ -29,7 +32,7 @@ import java.lang.management.ClassLoadingMXBean;
 public class NumberServerApp {
 
 	private final Space space = new Space();
-	final BlockingQueue locker=new ArrayBlockingQueue(1);
+	final BlockingQueue<String> locker=new ArrayBlockingQueue<>(1);
 
 	private STC_Parent p;
 	SimpleTestClient client;

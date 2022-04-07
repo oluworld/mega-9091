@@ -8,9 +8,9 @@ import java.util.Date;
  *  them all.
  */
 public class HTTPDateParser {
-	private static SimpleDateFormat sdf1 = new SimpleDateFormat("EE, dd MMM yyyy hh:mm:ss");
-	private static SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE, dd-MMM-yy hh:mm:ss");
-	private static SimpleDateFormat sdf3 = new SimpleDateFormat("EE MMM d hh:mm:ss yyyy");
+	private static final SimpleDateFormat sdf1 = new SimpleDateFormat("EE, dd MMM yyyy hh:mm:ss");
+	private static final SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE, dd-MMM-yy hh:mm:ss");
+	private static final SimpleDateFormat sdf3 = new SimpleDateFormat("EE MMM d hh:mm:ss yyyy");
 
 	/** The default constructor.
 	 */

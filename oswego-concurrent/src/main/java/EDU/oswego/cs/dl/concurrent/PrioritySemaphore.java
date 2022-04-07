@@ -12,7 +12,7 @@
 */
 
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A Semaphore that grants requests to threads with higher

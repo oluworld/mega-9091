@@ -237,7 +237,7 @@ public class repair {
 
 	        };
 
-	public final static void main(String argv[]) {
+	public static void main(String argv[]) {
 		System.out.println("Repair " + VERSION + " - Smart Cache integrity checker and repairer.");
 		System.out.println("Utility for recreating .cacheinfo files without data loss. ");
 		System.out.println("Copyright (c) Radim Kolar 1999-2003. There are NO warranty and NO MIRACLES!\n");
@@ -331,7 +331,7 @@ public class repair {
 			usage();
 	}
 
-	public final static String deamp(String inp) {
+	public static String deamp(String inp) {
 		int lp = 0;
 		int pos = 0;
 
@@ -342,7 +342,7 @@ public class repair {
 		return inp;
 	}
 
-	public final static cachedir repairDir(String dirname, boolean recurse) {
+	public static cachedir repairDir(String dirname, boolean recurse) {
 		if (dirname == null) return null;
 		File f = new File(dirname);
 		if (!f.exists()) {
@@ -444,7 +444,7 @@ public class repair {
 		return cd;
 	}
 
-	public final static void deampDir(cachedir cd) {
+	public static void deampDir(cachedir cd) {
 		Enumeration<cacheobject> en;
 
 		en = cd.getObjects();
@@ -477,7 +477,7 @@ public class repair {
 		}
 	}
 
-	public final static void loadMimeTypes(String fname) {
+	public static void loadMimeTypes(String fname) {
 		if (fname == null) return;
 		File f = new File(fname);
 		if (!f.isFile()) {
@@ -512,7 +512,7 @@ public class repair {
 		}
 	}
 
-	public final static String guessContentType(String fname) {
+	public static String guessContentType(String fname) {
 		fname = fname.toLowerCase();
 		for (int i = 0; i < guesstable.length; i += 2) {
 			if (fname.endsWith(guesstable[i])) return guesstable[i + 1];
@@ -522,7 +522,7 @@ public class repair {
 	}
 
 	/* pozdejsi koncovka prepise predchozi hodnotu */
-	private final static void updateGuessTable(String mimetype, String ext) {
+	private static void updateGuessTable(String mimetype, String ext) {
 		if (mimetype == null || ext == null) return;
 		if (mimetype.length() == 0 || ext.length() == 0) return;
 		ext = ("." + ext).toLowerCase();
@@ -540,7 +540,7 @@ public class repair {
 		guesstable = tmp;
 	}
 
-	private static final void usage() {
+	private static void usage() {
 		System.out.println("Syntax: repair [-q] [-r] [-f] [-n] [-d content.type] [-m mime.types] < Directory ... >");
 
 		System.out.println("  -q            quiet mode");

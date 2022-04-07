@@ -15,12 +15,12 @@ import javax.swing.*;
  */
 public class NewGameGui {
 //	private JPanel mainPanel = new JPanel();
-	private JTextField nameText = new JTextField();
-	private JButton cancelButton = new JButton("Cancel");
-	private JButton startButton = new JButton("Start");
-	private JLabel nameLabel = new JLabel("Name:");
-	private JLabel levelLabel = new JLabel("Level:");
-	private JComboBox levelCombo = null;
+	private final JTextField nameText = new JTextField();
+	private final JButton cancelButton = new JButton("Cancel");
+	private final JButton startButton = new JButton("Start");
+	private final JLabel nameLabel = new JLabel("Name:");
+	private final JLabel levelLabel = new JLabel("Level:");
+	private JComboBox<String> levelCombo = null;
 	private World world = null;
 	private final JDialog jDialog;
 
@@ -31,7 +31,7 @@ public class NewGameGui {
 		jDialog = new JDialog(frame, "New Game");
 		this.world = aWorld;
 		nameText.setText("John Doe");
-		levelCombo = new JComboBox(new Vector(getLevels()));
+		levelCombo = new JComboBox<>(new Vector<>(getLevels()));
 		Container contentPane = jDialog.getContentPane();
 		contentPane.setLayout(new GridLayout(0, 2));
 		contentPane.add(nameLabel);
@@ -57,12 +57,12 @@ public class NewGameGui {
 		String[] files= ResourceLoader.loadAll("../resources/levels/");
 //		String files[] = dir.list();
 
-		for (int i = 0; i < files.length; i++) {
-			if (files[i].endsWith(".lev"))	//add all lev files to the vector
-			{
-				v.add(files[i]);
-			}
-		}
+        for (String file : files) {
+            if (file.endsWith(".lev"))    //add all lev files to the vector
+            {
+                v.add(file);
+            }
+        }
 		return v;
 	}
 

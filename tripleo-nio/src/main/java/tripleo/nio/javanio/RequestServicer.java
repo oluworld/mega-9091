@@ -52,7 +52,7 @@ import tripleo.nio.javanio.http.*;
  */
 class RequestServicer implements Runnable {
 
-	private ChannelIO cio;
+	private final ChannelIO cio;
 
 	private static int created = 0;
 
@@ -91,7 +91,7 @@ class RequestServicer implements Runnable {
 			String m = x.getMessage();
 			if (!m.equals("Broken pipe") &&
 			        !m.equals("Connection reset by peer")) {
-				System.err.println("RequestHandler: " + x.toString());
+				System.err.println("RequestHandler: " + x);
 			}
 
 			try {

@@ -11,7 +11,7 @@
   11Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** 
  * A ReadWriteLock that prefers waiting readers over

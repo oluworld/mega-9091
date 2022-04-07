@@ -17,8 +17,8 @@ public final class LayoutState
 
 	public LayoutState(GridLayoutManager layout, boolean ignoreInvisibleComponents)
 	{
-		ArrayList componentsList = new ArrayList(layout.getComponentCount());
-		ArrayList constraintsList = new ArrayList(layout.getComponentCount());
+		ArrayList<Component> componentsList = new ArrayList<Component>(layout.getComponentCount());
+		ArrayList<GridConstraints> constraintsList = new ArrayList<GridConstraints>(layout.getComponentCount());
 		for(int i = 0; i < layout.getComponentCount(); i++)
 		{
 			Component component = layout.getComponent(i);

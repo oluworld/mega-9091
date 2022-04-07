@@ -10,7 +10,7 @@ package tripleo.linuxtuples.gen;
 
 
 public class SWIGTYPE_p_void {
-  private long swigCPtr;
+  private final long swigCPtr;
 
   public SWIGTYPE_p_void(long cPtr, boolean bFutureUse) {
     swigCPtr = cPtr;

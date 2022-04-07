@@ -20,5 +20,5 @@ class Addition implements Command {
 	return ((AddingSystem)system).add(value);
     }
 
-    private long value;
+    private final long value;
 }

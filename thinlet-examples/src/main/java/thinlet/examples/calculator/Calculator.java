@@ -1,5 +1,6 @@
 package thinlet.examples.calculator;
-import thinlet.*;
+import thinlet.FrameLauncher;
+import thinlet.Thinlet;
 
 public class Calculator extends Thinlet {
 

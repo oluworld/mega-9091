@@ -93,9 +93,9 @@ public final class request {
 	public String URL;         /* requested full URL */
 	private String rline;       /* what to send to remote server */
 	public int method;
-	private DataInputStream in; /* klient input */
-	private DataOutputStream out; /* klient output */
-	private int httpv;
+	private final DataInputStream in; /* klient input */
+	private final DataOutputStream out; /* klient output */
+	private final int httpv;
 	public boolean keepalive;   /* wants/gets client side keepalive? */
 
 	public boolean cacheable;
@@ -483,7 +483,7 @@ public final class request {
 			Vector oldheaders = (Vector) headers.clone();
 			make_headers(200, "message/http", null, null, -1, 0, 0, null);
 			send_headers();
-			StringBuffer sb = new StringBuffer(1024);
+			StringBuilder sb = new StringBuilder(1024);
 			sb.append(httpreq.methodToString(method));
 			sb.append(" ");
 			sb.append(URL);
@@ -503,7 +503,7 @@ public final class request {
 			direct_request(false);
 	}
 
-	final private int get_and_update_maxforwards() {
+	private int get_and_update_maxforwards() {
 		int maxforwards = -1;
 		String s, s1;
 		int cachedsize = headers.size();
@@ -787,7 +787,7 @@ public final class request {
 
 					if (!allowed) {
 						/* replace cookie content */
-						StringBuffer newCook = new StringBuffer(line);
+						StringBuilder newCook = new StringBuilder(line);
 						if (trace_cookie)
 							System.out.println("[TRACE " + Thread.currentThread().getName() + "] @ Unallowed persistent cookie " + newCook + " from " + hostname);
 
@@ -1171,7 +1171,7 @@ public final class request {
 
 /* vygeneruje chybove hlaseni a posle jej klientu */
 	final public void send_error(int errorrc, String msg) throws IOException {
-		StringBuffer bd = new StringBuffer(1024); // body
+		StringBuilder bd = new StringBuilder(1024); // body
 
 		bd.append("<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<HTML><HEAD><TITLE>Error</TITLE></HEAD>\n<BODY><h2>");
 		bd.append(errorrc);
@@ -1210,7 +1210,7 @@ public final class request {
 	}
 
 /* return true if the request should be aborted */
-	final private boolean
+	private boolean
 	        CheckQuickAbort(int readb) {
 		if (!cacheable) {
 			if (trace_abort == true)
@@ -1265,7 +1265,7 @@ public final class request {
 		na pocet dat */
 	}
 
-	final public static String printDate(Date d) {
+	public static String printDate(Date d) {
 
 		try {
 			synchronized (formatter) {

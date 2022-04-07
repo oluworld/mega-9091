@@ -12,7 +12,7 @@ import java.text.*;
 */
 class NumberFileFinder {
 
-    private File directory;
+    private final File directory;
 	private File lastSnapshot;
     private long fileNumber;
     private NumberFileCreator fileCreator;

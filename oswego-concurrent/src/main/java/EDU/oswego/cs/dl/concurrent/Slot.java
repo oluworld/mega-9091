@@ -12,7 +12,7 @@
   25aug1998  dl               added peek
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.lang.reflect.*;
 
 /**
@@ -43,7 +43,7 @@ public class Slot extends SemaphoreControlledChannel {
    * exception
    **/
 
-  public Slot(Class semaphoreClass) 
+  public Slot(Class<Semaphore> semaphoreClass)
    throws NoSuchMethodException, 
           SecurityException, 
           InstantiationException, 

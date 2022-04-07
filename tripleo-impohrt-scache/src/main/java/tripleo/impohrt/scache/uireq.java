@@ -120,7 +120,7 @@ public class uireq implements Runnable {
 			if (badhost == false) {
 				send_reply(ui.process(req2));
 			} else {
-				StringBuffer ans = new StringBuffer(2048);
+				StringBuilder ans = new StringBuilder(2048);
 				ans.append("HTTP/1.0 301 Wrong_HOSTNAME\r\nContent-Type: text/html\r\n");
 				ans.append("Location: http://");
 				ans.append(ui.ui_hostname);
@@ -139,7 +139,7 @@ public class uireq implements Runnable {
 	}
 
 	public final void send_reply(String reply) throws IOException {
-		StringBuffer ans = new StringBuffer(2048);
+		StringBuilder ans = new StringBuilder(2048);
 		if (http10) {
 			ans.append("HTTP/1.0 200 UI Reply Follows\r\n");
 			ans.append("Server: ");

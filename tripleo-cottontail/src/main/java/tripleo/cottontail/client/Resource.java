@@ -15,7 +15,7 @@ public class Resource {
 	public Resource(ResKey aRk) {rk = aRk;}
 
 	public Iterator<VerKey> versions() {
-		List v = Arrays.asList(new Object[]{"1.0"});
+		List<Object> v = Arrays.asList(new Object[]{"1.0"});
 		List<VerKey> rrl = new ArrayList<VerKey>(v.size());
 		for (Object fi : v) {
 			rrl.add(new VerKey((String) fi));

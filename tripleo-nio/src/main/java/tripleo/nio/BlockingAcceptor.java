@@ -10,7 +10,7 @@ import java.net.Socket;
 
 public class BlockingAcceptor implements IAcceptor {
 	private ServerSocket ss;
-	private IAcceptable  aa;
+	private final IAcceptable  aa;
 	private int port;
 
 	public BlockingAcceptor(ServerSocket aServerSocket, IAcceptable anAcceptable) {
@@ -66,7 +66,7 @@ public class BlockingAcceptor implements IAcceptor {
 	 *      [ctor]ss == null && port is valid
 	 */
 
-public class NetSocketWrapper implements ISocket {
+public static class NetSocketWrapper implements ISocket {
 	public NetSocketWrapper(Socket aNetSock) {
 		mNetSock = aNetSock;
 	}

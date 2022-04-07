@@ -10,7 +10,7 @@ package tripleo.impohrt.cl;
 
 
 public class SWIGTYPE_p_SOCKET {
-  private long swigCPtr;
+  private final long swigCPtr;
 
   protected SWIGTYPE_p_SOCKET(long cPtr, boolean bFutureUse) {
     swigCPtr = cPtr;

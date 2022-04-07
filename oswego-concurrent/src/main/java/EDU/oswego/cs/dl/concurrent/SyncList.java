@@ -11,7 +11,7 @@
    1Aug1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.*;
 
 /**
@@ -201,7 +201,7 @@ public class SyncList extends SyncCollection implements List {
   public ListIterator listIterator() {
     boolean wasInterrupted = beforeRead();
     try {
-      return new SyncCollectionListIterator(baseList().listIterator()); 
+      return new SyncCollectionListIterator(baseList().listIterator());
     }
     finally {
       afterRead(wasInterrupted);
@@ -221,7 +221,7 @@ public class SyncList extends SyncCollection implements List {
   public ListIterator listIterator(int index) {
     boolean wasInterrupted = beforeRead();
     try {
-      return new SyncCollectionListIterator(baseList().listIterator(index)); 
+      return new SyncCollectionListIterator(baseList().listIterator(index));
     }
     finally {
       afterRead(wasInterrupted);
@@ -229,7 +229,7 @@ public class SyncList extends SyncCollection implements List {
   }
 
 
-  public class SyncCollectionListIterator extends SyncCollectionIterator implements ListIterator {
+  public static class SyncCollectionListIterator extends SyncCollectionIterator implements ListIterator {
 
     SyncCollectionListIterator(Iterator baseIterator) {
       super(baseIterator);

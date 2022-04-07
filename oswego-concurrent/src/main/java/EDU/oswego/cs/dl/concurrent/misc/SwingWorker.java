@@ -9,7 +9,7 @@
 
 */
 
-package EDU.oswego.cs.dl.util.concurrent.misc;
+package EDU.oswego.cs.dl.concurrent.misc;
 
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;

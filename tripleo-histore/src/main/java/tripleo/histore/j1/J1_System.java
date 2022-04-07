@@ -65,14 +65,14 @@ public class J1_System extends AbstractPrevalentSystem implements Serializable {
 			monitored_instance = aMonitored_instance;
 		}
 
-		private MonitoredRunner monitored_instance;
+		private final MonitoredRunner monitored_instance;
 
 		public void run() {
 			while (monitored_instance.stillRunning()) {
 				try {
 					Thread.sleep(90 * 1000);
 				} catch (InterruptedException e) {
-				} if(dirty==null) dirty=new Vector(); // HACK
+				} if(dirty==null) dirty=new Vector<>(); // HACK
 				synchronized (dirty) {
 					Writer wr = c1() ;
 					c2(wr);
@@ -136,8 +136,8 @@ public class J1_System extends AbstractPrevalentSystem implements Serializable {
 	 */
 	public static class EntryStorageCommand implements Command {
 
-		private String       name;
-		private HiStoreEntry_J1 value;
+		private final String       name;
+		private final HiStoreEntry_J1 value;
 
 		public EntryStorageCommand(String aName, HiStoreEntry_J1 aEntry) {
 			name = aName;
@@ -208,14 +208,14 @@ public class J1_System extends AbstractPrevalentSystem implements Serializable {
 	interface lazyEntry {
 		HiStoreEntry_J1 get();
 	}
-	class diskEntry implements lazyEntry, Serializable  {
+	static class diskEntry implements lazyEntry, Serializable  {
 		public diskEntry(HiStoreEntry_J1 aMember) { member = aMember; }
-		private HiStoreEntry_J1 member;
+		private final HiStoreEntry_J1 member;
 		public HiStoreEntry_J1 get() {return member;}
 	}
 	class serialEntry implements lazyEntry, Serializable {
 		public serialEntry(HiStoreEntry_J1 aMember) { member = aMember;}
-		private HiStoreEntry_J1 member;
+		private final HiStoreEntry_J1 member;
 
 		public HiStoreEntry_J1 get() {
 			final HiStoreEntry_J1 R = member;//entrymap.get(aKey);

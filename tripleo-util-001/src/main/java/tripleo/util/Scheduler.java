@@ -7,7 +7,7 @@ package tripleo.util;
 import java.util.LinkedList;
 
 public class Scheduler {
-	class SchedulerDatum { // aka Job
+	static class SchedulerDatum { // aka Job
 		long wakeuptime, interval;
 		Schedulable closure;
 		SchedulerListener handler;
@@ -20,7 +20,7 @@ public class Scheduler {
 					Thread.currentThread().sleep(lowest.wakeuptime);
 				} catch (InterruptedException e) {
 					synchronized (prospects) {
-						lowest = (SchedulerDatum)prospects.getFirst();
+						lowest = prospects.getFirst();
 						prospects.removeFirst();
 					}
 				}
@@ -50,7 +50,7 @@ public class Scheduler {
 	public void addDatum(SchedulerDatum aDatum) {
 		UT.errW.println("// TODO: Scheduler.addDatum");
 		if (prospects.size() > 0 && lowest != null) {
-			SchedulerDatum sd = (SchedulerDatum)prospects.getFirst();
+			SchedulerDatum sd = prospects.getFirst();
 
 			prospects.add(aDatum);
 		} else {
@@ -61,11 +61,11 @@ public class Scheduler {
 	}
 
 	SchedulerDatum lowest;
-	LinkedList prospects;
+	LinkedList<SchedulerDatum> prospects;
 
 	public Scheduler() {
 		lowest        = null;
-		prospects     = new LinkedList();
+		prospects     = new LinkedList<>();
 		sleeperThread = new Thread(new Sleeper(), "SleeperThread");
 	}
 

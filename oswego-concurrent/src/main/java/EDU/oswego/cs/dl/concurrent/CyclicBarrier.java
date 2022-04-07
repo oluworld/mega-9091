@@ -12,7 +12,7 @@
   28Aug1998  dl               minor code simplification
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A cyclic barrier is a reasonable choice for a barrier in contexts

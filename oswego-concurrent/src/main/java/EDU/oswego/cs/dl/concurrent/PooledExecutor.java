@@ -31,7 +31,7 @@
   18feb2004  dl               replace dead thread if no others left
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 import java.util.*;
 
 /**
@@ -382,7 +382,7 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
    * may also be useful in subclasses that need to perform other
    * thread management chores.
    **/
-  protected final Map threads_;
+  protected final Map<Worker, Thread> threads_;
 
   /** The current handler for unserviceable requests. **/
   protected BlockedExecutionHandler blockedExecutionHandler_;
@@ -422,7 +422,7 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
     maximumPoolSize_ = maxPoolSize;
     handOff_ = channel;
     runWhenBlocked();
-    threads_ = new HashMap();
+    threads_ = new HashMap<>();
   }
   
   /** 
@@ -548,10 +548,10 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
    * themselves respond to interrupts.
    **/
   public synchronized void interruptAll() {
-    for (Iterator it = threads_.values().iterator(); it.hasNext(); ) {
-      Thread t = (Thread)(it.next());
-      t.interrupt();
-    }
+      for (Object o : threads_.values()) {
+          Thread t = (Thread) o;
+          t.interrupt();
+      }
   }
 
   /**
@@ -772,7 +772,7 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
   }
 
   /** Class defining Run action. **/
-  protected class RunWhenBlocked implements BlockedExecutionHandler {
+  protected static class RunWhenBlocked implements BlockedExecutionHandler {
     public boolean blockedAction(Runnable command) {
       command.run();
       return true;
@@ -810,7 +810,7 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
   }
 
   /** Class defining Discard action. **/
-  protected class DiscardWhenBlocked implements BlockedExecutionHandler {
+  protected static class DiscardWhenBlocked implements BlockedExecutionHandler {
     public boolean blockedAction(Runnable command) {
       return true;
     }
@@ -826,7 +826,7 @@ public class PooledExecutor extends ThreadFactoryUser implements Executor {
 
 
   /** Class defining Abort action. **/
-  protected class AbortWhenBlocked implements BlockedExecutionHandler {
+  protected static class AbortWhenBlocked implements BlockedExecutionHandler {
     public boolean blockedAction(Runnable command) {
       throw new RuntimeException("Pool is blocked");
     }

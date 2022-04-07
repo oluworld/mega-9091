@@ -20,7 +20,6 @@
 package thinlet; //java
 //midp package thinlet.midp;
 
-import java.applet.*; //java
 import java.awt.*; //java
 import java.awt.datatransfer.*; //java
 import java.awt.image.*; //java
@@ -52,7 +51,7 @@ public class Thinlet extends Container //java
 	private transient Color c_press;
 	private transient Color c_focus;
 	private transient Color c_select;
-	private transient Color c_ctrl = null; //java
+	private final transient Color c_ctrl = null; //java
 	//midp private transient Color c_ctrl;
 	private transient int block;
 	private transient Image hgradient, vgradient; //java
@@ -69,7 +68,7 @@ public class Thinlet extends Container //java
 	private transient long watch;
 	private transient String clipboard;
 
-	private Object content = createImpl("desktop");
+	private final Object content = createImpl("desktop");
 	private transient Object mouseinside;
 	private transient Object insidepart;
 	private transient Object mousepressed;
@@ -2991,7 +2990,7 @@ public class Thinlet extends Container //java
 			}
 			//<java
 			//midp insert = clipboard;
-			StringBuffer filtered = new StringBuffer(insert.length());
+			StringBuilder filtered = new StringBuilder(insert.length());
 			for (int i = 0; i < insert.length(); i++) {
 				char ckey = insert.charAt(i);
 				if (((ckey > 0x1f) && (ckey < 0x7f)) ||
@@ -4795,7 +4794,7 @@ public class Thinlet extends Container //java
 			((Hashtable) table).put(key, value);
 		}
 		else if (table != null) {
-			((Hashtable) table).remove(key);
+			((Hashtable<?, ?>) table).remove(key);
 		}
 	}
 	
@@ -4808,7 +4807,7 @@ public class Thinlet extends Container //java
 	 */
 	public Object getProperty(Object component, Object key) {
 		Object table = get(component, ":bind");
-		return (table != null) ? ((Hashtable) table).get(key) : null;
+		return (table != null) ? ((Hashtable<?, ?>) table).get(key) : null;
 	}
 
 	// ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -4848,7 +4847,7 @@ public class Thinlet extends Container //java
 	 * specified event handler
 	 *
 	 * @param path is relative to your application package or the classpath
-	 * @param handler bussiness methods are implemented in this object 
+	 * @param handler business methods are implemented in this object 
 	 * @return the parsed components' root
 	 * @throws java.io.IOException
 	 */
@@ -4858,7 +4857,9 @@ public class Thinlet extends Container //java
 			//midp inputstream = getClass().getResourceAsStream(path);
 			inputstream = getClass().getResourceAsStream(path); //java
 			//System.out.println("> " + path + " " + inputstream);
-		} catch (Throwable e) {} //java
+		} catch (Throwable e) {
+                    System.err.println(e.getMessage());
+                } //java
 		//if (inputstream == null) { // applet code
 		//	inputstream = new URL(getCodeBase(), path).openStream();
 		//}
@@ -4906,7 +4907,7 @@ public class Thinlet extends Container //java
 	 * @param name of the tag
 	 * @param attributelist a list of attributes including keys and value pairs
 	 */
-	protected void startElement(String name, Hashtable attributelist) {}
+	protected void startElement(String name, Hashtable<String, String> attributelist) {}
 
 	/**
 	 * The SAX-like parser calls this method, you have to overwrite it
@@ -4978,9 +4979,9 @@ public class Thinlet extends Container //java
 		return getItemImpl(node, key.intern(), index);
 	}
 
-	class KW {
+	static class KW {
 
-		private Reader carrier;
+		private final Reader carrier;
 
 		public KW(Reader aRreader) {
 			carrier = aRreader;
@@ -5014,9 +5015,9 @@ public class Thinlet extends Container //java
 		//midp InputStreamReader reader = new InputStreamReader(inputstream);
 		Object[] parentlist = null;
 		Object current = null;
-		Hashtable attributelist = null;
-		Vector methods = (validate && !dom) ? new Vector() : null;
-		StringBuffer text = new StringBuffer();
+		Hashtable<String, String> attributelist = null;
+		Vector<Object[]> methods = (validate && !dom) ? new Vector<Object[]>() : null;
+		StringBuilder text = new StringBuilder();
 		for (int c = reader.read(); c != -1;) {
 			if (c == '<') {
 				if ((c = reader.read()) == '/') { //endtag
@@ -5150,7 +5151,7 @@ public class Thinlet extends Container //java
 							if ((c != '\"') && (c != '\'')) throw new IllegalArgumentException();
 							while (quote != (c = reader.read())) {
 								if (c == '&') {
-									StringBuffer eb = new StringBuffer();
+									StringBuilder eb = new StringBuilder();
 									while (';' != (c = reader.read())) { eb.append((char) c); }
 									String entity = eb.toString();
 									if ("lt".equals(entity)) { text.append('<'); }
@@ -5172,7 +5173,7 @@ public class Thinlet extends Container //java
 									if (dom) {
 										set(current, key.intern(), text.toString());
 									} else {
-										if (attributelist == null) { attributelist = new Hashtable(); }
+										if (attributelist == null) { attributelist = new Hashtable<String, String>(); }
 										attributelist.put(key, text.toString());
 									}
 								}
@@ -5205,10 +5206,10 @@ public class Thinlet extends Container //java
 	/**
 	 *
 	 */
-	private void finishParse(Vector methods, Object root, Object handler) {
+	private void finishParse(Vector<Object[]> methods, Object root, Object handler) {
 		if (methods != null) {
 			for (int i = 0; i < methods.size(); i++) {
-				Object[] args = (Object[]) methods.elementAt(i);
+				Object[] args = methods.elementAt(i);
 				setMethodImpl(args[0], (String) args[1], (String) args[2], root, handler); //java
 			}
 		}
@@ -5289,7 +5290,7 @@ public class Thinlet extends Container //java
 	 *
 	 * @throws java.lang.IllegalArgumentException
 	 */
-	private void addAttribute(Object component, String key, String value, Vector methods) {
+	private void addAttribute(Object component, String key, String value, Vector<Object[]> methods) {
 		//System.out.println("attribute '" + key + "'='" + value + "'");
 		Object[] definition = getDefinition(component, key, null);
 		key = (String) definition[1];
@@ -5349,14 +5350,14 @@ public class Thinlet extends Container //java
 			for (int i = 0; i < dtd.length; i += 3) {
 				if (dtd[i] == classname) {
 					Object[][] attributes = (Object[][]) dtd[i + 2];
-					for (int j = 0; j < attributes.length; j++) {
-						if (attributes[j][1].equals(key)) {
-							if ((type != null) && (type != attributes[j][0])) {
-								throw new IllegalArgumentException(attributes[j][0].toString());
-							}
-							return attributes[j];
-						}
-					}
+                    for (Object[] attribute : attributes) {
+                        if (attribute[1].equals(key)) {
+                            if ((type != null) && (type != attribute[0])) {
+                                throw new IllegalArgumentException(attribute[0].toString());
+                            }
+                            return attribute;
+                        }
+                    }
 					classname = dtd[i + 1];
 					break;
 				}
@@ -5644,11 +5645,11 @@ public class Thinlet extends Container //java
 		if (value == null) {
 			return set(component, key, defaultvalue);
 		}
-		for (int i = 0; i < values.length; i++) {
-			if (value.equals(values[i])) {
-				return set(component, key, values[i]);
-			}
-		}
+        for (String s : values) {
+            if (value.equals(s)) {
+                return set(component, key, s);
+            }
+        }
 		throw new IllegalArgumentException("unknown " + value + " for " + key);
 	}
 
@@ -5803,7 +5804,7 @@ public class Thinlet extends Container //java
 		return true;
 	}
 
-	private static Object[] dtd;
+	private static final Object[] dtd;
 	static {
 		Integer integer_1 = new Integer(-1);
 		Integer integer0 = new Integer(0);

@@ -333,7 +333,7 @@ public final class mgr implements Runnable {
 		daemon.httpdloop(); // enter main loop
 	}
 
-	private final static boolean filesystemCanUseBackslash() {
+	private static boolean filesystemCanUseBackslash() {
 		if (cachedir.readonly) return false;
 		File test = new File(cache_dir, "test\\slash");
 		try {
@@ -345,7 +345,7 @@ public final class mgr implements Runnable {
 		return true;
 	}
 
-	private final static boolean filesystemHasRealDirsize() {
+	private static boolean filesystemHasRealDirsize() {
 		try {
 			if (new File(".").length() > 0)
 				return true;
@@ -357,7 +357,7 @@ public final class mgr implements Runnable {
 		// return false; /* Uncomment to keep some JAVAC compilers happy */
 	}
 
-	private final static String getLatestVersion() {
+	private static String getLatestVersion() {
 		URL u = null;
 		try {
 			u = new URL("http://scache.sourceforge.net/cachever.txt");
@@ -370,7 +370,7 @@ public final class mgr implements Runnable {
 
 	}
 
-	private final void writeableFilesystem() {
+	private void writeableFilesystem() {
 		(new File(cache_dir)).mkdirs();
 		new File(cache_dir, "canwritelongname.txt").delete();
 		try {
@@ -381,7 +381,7 @@ public final class mgr implements Runnable {
 		}
 	}
 
-	private final boolean endDotFilesystem() {
+	private boolean endDotFilesystem() {
 		try {
 			new FileOutputStream(cache_dir + File.separator + "dot.").close();
 		} catch (IOException e1) {
@@ -394,8 +394,8 @@ public final class mgr implements Runnable {
 		new File(cache_dir, "dot.").delete();
 		if (names == null) return false;
 
-		for (int i = 0; i < names.length; i++) {
-			if (names[i].toLowerCase().equals("dot.")) return true;
+		for (String name : names) {
+			if (name.toLowerCase().equals("dot.")) return true;
 		}
 
 		return false;
@@ -1274,8 +1274,8 @@ public final class mgr implements Runnable {
 			else {
 				if (no_proxy != null) {
 					int j = no_proxy.length;
-					for (int i = 0; i < j; i++) {
-						if (host.endsWith(no_proxy[i])) {
+					for (String s : no_proxy) {
+						if (host.endsWith(s)) {
 							direct = true;
 							break;
 						}
@@ -1504,7 +1504,7 @@ public final class mgr implements Runnable {
 	}
 
 /* Ulozi adresare cachovane v pameti na disk a udela gc, flush logy */
-	final private synchronized void save() {
+	private synchronized void save() {
 		int saved = 0;
 		int gc = 0;
 		int cleaned = 0;
@@ -1542,7 +1542,7 @@ public final class mgr implements Runnable {
 		if (saved > 0) // write hit stats
 		{
 			StringBuffer sb = new StringBuffer(100);
-			sb.append(new Date().toString());
+			sb.append(new Date());
 			sb.append(" - ");
 			sb.append((int) (
 			        100.0f * (cacheobject.c_hit + cacheobject.c_block) /
@@ -1637,7 +1637,7 @@ public final class mgr implements Runnable {
 4 - protocol (null if http)
 */
 
-	final public static String[] parseURL(String url, String proto) {
+	public static String[] parseURL(String url, String proto) {
 		String[] res = new String[5];
 		res[3] = ""; /* HashTable do not likes NULL */
 		int i, j, seven;
@@ -1718,12 +1718,12 @@ public final class mgr implements Runnable {
 		return res;
 	}
 
-	final public static String getLocalDir(String host, String port, String urldir, String proto) {
+	public static String getLocalDir(String host, String port, String urldir, String proto) {
 /*
 Host - zero.vole.cz:3333
 urldir = /ddfgfds/rerew/ - musi koncit s /
 */
-		StringBuffer result = new StringBuffer(80);
+		StringBuilder result = new StringBuilder(80);
 		result.append(cache_dir);
 		int i;
 
@@ -1775,7 +1775,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 
 /* U T I L I T Y */
 
-	final static String[] addStringToArray(String what, String[] array) {
+	static String[] addStringToArray(String what, String[] array) {
 		//if(what==null) return array;
 		if (array == null) {
 			array = new String[1];
@@ -1790,7 +1790,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return tmp;
 	}
 
-	final static String[] reverseStringArray(String[] what) {
+	static String[] reverseStringArray(String[] what) {
 		String res[];
 		if (what == null) return null;
 		res = new String[what.length];
@@ -1800,7 +1800,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return res;
 	}
 
-	final static regexp[] reverseRegexpArray(regexp[] what) {
+	static regexp[] reverseRegexpArray(regexp[] what) {
 		regexp res[];
 		if (what == null) return null;
 		res = new regexp[what.length];
@@ -1810,7 +1810,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return res;
 	}
 
-	final static regexp[] addRegexpToArray(String what, regexp[] array, boolean clean) {
+	static regexp[] addRegexpToArray(String what, regexp[] array, boolean clean) {
 		int i;
 		if (what == null) return array;
 		if (array == null) {
@@ -1836,7 +1836,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return tmp;
 	}
 
-	final static gnu.rex.Rex[] addRealRegexpToArray(String what, gnu.rex.Rex[] array) {
+	static gnu.rex.Rex[] addRealRegexpToArray(String what, gnu.rex.Rex[] array) {
 		int i;
 		if (what == null) return array;
 		if (array == null) {
@@ -1867,7 +1867,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 
-	public final static regexp[] cleanUpRegexpArray(regexp[] array, String what) {
+	public static regexp[] cleanUpRegexpArray(regexp[] array, String what) {
 		if (array == null) return null;
 		/* test zda nova rule neco nevyhodi */
 		regexp whatrule = new regexp(what, !case_sensitive);
@@ -1887,7 +1887,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return array;
 	}
 
-	final static int isInRegexpArray(String what, regexp[] array) {
+	static int isInRegexpArray(String what, regexp[] array) {
 		if (array == null) return -1;
 		for (int i = 0; i < array.length; i++)
 			if (array[i].matches(what)) { return i;}
@@ -1895,7 +1895,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 
-	final public static int[] incIntegerArraySize(int[] array) {
+	public static int[] incIntegerArraySize(int[] array) {
 		if (array == null) {
 			array = new int[1];
 			return array;
@@ -1906,7 +1906,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return tmp;
 	}
 
-	final public static long[] incLongArraySize(long[] array) {
+	public static long[] incLongArraySize(long[] array) {
 		if (array == null) {
 			array = new long[1];
 			return array;
@@ -1917,7 +1917,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return tmp;
 	}
 
-	final public static float[] incFloatArraySize(float[] array) {
+	public static float[] incFloatArraySize(float[] array) {
 		if (array == null) {
 			array = new float[1];
 			return array;
@@ -1933,7 +1933,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 
 /* hvezdicka muze byt jen na konci retezce */
 
-	final public static String simpleWildMatch(String mask, String test) {
+	public static String simpleWildMatch(String mask, String test) {
 		if (mask == null) return test;
 		int i = mask.indexOf('*', 0);
 		if (i == -1) {
@@ -2029,14 +2029,14 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		System.out.println(new Date() + " " + g.scandel + " unreferenced files removed.");
 	}
 
-	final static private boolean is_wild(String r) {
+	static private boolean is_wild(String r) {
 		if (r.indexOf('*', 0) == -1)
 			return false;
 		else
 			return true;
 	}
 
-	final static private void touch_flag(String s) {
+	static private void touch_flag(String s) {
 		if (s == null) return;
 		try {
 			java.io.FileOutputStream f = new java.io.FileOutputStream(s);
@@ -2044,7 +2044,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		} catch (IOException ignore) {}
 	}
 
-	final static private boolean checkFlag(String f, boolean clean) {
+	static private boolean checkFlag(String f, boolean clean) {
 		if (f == null) return false;
 		File fl = new File(f);
 		if (fl.canRead()) {
@@ -2055,7 +2055,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 /* parse real regexp file */
-	final static gnu.rex.Rex[] parseRealRegexpFile(String fname, gnu.rex.Rex[] oldf) {
+	static gnu.rex.Rex[] parseRealRegexpFile(String fname, gnu.rex.Rex[] oldf) {
 		gnu.rex.Rex.config_Alternative("|");
 		gnu.rex.Rex.config_GroupBraces("(", ")");
 		try {
@@ -2087,7 +2087,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 /* parse old wildcard file */
-	final static regexp[] parseRegexpFile(String fname, regexp fail[]) {
+	static regexp[] parseRegexpFile(String fname, regexp fail[]) {
 		try {
 			String line, token;
 			StringTokenizer st;
@@ -2114,7 +2114,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 /* load block c00kie */
-	final static String[] parseCookieFile(String fname) {
+	static String[] parseCookieFile(String fname) {
 		String fail[] = null;
 		try {
 			String line, token;
@@ -2143,7 +2143,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 /* load redir.cnf file */
-	final static void parseRedirFile(String fname, boolean red) {
+	static void parseRedirFile(String fname, boolean red) {
 		// clear old redirects
 		if (red) {
 			redirfrom = null;
@@ -2223,7 +2223,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
  * 2.   hostname or ip address / netmask
  * 3.   hostname or ip address / number of bits
  */
-	final public static void addInetAdr(String iadr) {
+	public static void addInetAdr(String iadr) {
 		byte[] adr;
 		byte[] mask;
 
@@ -2293,7 +2293,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 /* checks inet address agains allowed list, returns true if good */
-	final public static boolean checkInetAdr(byte[] adr) {
+	public static boolean checkInetAdr(byte[] adr) {
 		if (httpreq.allowed == null) return true;
 
 		nextadres:for (int i = httpreq.allowed.length - 1; i >= 0; i--) {
@@ -2308,7 +2308,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 	}
 
 
-	final public static boolean getYesNo(String s) {
+	public static boolean getYesNo(String s) {
 		if (s == null) return false;
 		if (s.length() == 0) return false;
 
@@ -2324,7 +2324,7 @@ urldir = /ddfgfds/rerew/ - musi koncit s /
 		return false;
 	}
 
-	static final public void handleBlock(request req) throws IOException {
+	static public void handleBlock(request req) throws IOException {
 		cacheobject.c_block++;
 		if (req.method == httpreq.REQUEST_POST)
 			req.keepalive = false; // disable keepalive on POST reply

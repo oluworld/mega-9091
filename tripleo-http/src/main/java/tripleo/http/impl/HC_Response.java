@@ -17,8 +17,8 @@ import tripleo.util.Assert;
 
 public class HC_Response implements IResponse {
 
-	private GetMethod carrier;
-	private HttpClient client;
+	private final GetMethod carrier;
+	private final HttpClient client;
 	private int code_;
 
 	public HC_Response(HttpClient aHttpClient, GetMethod aGetmeth) {

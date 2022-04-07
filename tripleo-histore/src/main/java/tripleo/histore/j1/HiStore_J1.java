@@ -18,7 +18,7 @@ import tripleo.util.UT;
 
 public class HiStore_J1 implements HiStore {
 
-	transient private static Log log = LogFactory.getLog(HiStore_J1.class);
+	final transient private static Log log = LogFactory.getLog(HiStore_J1.class);
 
 	private long dummyident;
 	private Prevayler prevayler;
@@ -280,7 +280,7 @@ public class HiStore_J1 implements HiStore {
 		Assert.not_implemented();
 	}
 
-	public Map getEntrymap() {
+	public Map<String, J1_System.lazyEntry> getEntrymap() {
 		return Collections.unmodifiableMap(entries()); // TODO: used in RCache
 	}
 
@@ -295,7 +295,7 @@ public class HiStore_J1 implements HiStore {
 		psystem().remove_entry_for_key(aKey);
 	}
 
-	public static interface IExceptionHandler {
+	public interface IExceptionHandler {
 		void handleException(Throwable throwable);
 	}
 

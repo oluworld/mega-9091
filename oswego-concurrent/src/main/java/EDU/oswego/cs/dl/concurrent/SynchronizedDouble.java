@@ -12,7 +12,7 @@
   15Apr2003  dl               Removed redundant "synchronized" for multiply()
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A class useful for offloading synch for double instance variables.

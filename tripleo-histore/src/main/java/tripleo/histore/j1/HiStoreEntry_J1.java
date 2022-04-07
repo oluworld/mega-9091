@@ -5,7 +5,6 @@
 package tripleo.histore.j1;
 
 import java.io.*;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -40,7 +39,7 @@ public class HiStoreEntry_J1 implements HiStoreEntry, Serializable {
 //	Vector metaDomains
 
 	// TODO: what to do with this??
-	transient private final List umd = new Vector();
+	transient private final List<Triplet<Object, Object, Object>> umd = new Vector<>();
 	transient private Object uc = null;
 
 	public HiStoreEntry advance() {
@@ -128,13 +127,12 @@ public class HiStoreEntry_J1 implements HiStoreEntry, Serializable {
 		PrintWriter pw;
 		pw = new PrintWriter(aWriter);
 		// TODO: _writeHelper(FOR_METADATA, aa, "789789 content  ");
-		Iterator it = umd.iterator();
-		while (it.hasNext()) {
-			Triplet triplet = (Triplet) it.next();
-			c_put((String) triplet.o3, pw); // domain
-			c_put((triplet.o1).toString(), pw); // key
-			c_put((String) triplet.o2, pw); // value
-		}
+        for (Object o : umd) {
+            Triplet triplet = (Triplet) o;
+            c_put((String) triplet.o3, pw); // domain
+            c_put((triplet.o1).toString(), pw); // key
+            c_put((String) triplet.o2, pw); // value
+        }
 		pw.close();
 	}
 

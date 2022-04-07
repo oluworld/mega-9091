@@ -17,5 +17,5 @@ public interface AlarmClock extends Serializable {
   /** Returns the "current" time. The same value will be returned for every call, throughout the execution of a command, ensuring that each command is executed in a single moment in time. Without this, the commands could not be deterministically re-executed during crash-recovery.
    * @return A Date greater or equal to the one returned by the last call to this method. If the time is the same as the last call, the SAME Date object is guaranteed to be returned and not a new, equal one.
    */
-  public Date time();
+  Date time();
 }

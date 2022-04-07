@@ -9,7 +9,7 @@ import static tripleo.impohrt.cl.cl.*;
 
 public class clAcceptor implements IAcceptor {
 	public SWIGTYPE_p_SOCKET ss;
-	private IAcceptable   aa;
+	private final IAcceptable   aa;
 	private int port;
 
 	public clAcceptor(SWIGTYPE_p_SOCKET ss, IAcceptable aa) {
@@ -57,7 +57,7 @@ public class clAcceptor implements IAcceptor {
 		clClose(ss);
 	}
 
-	class SwigSocketWrapper implements ISocket {
+	static class SwigSocketWrapper implements ISocket {
 		public SwigSocketWrapper(SWIGTYPE_p_SOCKET aSwigSock) {
 			mSwigSock = aSwigSock;
 		}

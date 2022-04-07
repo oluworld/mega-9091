@@ -12,7 +12,7 @@
 */
 
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** 
  * A First-in/First-out implementation of a Semaphore.

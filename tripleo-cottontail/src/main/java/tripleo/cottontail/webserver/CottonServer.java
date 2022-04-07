@@ -13,8 +13,8 @@ import java.net.Socket;
 
 public class CottonServer {
 
-	class StartTrans implements Transaction {
-		private CottonServer parent;
+	static class StartTrans implements Transaction {
+		private final CottonServer parent;
 
 		StartTrans(CottonServer s) {parent = s;}
 
@@ -22,7 +22,7 @@ public class CottonServer {
 	}
 
 	static org.apache.commons.logging.Log log = LogFactory.getLog(CottonServer.class);
-	private int myPort;
+	private final int myPort;
 
 	public CottonServer(int aPort) {myPort = aPort;}
 
@@ -62,8 +62,8 @@ public class CottonServer {
 	static volatile boolean stop;
 	private BlockingAcceptor acptr;
 
-	private int mPort;
-	private String mThread_name = "accept thread";
+	private final int mPort;
+	private final String mThread_name = "accept thread";
 	private Thread t;
 	//private static final Space space = new Space();
 	//static boolean stop = false;

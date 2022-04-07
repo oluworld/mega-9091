@@ -1,4 +1,4 @@
-// Barrier version of Jacobi iteration
+package EDU.oswego.cs.dl.concurrent.taskDemo;// Barrier version of Jacobi iteration
 
 import EDU.oswego.cs.dl.util.concurrent.*;
 
@@ -98,13 +98,11 @@ public class BarrierJacobi {
     }
 
     void convergenceCheck(int step) {
-      for (int i = 0; i < allSegments.length; ++i) 
-        if (allSegments[i].maxDiff > EPSILON) return;
+        for (Segment segment : allSegments) if (segment.maxDiff > EPSILON) return;
 
       System.out.println("Converged after " + step + " steps");
 
-      for (int i = 0; i < allSegments.length; ++i) 
-        allSegments[i].converged = true;
+        for (Segment allSegment : allSegments) allSegment.converged = true;
     }
 
 

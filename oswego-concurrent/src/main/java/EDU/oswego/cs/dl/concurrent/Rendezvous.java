@@ -12,7 +12,7 @@
   30Jul1998  dl               Minor code simplifications
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A rendezvous is a barrier that:
@@ -128,7 +128,7 @@ public class Rendezvous implements Barrier {
      * function, other threads are released, and each returns with
      * the item with the same index as the one it presented.
      **/
-    public void rendezvousFunction(Object[] objects);
+    void rendezvousFunction(Object[] objects);
   }
 
   /**

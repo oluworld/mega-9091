@@ -14,16 +14,20 @@ public class UT {
 	public static PrintWriter errW = new PrintWriter(new OutputStreamWriter(System.err));
 
 	public static String hexify(long id) {
-		String R = "";
-		String s1 = Long.toString(id, 16);
-		R = UT.repeatChar('0', 8 - s1.length()) + s1;
-		return R;
+		final String s2 = Long.toString(id, 16);
+		final String s1 = UT.repeatChar('0', 8 - s2.length());
+
+		final StringBuilder R = new StringBuilder();
+		R.append(s1);
+		R.append(s2);
+
+		return R.toString();
 	}
 
 	public static String repeatChar(char c, int n) {
-		String R = "";
-		while (n-- > 0) R+=c;
-		return R;
+		StringBuilder R = new StringBuilder();
+		while (n-- > 0) R.append(c);
+		return R.toString();
 	}
 
 	public static boolean string_in(String aVal, String aString, String aString2) {
@@ -31,7 +35,7 @@ public class UT {
 	}
 
 	public static String string_times(int i) {
-		StringBuffer R = new StringBuffer();
+		StringBuilder R = new StringBuilder();
 		while (i-- > 0) {
 			R.append('*');
 		}

@@ -19,7 +19,7 @@ public class Player extends GameObject {
 	private int collected = 0;
 	private int moveDirection = 0;
 	private boolean killable = true;
-	private Font font = new Font("score_font", Font.BOLD, 22);
+	private final Font font = new Font("score_font", Font.BOLD, 22);
 //	private Timer timer = new Timer();
 	static ScheduledThreadPoolExecutor sch=new ScheduledThreadPoolExecutor(7);
 

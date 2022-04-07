@@ -9,10 +9,10 @@
 package tripleo.appz.net.number_server;
 
 import java.lang.management.ClassLoadingMXBean;
-import tripleo.space.*;
 
 import thinlet.FrameLauncher;
 import thinlet.Thinlet;
+import tripleo.space.SpaceNugget;
 
 /**
  * Run the application in GUI mode (using Thinlet)
@@ -87,8 +87,8 @@ public class NumberServerUI extends Thinlet {
 	}
 
 	public void set_ns(String nsrootName, String nsportnum) {
-		app.space().add(new SpaceNugget("ns-host", nsrootName));
-		app.space().add(new SpaceNugget("ns-port", nsportnum));
+		app.space().add(new SpaceNugget<>("ns-host", nsrootName));
+		app.space().add(new SpaceNugget<>("ns-port", nsportnum));
 	}
 	
 	public void connectToNewRoot(String rootName, String sportnum) {
@@ -109,7 +109,7 @@ public class NumberServerUI extends Thinlet {
 	}
 
 	private final String path = "NumberServerUI.xml";
-	private NumberServerApp app;
+	private final NumberServerApp app;
 
 }
 

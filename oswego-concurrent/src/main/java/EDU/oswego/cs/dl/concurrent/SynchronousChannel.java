@@ -16,7 +16,7 @@
   24Nov2001  dl               Replaced main algorithm with faster one.
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * A rendezvous channel, similar to those used in CSP and Ada.  Each

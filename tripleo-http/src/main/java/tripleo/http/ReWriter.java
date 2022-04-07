@@ -10,7 +10,7 @@ package tripleo.http;
 
 public interface ReWriter {
 
-	public IRequest rewrite(IRequest aRequest);
+	IRequest rewrite(IRequest aRequest);
 
 }
 

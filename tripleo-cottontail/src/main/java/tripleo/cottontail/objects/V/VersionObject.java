@@ -1,7 +1,7 @@
 package tripleo.cottontail.objects.V;
 
 public class VersionObject {
-	private String rep ;
+	private final String rep ;
 
 	public VersionObject()              { rep = "<null version>";   }
 	public VersionObject(String aRep)   { rep = aRep;           	}

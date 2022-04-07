@@ -11,7 +11,7 @@
   28aug1998  dl               refactored from Executor classes
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /**
  * 

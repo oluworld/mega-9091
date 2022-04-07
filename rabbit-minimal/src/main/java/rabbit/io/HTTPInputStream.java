@@ -5,7 +5,9 @@ package rabbit.io;
 import java.io.*;
 import java.util.StringTokenizer;
 
-import rabbit.http.*;
+import rabbit.http.GeneralHeader;
+import rabbit.http.HTTPFooter;
+import rabbit.http.HTTPHeader;
 
 /** This is an extended DataInputStream suitable for reading data from the web.
  *  It handles chunked encoding etc.

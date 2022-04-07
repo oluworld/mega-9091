@@ -11,7 +11,7 @@
   11Jun1998  dl               Create public version
 */
 
-package EDU.oswego.cs.dl.util.concurrent;
+package EDU.oswego.cs.dl.concurrent;
 
 /** 
  * This interface exists to enable stricter type checking
@@ -39,7 +39,7 @@ public interface Takable {
    * is detected, in which case state of the channel is unchanged.
    *
   **/
-  public Object take() throws InterruptedException;
+  Object take() throws InterruptedException;
 
 
   /** 
@@ -58,6 +58,6 @@ public interface Takable {
    * (i.e., equivalent to a false return).
   **/
 
-  public Object poll(long msecs) throws InterruptedException;
+  Object poll(long msecs) throws InterruptedException;
 
 }

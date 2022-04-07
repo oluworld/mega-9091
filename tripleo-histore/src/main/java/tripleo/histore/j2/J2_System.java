@@ -8,15 +8,21 @@
 
 package tripleo.histore.j2;
 
+import tripleo.adt.Range;
 import tripleo.curr.MonitoredRunner;
 import tripleo.histore.HiStoreEntry;
 import tripleo.util.Assert;
 import tripleo.util.FuckUp;
-import tripleo.adt.Range;
-import tripleo.curr.MonitoredRunner;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
+import java.io.Writer;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
 @Deprecated interface Command {
 	Serializable execute(PrevalentSystem system) throws Exception;
@@ -30,12 +36,12 @@ import java.util.*;
  */
 public class J2_System implements PrevalentSystem {
 
-	transient private HiStore_J2 store; // damn serialization
-	transient private List<HiStoreEntry_J2> dirty;
+	final transient private HiStore_J2 store; // damn serialization
+	final transient private List<HiStoreEntry_J2> dirty;
 
 	final EntryMap entrymap; // Used in HiStoreSystem
 //	final Map<String, lazyEntry> entrymap; // Used in HiStoreSystem
-	final private Range<Long> range = new Range();
+	final private Range<Long> range = new Range<>();
 
 	public J2_System(HiStore_J2 st) {
 		store    = st;
@@ -68,7 +74,7 @@ public class J2_System implements PrevalentSystem {
 			monitored_instance = aMonitored_instance;
 		}
 
-		private MonitoredRunner monitored_instance;
+		private final MonitoredRunner monitored_instance;
 
 		public void run() {
 			while (monitored_instance.stillRunning()) {
@@ -132,8 +138,8 @@ public class J2_System implements PrevalentSystem {
 	 */
 	public static class EntryStorageCommand implements Command {
 
-		private String       name;
-		private HiStoreEntry_J2 value;
+		private final String       name;
+		private final HiStoreEntry_J2 value;
 
 		public EntryStorageCommand(String aName, HiStoreEntry_J2 aEntry) {
 			name = aName;
@@ -201,13 +207,13 @@ public class J2_System implements PrevalentSystem {
 		Assert.postcondition("!newEntryIsDirty", !dirty.contains(entry)); // was AKey: kept failing
 	}
 
-	static interface lazyEntry {
+	interface lazyEntry {
 		HiStoreEntry_J2 get();
 		long ident();
 	}
 	static class diskEntry implements lazyEntry {
 		public diskEntry(HiStoreEntry_J2 aMember) { member = aMember; }
-		private HiStoreEntry_J2 member;
+		private final HiStoreEntry_J2 member;
 		public HiStoreEntry_J2 get() {return member;}
 
 		public long ident() {
@@ -215,8 +221,8 @@ public class J2_System implements PrevalentSystem {
 		}
 	}
 	static class serialEntry implements lazyEntry {
-		private HiStore_J2 store;
-		private long _ident;
+		private final HiStore_J2 store;
+		private final long _ident;
 //		private String key;
 
 		public serialEntry(HiStore_J2 aStore, long a_ident) {

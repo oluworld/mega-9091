@@ -58,7 +58,7 @@ public class Bank extends AbstractPrevalentSystem {
 		return (Account)accountsByNumber.get(new Long(number));
 	}
 
-	public class AccountNotFound extends Exception {
+	public static class AccountNotFound extends Exception {
 		AccountNotFound(long number) {
 			super("Account not found: " + Account.numberString(number) + ".\nMight have been deleted.");
 		}

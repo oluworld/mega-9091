@@ -1,7 +1,6 @@
 package tripleo.impohrt.andreasnibbles;
 
 import javax.swing.*;
-import java.applet.Applet;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 	Grid grid;
 	Thread runner;
 	int pausTime = 100; 	// Tiden mellan varje flytt (i milisek).
-	int dir = Worm.RIGHT;  	// Riktningen för masken (1,2,3,4)=(D,U,R,L).
+	int dir = Worm.RIGHT;  	// Riktningen fï¿½r masken (1,2,3,4)=(D,U,R,L).
 	int dir_CPU = Worm.LEFT;
 	Worm worm;
 	Worm worm_CPU;
@@ -60,9 +59,9 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 		}
 		grid = new Grid(this.cols, this.rows, size().width, size().height - 14);
 		this.setLayout(new BorderLayout());
-		scoreplayer = new JLabel("0", Label.RIGHT);
+		scoreplayer = new JLabel("0", SwingConstants.RIGHT);
 		scoreplayer.setForeground(color);
-		scoreCPU = new JLabel("0", Label.RIGHT);
+		scoreCPU = new JLabel("0", SwingConstants.RIGHT);
 		scoreCPU.setForeground(color_CPU);
 		Panel p = new Panel();
 		p.add(scoreplayer);
@@ -77,7 +76,7 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 		return  h.get(s);
 	}
 
-	Map<String, String> h = new HashMap();
+	Map<String, String> h = new HashMap<>();
 	{
 		h.put("COLUMNS", "30");
 		h.put("SPEED", "80");
@@ -129,7 +128,7 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 	}
 
 	public void run() {
-		while (true) {	// Forävvär, mään.
+		while (true) {	// Forï¿½vvï¿½r, mï¿½ï¿½n.
 			if (!worm.move(dir)) {
 				a1(worm_CPU, scoreCPU, 1000);
 			}
@@ -140,9 +139,9 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 			while (!worm_CPU.move(dir_CPU)) {
 				dir_CPU = (int) ((Math.random() * 4) + 1);
 				koll++;
-				if (koll > 10) {  // Om den inte hittat en utväg efter 10 gissningar
+				if (koll > 10) {  // Om den inte hittat en utvï¿½g efter 10 gissningar
 					a1(worm, scoreplayer, 2000);
-//					grid.clear(); // så antar jag att det inte finns någon.
+//					grid.clear(); // sï¿½ antar jag att det inte finns nï¿½gon.
 //					worm.score++;
 //					scoreplayer.setText(Integer.toString(worm.score));
 //					try { Thread.sleep(2000); } catch (InterruptedException e) { }
@@ -155,9 +154,9 @@ public class Nibbles extends JPanel /*Applet*/ implements Runnable {
 
 	private void a1(final Worm aWorm, final JLabel aScoreLabel, final int delay) {
 		grid.clear();
-		aWorm.score++;		// Öka datorns poäng med 1.
+		aWorm.score++;		// ï¿½ka datorns poï¿½ng med 1.
 		aScoreLabel.setText(Integer.toString(aWorm.score));
-		try { Thread.sleep(delay); }	// Låt kombatanterna ta igen sig 1 sek.
+		try { Thread.sleep(delay); }	// Lï¿½t kombatanterna ta igen sig 1 sek.
 		catch (InterruptedException e) { }
 	}
 }

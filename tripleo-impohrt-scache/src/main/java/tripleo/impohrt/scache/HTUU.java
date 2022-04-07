@@ -85,7 +85,7 @@ public final class HTUU {
 		48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47
 	};
 
-	private static byte pr2six[] = new byte[256];
+	private static final byte[] pr2six = new byte[256];
 // unsigned
 
 /*--- function HTUU_encode -----------------------------------------------
@@ -109,16 +109,16 @@ public final class HTUU {
  *             Returns the number of ASCII characters in "bufcoded".
  */
 
-	public final static byte[] encode(String s) {
+	public static byte[] encode(String s) {
 		return encode(s.getBytes());
 	}
 
-	public final static String encode_string(String s) {
+	public static String encode_string(String s) {
 		byte ascii[] = encode(s.getBytes());
 		return new String(ascii, 0, 0, ascii.length);
 	}
 
-	public final static byte[] encode(byte bufin[]) {
+	public static byte[] encode(byte bufin[]) {
 /* ENC is the basic 1 character encoding function to make a char printing */
 // #define ENC(c) six2pr[c]
 

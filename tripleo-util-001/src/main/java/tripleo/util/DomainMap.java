@@ -8,7 +8,7 @@ import java.util.HashMap;
  * Time: 11:49:45 AM
  */
 public abstract class DomainMap <A, K> {
-	private Map<A, K> resin = new HashMap();
+	private final Map<A, K> resin = new HashMap<>();
 
 	abstract public A allocate();
 //	abstract public Object allocate();

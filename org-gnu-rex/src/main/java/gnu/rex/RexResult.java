@@ -32,7 +32,7 @@ public class RexResult
  int start[];
  int leng[];
  int subRes;
- private StringBuffer strBuf = new StringBuffer(64);
+ private final StringBuffer strBuf = new StringBuffer(64);
 
  RexResult() { this(DFL_MAX_RESULTS); }
 

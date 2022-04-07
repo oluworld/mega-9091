@@ -1,6 +1,5 @@
 /* -*- Mode: Java; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Elijjah compiler, copyright Tripleo <oluoluolu+elijah@gmail.com>
  *
  * The contents of this library are released under the LGPL licence v3,
  * the GNU Lesser General Public License text was downloaded from
@@ -8,7 +7,7 @@
  *
  */
 
-package FreeBASE;
+package tripleo.impohrt.FreeBASE;
 
 /**
  * Created 9/27/21 6:21 AM

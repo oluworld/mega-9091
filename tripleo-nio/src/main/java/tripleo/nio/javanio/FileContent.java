@@ -49,9 +49,9 @@ import java.nio.channels.FileChannel;
  */
 class FileContent implements Content {
 
-	private static File ROOT = new File("root");
+	private static final File ROOT = new File("root");
 
-	private File fn;
+	private final File fn;
 
 	FileContent(URI uri) {
 		fn = new File(ROOT,

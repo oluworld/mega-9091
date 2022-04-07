@@ -58,9 +58,9 @@ public abstract class Server {
 	ServerSocketChannel ssc;
 	SSLContext sslContext = null;
 
-	static private int PORT = 8000;
-	static private int BACKLOG = 1024;
-	static private boolean SECURE = false;
+	static private final int PORT = 8000;
+	static private final int BACKLOG = 1024;
+	static private final boolean SECURE = false;
 
 	Server(int port, int backlog,
 	       boolean secure) throws Exception {
