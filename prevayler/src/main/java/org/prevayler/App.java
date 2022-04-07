@@ -25,15 +25,15 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-	protected static final Logger logger = LoggerFactory.getLogger(App.class);
-	protected static final ResourceBundle messages = ResourceBundle.getBundle("messages");
+    protected static final Logger logger = LoggerFactory.getLogger(App.class);
+    protected static final ResourceBundle messages = ResourceBundle.getBundle("messages");
 
-	public static void main(String[] args) {
-		if (args.length > 0) {
-			logger.info("{} {}! /by {}", messages.getString("hello"), args[0], messages.getString("artifactId"));
-		} else {
-			logger.info("Hello world!");
-		}
-	}
+    public static void main(String[] args) {
+        if (args.length > 0) {
+            logger.info("{} {}! /by {}", messages.getString("hello"), args[0], messages.getString("artifactId"));
+        } else {
+            logger.info("Hello world!");
+        }
+    }
 
 }

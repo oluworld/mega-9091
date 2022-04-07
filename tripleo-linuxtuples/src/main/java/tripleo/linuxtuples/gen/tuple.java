@@ -5,70 +5,69 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen;
 
-
 public class tuple {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected tuple(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      tuplesJNI.delete_tuple(swigCPtr);
+    protected tuple(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(tuple obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setNum_elts(int num_elts) {
-    tuplesJNI.set_tuple_num_elts(swigCPtr, num_elts);
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            tuplesJNI.delete_tuple(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public int getNum_elts() {
-    return tuplesJNI.get_tuple_num_elts(swigCPtr);
-  }
+    protected static long getCPtr(tuple obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setString_length(int string_length) {
-    tuplesJNI.set_tuple_string_length(swigCPtr, string_length);
-  }
+    public void setNum_elts(int num_elts) {
+        tuplesJNI.set_tuple_num_elts(swigCPtr, num_elts);
+    }
 
-  public int getString_length() {
-    return tuplesJNI.get_tuple_string_length(swigCPtr);
-  }
+    public int getNum_elts() {
+        return tuplesJNI.get_tuple_num_elts(swigCPtr);
+    }
 
-  public void setElements(element elements) {
-    tuplesJNI.set_tuple_elements(swigCPtr, element.getCPtr(elements));
-  }
+    public void setString_length(int string_length) {
+        tuplesJNI.set_tuple_string_length(swigCPtr, string_length);
+    }
 
-  public element getElements() {
-    long cPtr = tuplesJNI.get_tuple_elements(swigCPtr);
-    return (cPtr == 0) ? null : new element(cPtr, false);
-  }
+    public int getString_length() {
+        return tuplesJNI.get_tuple_string_length(swigCPtr);
+    }
 
-  public void setString_space(String string_space) {
-    tuplesJNI.set_tuple_string_space(swigCPtr, string_space);
-  }
+    public void setElements(element elements) {
+        tuplesJNI.set_tuple_elements(swigCPtr, element.getCPtr(elements));
+    }
 
-  public String getString_space() {
-    return tuplesJNI.get_tuple_string_space(swigCPtr);
-  }
+    public element getElements() {
+        long cPtr = tuplesJNI.get_tuple_elements(swigCPtr);
+        return (cPtr == 0) ? null : new element(cPtr, false);
+    }
 
-  public tuple() {
-    this(tuplesJNI.new_tuple(), true);
-  }
+    public void setString_space(String string_space) {
+        tuplesJNI.set_tuple_string_space(swigCPtr, string_space);
+    }
+
+    public String getString_space() {
+        return tuplesJNI.get_tuple_string_space(swigCPtr);
+    }
+
+    public tuple() {
+        this(tuplesJNI.new_tuple(), true);
+    }
 
 }

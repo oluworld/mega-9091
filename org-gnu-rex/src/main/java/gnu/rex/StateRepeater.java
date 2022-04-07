@@ -15,37 +15,56 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class StateRepeater extends StateCntrl
-{
- short min;
- short max;
- short pass;
+class StateRepeater extends StateCntrl {
 
- StateRepeater(short next0, short next1, short min, short max)
-	{ super(next0, next1); this.min = min; this.max = max; }
+    short min;
+    short max;
+    short pass;
 
- StateRepeater(int next0, int next1, int min, int max)
-	{ this((short)next0, (short)next1, (short)min, (short)max); }
+    StateRepeater(short next0, short next1, short min, short max) {
+        super(next0, next1);
+        this.min = min;
+        this.max = max;
+    }
 
- final short getNext0() { return pass < max? next0 : IMPASSE; }
+    StateRepeater(int next0, int next1, int min, int max) {
+        this((short) next0, (short) next1, (short) min, (short) max);
+    }
 
- final short getNext1() { return pass >= min? next1 : IMPASSE; }
+    final short getNext0() {
+        return pass < max ? next0 : IMPASSE;
+    }
 
- final short getMin() { return min; }
+    final short getNext1() {
+        return pass >= min ? next1 : IMPASSE;
+    }
 
- final short getMax() { return max; }
+    final short getMin() {
+        return min;
+    }
 
- final short getPass() { return pass; }
+    final short getMax() {
+        return max;
+    }
 
- final short incPass() { return ++pass; }
+    final short getPass() {
+        return pass;
+    }
 
- final void reset() { super.reset(); pass = 0; }
+    final short incPass() {
+        return ++pass;
+    }
 
- String stateToString()
-        { return super.stateToString() + "{"+min+";"+max+"}." + pass; }
+    final void reset() {
+        super.reset();
+        pass = 0;
+    }
+
+    String stateToString() {
+        return super.stateToString() + "{" + min + ";" + max + "}." + pass;
+    }
 
 }

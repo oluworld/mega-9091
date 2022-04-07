@@ -3,10 +3,12 @@ package org.oluworld.mail98;
 import org.python.core.*;
 
 public class rfc822 extends java.lang.Object {
-    static String[] jpy$properties = new String[] {"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
-    static String[] jpy$packages = new String[] {"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
-    
+
+    static String[] jpy$properties = new String[]{"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
+    static String[] jpy$packages = new String[]{"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
+
     public static class _PyInner extends PyFunctionTable implements PyRunnable {
+
         private static PyObject s$0;
         private static PyObject s$1;
         private static PyObject s$2;
@@ -250,6 +252,7 @@ public class rfc822 extends java.lang.Object {
         private static PyCode c$54_mktime_tz;
         private static PyCode c$55_formatdate;
         private static PyCode c$56_main;
+
         private static void initConstants() {
             s$0 = Py.newString("RFC-822 message manipulation class.\012\012XXX This is only a very rough sketch of a full RFC-822 parser;\012in particular the tokenizing of addresses does not adhere to all the\012quoting rules.\012\012Directions for use:\012\012To create a Message object: first open a file, e.g.:\012  fp = open(file, 'r')\012You can use any other legal way of getting an open file object, e.g. use\012sys.stdin or call os.popen().\012Then pass the open file object to the Message() constructor:\012  m = Message(fp)\012\012This class can work with any input object that supports a readline\012method.  If the input object has seek and tell capability, the\012rewindbody method will work; also illegal lines will be pushed back\012onto the input stream.  If the input object lacks seek but has an\012`unread' method that can push back a line of input, Message will use\012that to push back illegal lines.  Thus this class can be used to parse\012messages coming from a buffered stream.\012\012The optional `seekable' argument is provided as a workaround for\012certain stdio libraries in which tell() discards buffered data before\012discovering that the lseek() system call doesn't work.  For maximum\012portability, you should set the seekable argument to zero to prevent\012that initial \\code{tell} when passing in an unseekable object such as\012a a file object created from a socket object.  If it is 1 on entry --\012which it is by default -- the tell() method of the open file object is\012called once; if this raises an exception, seekable is reset to 0.  For\012other nonzero values of seekable, this test is not made.\012\012To get the text of a particular header there are several methods:\012  str = m.getheader(name)\012  str = m.getrawheader(name)\012where name is the name of the header, e.g. 'Subject'.\012The difference is that getheader() strips the leading and trailing\012whitespace, while getrawheader() doesn't.  Both functions retain\012embedded whitespace (including newlines) exactly as they are\012specified in the header, and leave the case of the text unchanged.\012\012For addresses and address lists there are functions\012  realname, mailaddress = m.getaddr(name) and\012  list = m.getaddrlist(name)\012where the latter returns a list of (realname, mailaddr) tuples.\012\012There is also a method\012  time = m.getdate(name)\012which parses a Date-like field and returns a time-compatible tuple,\012i.e. a tuple such as returned by time.localtime() or accepted by\012time.mktime().\012\012See the class definition for lower level access methods.\012\012There are also some utility functions here.\012");
             s$1 = Py.newString("Message");
@@ -437,205 +440,205 @@ public class rfc822 extends java.lang.Object {
             s$183 = Py.newString("items =");
             s$184 = Py.newString("/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py");
             funcTable = new _PyInner();
-            c$0___init__ = Py.newCode(3, new String[] {"self", "fp", "seekable"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 0, null, null, 0, 1);
-            c$1_rewindbody = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "rewindbody", false, false, funcTable, 1, null, null, 0, 1);
-            c$2_readheaders = Py.newCode(1, new String[] {"self", "startofline", "headerseen", "firstline", "tell", "unread", "list", "x", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "readheaders", false, false, funcTable, 2, null, null, 0, 1);
-            c$3_isheader = Py.newCode(2, new String[] {"self", "line", "i"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "isheader", false, false, funcTable, 3, null, null, 0, 1);
-            c$4_islast = Py.newCode(2, new String[] {"self", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "islast", false, false, funcTable, 4, null, null, 0, 1);
-            c$5_iscomment = Py.newCode(2, new String[] {"self", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "iscomment", false, false, funcTable, 5, null, null, 0, 1);
-            c$6_getallmatchingheaders = Py.newCode(2, new String[] {"self", "name", "line", "hit", "list", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getallmatchingheaders", false, false, funcTable, 6, null, null, 0, 1);
-            c$7_getfirstmatchingheader = Py.newCode(2, new String[] {"self", "name", "line", "hit", "list", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getfirstmatchingheader", false, false, funcTable, 7, null, null, 0, 1);
-            c$8_getrawheader = Py.newCode(2, new String[] {"self", "name", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getrawheader", false, false, funcTable, 8, null, null, 0, 1);
-            c$9_getheader = Py.newCode(3, new String[] {"self", "name", "default"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getheader", false, false, funcTable, 9, null, null, 0, 1);
-            c$10_getheaders = Py.newCode(2, new String[] {"self", "name", "result", "have_header", "s", "current"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getheaders", false, false, funcTable, 10, null, null, 0, 1);
-            c$11_getaddr = Py.newCode(2, new String[] {"self", "name", "alist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddr", false, false, funcTable, 11, null, null, 0, 1);
-            c$12_getaddrlist = Py.newCode(2, new String[] {"self", "name", "i", "h", "addr", "a", "alladdrs", "raw"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrlist", false, false, funcTable, 12, null, null, 0, 1);
-            c$13_getdate = Py.newCode(2, new String[] {"self", "name", "data"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdate", false, false, funcTable, 13, null, null, 0, 1);
-            c$14_getdate_tz = Py.newCode(2, new String[] {"self", "name", "data"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdate_tz", false, false, funcTable, 14, null, null, 0, 1);
-            c$15___len__ = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__len__", false, false, funcTable, 15, null, null, 0, 1);
-            c$16___getitem__ = Py.newCode(2, new String[] {"self", "name"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__getitem__", false, false, funcTable, 16, null, null, 0, 1);
-            c$17___setitem__ = Py.newCode(3, new String[] {"self", "name", "value", "line", "lines", "text"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__setitem__", false, false, funcTable, 17, null, null, 0, 1);
-            c$18___delitem__ = Py.newCode(2, new String[] {"self", "name", "hit", "n", "i", "list", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__delitem__", false, false, funcTable, 18, null, null, 0, 1);
-            c$19_has_key = Py.newCode(2, new String[] {"self", "name"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "has_key", false, false, funcTable, 19, null, null, 0, 1);
-            c$20_keys = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "keys", false, false, funcTable, 20, null, null, 0, 1);
-            c$21_values = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "values", false, false, funcTable, 21, null, null, 0, 1);
-            c$22_items = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "items", false, false, funcTable, 22, null, null, 0, 1);
-            c$23___str__ = Py.newCode(1, new String[] {"self", "str", "hdr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__str__", false, false, funcTable, 23, null, null, 0, 1);
-            c$24_Message = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "Message", false, false, funcTable, 24, null, null, 0, 0);
-            c$25_unquote = Py.newCode(1, new String[] {"str"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "unquote", false, false, funcTable, 25, null, null, 0, 1);
-            c$26_quote = Py.newCode(1, new String[] {"str"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "quote", false, false, funcTable, 26, null, null, 0, 1);
-            c$27_parseaddr = Py.newCode(1, new String[] {"address", "a", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parseaddr", false, false, funcTable, 27, null, null, 0, 1);
-            c$28___init__ = Py.newCode(2, new String[] {"self", "field"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 28, null, null, 0, 1);
-            c$29_gotonext = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "gotonext", false, false, funcTable, 29, null, null, 0, 1);
-            c$30_getaddrlist = Py.newCode(1, new String[] {"self", "ad"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrlist", false, false, funcTable, 30, null, null, 0, 1);
-            c$31_getaddress = Py.newCode(1, new String[] {"self", "returnlist", "oldpos", "routeaddr", "addrspec", "fieldlen", "oldcl", "plist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddress", false, false, funcTable, 31, null, null, 0, 1);
-            c$32_getrouteaddr = Py.newCode(1, new String[] {"self", "expectroute", "expectaddrspec", "adlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getrouteaddr", false, false, funcTable, 32, null, null, 0, 1);
-            c$33_getaddrspec = Py.newCode(1, new String[] {"self", "aslist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrspec", false, false, funcTable, 33, null, null, 0, 1);
-            c$34_getdomain = Py.newCode(1, new String[] {"self", "sdlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdomain", false, false, funcTable, 34, null, null, 0, 1);
-            c$35_getdelimited = Py.newCode(4, new String[] {"self", "beginchar", "endchars", "allowcomments", "quote", "slist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdelimited", false, false, funcTable, 35, null, null, 0, 1);
-            c$36_getquote = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getquote", false, false, funcTable, 36, null, null, 0, 1);
-            c$37_getcomment = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getcomment", false, false, funcTable, 37, null, null, 0, 1);
-            c$38_getdomainliteral = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdomainliteral", false, false, funcTable, 38, null, null, 0, 1);
-            c$39_getatom = Py.newCode(1, new String[] {"self", "atomlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getatom", false, false, funcTable, 39, null, null, 0, 1);
-            c$40_getphraselist = Py.newCode(1, new String[] {"self", "plist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getphraselist", false, false, funcTable, 40, null, null, 0, 1);
-            c$41_AddrlistClass = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "AddrlistClass", false, false, funcTable, 41, null, null, 0, 0);
-            c$42___init__ = Py.newCode(2, new String[] {"self", "field"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 42, null, null, 0, 1);
-            c$43___len__ = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__len__", false, false, funcTable, 43, null, null, 0, 1);
-            c$44___str__ = Py.newCode(1, new String[] {"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__str__", false, false, funcTable, 44, null, null, 0, 1);
-            c$45___add__ = Py.newCode(2, new String[] {"self", "other", "x", "newaddr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__add__", false, false, funcTable, 45, null, null, 0, 1);
-            c$46___iadd__ = Py.newCode(2, new String[] {"self", "other", "x"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__iadd__", false, false, funcTable, 46, null, null, 0, 1);
-            c$47___sub__ = Py.newCode(2, new String[] {"self", "other", "x", "newaddr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__sub__", false, false, funcTable, 47, null, null, 0, 1);
-            c$48___isub__ = Py.newCode(2, new String[] {"self", "other", "x"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__isub__", false, false, funcTable, 48, null, null, 0, 1);
-            c$49___getitem__ = Py.newCode(2, new String[] {"self", "index"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__getitem__", false, false, funcTable, 49, null, null, 0, 1);
-            c$50_AddressList = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "AddressList", false, false, funcTable, 50, null, null, 0, 0);
-            c$51_dump_address_pair = Py.newCode(1, new String[] {"pair"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "dump_address_pair", false, false, funcTable, 51, null, null, 0, 1);
-            c$52_parsedate_tz = Py.newCode(1, new String[] {"data", "tm", "thh", "tzsign", "stuff", "s", "tuple", "yy", "i", "mm", "tzoffset", "tss", "tz", "dd", "tmm"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parsedate_tz", false, false, funcTable, 52, null, null, 0, 1);
-            c$53_parsedate = Py.newCode(1, new String[] {"data", "t"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parsedate", false, false, funcTable, 53, null, null, 0, 1);
-            c$54_mktime_tz = Py.newCode(1, new String[] {"data", "t"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "mktime_tz", false, false, funcTable, 54, null, null, 0, 1);
-            c$55_formatdate = Py.newCode(1, new String[] {"timeval"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "formatdate", false, false, funcTable, 55, null, null, 0, 1);
-            c$56_main = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "main", false, false, funcTable, 56, null, null, 0, 0);
+            c$0___init__ = Py.newCode(3, new String[]{"self", "fp", "seekable"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 0, null, null, 0, 1);
+            c$1_rewindbody = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "rewindbody", false, false, funcTable, 1, null, null, 0, 1);
+            c$2_readheaders = Py.newCode(1, new String[]{"self", "startofline", "headerseen", "firstline", "tell", "unread", "list", "x", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "readheaders", false, false, funcTable, 2, null, null, 0, 1);
+            c$3_isheader = Py.newCode(2, new String[]{"self", "line", "i"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "isheader", false, false, funcTable, 3, null, null, 0, 1);
+            c$4_islast = Py.newCode(2, new String[]{"self", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "islast", false, false, funcTable, 4, null, null, 0, 1);
+            c$5_iscomment = Py.newCode(2, new String[]{"self", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "iscomment", false, false, funcTable, 5, null, null, 0, 1);
+            c$6_getallmatchingheaders = Py.newCode(2, new String[]{"self", "name", "line", "hit", "list", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getallmatchingheaders", false, false, funcTable, 6, null, null, 0, 1);
+            c$7_getfirstmatchingheader = Py.newCode(2, new String[]{"self", "name", "line", "hit", "list", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getfirstmatchingheader", false, false, funcTable, 7, null, null, 0, 1);
+            c$8_getrawheader = Py.newCode(2, new String[]{"self", "name", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getrawheader", false, false, funcTable, 8, null, null, 0, 1);
+            c$9_getheader = Py.newCode(3, new String[]{"self", "name", "default"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getheader", false, false, funcTable, 9, null, null, 0, 1);
+            c$10_getheaders = Py.newCode(2, new String[]{"self", "name", "result", "have_header", "s", "current"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getheaders", false, false, funcTable, 10, null, null, 0, 1);
+            c$11_getaddr = Py.newCode(2, new String[]{"self", "name", "alist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddr", false, false, funcTable, 11, null, null, 0, 1);
+            c$12_getaddrlist = Py.newCode(2, new String[]{"self", "name", "i", "h", "addr", "a", "alladdrs", "raw"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrlist", false, false, funcTable, 12, null, null, 0, 1);
+            c$13_getdate = Py.newCode(2, new String[]{"self", "name", "data"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdate", false, false, funcTable, 13, null, null, 0, 1);
+            c$14_getdate_tz = Py.newCode(2, new String[]{"self", "name", "data"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdate_tz", false, false, funcTable, 14, null, null, 0, 1);
+            c$15___len__ = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__len__", false, false, funcTable, 15, null, null, 0, 1);
+            c$16___getitem__ = Py.newCode(2, new String[]{"self", "name"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__getitem__", false, false, funcTable, 16, null, null, 0, 1);
+            c$17___setitem__ = Py.newCode(3, new String[]{"self", "name", "value", "line", "lines", "text"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__setitem__", false, false, funcTable, 17, null, null, 0, 1);
+            c$18___delitem__ = Py.newCode(2, new String[]{"self", "name", "hit", "n", "i", "list", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__delitem__", false, false, funcTable, 18, null, null, 0, 1);
+            c$19_has_key = Py.newCode(2, new String[]{"self", "name"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "has_key", false, false, funcTable, 19, null, null, 0, 1);
+            c$20_keys = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "keys", false, false, funcTable, 20, null, null, 0, 1);
+            c$21_values = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "values", false, false, funcTable, 21, null, null, 0, 1);
+            c$22_items = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "items", false, false, funcTable, 22, null, null, 0, 1);
+            c$23___str__ = Py.newCode(1, new String[]{"self", "str", "hdr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__str__", false, false, funcTable, 23, null, null, 0, 1);
+            c$24_Message = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "Message", false, false, funcTable, 24, null, null, 0, 0);
+            c$25_unquote = Py.newCode(1, new String[]{"str"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "unquote", false, false, funcTable, 25, null, null, 0, 1);
+            c$26_quote = Py.newCode(1, new String[]{"str"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "quote", false, false, funcTable, 26, null, null, 0, 1);
+            c$27_parseaddr = Py.newCode(1, new String[]{"address", "a", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parseaddr", false, false, funcTable, 27, null, null, 0, 1);
+            c$28___init__ = Py.newCode(2, new String[]{"self", "field"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 28, null, null, 0, 1);
+            c$29_gotonext = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "gotonext", false, false, funcTable, 29, null, null, 0, 1);
+            c$30_getaddrlist = Py.newCode(1, new String[]{"self", "ad"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrlist", false, false, funcTable, 30, null, null, 0, 1);
+            c$31_getaddress = Py.newCode(1, new String[]{"self", "returnlist", "oldpos", "routeaddr", "addrspec", "fieldlen", "oldcl", "plist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddress", false, false, funcTable, 31, null, null, 0, 1);
+            c$32_getrouteaddr = Py.newCode(1, new String[]{"self", "expectroute", "expectaddrspec", "adlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getrouteaddr", false, false, funcTable, 32, null, null, 0, 1);
+            c$33_getaddrspec = Py.newCode(1, new String[]{"self", "aslist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getaddrspec", false, false, funcTable, 33, null, null, 0, 1);
+            c$34_getdomain = Py.newCode(1, new String[]{"self", "sdlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdomain", false, false, funcTable, 34, null, null, 0, 1);
+            c$35_getdelimited = Py.newCode(4, new String[]{"self", "beginchar", "endchars", "allowcomments", "quote", "slist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdelimited", false, false, funcTable, 35, null, null, 0, 1);
+            c$36_getquote = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getquote", false, false, funcTable, 36, null, null, 0, 1);
+            c$37_getcomment = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getcomment", false, false, funcTable, 37, null, null, 0, 1);
+            c$38_getdomainliteral = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getdomainliteral", false, false, funcTable, 38, null, null, 0, 1);
+            c$39_getatom = Py.newCode(1, new String[]{"self", "atomlist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getatom", false, false, funcTable, 39, null, null, 0, 1);
+            c$40_getphraselist = Py.newCode(1, new String[]{"self", "plist"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "getphraselist", false, false, funcTable, 40, null, null, 0, 1);
+            c$41_AddrlistClass = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "AddrlistClass", false, false, funcTable, 41, null, null, 0, 0);
+            c$42___init__ = Py.newCode(2, new String[]{"self", "field"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__init__", false, false, funcTable, 42, null, null, 0, 1);
+            c$43___len__ = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__len__", false, false, funcTable, 43, null, null, 0, 1);
+            c$44___str__ = Py.newCode(1, new String[]{"self"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__str__", false, false, funcTable, 44, null, null, 0, 1);
+            c$45___add__ = Py.newCode(2, new String[]{"self", "other", "x", "newaddr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__add__", false, false, funcTable, 45, null, null, 0, 1);
+            c$46___iadd__ = Py.newCode(2, new String[]{"self", "other", "x"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__iadd__", false, false, funcTable, 46, null, null, 0, 1);
+            c$47___sub__ = Py.newCode(2, new String[]{"self", "other", "x", "newaddr"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__sub__", false, false, funcTable, 47, null, null, 0, 1);
+            c$48___isub__ = Py.newCode(2, new String[]{"self", "other", "x"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__isub__", false, false, funcTable, 48, null, null, 0, 1);
+            c$49___getitem__ = Py.newCode(2, new String[]{"self", "index"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "__getitem__", false, false, funcTable, 49, null, null, 0, 1);
+            c$50_AddressList = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "AddressList", false, false, funcTable, 50, null, null, 0, 0);
+            c$51_dump_address_pair = Py.newCode(1, new String[]{"pair"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "dump_address_pair", false, false, funcTable, 51, null, null, 0, 1);
+            c$52_parsedate_tz = Py.newCode(1, new String[]{"data", "tm", "thh", "tzsign", "stuff", "s", "tuple", "yy", "i", "mm", "tzoffset", "tss", "tz", "dd", "tmm"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parsedate_tz", false, false, funcTable, 52, null, null, 0, 1);
+            c$53_parsedate = Py.newCode(1, new String[]{"data", "t"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "parsedate", false, false, funcTable, 53, null, null, 0, 1);
+            c$54_mktime_tz = Py.newCode(1, new String[]{"data", "t"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "mktime_tz", false, false, funcTable, 54, null, null, 0, 1);
+            c$55_formatdate = Py.newCode(1, new String[]{"timeval"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "formatdate", false, false, funcTable, 55, null, null, 0, 1);
+            c$56_main = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/rfc822.py", "main", false, false, funcTable, 56, null, null, 0, 0);
         }
-        
-        
+
         public PyCode getMain() {
-            if (c$56_main == null) _PyInner.initConstants();
+            if (c$56_main == null) {
+                _PyInner.initConstants();
+            }
             return c$56_main;
         }
-        
+
         public PyObject call_function(int index, PyFrame frame) {
-            switch (index){
+            switch (index) {
                 case 0:
-                return _PyInner.__init__$1(frame);
+                    return _PyInner.__init__$1(frame);
                 case 1:
-                return _PyInner.rewindbody$2(frame);
+                    return _PyInner.rewindbody$2(frame);
                 case 2:
-                return _PyInner.readheaders$3(frame);
+                    return _PyInner.readheaders$3(frame);
                 case 3:
-                return _PyInner.isheader$4(frame);
+                    return _PyInner.isheader$4(frame);
                 case 4:
-                return _PyInner.islast$5(frame);
+                    return _PyInner.islast$5(frame);
                 case 5:
-                return _PyInner.iscomment$6(frame);
+                    return _PyInner.iscomment$6(frame);
                 case 6:
-                return _PyInner.getallmatchingheaders$7(frame);
+                    return _PyInner.getallmatchingheaders$7(frame);
                 case 7:
-                return _PyInner.getfirstmatchingheader$8(frame);
+                    return _PyInner.getfirstmatchingheader$8(frame);
                 case 8:
-                return _PyInner.getrawheader$9(frame);
+                    return _PyInner.getrawheader$9(frame);
                 case 9:
-                return _PyInner.getheader$10(frame);
+                    return _PyInner.getheader$10(frame);
                 case 10:
-                return _PyInner.getheaders$11(frame);
+                    return _PyInner.getheaders$11(frame);
                 case 11:
-                return _PyInner.getaddr$12(frame);
+                    return _PyInner.getaddr$12(frame);
                 case 12:
-                return _PyInner.getaddrlist$13(frame);
+                    return _PyInner.getaddrlist$13(frame);
                 case 13:
-                return _PyInner.getdate$14(frame);
+                    return _PyInner.getdate$14(frame);
                 case 14:
-                return _PyInner.getdate_tz$15(frame);
+                    return _PyInner.getdate_tz$15(frame);
                 case 15:
-                return _PyInner.__len__$16(frame);
+                    return _PyInner.__len__$16(frame);
                 case 16:
-                return _PyInner.__getitem__$17(frame);
+                    return _PyInner.__getitem__$17(frame);
                 case 17:
-                return _PyInner.__setitem__$18(frame);
+                    return _PyInner.__setitem__$18(frame);
                 case 18:
-                return _PyInner.__delitem__$19(frame);
+                    return _PyInner.__delitem__$19(frame);
                 case 19:
-                return _PyInner.has_key$20(frame);
+                    return _PyInner.has_key$20(frame);
                 case 20:
-                return _PyInner.keys$21(frame);
+                    return _PyInner.keys$21(frame);
                 case 21:
-                return _PyInner.values$22(frame);
+                    return _PyInner.values$22(frame);
                 case 22:
-                return _PyInner.items$23(frame);
+                    return _PyInner.items$23(frame);
                 case 23:
-                return _PyInner.__str__$24(frame);
+                    return _PyInner.__str__$24(frame);
                 case 24:
-                return _PyInner.Message$25(frame);
+                    return _PyInner.Message$25(frame);
                 case 25:
-                return _PyInner.unquote$26(frame);
+                    return _PyInner.unquote$26(frame);
                 case 26:
-                return _PyInner.quote$27(frame);
+                    return _PyInner.quote$27(frame);
                 case 27:
-                return _PyInner.parseaddr$28(frame);
+                    return _PyInner.parseaddr$28(frame);
                 case 28:
-                return _PyInner.__init__$29(frame);
+                    return _PyInner.__init__$29(frame);
                 case 29:
-                return _PyInner.gotonext$30(frame);
+                    return _PyInner.gotonext$30(frame);
                 case 30:
-                return _PyInner.getaddrlist$31(frame);
+                    return _PyInner.getaddrlist$31(frame);
                 case 31:
-                return _PyInner.getaddress$32(frame);
+                    return _PyInner.getaddress$32(frame);
                 case 32:
-                return _PyInner.getrouteaddr$33(frame);
+                    return _PyInner.getrouteaddr$33(frame);
                 case 33:
-                return _PyInner.getaddrspec$34(frame);
+                    return _PyInner.getaddrspec$34(frame);
                 case 34:
-                return _PyInner.getdomain$35(frame);
+                    return _PyInner.getdomain$35(frame);
                 case 35:
-                return _PyInner.getdelimited$36(frame);
+                    return _PyInner.getdelimited$36(frame);
                 case 36:
-                return _PyInner.getquote$37(frame);
+                    return _PyInner.getquote$37(frame);
                 case 37:
-                return _PyInner.getcomment$38(frame);
+                    return _PyInner.getcomment$38(frame);
                 case 38:
-                return _PyInner.getdomainliteral$39(frame);
+                    return _PyInner.getdomainliteral$39(frame);
                 case 39:
-                return _PyInner.getatom$40(frame);
+                    return _PyInner.getatom$40(frame);
                 case 40:
-                return _PyInner.getphraselist$41(frame);
+                    return _PyInner.getphraselist$41(frame);
                 case 41:
-                return _PyInner.AddrlistClass$42(frame);
+                    return _PyInner.AddrlistClass$42(frame);
                 case 42:
-                return _PyInner.__init__$43(frame);
+                    return _PyInner.__init__$43(frame);
                 case 43:
-                return _PyInner.__len__$44(frame);
+                    return _PyInner.__len__$44(frame);
                 case 44:
-                return _PyInner.__str__$45(frame);
+                    return _PyInner.__str__$45(frame);
                 case 45:
-                return _PyInner.__add__$46(frame);
+                    return _PyInner.__add__$46(frame);
                 case 46:
-                return _PyInner.__iadd__$47(frame);
+                    return _PyInner.__iadd__$47(frame);
                 case 47:
-                return _PyInner.__sub__$48(frame);
+                    return _PyInner.__sub__$48(frame);
                 case 48:
-                return _PyInner.__isub__$49(frame);
+                    return _PyInner.__isub__$49(frame);
                 case 49:
-                return _PyInner.__getitem__$50(frame);
+                    return _PyInner.__getitem__$50(frame);
                 case 50:
-                return _PyInner.AddressList$51(frame);
+                    return _PyInner.AddressList$51(frame);
                 case 51:
-                return _PyInner.dump_address_pair$52(frame);
+                    return _PyInner.dump_address_pair$52(frame);
                 case 52:
-                return _PyInner.parsedate_tz$53(frame);
+                    return _PyInner.parsedate_tz$53(frame);
                 case 53:
-                return _PyInner.parsedate$54(frame);
+                    return _PyInner.parsedate$54(frame);
                 case 54:
-                return _PyInner.mktime_tz$55(frame);
+                    return _PyInner.mktime_tz$55(frame);
                 case 55:
-                return _PyInner.formatdate$56(frame);
+                    return _PyInner.formatdate$56(frame);
                 case 56:
-                return _PyInner.main$57(frame);
+                    return _PyInner.main$57(frame);
                 default:
-                return null;
+                    return null;
             }
         }
-        
+
         private static PyObject __init__$1(PyFrame frame) {
             // Temporary Variables
             boolean t$0$boolean;
             PyException t$0$PyException;
-            
+
             // Code
             /* Initialize the class instance and read the headers. */
             if (frame.getlocal(2)._eq(i$10).__nonzero__()) {
                 t$0$boolean = true;
                 try {
                     frame.getlocal(1).invoke("tell");
-                }
-                catch (Throwable x$0) {
+                } catch (Throwable x$0) {
                     t$0$boolean = false;
                     t$0$PyException = Py.setException(x$0, frame);
                     frame.setlocal(2, i$11);
@@ -651,31 +654,31 @@ public class rfc822 extends java.lang.Object {
             if (frame.getlocal(0).__getattr__("seekable").__nonzero__()) {
                 try {
                     frame.getlocal(0).__setattr__("startofheaders", frame.getlocal(0).__getattr__("fp").invoke("tell"));
-                }
-                catch (Throwable x$1) {
+                } catch (Throwable x$1) {
                     t$0$PyException = Py.setException(x$1, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("IOError"))) {
                         frame.getlocal(0).__setattr__("seekable", i$11);
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             frame.getlocal(0).invoke("readheaders");
             if (frame.getlocal(0).__getattr__("seekable").__nonzero__()) {
                 try {
                     frame.getlocal(0).__setattr__("startofbody", frame.getlocal(0).__getattr__("fp").invoke("tell"));
-                }
-                catch (Throwable x$2) {
+                } catch (Throwable x$2) {
                     t$0$PyException = Py.setException(x$2, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("IOError"))) {
                         frame.getlocal(0).__setattr__("seekable", i$11);
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             return Py.None;
         }
-        
+
         private static PyObject rewindbody$2(PyFrame frame) {
             /* Rewind the file to the start of the body (if seekable). */
             if (frame.getlocal(0).__getattr__("seekable").__not__().__nonzero__()) {
@@ -684,12 +687,12 @@ public class rfc822 extends java.lang.Object {
             frame.getlocal(0).__getattr__("fp").invoke("seek", frame.getlocal(0).__getattr__("startofbody"));
             return Py.None;
         }
-        
+
         private static PyObject readheaders$3(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Read header lines.
             
@@ -705,10 +708,10 @@ public class rfc822 extends java.lang.Object {
                     The variable self.headers is a completely uninterpreted list
                     of lines contained in the header (so printing them will
                     reproduce the header exactly as it appears in the file).
-                     */
-            frame.getlocal(0).__setattr__("dict", new PyDictionary(new PyObject[] {}));
+             */
+            frame.getlocal(0).__setattr__("dict", new PyDictionary(new PyObject[]{}));
             frame.getlocal(0).__setattr__("unixfrom", s$15);
-            t$0$PyObject = new PyList(new PyObject[] {});
+            t$0$PyObject = new PyList(new PyObject[]{});
             frame.getlocal(0).__setattr__("headers", t$0$PyObject);
             frame.setlocal(6, t$0$PyObject);
             frame.getlocal(0).__setattr__("status", s$15);
@@ -720,24 +723,23 @@ public class rfc822 extends java.lang.Object {
             frame.setlocal(4, t$0$PyObject);
             if (frame.getglobal("hasattr").__call__(frame.getlocal(0).__getattr__("fp"), s$16).__nonzero__()) {
                 frame.setlocal(5, frame.getlocal(0).__getattr__("fp").__getattr__("unread"));
-            }
-            else if (frame.getlocal(0).__getattr__("seekable").__nonzero__()) {
+            } else if (frame.getlocal(0).__getattr__("seekable").__nonzero__()) {
                 frame.setlocal(4, frame.getlocal(0).__getattr__("fp").__getattr__("tell"));
             }
             while (i$10.__nonzero__()) {
                 if (frame.getlocal(4).__nonzero__()) {
                     try {
                         frame.setlocal(1, frame.getlocal(4).__call__());
-                    }
-                    catch (Throwable x$0) {
+                    } catch (Throwable x$0) {
                         t$0$PyException = Py.setException(x$0, frame);
                         if (Py.matchException(t$0$PyException, frame.getglobal("IOError"))) {
                             t$0$PyObject = frame.getglobal("None");
                             frame.setlocal(1, t$0$PyObject);
                             frame.setlocal(4, t$0$PyObject);
                             frame.getlocal(0).__setattr__("seekable", i$11);
+                        } else {
+                            throw t$0$PyException;
                         }
-                        else throw t$0$PyException;
                     }
                 }
                 frame.setlocal(8, frame.getlocal(0).__getattr__("fp").invoke("readline"));
@@ -755,11 +757,9 @@ public class rfc822 extends java.lang.Object {
                     frame.setlocal(7, frame.getlocal(0).__getattr__("dict").__getitem__(frame.getlocal(2))._add(s$20)._add(frame.getlocal(8).invoke("strip")));
                     frame.getlocal(0).__getattr__("dict").__setitem__(frame.getlocal(2), frame.getlocal(7).invoke("strip"));
                     continue;
-                }
-                else if (frame.getlocal(0).invoke("iscomment", frame.getlocal(8)).__nonzero__()) {
+                } else if (frame.getlocal(0).invoke("iscomment", frame.getlocal(8)).__nonzero__()) {
                     continue;
-                }
-                else if (frame.getlocal(0).invoke("islast", frame.getlocal(8)).__nonzero__()) {
+                } else if (frame.getlocal(0).invoke("islast", frame.getlocal(8)).__nonzero__()) {
                     break;
                 }
                 frame.setlocal(2, frame.getlocal(0).invoke("isheader", frame.getlocal(8)));
@@ -767,21 +767,17 @@ public class rfc822 extends java.lang.Object {
                     frame.getlocal(6).invoke("append", frame.getlocal(8));
                     frame.getlocal(0).__getattr__("dict").__setitem__(frame.getlocal(2), frame.getlocal(8).__getslice__(frame.getglobal("len").__call__(frame.getlocal(2))._add(i$10), null, null).invoke("strip"));
                     continue;
-                }
-                else {
+                } else {
                     if (frame.getlocal(0).__getattr__("dict").__not__().__nonzero__()) {
                         frame.getlocal(0).__setattr__("status", s$21);
-                    }
-                    else {
+                    } else {
                         frame.getlocal(0).__setattr__("status", s$22);
                     }
                     if (frame.getlocal(5).__nonzero__()) {
                         frame.getlocal(5).__call__(frame.getlocal(8));
-                    }
-                    else if (frame.getlocal(4).__nonzero__()) {
+                    } else if (frame.getlocal(4).__nonzero__()) {
                         frame.getlocal(0).__getattr__("fp").invoke("seek", frame.getlocal(1));
-                    }
-                    else {
+                    } else {
                         frame.getlocal(0).__setattr__("status", frame.getlocal(0).__getattr__("status")._add(s$23));
                     }
                     break;
@@ -789,23 +785,22 @@ public class rfc822 extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject isheader$4(PyFrame frame) {
             /* Determine whether a given line is a legal header.
             
                     This method should return the header name, suitably canonicalized.
                     You may override this method in order to use Message parsing
                     on tagged data in RFC822-like formats with special header formats.
-                     */
+             */
             frame.setlocal(2, frame.getlocal(1).invoke("find", s$25));
             if (frame.getlocal(2)._gt(i$11).__nonzero__()) {
                 return frame.getlocal(1).__getslice__(null, frame.getlocal(2), null).invoke("lower");
-            }
-            else {
+            } else {
                 return frame.getglobal("None");
             }
         }
-        
+
         private static PyObject islast$5(PyFrame frame) {
             /* Determine whether a line is a legal end of RFC-822 headers.
             
@@ -815,25 +810,25 @@ public class rfc822 extends java.lang.Object {
                     For convenience (e.g. for code reading from sockets) a
                     line consisting of 
              also matches.
-                     */
+             */
             return frame.getlocal(1)._in(frame.getglobal("_blanklines"));
         }
-        
+
         private static PyObject iscomment$6(PyFrame frame) {
             /* Determine whether a line should be skipped entirely.
             
                     You may override this method in order to use Message parsing
                     on tagged data in RFC822-like formats that support embedded
                     comments or free-text data.
-                     */
+             */
             return frame.getglobal("None");
         }
-        
+
         private static PyObject getallmatchingheaders$7(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Find all header lines matching a given header name.
             
@@ -844,10 +839,10 @@ public class rfc822 extends java.lang.Object {
                     empty list is returned.  If the header occurs multiple
                     times, all occurrences are returned.  Case is not
                     important in the header name.
-                     */
+             */
             frame.setlocal(1, frame.getlocal(1).invoke("lower")._add(s$25));
             frame.setlocal(5, frame.getglobal("len").__call__(frame.getlocal(1)));
-            frame.setlocal(4, new PyList(new PyObject[] {}));
+            frame.setlocal(4, new PyList(new PyObject[]{}));
             frame.setlocal(3, i$11);
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(0).__getattr__("headers");
@@ -855,8 +850,7 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(2, t$0$PyObject);
                 if (frame.getlocal(2).__getslice__(null, frame.getlocal(5), null).invoke("lower")._eq(frame.getlocal(1)).__nonzero__()) {
                     frame.setlocal(3, i$10);
-                }
-                else if (frame.getlocal(2).__getslice__(null, i$10, null).invoke("isspace").__not__().__nonzero__()) {
+                } else if (frame.getlocal(2).__getslice__(null, i$10, null).invoke("isspace").__not__().__nonzero__()) {
                     frame.setlocal(3, i$11);
                 }
                 if (frame.getlocal(3).__nonzero__()) {
@@ -865,22 +859,22 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(4);
         }
-        
+
         private static PyObject getfirstmatchingheader$8(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Get the first header line matching name.
             
                     This is similar to getallmatchingheaders, but it returns
                     only the first matching header (and its continuation
                     lines).
-                     */
+             */
             frame.setlocal(1, frame.getlocal(1).invoke("lower")._add(s$25));
             frame.setlocal(5, frame.getglobal("len").__call__(frame.getlocal(1)));
-            frame.setlocal(4, new PyList(new PyObject[] {}));
+            frame.setlocal(4, new PyList(new PyObject[]{}));
             frame.setlocal(3, i$11);
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(0).__getattr__("headers");
@@ -890,8 +884,7 @@ public class rfc822 extends java.lang.Object {
                     if (frame.getlocal(2).__getslice__(null, i$10, null).invoke("isspace").__not__().__nonzero__()) {
                         break;
                     }
-                }
-                else if (frame.getlocal(2).__getslice__(null, frame.getlocal(5), null).invoke("lower")._eq(frame.getlocal(1)).__nonzero__()) {
+                } else if (frame.getlocal(2).__getslice__(null, frame.getlocal(5), null).invoke("lower")._eq(frame.getlocal(1)).__nonzero__()) {
                     frame.setlocal(3, i$10);
                 }
                 if (frame.getlocal(3).__nonzero__()) {
@@ -900,7 +893,7 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(4);
         }
-        
+
         private static PyObject getrawheader$9(PyFrame frame) {
             /* A higher-level interface to getfirstmatchingheader().
             
@@ -909,7 +902,7 @@ public class rfc822 extends java.lang.Object {
                     trailing and embedded whitespace is kept in the
                     string, however.
                     Return None if the header does not occur.
-                     */
+             */
             frame.setlocal(2, frame.getlocal(0).invoke("getfirstmatchingheader", frame.getlocal(1)));
             if (frame.getlocal(2).__not__().__nonzero__()) {
                 return frame.getglobal("None");
@@ -917,11 +910,11 @@ public class rfc822 extends java.lang.Object {
             frame.getlocal(2).__setitem__(i$11, frame.getlocal(2).__getitem__(i$11).__getslice__(frame.getglobal("len").__call__(frame.getlocal(1))._add(i$10), null, null));
             return s$15.invoke("join", frame.getlocal(2));
         }
-        
+
         private static PyObject getheader$10(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             /* Get the header value for a name.
             
@@ -929,24 +922,24 @@ public class rfc822 extends java.lang.Object {
                     version of the header value for a given header name,
                     or None if it doesn't exist.  This uses the dictionary
                     version which finds the *last* such header.
-                     */
+             */
             try {
                 return frame.getlocal(0).__getattr__("dict").__getitem__(frame.getlocal(1).invoke("lower"));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 if (Py.matchException(t$0$PyException, frame.getglobal("KeyError"))) {
                     return frame.getlocal(2);
+                } else {
+                    throw t$0$PyException;
                 }
-                else throw t$0$PyException;
             }
         }
-        
+
         private static PyObject getheaders$11(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Get all values for a header.
             
@@ -954,8 +947,8 @@ public class rfc822 extends java.lang.Object {
                     each value in the result list is stripped in the same way as the
                     result of getheader().  If the header is not given, return an
                     empty list.
-                     */
-            frame.setlocal(2, new PyList(new PyObject[] {}));
+             */
+            frame.setlocal(2, new PyList(new PyObject[]{}));
             frame.setlocal(5, s$15);
             frame.setlocal(3, i$11);
             t$0$int = 0;
@@ -964,13 +957,11 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(4, t$0$PyObject);
                 if (frame.getlocal(4).__getitem__(i$11).invoke("isspace").__nonzero__()) {
                     if (frame.getlocal(5).__nonzero__()) {
-                        frame.setlocal(5, s$33._mod(new PyTuple(new PyObject[] {frame.getlocal(5), frame.getlocal(4).invoke("strip")})));
-                    }
-                    else {
+                        frame.setlocal(5, s$33._mod(new PyTuple(new PyObject[]{frame.getlocal(5), frame.getlocal(4).invoke("strip")})));
+                    } else {
                         frame.setlocal(5, frame.getlocal(4).invoke("strip"));
                     }
-                }
-                else {
+                } else {
                     if (frame.getlocal(3).__nonzero__()) {
                         frame.getlocal(2).invoke("append", frame.getlocal(5));
                     }
@@ -983,27 +974,26 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(2);
         }
-        
+
         private static PyObject getaddr$12(PyFrame frame) {
             /* Get a single address from a header, as a tuple.
             
                     An example return value:
                     ('Guido van Rossum', 'guido@cwi.nl')
-                     */
+             */
             frame.setlocal(2, frame.getlocal(0).invoke("getaddrlist", frame.getlocal(1)));
             if (frame.getlocal(2).__nonzero__()) {
                 return frame.getlocal(2).__getitem__(i$11);
-            }
-            else {
-                return new PyTuple(new PyObject[] {frame.getglobal("None"), frame.getglobal("None")});
+            } else {
+                return new PyTuple(new PyObject[]{frame.getglobal("None"), frame.getglobal("None")});
             }
         }
-        
+
         private static PyObject getaddrlist$13(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Get a list of addresses from a header.
             
@@ -1011,16 +1001,15 @@ public class rfc822 extends java.lang.Object {
                     tuple as returned by getaddr().  Scans all named headers, so it works
                     properly with multiple To: or Cc: headers for example.
             
-                     */
-            frame.setlocal(7, new PyList(new PyObject[] {}));
+             */
+            frame.setlocal(7, new PyList(new PyObject[]{}));
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(0).invoke("getallmatchingheaders", frame.getlocal(1));
             while ((t$0$PyObject = t$1$PyObject.__finditem__(t$0$int++)) != null) {
                 frame.setlocal(3, t$0$PyObject);
                 if (frame.getlocal(3).__getitem__(i$11)._in(s$19).__nonzero__()) {
                     frame.getlocal(7).invoke("append", frame.getlocal(3));
-                }
-                else {
+                } else {
                     if (frame.getlocal(7).__nonzero__()) {
                         frame.getlocal(7).invoke("append", s$36);
                     }
@@ -1035,76 +1024,76 @@ public class rfc822 extends java.lang.Object {
             frame.setlocal(5, frame.getglobal("AddrlistClass").__call__(frame.getlocal(6)));
             return frame.getlocal(5).invoke("getaddrlist");
         }
-        
+
         private static PyObject getdate$14(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             /* Retrieve a date field from a header.
             
                     Retrieves a date field from the named header, returning
                     a tuple compatible with time.mktime().
-                     */
+             */
             try {
                 frame.setlocal(2, frame.getlocal(0).__getitem__(frame.getlocal(1)));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 if (Py.matchException(t$0$PyException, frame.getglobal("KeyError"))) {
                     return frame.getglobal("None");
+                } else {
+                    throw t$0$PyException;
                 }
-                else throw t$0$PyException;
             }
             return frame.getglobal("parsedate").__call__(frame.getlocal(2));
         }
-        
+
         private static PyObject getdate_tz$15(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             /* Retrieve a date field from a header as a 10-tuple.
             
                     The first 9 elements make up a tuple compatible with
                     time.mktime(), and the 10th is the offset of the poster's
                     time zone from GMT/UTC.
-                     */
+             */
             try {
                 frame.setlocal(2, frame.getlocal(0).__getitem__(frame.getlocal(1)));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 if (Py.matchException(t$0$PyException, frame.getglobal("KeyError"))) {
                     return frame.getglobal("None");
+                } else {
+                    throw t$0$PyException;
                 }
-                else throw t$0$PyException;
             }
             return frame.getglobal("parsedate_tz").__call__(frame.getlocal(2));
         }
-        
+
         private static PyObject __len__$16(PyFrame frame) {
             /* Get the number of headers in a message. */
             return frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("dict"));
         }
-        
+
         private static PyObject __getitem__$17(PyFrame frame) {
             /* Get a specific header, as from a dictionary. */
             return frame.getlocal(0).__getattr__("dict").__getitem__(frame.getlocal(1).invoke("lower"));
         }
-        
+
         private static PyObject __setitem__$18(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Set the value of a header.
             
                     Note: This is not a perfect inversion of __getitem__, because
                     any changed headers get stuck at the end of the raw-headers list
                     rather than where the altered header was.
-                     */
+             */
             frame.getlocal(0).__delitem__(frame.getlocal(1));
             frame.getlocal(0).__getattr__("dict").__setitem__(frame.getlocal(1).invoke("lower"), frame.getlocal(2));
             frame.setlocal(5, frame.getlocal(1)._add(s$42)._add(frame.getlocal(2)));
@@ -1117,12 +1106,12 @@ public class rfc822 extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject __delitem__$19(PyFrame frame) {
             // Temporary Variables
             int t$0$int, t$1$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject, t$3$PyObject;
-            
+
             // Code
             /* Delete all occurrences of a specific header, if it is present. */
             frame.setlocal(1, frame.getlocal(1).invoke("lower"));
@@ -1132,7 +1121,7 @@ public class rfc822 extends java.lang.Object {
             frame.getlocal(0).__getattr__("dict").__delitem__(frame.getlocal(1));
             frame.setlocal(1, frame.getlocal(1)._add(s$25));
             frame.setlocal(3, frame.getglobal("len").__call__(frame.getlocal(1)));
-            frame.setlocal(5, new PyList(new PyObject[] {}));
+            frame.setlocal(5, new PyList(new PyObject[]{}));
             frame.setlocal(2, i$11);
             t$0$int = 0;
             t$1$PyObject = frame.getglobal("range").__call__(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("headers")));
@@ -1141,8 +1130,7 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(6, frame.getlocal(0).__getattr__("headers").__getitem__(frame.getlocal(4)));
                 if (frame.getlocal(6).__getslice__(null, frame.getlocal(3), null).invoke("lower")._eq(frame.getlocal(1)).__nonzero__()) {
                     frame.setlocal(2, i$10);
-                }
-                else if (frame.getlocal(6).__getslice__(null, i$10, null).invoke("isspace").__not__().__nonzero__()) {
+                } else if (frame.getlocal(6).__getslice__(null, i$10, null).invoke("isspace").__not__().__nonzero__()) {
                     frame.setlocal(2, i$11);
                 }
                 if (frame.getlocal(2).__nonzero__()) {
@@ -1158,35 +1146,35 @@ public class rfc822 extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject has_key$20(PyFrame frame) {
             /* Determine whether a message contains the named header. */
             return frame.getlocal(0).__getattr__("dict").invoke("has_key", frame.getlocal(1).invoke("lower"));
         }
-        
+
         private static PyObject keys$21(PyFrame frame) {
             /* Get all of a message's header field names. */
             return frame.getlocal(0).__getattr__("dict").invoke("keys");
         }
-        
+
         private static PyObject values$22(PyFrame frame) {
             /* Get all of a message's header field values. */
             return frame.getlocal(0).__getattr__("dict").invoke("values");
         }
-        
+
         private static PyObject items$23(PyFrame frame) {
             /* Get all of a message's headers.
             
                     Returns a list of name, value tuples.
-                     */
+             */
             return frame.getlocal(0).__getattr__("dict").invoke("items");
         }
-        
+
         private static PyObject __str__$24(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             frame.setlocal(1, s$15);
             t$0$int = 0;
@@ -1197,41 +1185,41 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(1);
         }
-        
+
         private static PyObject Message$25(PyFrame frame) {
             /* Represents a single RFC-822-compliant message. */
-            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[] {i$10}, c$0___init__));
-            frame.setlocal("rewindbody", new PyFunction(frame.f_globals, new PyObject[] {}, c$1_rewindbody));
-            frame.setlocal("readheaders", new PyFunction(frame.f_globals, new PyObject[] {}, c$2_readheaders));
-            frame.setlocal("isheader", new PyFunction(frame.f_globals, new PyObject[] {}, c$3_isheader));
-            frame.setlocal("islast", new PyFunction(frame.f_globals, new PyObject[] {}, c$4_islast));
-            frame.setlocal("iscomment", new PyFunction(frame.f_globals, new PyObject[] {}, c$5_iscomment));
-            frame.setlocal("getallmatchingheaders", new PyFunction(frame.f_globals, new PyObject[] {}, c$6_getallmatchingheaders));
-            frame.setlocal("getfirstmatchingheader", new PyFunction(frame.f_globals, new PyObject[] {}, c$7_getfirstmatchingheader));
-            frame.setlocal("getrawheader", new PyFunction(frame.f_globals, new PyObject[] {}, c$8_getrawheader));
-            frame.setlocal("getheader", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$9_getheader));
+            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[]{i$10}, c$0___init__));
+            frame.setlocal("rewindbody", new PyFunction(frame.f_globals, new PyObject[]{}, c$1_rewindbody));
+            frame.setlocal("readheaders", new PyFunction(frame.f_globals, new PyObject[]{}, c$2_readheaders));
+            frame.setlocal("isheader", new PyFunction(frame.f_globals, new PyObject[]{}, c$3_isheader));
+            frame.setlocal("islast", new PyFunction(frame.f_globals, new PyObject[]{}, c$4_islast));
+            frame.setlocal("iscomment", new PyFunction(frame.f_globals, new PyObject[]{}, c$5_iscomment));
+            frame.setlocal("getallmatchingheaders", new PyFunction(frame.f_globals, new PyObject[]{}, c$6_getallmatchingheaders));
+            frame.setlocal("getfirstmatchingheader", new PyFunction(frame.f_globals, new PyObject[]{}, c$7_getfirstmatchingheader));
+            frame.setlocal("getrawheader", new PyFunction(frame.f_globals, new PyObject[]{}, c$8_getrawheader));
+            frame.setlocal("getheader", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$9_getheader));
             frame.setlocal("get", frame.getname("getheader"));
-            frame.setlocal("getheaders", new PyFunction(frame.f_globals, new PyObject[] {}, c$10_getheaders));
-            frame.setlocal("getaddr", new PyFunction(frame.f_globals, new PyObject[] {}, c$11_getaddr));
-            frame.setlocal("getaddrlist", new PyFunction(frame.f_globals, new PyObject[] {}, c$12_getaddrlist));
-            frame.setlocal("getdate", new PyFunction(frame.f_globals, new PyObject[] {}, c$13_getdate));
-            frame.setlocal("getdate_tz", new PyFunction(frame.f_globals, new PyObject[] {}, c$14_getdate_tz));
-            frame.setlocal("__len__", new PyFunction(frame.f_globals, new PyObject[] {}, c$15___len__));
-            frame.setlocal("__getitem__", new PyFunction(frame.f_globals, new PyObject[] {}, c$16___getitem__));
-            frame.setlocal("__setitem__", new PyFunction(frame.f_globals, new PyObject[] {}, c$17___setitem__));
-            frame.setlocal("__delitem__", new PyFunction(frame.f_globals, new PyObject[] {}, c$18___delitem__));
-            frame.setlocal("has_key", new PyFunction(frame.f_globals, new PyObject[] {}, c$19_has_key));
-            frame.setlocal("keys", new PyFunction(frame.f_globals, new PyObject[] {}, c$20_keys));
-            frame.setlocal("values", new PyFunction(frame.f_globals, new PyObject[] {}, c$21_values));
-            frame.setlocal("items", new PyFunction(frame.f_globals, new PyObject[] {}, c$22_items));
-            frame.setlocal("__str__", new PyFunction(frame.f_globals, new PyObject[] {}, c$23___str__));
+            frame.setlocal("getheaders", new PyFunction(frame.f_globals, new PyObject[]{}, c$10_getheaders));
+            frame.setlocal("getaddr", new PyFunction(frame.f_globals, new PyObject[]{}, c$11_getaddr));
+            frame.setlocal("getaddrlist", new PyFunction(frame.f_globals, new PyObject[]{}, c$12_getaddrlist));
+            frame.setlocal("getdate", new PyFunction(frame.f_globals, new PyObject[]{}, c$13_getdate));
+            frame.setlocal("getdate_tz", new PyFunction(frame.f_globals, new PyObject[]{}, c$14_getdate_tz));
+            frame.setlocal("__len__", new PyFunction(frame.f_globals, new PyObject[]{}, c$15___len__));
+            frame.setlocal("__getitem__", new PyFunction(frame.f_globals, new PyObject[]{}, c$16___getitem__));
+            frame.setlocal("__setitem__", new PyFunction(frame.f_globals, new PyObject[]{}, c$17___setitem__));
+            frame.setlocal("__delitem__", new PyFunction(frame.f_globals, new PyObject[]{}, c$18___delitem__));
+            frame.setlocal("has_key", new PyFunction(frame.f_globals, new PyObject[]{}, c$19_has_key));
+            frame.setlocal("keys", new PyFunction(frame.f_globals, new PyObject[]{}, c$20_keys));
+            frame.setlocal("values", new PyFunction(frame.f_globals, new PyObject[]{}, c$21_values));
+            frame.setlocal("items", new PyFunction(frame.f_globals, new PyObject[]{}, c$22_items));
+            frame.setlocal("__str__", new PyFunction(frame.f_globals, new PyObject[]{}, c$23___str__));
             return frame.getf_locals();
         }
-        
+
         private static PyObject unquote$26(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Remove quotes from a string. */
             if (frame.getglobal("len").__call__(frame.getlocal(0))._gt(i$10).__nonzero__()) {
@@ -1244,96 +1232,90 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(0);
         }
-        
+
         private static PyObject quote$27(PyFrame frame) {
             /* Add quotes around a string. */
             return frame.getlocal(0).invoke("replace", s$53, s$54).invoke("replace", s$49, s$55);
         }
-        
+
         private static PyObject parseaddr$28(PyFrame frame) {
             /* Parse an address into a (realname, mailaddr) tuple. */
             frame.setlocal(1, frame.getglobal("AddrlistClass").__call__(frame.getlocal(0)));
             frame.setlocal(2, frame.getlocal(1).invoke("getaddrlist"));
             if (frame.getlocal(2).__not__().__nonzero__()) {
-                return new PyTuple(new PyObject[] {frame.getglobal("None"), frame.getglobal("None")});
-            }
-            else {
+                return new PyTuple(new PyObject[]{frame.getglobal("None"), frame.getglobal("None")});
+            } else {
                 return frame.getlocal(2).__getitem__(i$11);
             }
         }
-        
+
         private static PyObject __init__$29(PyFrame frame) {
             /* Initialize a new instance.
             
                     `field' is an unparsed address header field, containing
                     one or more addresses.
-                     */
+             */
             frame.getlocal(0).__setattr__("specials", s$59);
             frame.getlocal(0).__setattr__("pos", i$11);
             frame.getlocal(0).__setattr__("LWS", s$19);
             frame.getlocal(0).__setattr__("CR", s$6);
             frame.getlocal(0).__setattr__("atomends", frame.getlocal(0).__getattr__("specials")._add(frame.getlocal(0).__getattr__("LWS"))._add(frame.getlocal(0).__getattr__("CR")));
             frame.getlocal(0).__setattr__("field", frame.getlocal(1));
-            frame.getlocal(0).__setattr__("commentlist", new PyList(new PyObject[] {}));
+            frame.getlocal(0).__setattr__("commentlist", new PyList(new PyObject[]{}));
             return Py.None;
         }
-        
+
         private static PyObject gotonext$30(PyFrame frame) {
             /* Parse up to the start of the next address. */
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("LWS")._add(s$61)).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
                     frame.getlocal(0).__getattr__("commentlist").invoke("append", frame.getlocal(0).invoke("getcomment"));
-                }
-                else {
+                } else {
                     break;
                 }
             }
             return Py.None;
         }
-        
+
         private static PyObject getaddrlist$31(PyFrame frame) {
             /* Parse all addresses.
             
                     Returns a list containing all of the addresses.
-                     */
+             */
             frame.setlocal(1, frame.getlocal(0).invoke("getaddress"));
             if (frame.getlocal(1).__nonzero__()) {
                 return frame.getlocal(1)._add(frame.getlocal(0).invoke("getaddrlist"));
-            }
-            else {
-                return new PyList(new PyObject[] {});
+            } else {
+                return new PyList(new PyObject[]{});
             }
         }
-        
+
         private static PyObject getaddress$32(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Parse the next address. */
-            frame.getlocal(0).__setattr__("commentlist", new PyList(new PyObject[] {}));
+            frame.getlocal(0).__setattr__("commentlist", new PyList(new PyObject[]{}));
             frame.getlocal(0).invoke("gotonext");
             frame.setlocal(2, frame.getlocal(0).__getattr__("pos"));
             frame.setlocal(6, frame.getlocal(0).__getattr__("commentlist"));
             frame.setlocal(7, frame.getlocal(0).invoke("getphraselist"));
             frame.getlocal(0).invoke("gotonext");
-            frame.setlocal(1, new PyList(new PyObject[] {}));
+            frame.setlocal(1, new PyList(new PyObject[]{}));
             if (frame.getlocal(0).__getattr__("pos")._ge(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(7).__nonzero__()) {
-                    frame.setlocal(1, new PyList(new PyObject[] {new PyTuple(new PyObject[] {s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(7).__getitem__(i$11)})}));
+                    frame.setlocal(1, new PyList(new PyObject[]{new PyTuple(new PyObject[]{s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(7).__getitem__(i$11)})}));
                 }
-            }
-            else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(s$66).__nonzero__()) {
+            } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(s$66).__nonzero__()) {
                 frame.getlocal(0).__setattr__("pos", frame.getlocal(2));
                 frame.getlocal(0).__setattr__("commentlist", frame.getlocal(6));
                 frame.setlocal(4, frame.getlocal(0).invoke("getaddrspec"));
-                frame.setlocal(1, new PyList(new PyObject[] {new PyTuple(new PyObject[] {s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(4)})}));
-            }
-            else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$25).__nonzero__()) {
-                frame.setlocal(1, new PyList(new PyObject[] {}));
+                frame.setlocal(1, new PyList(new PyObject[]{new PyTuple(new PyObject[]{s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(4)})}));
+            } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$25).__nonzero__()) {
+                frame.setlocal(1, new PyList(new PyObject[]{}));
                 frame.setlocal(5, frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field")));
                 frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                 while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
@@ -1344,21 +1326,17 @@ public class rfc822 extends java.lang.Object {
                     }
                     frame.setlocal(1, frame.getlocal(1)._add(frame.getlocal(0).invoke("getaddress")));
                 }
-            }
-            else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$50).__nonzero__()) {
+            } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$50).__nonzero__()) {
                 frame.setlocal(3, frame.getlocal(0).invoke("getrouteaddr"));
                 if (frame.getlocal(0).__getattr__("commentlist").__nonzero__()) {
-                    frame.setlocal(1, new PyList(new PyObject[] {new PyTuple(new PyObject[] {s$65.invoke("join", frame.getlocal(7))._add(s$68)._add(s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")))._add(s$69), frame.getlocal(3)})}));
+                    frame.setlocal(1, new PyList(new PyObject[]{new PyTuple(new PyObject[]{s$65.invoke("join", frame.getlocal(7))._add(s$68)._add(s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")))._add(s$69), frame.getlocal(3)})}));
+                } else {
+                    frame.setlocal(1, new PyList(new PyObject[]{new PyTuple(new PyObject[]{s$65.invoke("join", frame.getlocal(7)), frame.getlocal(3)})}));
                 }
-                else {
-                    frame.setlocal(1, new PyList(new PyObject[] {new PyTuple(new PyObject[] {s$65.invoke("join", frame.getlocal(7)), frame.getlocal(3)})}));
-                }
-            }
-            else {
+            } else {
                 if (frame.getlocal(7).__nonzero__()) {
-                    frame.setlocal(1, new PyList(new PyObject[] {new PyTuple(new PyObject[] {s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(7).__getitem__(i$11)})}));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("specials")).__nonzero__()) {
+                    frame.setlocal(1, new PyList(new PyObject[]{new PyTuple(new PyObject[]{s$65.invoke("join", frame.getlocal(0).__getattr__("commentlist")), frame.getlocal(7).__getitem__(i$11)})}));
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("specials")).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                 }
             }
@@ -1368,12 +1346,12 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(1);
         }
-        
+
         private static PyObject getrouteaddr$33(PyFrame frame) {
             /* Parse a route address (Return-path value).
             
                     This method just skips all the route stuff and returns the addrspec.
-                     */
+             */
             if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._ne(s$50).__nonzero__()) {
                 return Py.None;
             }
@@ -1385,20 +1363,16 @@ public class rfc822 extends java.lang.Object {
                 if (frame.getlocal(1).__nonzero__()) {
                     frame.getlocal(0).invoke("getdomain");
                     frame.setlocal(1, i$11);
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$51).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$51).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     break;
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$72).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$72).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     frame.setlocal(1, i$10);
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$25).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$25).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     frame.setlocal(2, i$10);
-                }
-                else {
+                } else {
                     frame.setlocal(3, frame.getlocal(0).invoke("getaddrspec"));
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     break;
@@ -1407,27 +1381,24 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(3);
         }
-        
+
         private static PyObject getaddrspec$34(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Parse an RFC-822 addr-spec. */
-            frame.setlocal(1, new PyList(new PyObject[] {}));
+            frame.setlocal(1, new PyList(new PyObject[]{}));
             frame.getlocal(0).invoke("gotonext");
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$74).__nonzero__()) {
                     frame.getlocal(1).invoke("append", s$74);
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$49).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$49).__nonzero__()) {
                     frame.getlocal(1).invoke("append", s$75._mod(frame.getlocal(0).invoke("getquote")));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
                     break;
-                }
-                else {
+                } else {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).invoke("getatom"));
                 }
                 frame.getlocal(0).invoke("gotonext");
@@ -1440,38 +1411,33 @@ public class rfc822 extends java.lang.Object {
             frame.getlocal(0).invoke("gotonext");
             return s$15.invoke("join", frame.getlocal(1))._add(frame.getlocal(0).invoke("getdomain"));
         }
-        
+
         private static PyObject getdomain$35(PyFrame frame) {
             /* Get the complete domain name from an address. */
-            frame.setlocal(1, new PyList(new PyObject[] {}));
+            frame.setlocal(1, new PyList(new PyObject[]{}));
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("LWS")).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
                     frame.getlocal(0).__getattr__("commentlist").invoke("append", frame.getlocal(0).invoke("getcomment"));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$77).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$77).__nonzero__()) {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).invoke("getdomainliteral"));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$74).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$74).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     frame.getlocal(1).invoke("append", s$74);
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
                     break;
-                }
-                else {
+                } else {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).invoke("getatom"));
                 }
             }
             return s$15.invoke("join", frame.getlocal(1));
         }
-        
+
         private static PyObject getdelimited$36(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Parse a header fragment delimited by special characters.
             
@@ -1484,94 +1450,85 @@ public class rfc822 extends java.lang.Object {
             
                     If `allowcomments' is non-zero, embedded RFC-822 comments
                     are allowed within the parsed fragment.
-                     */
+             */
             if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._ne(frame.getlocal(1)).__nonzero__()) {
                 return s$15;
             }
-            frame.setlocal(5, new PyList(new PyObject[] {s$15}));
+            frame.setlocal(5, new PyList(new PyObject[]{s$15}));
             frame.setlocal(4, i$11);
             frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(4)._eq(i$10).__nonzero__()) {
                     frame.getlocal(5).invoke("append", frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos")));
                     frame.setlocal(4, i$11);
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(2)).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(2)).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
                     break;
-                }
-                else if (((t$0$PyObject = frame.getlocal(3)).__nonzero__() ? frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62) : t$0$PyObject).__nonzero__()) {
+                } else if (((t$0$PyObject = frame.getlocal(3)).__nonzero__() ? frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62) : t$0$PyObject).__nonzero__()) {
                     frame.getlocal(5).invoke("append", frame.getlocal(0).invoke("getcomment"));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$53).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$53).__nonzero__()) {
                     frame.setlocal(4, i$10);
-                }
-                else {
+                } else {
                     frame.getlocal(5).invoke("append", frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos")));
                 }
                 frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
             }
             return s$15.invoke("join", frame.getlocal(5));
         }
-        
+
         private static PyObject getquote$37(PyFrame frame) {
             /* Get a quote-delimited fragment from self's field. */
-            return frame.getlocal(0).invoke("getdelimited", new PyObject[] {s$49, s$80, i$11});
+            return frame.getlocal(0).invoke("getdelimited", new PyObject[]{s$49, s$80, i$11});
         }
-        
+
         private static PyObject getcomment$38(PyFrame frame) {
             /* Get a parenthesis-delimited fragment from self's field. */
-            return frame.getlocal(0).invoke("getdelimited", new PyObject[] {s$62, s$82, i$10});
+            return frame.getlocal(0).invoke("getdelimited", new PyObject[]{s$62, s$82, i$10});
         }
-        
+
         private static PyObject getdomainliteral$39(PyFrame frame) {
             /* Parse an RFC-822 domain-literal. */
-            return s$84._mod(frame.getlocal(0).invoke("getdelimited", new PyObject[] {s$77, s$85, i$11}));
+            return s$84._mod(frame.getlocal(0).invoke("getdelimited", new PyObject[]{s$77, s$85, i$11}));
         }
-        
+
         private static PyObject getatom$40(PyFrame frame) {
             /* Parse an RFC-822 atom. */
-            frame.setlocal(1, new PyList(new PyObject[] {s$15}));
+            frame.setlocal(1, new PyList(new PyObject[]{s$15}));
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
                     break;
-                }
-                else {
+                } else {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos")));
                 }
                 frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
             }
             return s$15.invoke("join", frame.getlocal(1));
         }
-        
+
         private static PyObject getphraselist$41(PyFrame frame) {
             /* Parse a sequence of RFC-822 phrases.
             
                     A phrase is a sequence of words, which are in turn either
                     RFC-822 atoms or quoted-strings.  Phrases are canonicalized
                     by squeezing all runs of continuous whitespace into one space.
-                     */
-            frame.setlocal(1, new PyList(new PyObject[] {}));
+             */
+            frame.setlocal(1, new PyList(new PyObject[]{}));
             while (frame.getlocal(0).__getattr__("pos")._lt(frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("field"))).__nonzero__()) {
                 if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("LWS")).__nonzero__()) {
                     frame.getlocal(0).__setattr__("pos", frame.getlocal(0).__getattr__("pos")._add(i$10));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$49).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$49).__nonzero__()) {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).invoke("getquote"));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._eq(s$62).__nonzero__()) {
                     frame.getlocal(0).__getattr__("commentlist").invoke("append", frame.getlocal(0).invoke("getcomment"));
-                }
-                else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
+                } else if (frame.getlocal(0).__getattr__("field").__getitem__(frame.getlocal(0).__getattr__("pos"))._in(frame.getlocal(0).__getattr__("atomends")).__nonzero__()) {
                     break;
-                }
-                else {
+                } else {
                     frame.getlocal(1).invoke("append", frame.getlocal(0).invoke("getatom"));
                 }
             }
             return frame.getlocal(1);
         }
-        
+
         private static PyObject AddrlistClass$42(PyFrame frame) {
             /* Address parser class by Ben Escoto.
             
@@ -1580,47 +1537,46 @@ public class rfc822 extends java.lang.Object {
             
                 Note: this class interface is deprecated and may be removed in the future.
                 Use rfc822.AddressList instead.
-                 */
-            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[] {}, c$28___init__));
-            frame.setlocal("gotonext", new PyFunction(frame.f_globals, new PyObject[] {}, c$29_gotonext));
-            frame.setlocal("getaddrlist", new PyFunction(frame.f_globals, new PyObject[] {}, c$30_getaddrlist));
-            frame.setlocal("getaddress", new PyFunction(frame.f_globals, new PyObject[] {}, c$31_getaddress));
-            frame.setlocal("getrouteaddr", new PyFunction(frame.f_globals, new PyObject[] {}, c$32_getrouteaddr));
-            frame.setlocal("getaddrspec", new PyFunction(frame.f_globals, new PyObject[] {}, c$33_getaddrspec));
-            frame.setlocal("getdomain", new PyFunction(frame.f_globals, new PyObject[] {}, c$34_getdomain));
-            frame.setlocal("getdelimited", new PyFunction(frame.f_globals, new PyObject[] {i$10}, c$35_getdelimited));
-            frame.setlocal("getquote", new PyFunction(frame.f_globals, new PyObject[] {}, c$36_getquote));
-            frame.setlocal("getcomment", new PyFunction(frame.f_globals, new PyObject[] {}, c$37_getcomment));
-            frame.setlocal("getdomainliteral", new PyFunction(frame.f_globals, new PyObject[] {}, c$38_getdomainliteral));
-            frame.setlocal("getatom", new PyFunction(frame.f_globals, new PyObject[] {}, c$39_getatom));
-            frame.setlocal("getphraselist", new PyFunction(frame.f_globals, new PyObject[] {}, c$40_getphraselist));
+             */
+            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[]{}, c$28___init__));
+            frame.setlocal("gotonext", new PyFunction(frame.f_globals, new PyObject[]{}, c$29_gotonext));
+            frame.setlocal("getaddrlist", new PyFunction(frame.f_globals, new PyObject[]{}, c$30_getaddrlist));
+            frame.setlocal("getaddress", new PyFunction(frame.f_globals, new PyObject[]{}, c$31_getaddress));
+            frame.setlocal("getrouteaddr", new PyFunction(frame.f_globals, new PyObject[]{}, c$32_getrouteaddr));
+            frame.setlocal("getaddrspec", new PyFunction(frame.f_globals, new PyObject[]{}, c$33_getaddrspec));
+            frame.setlocal("getdomain", new PyFunction(frame.f_globals, new PyObject[]{}, c$34_getdomain));
+            frame.setlocal("getdelimited", new PyFunction(frame.f_globals, new PyObject[]{i$10}, c$35_getdelimited));
+            frame.setlocal("getquote", new PyFunction(frame.f_globals, new PyObject[]{}, c$36_getquote));
+            frame.setlocal("getcomment", new PyFunction(frame.f_globals, new PyObject[]{}, c$37_getcomment));
+            frame.setlocal("getdomainliteral", new PyFunction(frame.f_globals, new PyObject[]{}, c$38_getdomainliteral));
+            frame.setlocal("getatom", new PyFunction(frame.f_globals, new PyObject[]{}, c$39_getatom));
+            frame.setlocal("getphraselist", new PyFunction(frame.f_globals, new PyObject[]{}, c$40_getphraselist));
             return frame.getf_locals();
         }
-        
+
         private static PyObject __init__$43(PyFrame frame) {
             frame.getglobal("AddrlistClass").invoke("__init__", frame.getlocal(0), frame.getlocal(1));
             if (frame.getlocal(1).__nonzero__()) {
                 frame.getlocal(0).__setattr__("addresslist", frame.getlocal(0).invoke("getaddrlist"));
-            }
-            else {
-                frame.getlocal(0).__setattr__("addresslist", new PyList(new PyObject[] {}));
+            } else {
+                frame.getlocal(0).__setattr__("addresslist", new PyList(new PyObject[]{}));
             }
             return Py.None;
         }
-        
+
         private static PyObject __len__$44(PyFrame frame) {
             return frame.getglobal("len").__call__(frame.getlocal(0).__getattr__("addresslist"));
         }
-        
+
         private static PyObject __str__$45(PyFrame frame) {
             return s$36.invoke("join", frame.getglobal("map").__call__(frame.getglobal("dump_address_pair"), frame.getlocal(0).__getattr__("addresslist")));
         }
-        
+
         private static PyObject __add__$46(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             frame.setlocal(3, frame.getglobal("AddressList").__call__(frame.getglobal("None")));
             frame.getlocal(3).__setattr__("addresslist", frame.getlocal(0).__getattr__("addresslist").__getslice__(null, null, null));
@@ -1634,12 +1590,12 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(3);
         }
-        
+
         private static PyObject __iadd__$47(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(1).__getattr__("addresslist");
@@ -1651,12 +1607,12 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(0);
         }
-        
+
         private static PyObject __sub__$48(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             frame.setlocal(3, frame.getglobal("AddressList").__call__(frame.getglobal("None")));
             t$0$int = 0;
@@ -1669,12 +1625,12 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(3);
         }
-        
+
         private static PyObject __isub__$49(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(1).__getattr__("addresslist");
@@ -1686,46 +1642,45 @@ public class rfc822 extends java.lang.Object {
             }
             return frame.getlocal(0);
         }
-        
+
         private static PyObject __getitem__$50(PyFrame frame) {
             return frame.getlocal(0).__getattr__("addresslist").__getitem__(frame.getlocal(1));
         }
-        
+
         private static PyObject AddressList$51(PyFrame frame) {
             /* An AddressList encapsulates a list of parsed RFC822 addresses. */
-            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[] {}, c$42___init__));
-            frame.setlocal("__len__", new PyFunction(frame.f_globals, new PyObject[] {}, c$43___len__));
-            frame.setlocal("__str__", new PyFunction(frame.f_globals, new PyObject[] {}, c$44___str__));
-            frame.setlocal("__add__", new PyFunction(frame.f_globals, new PyObject[] {}, c$45___add__));
-            frame.setlocal("__iadd__", new PyFunction(frame.f_globals, new PyObject[] {}, c$46___iadd__));
-            frame.setlocal("__sub__", new PyFunction(frame.f_globals, new PyObject[] {}, c$47___sub__));
-            frame.setlocal("__isub__", new PyFunction(frame.f_globals, new PyObject[] {}, c$48___isub__));
-            frame.setlocal("__getitem__", new PyFunction(frame.f_globals, new PyObject[] {}, c$49___getitem__));
+            frame.setlocal("__init__", new PyFunction(frame.f_globals, new PyObject[]{}, c$42___init__));
+            frame.setlocal("__len__", new PyFunction(frame.f_globals, new PyObject[]{}, c$43___len__));
+            frame.setlocal("__str__", new PyFunction(frame.f_globals, new PyObject[]{}, c$44___str__));
+            frame.setlocal("__add__", new PyFunction(frame.f_globals, new PyObject[]{}, c$45___add__));
+            frame.setlocal("__iadd__", new PyFunction(frame.f_globals, new PyObject[]{}, c$46___iadd__));
+            frame.setlocal("__sub__", new PyFunction(frame.f_globals, new PyObject[]{}, c$47___sub__));
+            frame.setlocal("__isub__", new PyFunction(frame.f_globals, new PyObject[]{}, c$48___isub__));
+            frame.setlocal("__getitem__", new PyFunction(frame.f_globals, new PyObject[]{}, c$49___getitem__));
             return frame.getf_locals();
         }
-        
+
         private static PyObject dump_address_pair$52(PyFrame frame) {
             /* Dump a (name, address) pair in a canonicalized form. */
             if (frame.getlocal(0).__getitem__(i$11).__nonzero__()) {
                 return s$49._add(frame.getlocal(0).__getitem__(i$11))._add(s$90)._add(frame.getlocal(0).__getitem__(i$10))._add(s$51);
-            }
-            else {
+            } else {
                 return frame.getlocal(0).__getitem__(i$10);
             }
         }
-        
+
         private static PyObject parsedate_tz$53(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Convert a date string to a time tuple.
             
                 Accounts for military timezones.
-                 */
+             */
             frame.setlocal(0, frame.getlocal(0).invoke("split"));
-            if (((t$0$PyObject = frame.getlocal(0).__getitem__(i$11).__getitem__(i$10.__neg__())._in(new PyTuple(new PyObject[] {s$70, s$74}))).__nonzero__() ? t$0$PyObject : frame.getlocal(0).__getitem__(i$11).invoke("lower")._in(frame.getglobal("_daynames"))).__nonzero__()) {
+            if (((t$0$PyObject = frame.getlocal(0).__getitem__(i$11).__getitem__(i$10.__neg__())._in(new PyTuple(new PyObject[]{s$70, s$74}))).__nonzero__() ? t$0$PyObject : frame.getlocal(0).__getitem__(i$11).invoke("lower")._in(frame.getglobal("_daynames"))).__nonzero__()) {
                 frame.getlocal(0).__delitem__(i$11);
             }
             if (frame.getglobal("len").__call__(frame.getlocal(0))._eq(i$142).__nonzero__()) {
@@ -1738,9 +1693,8 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(5, frame.getlocal(0).__getitem__(i$142));
                 frame.setlocal(8, frame.getlocal(5).invoke("find", s$145));
                 if (frame.getlocal(8)._gt(i$11).__nonzero__()) {
-                    frame.getlocal(0).__setslice__(i$142, null, null, new PyList(new PyObject[] {frame.getlocal(5).__getslice__(null, frame.getlocal(8), null), frame.getlocal(5).__getslice__(frame.getlocal(8)._add(i$10), null, null)}));
-                }
-                else {
+                    frame.getlocal(0).__setslice__(i$142, null, null, new PyList(new PyObject[]{frame.getlocal(5).__getslice__(null, frame.getlocal(8), null), frame.getlocal(5).__getslice__(frame.getlocal(8)._add(i$10), null, null)}));
+                } else {
                     frame.getlocal(0).invoke("append", s$15);
                 }
             }
@@ -1756,7 +1710,7 @@ public class rfc822 extends java.lang.Object {
             frame.setlocal(12, t$0$PyObject.__getitem__(4));
             frame.setlocal(9, frame.getlocal(9).invoke("lower"));
             if (frame.getlocal(9)._in(frame.getglobal("_monthnames")).__not__().__nonzero__()) {
-                t$0$PyObject = new PyTuple(new PyObject[] {frame.getlocal(9), frame.getlocal(13).invoke("lower")});
+                t$0$PyObject = new PyTuple(new PyObject[]{frame.getlocal(9), frame.getlocal(13).invoke("lower")});
                 frame.setlocal(13, t$0$PyObject.__getitem__(0));
                 frame.setlocal(9, t$0$PyObject.__getitem__(1));
                 if (frame.getlocal(9)._in(frame.getglobal("_monthnames")).__not__().__nonzero__()) {
@@ -1772,7 +1726,7 @@ public class rfc822 extends java.lang.Object {
             }
             frame.setlocal(8, frame.getlocal(7).invoke("find", s$25));
             if (frame.getlocal(8)._gt(i$11).__nonzero__()) {
-                t$0$PyObject = new PyTuple(new PyObject[] {frame.getlocal(1), frame.getlocal(7)});
+                t$0$PyObject = new PyTuple(new PyObject[]{frame.getlocal(1), frame.getlocal(7)});
                 frame.setlocal(7, t$0$PyObject.__getitem__(0));
                 frame.setlocal(1, t$0$PyObject.__getitem__(1));
             }
@@ -1780,7 +1734,7 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(7, frame.getlocal(7).__getslice__(null, i$10.__neg__(), null));
             }
             if (frame.getlocal(7).__getitem__(i$11).invoke("isdigit").__not__().__nonzero__()) {
-                t$0$PyObject = new PyTuple(new PyObject[] {frame.getlocal(12), frame.getlocal(7)});
+                t$0$PyObject = new PyTuple(new PyObject[]{frame.getlocal(12), frame.getlocal(7)});
                 frame.setlocal(7, t$0$PyObject.__getitem__(0));
                 frame.setlocal(12, t$0$PyObject.__getitem__(1));
             }
@@ -1793,14 +1747,12 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(2, t$0$PyObject.__getitem__(0));
                 frame.setlocal(14, t$0$PyObject.__getitem__(1));
                 frame.setlocal(11, s$149);
-            }
-            else if (frame.getglobal("len").__call__(frame.getlocal(1))._eq(i$142).__nonzero__()) {
+            } else if (frame.getglobal("len").__call__(frame.getlocal(1))._eq(i$142).__nonzero__()) {
                 t$0$PyObject = frame.getlocal(1);
                 frame.setlocal(2, t$0$PyObject.__getitem__(0));
                 frame.setlocal(14, t$0$PyObject.__getitem__(1));
                 frame.setlocal(11, t$0$PyObject.__getitem__(2));
-            }
-            else {
+            } else {
                 return frame.getglobal("None");
             }
             try {
@@ -1809,84 +1761,80 @@ public class rfc822 extends java.lang.Object {
                 frame.setlocal(2, frame.getglobal("int").__call__(frame.getlocal(2)));
                 frame.setlocal(14, frame.getglobal("int").__call__(frame.getlocal(14)));
                 frame.setlocal(11, frame.getglobal("int").__call__(frame.getlocal(11)));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 if (Py.matchException(t$0$PyException, frame.getglobal("ValueError"))) {
                     return frame.getglobal("None");
+                } else {
+                    throw t$0$PyException;
                 }
-                else throw t$0$PyException;
             }
             frame.setlocal(10, frame.getglobal("None"));
             frame.setlocal(12, frame.getlocal(12).invoke("upper"));
             if (frame.getglobal("_timezones").invoke("has_key", frame.getlocal(12)).__nonzero__()) {
                 frame.setlocal(10, frame.getglobal("_timezones").__getitem__(frame.getlocal(12)));
-            }
-            else {
+            } else {
                 try {
                     frame.setlocal(10, frame.getglobal("int").__call__(frame.getlocal(12)));
-                }
-                catch (Throwable x$1) {
+                } catch (Throwable x$1) {
                     t$0$PyException = Py.setException(x$1, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("ValueError"))) {
                         // pass
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             if (frame.getlocal(10).__nonzero__()) {
                 if (frame.getlocal(10)._lt(i$11).__nonzero__()) {
                     frame.setlocal(3, i$10.__neg__());
                     frame.setlocal(10, frame.getlocal(10).__neg__());
-                }
-                else {
+                } else {
                     frame.setlocal(3, i$10);
                 }
                 frame.setlocal(10, frame.getlocal(3)._mul(frame.getlocal(10)._div(i$150)._mul(i$151)._add(frame.getlocal(10)._mod(i$150)._mul(i$152))));
             }
-            frame.setlocal(6, new PyTuple(new PyObject[] {frame.getlocal(7), frame.getlocal(9), frame.getlocal(13), frame.getlocal(2), frame.getlocal(14), frame.getlocal(11), i$11, i$11, i$11, frame.getlocal(10)}));
+            frame.setlocal(6, new PyTuple(new PyObject[]{frame.getlocal(7), frame.getlocal(9), frame.getlocal(13), frame.getlocal(2), frame.getlocal(14), frame.getlocal(11), i$11, i$11, i$11, frame.getlocal(10)}));
             return frame.getlocal(6);
         }
-        
+
         private static PyObject parsedate$54(PyFrame frame) {
             /* Convert a time string to a time tuple. */
             frame.setlocal(1, frame.getglobal("parsedate_tz").__call__(frame.getlocal(0)));
-            if (frame.getglobal("type").__call__(frame.getlocal(1))._eq(frame.getglobal("type").__call__(new PyTuple(new PyObject[] {}))).__nonzero__()) {
+            if (frame.getglobal("type").__call__(frame.getlocal(1))._eq(frame.getglobal("type").__call__(new PyTuple(new PyObject[]{}))).__nonzero__()) {
                 return frame.getlocal(1).__getslice__(null, i$154, null);
-            }
-            else {
+            } else {
                 return frame.getlocal(1);
             }
         }
-        
+
         private static PyObject mktime_tz$55(PyFrame frame) {
             /* Turn a 10-tuple as returned by parsedate_tz() into a UTC timestamp. */
             if (frame.getlocal(0).__getitem__(i$154)._is(frame.getglobal("None")).__nonzero__()) {
-                return frame.getglobal("time").__getattr__("mktime").__call__(frame.getlocal(0).__getslice__(null, i$156, null)._add(new PyTuple(new PyObject[] {i$10.__neg__()})));
-            }
-            else {
-                frame.setlocal(1, frame.getglobal("time").__getattr__("mktime").__call__(frame.getlocal(0).__getslice__(null, i$156, null)._add(new PyTuple(new PyObject[] {i$11}))));
+                return frame.getglobal("time").__getattr__("mktime").__call__(frame.getlocal(0).__getslice__(null, i$156, null)._add(new PyTuple(new PyObject[]{i$10.__neg__()})));
+            } else {
+                frame.setlocal(1, frame.getglobal("time").__getattr__("mktime").__call__(frame.getlocal(0).__getslice__(null, i$156, null)._add(new PyTuple(new PyObject[]{i$11}))));
                 return frame.getlocal(1)._sub(frame.getlocal(0).__getitem__(i$154))._sub(frame.getglobal("time").__getattr__("timezone"));
             }
         }
-        
+
         private static PyObject formatdate$56(PyFrame frame) {
             /* Returns time format preferred for Internet standards.
             
                 Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
-                 */
+             */
             if (frame.getlocal(0)._is(frame.getglobal("None")).__nonzero__()) {
                 frame.setlocal(0, frame.getglobal("time").__getattr__("time").__call__());
             }
             return s$158._mod(frame.getglobal("time").__getattr__("strftime").__call__(s$159, frame.getglobal("time").__getattr__("gmtime").__call__(frame.getlocal(0))));
         }
-        
+
         private static PyObject main$57(PyFrame frame) {
             frame.setglobal("__file__", s$184);
-            
+
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* RFC-822 message manipulation class.
             
@@ -1946,22 +1894,22 @@ public class rfc822 extends java.lang.Object {
             There are also some utility functions here.
              */
             frame.setlocal("time", org.python.core.imp.importOne("time", frame));
-            frame.setlocal("__all__", new PyList(new PyObject[] {s$1, s$2, s$3, s$4, s$5}));
-            frame.setlocal("_blanklines", new PyTuple(new PyObject[] {s$6, s$7}));
-            frame.setlocal("Message", Py.makeClass("Message", new PyObject[] {}, c$24_Message, null));
-            frame.setlocal("unquote", new PyFunction(frame.f_globals, new PyObject[] {}, c$25_unquote));
-            frame.setlocal("quote", new PyFunction(frame.f_globals, new PyObject[] {}, c$26_quote));
-            frame.setlocal("parseaddr", new PyFunction(frame.f_globals, new PyObject[] {}, c$27_parseaddr));
-            frame.setlocal("AddrlistClass", Py.makeClass("AddrlistClass", new PyObject[] {}, c$41_AddrlistClass, null));
-            frame.setlocal("AddressList", Py.makeClass("AddressList", new PyObject[] {frame.getname("AddrlistClass")}, c$50_AddressList, null));
-            frame.setlocal("dump_address_pair", new PyFunction(frame.f_globals, new PyObject[] {}, c$51_dump_address_pair));
-            frame.setlocal("_monthnames", new PyList(new PyObject[] {s$91, s$92, s$93, s$94, s$95, s$96, s$97, s$98, s$99, s$100, s$101, s$102, s$103, s$104, s$105, s$106, s$95, s$107, s$108, s$109, s$110, s$111, s$112, s$113}));
-            frame.setlocal("_daynames", new PyList(new PyObject[] {s$114, s$115, s$116, s$117, s$118, s$119, s$120}));
-            frame.setlocal("_timezones", new PyDictionary(new PyObject[] {s$121, i$11, s$122, i$11, s$123, i$11, s$124, i$11, s$125, i$126.__neg__(), s$127, i$128.__neg__(), s$129, i$130.__neg__(), s$131, i$126.__neg__(), s$132, i$133.__neg__(), s$134, i$130.__neg__(), s$135, i$136.__neg__(), s$137, i$133.__neg__(), s$138, i$139.__neg__(), s$140, i$136.__neg__()}));
-            frame.setlocal("parsedate_tz", new PyFunction(frame.f_globals, new PyObject[] {}, c$52_parsedate_tz));
-            frame.setlocal("parsedate", new PyFunction(frame.f_globals, new PyObject[] {}, c$53_parsedate));
-            frame.setlocal("mktime_tz", new PyFunction(frame.f_globals, new PyObject[] {}, c$54_mktime_tz));
-            frame.setlocal("formatdate", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$55_formatdate));
+            frame.setlocal("__all__", new PyList(new PyObject[]{s$1, s$2, s$3, s$4, s$5}));
+            frame.setlocal("_blanklines", new PyTuple(new PyObject[]{s$6, s$7}));
+            frame.setlocal("Message", Py.makeClass("Message", new PyObject[]{}, c$24_Message, null));
+            frame.setlocal("unquote", new PyFunction(frame.f_globals, new PyObject[]{}, c$25_unquote));
+            frame.setlocal("quote", new PyFunction(frame.f_globals, new PyObject[]{}, c$26_quote));
+            frame.setlocal("parseaddr", new PyFunction(frame.f_globals, new PyObject[]{}, c$27_parseaddr));
+            frame.setlocal("AddrlistClass", Py.makeClass("AddrlistClass", new PyObject[]{}, c$41_AddrlistClass, null));
+            frame.setlocal("AddressList", Py.makeClass("AddressList", new PyObject[]{frame.getname("AddrlistClass")}, c$50_AddressList, null));
+            frame.setlocal("dump_address_pair", new PyFunction(frame.f_globals, new PyObject[]{}, c$51_dump_address_pair));
+            frame.setlocal("_monthnames", new PyList(new PyObject[]{s$91, s$92, s$93, s$94, s$95, s$96, s$97, s$98, s$99, s$100, s$101, s$102, s$103, s$104, s$105, s$106, s$95, s$107, s$108, s$109, s$110, s$111, s$112, s$113}));
+            frame.setlocal("_daynames", new PyList(new PyObject[]{s$114, s$115, s$116, s$117, s$118, s$119, s$120}));
+            frame.setlocal("_timezones", new PyDictionary(new PyObject[]{s$121, i$11, s$122, i$11, s$123, i$11, s$124, i$11, s$125, i$126.__neg__(), s$127, i$128.__neg__(), s$129, i$130.__neg__(), s$131, i$126.__neg__(), s$132, i$133.__neg__(), s$134, i$130.__neg__(), s$135, i$136.__neg__(), s$137, i$133.__neg__(), s$138, i$139.__neg__(), s$140, i$136.__neg__()}));
+            frame.setlocal("parsedate_tz", new PyFunction(frame.f_globals, new PyObject[]{}, c$52_parsedate_tz));
+            frame.setlocal("parsedate", new PyFunction(frame.f_globals, new PyObject[]{}, c$53_parsedate));
+            frame.setlocal("mktime_tz", new PyFunction(frame.f_globals, new PyObject[]{}, c$54_mktime_tz));
+            frame.setlocal("formatdate", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$55_formatdate));
             if (frame.getname("__name__")._eq(s$160).__nonzero__()) {
                 frame.setlocal("sys", org.python.core.imp.importOne("sys", frame));
                 frame.setlocal("os", org.python.core.imp.importOne("os", frame));
@@ -1992,13 +1940,12 @@ public class rfc822 extends java.lang.Object {
                     t$0$PyObject = frame.getname("divmod").__call__(frame.getname("hhmm"), i$152);
                     frame.setlocal("hh", t$0$PyObject.__getitem__(0));
                     frame.setlocal("mm", t$0$PyObject.__getitem__(1));
-                    Py.printComma(s$173._mod(new PyTuple(new PyObject[] {frame.getname("hh"), frame.getname("mm")})));
+                    Py.printComma(s$173._mod(new PyTuple(new PyObject[]{frame.getname("hh"), frame.getname("mm")})));
                     if (frame.getname("ss").__nonzero__()) {
                         Py.printComma(s$174._mod(frame.getname("ss")));
                     }
                     Py.println();
-                }
-                else {
+                } else {
                     Py.printComma(s$172);
                     Py.println(frame.getname("None"));
                 }
@@ -2028,18 +1975,19 @@ public class rfc822 extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
     }
+
     public static void moduleDictInit(PyObject dict) {
         dict.__setitem__("__name__", new PyString("rfc822"));
         Py.runCode(new _PyInner().getMain(), dict, dict);
     }
-    
+
     public static void main(String[] args) throws Exception {
-        String[] newargs = new String[args.length+1];
+        String[] newargs = new String[args.length + 1];
         newargs[0] = "rfc822";
         System.arraycopy(args, 0, newargs, 1, args.length);
-        Py.runMain(rfc822._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[] {"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
+        Py.runMain(rfc822._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[]{"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
     }
-    
+
 }

@@ -2,26 +2,21 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) 
 // Source File Name:   Spacer.java
-
 package com.intellij.uiDesigner.core;
 
 import java.awt.Dimension;
 import javax.swing.JComponent;
 
-public class Spacer extends JComponent
-{
+public class Spacer extends JComponent {
 
-	public Spacer()
-	{
-	}
+    public Spacer() {
+    }
 
-	public Dimension getMinimumSize()
-	{
-		return new Dimension(0, 0);
-	}
+    public Dimension getMinimumSize() {
+        return new Dimension(0, 0);
+    }
 
-	public final Dimension getPreferredSize()
-	{
-		return getMinimumSize();
-	}
+    public final Dimension getPreferredSize() {
+        return getMinimumSize();
+    }
 }

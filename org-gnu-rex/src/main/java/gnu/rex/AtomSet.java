@@ -15,39 +15,46 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class AtomSet extends Range
-{
- static final boolean ANY = true;
- private static final String NEGMINIMUM = "\n";
+class AtomSet extends Range {
 
- String set;
- boolean neg = false;
+    static final boolean ANY = true;
+    private static final String NEGMINIMUM = "\n";
 
- AtomSet(String set) { this(set, false); }
+    String set;
+    boolean neg = false;
 
- AtomSet(String set, boolean neg) { this(set, 1, 1); this.neg = neg; }
+    AtomSet(String set) {
+        this(set, false);
+    }
 
- AtomSet(String set, int min, int max)
-	{ super(min, max); this.set = set; }
+    AtomSet(String set, boolean neg) {
+        this(set, 1, 1);
+        this.neg = neg;
+    }
 
- AtomSet(boolean any, int min, int max)
- {
-	super(min, max);
+    AtomSet(String set, int min, int max) {
+        super(min, max);
+        this.set = set;
+    }
 
-	if(any)
-	{
-		this.set = NEGMINIMUM;
-		this.neg = true;
-	}
- }
+    AtomSet(boolean any, int min, int max) {
+        super(min, max);
 
- final void setNegate() { neg = true; }
+        if (any) {
+            this.set = NEGMINIMUM;
+            this.neg = true;
+        }
+    }
 
- String rexToString()
-	{ return "<" + (neg? "~" : "") +
-		"Set>[" + set + "]" + super.rexToString(); }
+    final void setNegate() {
+        neg = true;
+    }
+
+    String rexToString() {
+        return "<" + (neg ? "~" : "")
+                + "Set>[" + set + "]" + super.rexToString();
+    }
 }

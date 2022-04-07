@@ -35,11 +35,9 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 /**
- * An Sendable interface extension that adds additional
- * methods for additional information, such as Files
- * or Strings.
+ * An Sendable interface extension that adds additional methods for additional
+ * information, such as Files or Strings.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -47,9 +45,9 @@ package tripleo.nio.javanio;
  */
 public interface Content extends Sendable {
 
-	String type();
+    String type();
 
-	// Returns -1 until prepare() invoked
-	long length();
+    // Returns -1 until prepare() invoked
+    long length();
 
 }

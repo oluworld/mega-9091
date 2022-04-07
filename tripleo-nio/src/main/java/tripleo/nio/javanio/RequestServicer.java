@@ -35,16 +35,14 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import tripleo.nio.javanio.http.*;
 
-
 /**
- * Primary driver class used by blocking Servers to receive,
- * prepare, send, and shutdown requests.
+ * Primary driver class used by blocking Servers to receive, prepare, send, and
+ * shutdown requests.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -52,108 +50,114 @@ import tripleo.nio.javanio.http.*;
  */
 class RequestServicer implements Runnable {
 
-	private final ChannelIO cio;
+    private final ChannelIO cio;
 
-	private static int created = 0;
+    private static int created = 0;
 
-	RequestServicer(ChannelIO cio) {
-		this.cio = cio;
+    RequestServicer(ChannelIO cio) {
+        this.cio = cio;
 
-		// Simple heartbeat to let user know we're alive.
-		synchronized (RequestServicer.class) {
-			created++;
-			if ((created % 50) == 0) {
-				System.out.println(".");
-				created = 0;
-			} else {
-				System.out.print(".");
-			}
-		}
-	}
+        // Simple heartbeat to let user know we're alive.
+        synchronized (RequestServicer.class) {
+            created++;
+            if ((created % 50) == 0) {
+                System.out.println(".");
+                created = 0;
+            } else {
+                System.out.print(".");
+            }
+        }
+    }
 
-	private void service() throws IOException {
-		Reply rp = null;
-		try {
-			ByteBuffer rbb = receive();		// Receive
-			Request rq = null;
-			try {				// Parse
-				rq = JN_Request.parse(rbb);
-			} catch (MalformedRequestException x) {
-				rp = new Reply(Reply.Code.BAD_REQUEST,
-				        new StringContent(x));
-			}
-			if (rp == null) rp = build(rq);	// Build
-			do {} while (rp.send(cio));		// Send
-			do {} while (!cio.shutdown());
-			cio.close();
-			rp.release();
-		} catch (IOException x) {
-			String m = x.getMessage();
-			if (!m.equals("Broken pipe") &&
-			        !m.equals("Connection reset by peer")) {
-				System.err.println("RequestHandler: " + x);
-			}
+    private void service() throws IOException {
+        Reply rp = null;
+        try {
+            ByteBuffer rbb = receive();		// Receive
+            Request rq = null;
+            try {				// Parse
+                rq = JN_Request.parse(rbb);
+            } catch (MalformedRequestException x) {
+                rp = new Reply(Reply.Code.BAD_REQUEST,
+                        new StringContent(x));
+            }
+            if (rp == null) {
+                rp = build(rq);	// Build
+            }
+            do {
+            } while (rp.send(cio));		// Send
+            do {
+            } while (!cio.shutdown());
+            cio.close();
+            rp.release();
+        } catch (IOException x) {
+            String m = x.getMessage();
+            if (!m.equals("Broken pipe")
+                    && !m.equals("Connection reset by peer")) {
+                System.err.println("RequestHandler: " + x);
+            }
 
-			try {
-				/*
+            try {
+                /*
 				* We had a failure here, so we'll try to be nice
 				* before closing down and send off a close_notify,
 				* but if we can't get the message off with one try,
 				* we'll just shutdown.
-				*/
-				cio.shutdown();
-			} catch (IOException e) {
-				// ignore
-			}
+                 */
+                cio.shutdown();
+            } catch (IOException e) {
+                // ignore
+            }
 
-			cio.close();
-			if (rp != null) {
-				rp.release();
-			}
-		}
-	}
+            cio.close();
+            if (rp != null) {
+                rp.release();
+            }
+        }
+    }
 
-	public void run() {
-		try {
-			service();
-		} catch (IOException x) {
-			x.printStackTrace();
-		}
-	}
+    public void run() {
+        try {
+            service();
+        } catch (IOException x) {
+            x.printStackTrace();
+        }
+    }
 
-	ByteBuffer receive() throws IOException {
+    ByteBuffer receive() throws IOException {
 
-		do {} while (!cio.doHandshake());
+        do {
+        } while (!cio.doHandshake());
 
-		for (; ;) {
-			int read = cio.read();
-			ByteBuffer bb = cio.getReadBuf();
-			if ((read < 0) || (JN_Request.isComplete(bb))) {
-				bb.flip();
-				return bb;
-			}
-		}
-	}
+        for (;;) {
+            int read = cio.read();
+            ByteBuffer bb = cio.getReadBuf();
+            if ((read < 0) || (JN_Request.isComplete(bb))) {
+                bb.flip();
+                return bb;
+            }
+        }
+    }
 
-	Reply build(Request rq) throws IOException {
+    Reply build(Request rq) throws IOException {
 
-		Reply rp = null;
-		JN_Request.Action action = rq.action();
-		if ((action != JN_Request.Action.GET) &&
-		        (action != JN_Request.Action.HEAD))
-			rp = new Reply(Reply.Code.METHOD_NOT_ALLOWED,
-			        new StringContent(rq.toString()));
-		else
-			rp = new Reply(Reply.Code.OK,
-			        new FileContent(rq.uri()), action);
-		try {
-			rp.prepare();
-		} catch (IOException x) {
-			rp.release();
-			rp = new Reply(Reply.Code.NOT_FOUND,
-			        new StringContent(x));
-			rp.prepare();
-		}
-		return rp;
-	}
+        Reply rp = null;
+        JN_Request.Action action = rq.action();
+        if ((action != JN_Request.Action.GET)
+                && (action != JN_Request.Action.HEAD)) {
+            rp = new Reply(Reply.Code.METHOD_NOT_ALLOWED,
+                    new StringContent(rq.toString()));
+        } else {
+            rp = new Reply(Reply.Code.OK,
+                    new FileContent(rq.uri()), action);
+        }
+        try {
+            rp.prepare();
+        } catch (IOException x) {
+            rp.release();
+            rp = new Reply(Reply.Code.NOT_FOUND,
+                    new StringContent(x));
+            rp.prepare();
+        }
+        return rp;
+    }
 }

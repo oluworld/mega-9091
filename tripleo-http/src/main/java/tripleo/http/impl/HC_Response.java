@@ -17,70 +17,70 @@ import tripleo.util.Assert;
 
 public class HC_Response implements IResponse {
 
-	private final GetMethod carrier;
-	private final HttpClient client;
-	private int code_;
+    private final GetMethod carrier;
+    private final HttpClient client;
+    private int code_;
 
-	public HC_Response(HttpClient aHttpClient, GetMethod aGetmeth) {
-		client=aHttpClient;
-		carrier=aGetmeth;
-	}
+    public HC_Response(HttpClient aHttpClient, GetMethod aGetmeth) {
+        client = aHttpClient;
+        carrier = aGetmeth;
+    }
 
-	public IRequest getRequest() {
-		Assert.not_implemented();
-		return null;
-	}
+    public IRequest getRequest() {
+        Assert.not_implemented();
+        return null;
+    }
 
-	public IResponse setHeader(String aName, String aValue) {
-		carrier.addRequestHeader(aName,aValue);
-		return this;
-	}
+    public IResponse setHeader(String aName, String aValue) {
+        carrier.addRequestHeader(aName, aValue);
+        return this;
+    }
 
-	public IResponse addHeader(String aName, String aValue) {
-		// TODO??
-		carrier.addRequestHeader(aName,carrier.getRequestHeader(aName)+" "+aValue);
-		return this;
-	}
+    public IResponse addHeader(String aName, String aValue) {
+        // TODO??
+        carrier.addRequestHeader(aName, carrier.getRequestHeader(aName) + " " + aValue);
+        return this;
+    }
 
-	public IResponse setContent(CharSequence aCs) {
-		Assert.not_reached();
-		return this;
-	}
+    public IResponse setContent(CharSequence aCs) {
+        Assert.not_reached();
+        return this;
+    }
 
-	public IResponse append(CharSequence aCs) {
-		Assert.not_reached();
-		return this;
-	}
+    public IResponse append(CharSequence aCs) {
+        Assert.not_reached();
+        return this;
+    }
 
-	public void send() throws HttpException {
-		try {
-			code_ = client.executeMethod(carrier);
-		} catch (IOException e) {
-			throw HttpException.wrap(e);
+    public void send() throws HttpException {
+        try {
+            code_ = client.executeMethod(carrier);
+        } catch (IOException e) {
+            throw HttpException.wrap(e);
 //		} catch (org.apache.commons.httpclient.HttpException e) {
 //			throw HttpException.wrap(e);
-		}
-	}
+        }
+    }
 
-	public IResponse firstline(String aMethod, int aCode, String aCodeString) {
-		Assert.not_reached();
-		return this;
-	}
+    public IResponse firstline(String aMethod, int aCode, String aCodeString) {
+        Assert.not_reached();
+        return this;
+    }
 
-	public String firstline() {
-		boolean somethingOrOther=true;
-		assert somethingOrOther;
-		return String.format("%s %d %s", carrier.getName(), code_, carrier.getStatusText());
-	}
+    public String firstline() {
+        boolean somethingOrOther = true;
+        assert somethingOrOther;
+        return String.format("%s %d %s", carrier.getName(), code_, carrier.getStatusText());
+    }
 
-	public List<IHeader> copyOfHeaders() {
-		Assert.not_implemented();
-		return null;
-	}
+    public List<IHeader> copyOfHeaders() {
+        Assert.not_implemented();
+        return null;
+    }
 
-	public CharSequence getContent() throws IOException {
-		// TODO: plz chk this. mb make "once" function?
-		return carrier.getResponseBodyAsString();
-	}
+    public CharSequence getContent() throws IOException {
+        // TODO: plz chk this. mb make "once" function?
+        return carrier.getResponseBodyAsString();
+    }
 
 }

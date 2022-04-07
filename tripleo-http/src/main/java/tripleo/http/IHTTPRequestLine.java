@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package tripleo.http;
 
@@ -9,10 +9,10 @@ package tripleo.http;
  */
 public interface IHTTPRequestLine {
 
-	String method();
-	String version();
+    String method();
 
-	String uri();
+    String version();
 
+    String uri();
 
 }

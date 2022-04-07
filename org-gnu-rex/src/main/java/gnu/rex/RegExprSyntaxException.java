@@ -15,13 +15,13 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-public class RegExprSyntaxException extends Exception
-{
+public class RegExprSyntaxException extends Exception {
 
- public RegExprSyntaxException(String explanation) { super(explanation); }
+    public RegExprSyntaxException(String explanation) {
+        super(explanation);
+    }
 
 }

@@ -60,7 +60,9 @@ public class VersaStreamInputStream extends InputStream {
 
     public int read() throws IOException {
 
-        if (useMaxLen && pos >= maxLenAndOffset) return -1;
+        if (useMaxLen && pos >= maxLenAndOffset) {
+            return -1;
+        }
 
         int n = vs.read(pos);
         if (n != -1) {
@@ -73,8 +75,12 @@ public class VersaStreamInputStream extends InputStream {
 
         if (useMaxLen) {
             long diff = maxLenAndOffset - pos;
-            if (diff <= 0) return -1;
-            if (len > diff) len = (int) diff;
+            if (diff <= 0) {
+                return -1;
+            }
+            if (len > diff) {
+                len = (int) diff;
+            }
         }
 
         len = vs.read(pos, b, off, len);

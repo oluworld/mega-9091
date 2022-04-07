@@ -15,26 +15,29 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class Range extends Atom
-{
- int min;
- int max;
+class Range extends Atom {
 
- Range() { this(1,1); }
+    int min;
+    int max;
 
- Range(int min, int max) { setRange(min, max); }
+    Range() {
+        this(1, 1);
+    }
 
- final void setRange(int min, int max)
- {
-	this.min = min >=0 && min < MAX_VALUE? min : 0;
-	this.max = max < MAX_VALUE? max : MAX_VALUE;
- }
+    Range(int min, int max) {
+        setRange(min, max);
+    }
 
- String rexToString()
-	{ return "{" + min + "," + (max==MAX_VALUE? "Max" : ""+max) + "}"; }
+    final void setRange(int min, int max) {
+        this.min = min >= 0 && min < MAX_VALUE ? min : 0;
+        this.max = max < MAX_VALUE ? max : MAX_VALUE;
+    }
+
+    String rexToString() {
+        return "{" + min + "," + (max == MAX_VALUE ? "Max" : "" + max) + "}";
+    }
 
 }

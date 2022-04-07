@@ -1,5 +1,5 @@
 /* -*- Mode: Java; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/*
+ /*
  *
  * The contents of this library are released under the LGPL licence v3,
  * the GNU Lesser General Public License text was downloaded from
@@ -12,13 +12,14 @@ package tripleo.impohrt.FreeBASE;
  * Created 9/27/21 6:22 AM
  */
 public class Manager {
-	public void add(final String aS, final String aS1, final Invokable aInvokable) {
-		int y=2;
-	}
 
-	public void put(final String aS, final Slot aSlot) {
-		int y=2;
-	}
+    public void add(final String aS, final String aS1, final Invokable aInvokable) {
+        int y = 2;
+    }
+
+    public void put(final String aS, final Slot aSlot) {
+        int y = 2;
+    }
 }
 
 //

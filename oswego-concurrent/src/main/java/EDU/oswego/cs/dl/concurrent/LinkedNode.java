@@ -11,15 +11,26 @@
   11Jun1998  dl               Create public version
   25may2000  dl               Change class access to public
   26nov2001  dl               Added no-arg constructor, all public access.
-*/
-
+ */
 package EDU.oswego.cs.dl.concurrent;
 
-/** A standard linked list node used in various queue classes **/
-public class LinkedNode { 
-  public Object value;
-  public LinkedNode next;
-  public LinkedNode() {}
-  public LinkedNode(Object x) { value = x; }
-  public LinkedNode(Object x, LinkedNode n) { value = x; next = n; }
+/**
+ * A standard linked list node used in various queue classes *
+ */
+public class LinkedNode {
+
+    public Object value;
+    public LinkedNode next;
+
+    public LinkedNode() {
+    }
+
+    public LinkedNode(Object x) {
+        value = x;
+    }
+
+    public LinkedNode(Object x, LinkedNode n) {
+        value = x;
+        next = n;
+    }
 }

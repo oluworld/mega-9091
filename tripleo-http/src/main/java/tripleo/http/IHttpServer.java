@@ -11,23 +11,23 @@ public interface IHttpServer {
 //---------------------------------------------------------------------------
 //  Client can use this
 //---------------------------------------------------------------------------
-	void run_server();
+    void run_server();
 
 //	---------------------------------------------------------------------------
 //  Reimplement these
 //---------------------------------------------------------------------------
-	/**
-	 * 
-	 * @param aRequest
-	 * @param aResponse
-	 * @throws HttpException
-	 */
-	void action(IRequest aRequest, IResponse aResponse) throws HttpException;
+    /**
+     *
+     * @param aRequest
+     * @param aResponse
+     * @throws HttpException
+     */
+    void action(IRequest aRequest, IResponse aResponse) throws HttpException;
 
-	ReWriter rewriter();
+    ReWriter rewriter();
 
-	void serve_action();
+    void serve_action();
 
-	boolean still_serving();
+    boolean still_serving();
 
 }

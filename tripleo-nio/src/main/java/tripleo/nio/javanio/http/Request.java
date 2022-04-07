@@ -6,9 +6,12 @@ import tripleo.nio.javanio.http.JN_Request.Action;
 
 public interface Request {
 
-	Action action();
-	String version();
-	URI uri();
-	String toString();
+    Action action();
+
+    String version();
+
+    URI uri();
+
+    String toString();
 
 }

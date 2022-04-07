@@ -9,6 +9,5 @@
 package tripleo.annotation;
 
 public @interface NotNull {
-	//TODO: implement me
+    //TODO: implement me
 }
-

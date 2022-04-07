@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.SelectableChannel;
 
@@ -50,7 +49,7 @@ import java.nio.channels.SelectableChannel;
  */
 interface Dispatcher extends Runnable {
 
-	void register(SelectableChannel ch, int ops, Handler h)
-	        throws IOException;
+    void register(SelectableChannel ch, int ops, Handler h)
+            throws IOException;
 
 }

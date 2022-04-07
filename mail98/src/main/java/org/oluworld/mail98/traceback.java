@@ -3,10 +3,12 @@ package org.oluworld.mail98;
 import org.python.core.*;
 
 public class traceback extends java.lang.Object {
-    static String[] jpy$properties = new String[] {"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
-    static String[] jpy$packages = new String[] {"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
-    
+
+    static String[] jpy$properties = new String[]{"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
+    static String[] jpy$packages = new String[]{"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
+
     public static class _PyInner extends PyFunctionTable implements PyRunnable {
+
         private static PyObject s$0;
         private static PyObject s$1;
         private static PyObject s$2;
@@ -75,6 +77,7 @@ public class traceback extends java.lang.Object {
         private static PyCode c$14_extract_stack;
         private static PyCode c$15_tb_lineno;
         private static PyCode c$16_main;
+
         private static void initConstants() {
             s$0 = Py.newString("Extract, format and print information about Python stack traces.");
             s$1 = Py.newString("extract_stack");
@@ -127,82 +130,83 @@ public class traceback extends java.lang.Object {
             s$48 = Py.newString("co_lnotab");
             s$49 = Py.newString("/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py");
             funcTable = new _PyInner();
-            c$0__print = Py.newCode(3, new String[] {"file", "str", "terminator"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "_print", false, false, funcTable, 0, null, null, 0, 1);
-            c$1_print_list = Py.newCode(2, new String[] {"extracted_list", "file", "line", "filename", "name", "lineno"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_list", false, false, funcTable, 1, null, null, 0, 1);
-            c$2_format_list = Py.newCode(1, new String[] {"extracted_list", "line", "filename", "name", "item", "list", "lineno"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_list", false, false, funcTable, 2, null, null, 0, 1);
-            c$3_print_tb = Py.newCode(3, new String[] {"tb", "limit", "file", "filename", "name", "lineno", "n", "f", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_tb", false, false, funcTable, 3, null, null, 0, 1);
-            c$4_format_tb = Py.newCode(2, new String[] {"tb", "limit"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_tb", false, false, funcTable, 4, null, null, 0, 1);
-            c$5_extract_tb = Py.newCode(2, new String[] {"tb", "limit", "filename", "name", "lineno", "n", "f", "list", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "extract_tb", false, false, funcTable, 5, null, null, 0, 1);
-            c$6_print_exception = Py.newCode(5, new String[] {"etype", "value", "tb", "limit", "file", "line", "lines"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_exception", false, false, funcTable, 6, null, null, 0, 1);
-            c$7_format_exception = Py.newCode(4, new String[] {"etype", "value", "tb", "limit", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_exception", false, false, funcTable, 7, null, null, 0, 1);
-            c$8_format_exception_only = Py.newCode(2, new String[] {"etype", "value", "stype", "msg", "offset", "lineno", "line", "s", "filename", "i", "list", "c"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_exception_only", false, false, funcTable, 8, null, null, 0, 1);
-            c$9__some_str = Py.newCode(1, new String[] {"value"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "_some_str", false, false, funcTable, 9, null, null, 0, 1);
-            c$10_print_exc = Py.newCode(2, new String[] {"limit", "file", "tb", "etype", "value"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_exc", false, false, funcTable, 10, null, null, 0, 1);
-            c$11_print_last = Py.newCode(2, new String[] {"limit", "file"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_last", false, false, funcTable, 11, null, null, 0, 1);
-            c$12_print_stack = Py.newCode(3, new String[] {"f", "limit", "file"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_stack", false, false, funcTable, 12, null, null, 0, 1);
-            c$13_format_stack = Py.newCode(2, new String[] {"f", "limit"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_stack", false, false, funcTable, 13, null, null, 0, 1);
-            c$14_extract_stack = Py.newCode(2, new String[] {"f", "limit", "filename", "name", "lineno", "n", "list", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "extract_stack", false, false, funcTable, 14, null, null, 0, 1);
-            c$15_tb_lineno = Py.newCode(1, new String[] {"tb", "tab", "i", "c", "addr", "stopat", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "tb_lineno", false, false, funcTable, 15, null, null, 0, 1);
-            c$16_main = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "main", false, false, funcTable, 16, null, null, 0, 0);
+            c$0__print = Py.newCode(3, new String[]{"file", "str", "terminator"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "_print", false, false, funcTable, 0, null, null, 0, 1);
+            c$1_print_list = Py.newCode(2, new String[]{"extracted_list", "file", "line", "filename", "name", "lineno"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_list", false, false, funcTable, 1, null, null, 0, 1);
+            c$2_format_list = Py.newCode(1, new String[]{"extracted_list", "line", "filename", "name", "item", "list", "lineno"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_list", false, false, funcTable, 2, null, null, 0, 1);
+            c$3_print_tb = Py.newCode(3, new String[]{"tb", "limit", "file", "filename", "name", "lineno", "n", "f", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_tb", false, false, funcTable, 3, null, null, 0, 1);
+            c$4_format_tb = Py.newCode(2, new String[]{"tb", "limit"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_tb", false, false, funcTable, 4, null, null, 0, 1);
+            c$5_extract_tb = Py.newCode(2, new String[]{"tb", "limit", "filename", "name", "lineno", "n", "f", "list", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "extract_tb", false, false, funcTable, 5, null, null, 0, 1);
+            c$6_print_exception = Py.newCode(5, new String[]{"etype", "value", "tb", "limit", "file", "line", "lines"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_exception", false, false, funcTable, 6, null, null, 0, 1);
+            c$7_format_exception = Py.newCode(4, new String[]{"etype", "value", "tb", "limit", "list"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_exception", false, false, funcTable, 7, null, null, 0, 1);
+            c$8_format_exception_only = Py.newCode(2, new String[]{"etype", "value", "stype", "msg", "offset", "lineno", "line", "s", "filename", "i", "list", "c"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_exception_only", false, false, funcTable, 8, null, null, 0, 1);
+            c$9__some_str = Py.newCode(1, new String[]{"value"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "_some_str", false, false, funcTable, 9, null, null, 0, 1);
+            c$10_print_exc = Py.newCode(2, new String[]{"limit", "file", "tb", "etype", "value"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_exc", false, false, funcTable, 10, null, null, 0, 1);
+            c$11_print_last = Py.newCode(2, new String[]{"limit", "file"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_last", false, false, funcTable, 11, null, null, 0, 1);
+            c$12_print_stack = Py.newCode(3, new String[]{"f", "limit", "file"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "print_stack", false, false, funcTable, 12, null, null, 0, 1);
+            c$13_format_stack = Py.newCode(2, new String[]{"f", "limit"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "format_stack", false, false, funcTable, 13, null, null, 0, 1);
+            c$14_extract_stack = Py.newCode(2, new String[]{"f", "limit", "filename", "name", "lineno", "n", "list", "co", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "extract_stack", false, false, funcTable, 14, null, null, 0, 1);
+            c$15_tb_lineno = Py.newCode(1, new String[]{"tb", "tab", "i", "c", "addr", "stopat", "line"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "tb_lineno", false, false, funcTable, 15, null, null, 0, 1);
+            c$16_main = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/traceback.py", "main", false, false, funcTable, 16, null, null, 0, 0);
         }
-        
-        
+
         public PyCode getMain() {
-            if (c$16_main == null) _PyInner.initConstants();
+            if (c$16_main == null) {
+                _PyInner.initConstants();
+            }
             return c$16_main;
         }
-        
+
         public PyObject call_function(int index, PyFrame frame) {
-            switch (index){
+            switch (index) {
                 case 0:
-                return _PyInner._print$1(frame);
+                    return _PyInner._print$1(frame);
                 case 1:
-                return _PyInner.print_list$2(frame);
+                    return _PyInner.print_list$2(frame);
                 case 2:
-                return _PyInner.format_list$3(frame);
+                    return _PyInner.format_list$3(frame);
                 case 3:
-                return _PyInner.print_tb$4(frame);
+                    return _PyInner.print_tb$4(frame);
                 case 4:
-                return _PyInner.format_tb$5(frame);
+                    return _PyInner.format_tb$5(frame);
                 case 5:
-                return _PyInner.extract_tb$6(frame);
+                    return _PyInner.extract_tb$6(frame);
                 case 6:
-                return _PyInner.print_exception$7(frame);
+                    return _PyInner.print_exception$7(frame);
                 case 7:
-                return _PyInner.format_exception$8(frame);
+                    return _PyInner.format_exception$8(frame);
                 case 8:
-                return _PyInner.format_exception_only$9(frame);
+                    return _PyInner.format_exception_only$9(frame);
                 case 9:
-                return _PyInner._some_str$10(frame);
+                    return _PyInner._some_str$10(frame);
                 case 10:
-                return _PyInner.print_exc$11(frame);
+                    return _PyInner.print_exc$11(frame);
                 case 11:
-                return _PyInner.print_last$12(frame);
+                    return _PyInner.print_last$12(frame);
                 case 12:
-                return _PyInner.print_stack$13(frame);
+                    return _PyInner.print_stack$13(frame);
                 case 13:
-                return _PyInner.format_stack$14(frame);
+                    return _PyInner.format_stack$14(frame);
                 case 14:
-                return _PyInner.extract_stack$15(frame);
+                    return _PyInner.extract_stack$15(frame);
                 case 15:
-                return _PyInner.tb_lineno$16(frame);
+                    return _PyInner.tb_lineno$16(frame);
                 case 16:
-                return _PyInner.main$17(frame);
+                    return _PyInner.main$17(frame);
                 default:
-                return null;
+                    return null;
             }
         }
-        
+
         private static PyObject _print$1(PyFrame frame) {
             frame.getlocal(0).invoke("write", frame.getlocal(1)._add(frame.getlocal(2)));
             return Py.None;
         }
-        
+
         private static PyObject print_list$2(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject;
-            
+
             // Code
             /* Print the list of tuples as returned by extract_tb() or
                 extract_stack() as a formatted stack trace to the given file. */
@@ -217,19 +221,19 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(5, t$2$PyObject.__getitem__(1));
                 frame.setlocal(4, t$2$PyObject.__getitem__(2));
                 frame.setlocal(2, t$2$PyObject.__getitem__(3));
-                frame.getglobal("_print").__call__(frame.getlocal(1), s$17._mod(new PyTuple(new PyObject[] {frame.getlocal(3), frame.getlocal(5), frame.getlocal(4)})));
+                frame.getglobal("_print").__call__(frame.getlocal(1), s$17._mod(new PyTuple(new PyObject[]{frame.getlocal(3), frame.getlocal(5), frame.getlocal(4)})));
                 if (frame.getlocal(2).__nonzero__()) {
                     frame.getglobal("_print").__call__(frame.getlocal(1), s$18._mod(frame.getlocal(2).invoke("strip")));
                 }
             }
             return Py.None;
         }
-        
+
         private static PyObject format_list$3(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject;
-            
+
             // Code
             /* Format a list of traceback entry tuples for printing.
             
@@ -239,8 +243,8 @@ public class traceback extends java.lang.Object {
                 same index in the argument list.  Each string ends in a newline;
                 the strings may contain internal newlines as well, for those items
                 whose source text line is not None.
-                 */
-            frame.setlocal(5, new PyList(new PyObject[] {}));
+             */
+            frame.setlocal(5, new PyList(new PyObject[]{}));
             t$0$int = 0;
             t$1$PyObject = frame.getlocal(0);
             while ((t$0$PyObject = t$1$PyObject.__finditem__(t$0$int++)) != null) {
@@ -249,7 +253,7 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(6, t$2$PyObject.__getitem__(1));
                 frame.setlocal(3, t$2$PyObject.__getitem__(2));
                 frame.setlocal(1, t$2$PyObject.__getitem__(3));
-                frame.setlocal(4, s$20._mod(new PyTuple(new PyObject[] {frame.getlocal(2), frame.getlocal(6), frame.getlocal(3)})));
+                frame.setlocal(4, s$20._mod(new PyTuple(new PyObject[]{frame.getlocal(2), frame.getlocal(6), frame.getlocal(3)})));
                 if (frame.getlocal(1).__nonzero__()) {
                     frame.setlocal(4, frame.getlocal(4)._add(s$21._mod(frame.getlocal(1).invoke("strip"))));
                 }
@@ -257,11 +261,11 @@ public class traceback extends java.lang.Object {
             }
             return frame.getlocal(5);
         }
-        
+
         private static PyObject print_tb$4(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Print up to 'limit' stack trace entries from the traceback 'tb'.
             
@@ -269,7 +273,7 @@ public class traceback extends java.lang.Object {
                 is omitted or None, the output goes to sys.stderr; otherwise
                 'file' should be an open file or file-like object with a write()
                 method.
-                 */
+             */
             if (frame.getlocal(2).__not__().__nonzero__()) {
                 frame.setlocal(2, frame.getglobal("sys").__getattr__("stderr"));
             }
@@ -285,7 +289,7 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(8, frame.getlocal(7).__getattr__("f_code"));
                 frame.setlocal(3, frame.getlocal(8).__getattr__("co_filename"));
                 frame.setlocal(4, frame.getlocal(8).__getattr__("co_name"));
-                frame.getglobal("_print").__call__(frame.getlocal(2), s$17._mod(new PyTuple(new PyObject[] {frame.getlocal(3), frame.getlocal(5), frame.getlocal(4)})));
+                frame.getglobal("_print").__call__(frame.getlocal(2), s$17._mod(new PyTuple(new PyObject[]{frame.getlocal(3), frame.getlocal(5), frame.getlocal(4)})));
                 frame.setlocal(9, frame.getglobal("linecache").__getattr__("getline").__call__(frame.getlocal(3), frame.getlocal(5)));
                 if (frame.getlocal(9).__nonzero__()) {
                     frame.getglobal("_print").__call__(frame.getlocal(2), s$25._add(frame.getlocal(9).invoke("strip")));
@@ -295,16 +299,16 @@ public class traceback extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject format_tb$5(PyFrame frame) {
             /* A shorthand for 'format_list(extract_stack(f, limit)). */
             return frame.getglobal("format_list").__call__(frame.getglobal("extract_tb").__call__(frame.getlocal(0), frame.getlocal(1)));
         }
-        
+
         private static PyObject extract_tb$6(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Return list of up to limit pre-processed entries from traceback.
             
@@ -315,13 +319,13 @@ public class traceback extends java.lang.Object {
                 usually printed for a stack trace.  The text is a string with
                 leading and trailing whitespace stripped; if the source is not
                 available it is None.
-                 */
+             */
             if (frame.getlocal(1)._is(frame.getglobal("None")).__nonzero__()) {
                 if (frame.getglobal("hasattr").__call__(frame.getglobal("sys"), s$23).__nonzero__()) {
                     frame.setlocal(1, frame.getglobal("sys").__getattr__("tracebacklimit"));
                 }
             }
-            frame.setlocal(7, new PyList(new PyObject[] {}));
+            frame.setlocal(7, new PyList(new PyObject[]{}));
             frame.setlocal(5, i$24);
             while (((t$0$PyObject = frame.getlocal(0)._isnot(frame.getglobal("None"))).__nonzero__() ? ((t$1$PyObject = frame.getlocal(1)._is(frame.getglobal("None"))).__nonzero__() ? t$1$PyObject : frame.getlocal(5)._lt(frame.getlocal(1))) : t$0$PyObject).__nonzero__()) {
                 frame.setlocal(6, frame.getlocal(0).__getattr__("tb_frame"));
@@ -332,22 +336,21 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(9, frame.getglobal("linecache").__getattr__("getline").__call__(frame.getlocal(2), frame.getlocal(4)));
                 if (frame.getlocal(9).__nonzero__()) {
                     frame.setlocal(9, frame.getlocal(9).invoke("strip"));
-                }
-                else {
+                } else {
                     frame.setlocal(9, frame.getglobal("None"));
                 }
-                frame.getlocal(7).invoke("append", new PyTuple(new PyObject[] {frame.getlocal(2), frame.getlocal(4), frame.getlocal(3), frame.getlocal(9)}));
+                frame.getlocal(7).invoke("append", new PyTuple(new PyObject[]{frame.getlocal(2), frame.getlocal(4), frame.getlocal(3), frame.getlocal(9)}));
                 frame.setlocal(0, frame.getlocal(0).__getattr__("tb_next"));
                 frame.setlocal(5, frame.getlocal(5)._add(i$26));
             }
             return frame.getlocal(7);
         }
-        
+
         private static PyObject print_exception$7(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Print exception up to 'limit' stack trace entries from 'tb' to 'file'.
             
@@ -358,7 +361,7 @@ public class traceback extends java.lang.Object {
                 appropriate format, it prints the line where the syntax error
                 occurred with a caret on the next line indicating the approximate
                 position of the error.
-                 */
+             */
             if (frame.getlocal(4).__not__().__nonzero__()) {
                 frame.setlocal(4, frame.getglobal("sys").__getattr__("stderr"));
             }
@@ -376,7 +379,7 @@ public class traceback extends java.lang.Object {
             frame.getglobal("_print").__call__(frame.getlocal(4), frame.getlocal(6).__getitem__(i$26.__neg__()), s$14);
             return Py.None;
         }
-        
+
         private static PyObject format_exception$8(PyFrame frame) {
             /* Format a stack trace and the exception information.
             
@@ -385,25 +388,24 @@ public class traceback extends java.lang.Object {
                 ending in a newline and some containing internal newlines.  When
                 these lines are concatenated and printed, exactly the same text is
                 printed as does print_exception().
-                 */
+             */
             if (frame.getlocal(2).__nonzero__()) {
-                frame.setlocal(4, new PyList(new PyObject[] {s$33}));
+                frame.setlocal(4, new PyList(new PyObject[]{s$33}));
                 frame.setlocal(4, frame.getlocal(4)._add(frame.getglobal("format_tb").__call__(frame.getlocal(2), frame.getlocal(3))));
-            }
-            else {
-                frame.setlocal(4, new PyList(new PyObject[] {}));
+            } else {
+                frame.setlocal(4, new PyList(new PyObject[]{}));
             }
             frame.setlocal(4, frame.getlocal(4)._add(frame.getglobal("format_exception_only").__call__(frame.getlocal(0), frame.getlocal(1))));
             return frame.getlocal(4);
         }
-        
+
         private static PyObject format_exception_only$9(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             boolean t$0$boolean;
             PyException t$0$PyException;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Format the exception part of a traceback.
             
@@ -414,18 +416,16 @@ public class traceback extends java.lang.Object {
                 several lines that (when printed) display detailed information
                 about where the syntax error occurred.  The message indicating
                 which exception occurred is the always last string in the list.
-                 */
-            frame.setlocal(10, new PyList(new PyObject[] {}));
+             */
+            frame.setlocal(10, new PyList(new PyObject[]{}));
             if (frame.getglobal("type").__call__(frame.getlocal(0))._eq(frame.getglobal("types").__getattr__("ClassType")).__nonzero__()) {
                 frame.setlocal(2, frame.getlocal(0).__getattr__("__name__"));
-            }
-            else {
+            } else {
                 frame.setlocal(2, frame.getlocal(0));
             }
             if (frame.getlocal(1)._is(frame.getglobal("None")).__nonzero__()) {
                 frame.getlocal(10).invoke("append", frame.getglobal("str").__call__(frame.getlocal(2))._add(s$15));
-            }
-            else {
+            } else {
                 if (frame.getlocal(0)._is(frame.getglobal("SyntaxError")).__nonzero__()) {
                     t$0$boolean = true;
                     try {
@@ -436,8 +436,7 @@ public class traceback extends java.lang.Object {
                         frame.setlocal(5, t$1$PyObject.__getitem__(1));
                         frame.setlocal(4, t$1$PyObject.__getitem__(2));
                         frame.setlocal(6, t$1$PyObject.__getitem__(3));
-                    }
-                    catch (Throwable x$0) {
+                    } catch (Throwable x$0) {
                         t$0$boolean = false;
                         t$0$PyException = Py.setException(x$0, frame);
                         // pass
@@ -446,7 +445,7 @@ public class traceback extends java.lang.Object {
                         if (frame.getlocal(8).__not__().__nonzero__()) {
                             frame.setlocal(8, s$35);
                         }
-                        frame.getlocal(10).invoke("append", s$36._mod(new PyTuple(new PyObject[] {frame.getlocal(8), frame.getlocal(5)})));
+                        frame.getlocal(10).invoke("append", s$36._mod(new PyTuple(new PyObject[]{frame.getlocal(8), frame.getlocal(5)})));
                         if (frame.getlocal(6)._isnot(frame.getglobal("None")).__nonzero__()) {
                             frame.setlocal(9, i$24);
                             while (((t$0$PyObject = frame.getlocal(9)._lt(frame.getglobal("len").__call__(frame.getlocal(6)))).__nonzero__() ? frame.getlocal(6).__getitem__(frame.getlocal(9)).invoke("isspace") : t$0$PyObject).__nonzero__()) {
@@ -461,8 +460,7 @@ public class traceback extends java.lang.Object {
                                     frame.setlocal(11, t$0$PyObject);
                                     if (frame.getlocal(11).invoke("isspace").__nonzero__()) {
                                         frame.setlocal(7, frame.getlocal(7)._add(frame.getlocal(11)));
-                                    }
-                                    else {
+                                    } else {
                                         frame.setlocal(7, frame.getlocal(7)._add(s$31));
                                     }
                                 }
@@ -474,33 +472,31 @@ public class traceback extends java.lang.Object {
                 }
                 frame.setlocal(7, frame.getglobal("_some_str").__call__(frame.getlocal(1)));
                 if (frame.getlocal(7).__nonzero__()) {
-                    frame.getlocal(10).invoke("append", s$38._mod(new PyTuple(new PyObject[] {frame.getglobal("str").__call__(frame.getlocal(2)), frame.getlocal(7)})));
-                }
-                else {
+                    frame.getlocal(10).invoke("append", s$38._mod(new PyTuple(new PyObject[]{frame.getglobal("str").__call__(frame.getlocal(2)), frame.getlocal(7)})));
+                } else {
                     frame.getlocal(10).invoke("append", s$39._mod(frame.getglobal("str").__call__(frame.getlocal(2))));
                 }
             }
             return frame.getlocal(10);
         }
-        
+
         private static PyObject _some_str$10(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             try {
                 return frame.getglobal("str").__call__(frame.getlocal(0));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 return s$40._mod(frame.getglobal("type").__call__(frame.getlocal(0)).__getattr__("__name__"));
             }
         }
-        
+
         private static PyObject print_exc$11(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             /* Shorthand for 'print_exception(sys.exc_type, sys.exc_value, sys.exc_traceback, limit, file)'.
                 (In fact, it uses sys.exc_info() to retrieve the same information
@@ -513,9 +509,8 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(3, t$0$PyObject.__getitem__(0));
                 frame.setlocal(4, t$0$PyObject.__getitem__(1));
                 frame.setlocal(2, t$0$PyObject.__getitem__(2));
-                frame.getglobal("print_exception").__call__(new PyObject[] {frame.getlocal(3), frame.getlocal(4), frame.getlocal(2), frame.getlocal(0), frame.getlocal(1)});
-            }
-            finally {
+                frame.getglobal("print_exception").__call__(new PyObject[]{frame.getlocal(3), frame.getlocal(4), frame.getlocal(2), frame.getlocal(0), frame.getlocal(1)});
+            } finally {
                 t$0$PyObject = frame.getglobal("None");
                 frame.setlocal(3, t$0$PyObject);
                 frame.setlocal(4, t$0$PyObject);
@@ -523,70 +518,70 @@ public class traceback extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject print_last$12(PyFrame frame) {
             /* This is a shorthand for 'print_exception(sys.last_type,
                 sys.last_value, sys.last_traceback, limit, file)'. */
             if (frame.getlocal(1).__not__().__nonzero__()) {
                 frame.setlocal(1, frame.getglobal("sys").__getattr__("stderr"));
             }
-            frame.getglobal("print_exception").__call__(new PyObject[] {frame.getglobal("sys").__getattr__("last_type"), frame.getglobal("sys").__getattr__("last_value"), frame.getglobal("sys").__getattr__("last_traceback"), frame.getlocal(0), frame.getlocal(1)});
+            frame.getglobal("print_exception").__call__(new PyObject[]{frame.getglobal("sys").__getattr__("last_type"), frame.getglobal("sys").__getattr__("last_value"), frame.getglobal("sys").__getattr__("last_traceback"), frame.getlocal(0), frame.getlocal(1)});
             return Py.None;
         }
-        
+
         private static PyObject print_stack$13(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             /* Print a stack trace from its invocation point.
             
                 The optional 'f' argument can be used to specify an alternate
                 stack frame at which to start. The optional 'limit' and 'file'
                 arguments have the same meaning as for print_exception().
-                 */
+             */
             if (frame.getlocal(0)._is(frame.getglobal("None")).__nonzero__()) {
                 try {
                     throw Py.makeException(frame.getglobal("ZeroDivisionError"));
-                }
-                catch (Throwable x$0) {
+                } catch (Throwable x$0) {
                     t$0$PyException = Py.setException(x$0, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("ZeroDivisionError"))) {
                         frame.setlocal(0, frame.getglobal("sys").__getattr__("exc_info").__call__().__getitem__(i$44).__getattr__("tb_frame").__getattr__("f_back"));
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             frame.getglobal("print_list").__call__(frame.getglobal("extract_stack").__call__(frame.getlocal(0), frame.getlocal(1)), frame.getlocal(2));
             return Py.None;
         }
-        
+
         private static PyObject format_stack$14(PyFrame frame) {
             // Temporary Variables
             PyException t$0$PyException;
-            
+
             // Code
             /* Shorthand for 'format_list(extract_stack(f, limit))'. */
             if (frame.getlocal(0)._is(frame.getglobal("None")).__nonzero__()) {
                 try {
                     throw Py.makeException(frame.getglobal("ZeroDivisionError"));
-                }
-                catch (Throwable x$0) {
+                } catch (Throwable x$0) {
                     t$0$PyException = Py.setException(x$0, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("ZeroDivisionError"))) {
                         frame.setlocal(0, frame.getglobal("sys").__getattr__("exc_info").__call__().__getitem__(i$44).__getattr__("tb_frame").__getattr__("f_back"));
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             return frame.getglobal("format_list").__call__(frame.getglobal("extract_stack").__call__(frame.getlocal(0), frame.getlocal(1)));
         }
-        
+
         private static PyObject extract_stack$15(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject, t$1$PyObject;
             PyException t$0$PyException;
-            
+
             // Code
             /* Extract the raw traceback from the current stack frame.
             
@@ -595,17 +590,17 @@ public class traceback extends java.lang.Object {
                 print_stack().  Each item in the list is a quadruple (filename,
                 line number, function name, text), and the entries are in order
                 from oldest to newest stack frame.
-                 */
+             */
             if (frame.getlocal(0)._is(frame.getglobal("None")).__nonzero__()) {
                 try {
                     throw Py.makeException(frame.getglobal("ZeroDivisionError"));
-                }
-                catch (Throwable x$0) {
+                } catch (Throwable x$0) {
                     t$0$PyException = Py.setException(x$0, frame);
                     if (Py.matchException(t$0$PyException, frame.getglobal("ZeroDivisionError"))) {
                         frame.setlocal(0, frame.getglobal("sys").__getattr__("exc_info").__call__().__getitem__(i$44).__getattr__("tb_frame").__getattr__("f_back"));
+                    } else {
+                        throw t$0$PyException;
                     }
-                    else throw t$0$PyException;
                 }
             }
             if (frame.getlocal(1)._is(frame.getglobal("None")).__nonzero__()) {
@@ -613,7 +608,7 @@ public class traceback extends java.lang.Object {
                     frame.setlocal(1, frame.getglobal("sys").__getattr__("tracebacklimit"));
                 }
             }
-            frame.setlocal(6, new PyList(new PyObject[] {}));
+            frame.setlocal(6, new PyList(new PyObject[]{}));
             frame.setlocal(5, i$24);
             while (((t$0$PyObject = frame.getlocal(0)._isnot(frame.getglobal("None"))).__nonzero__() ? ((t$1$PyObject = frame.getlocal(1)._is(frame.getglobal("None"))).__nonzero__() ? t$1$PyObject : frame.getlocal(5)._lt(frame.getlocal(1))) : t$0$PyObject).__nonzero__()) {
                 frame.setlocal(4, frame.getlocal(0).__getattr__("f_lineno"));
@@ -623,28 +618,27 @@ public class traceback extends java.lang.Object {
                 frame.setlocal(8, frame.getglobal("linecache").__getattr__("getline").__call__(frame.getlocal(2), frame.getlocal(4)));
                 if (frame.getlocal(8).__nonzero__()) {
                     frame.setlocal(8, frame.getlocal(8).invoke("strip"));
-                }
-                else {
+                } else {
                     frame.setlocal(8, frame.getglobal("None"));
                 }
-                frame.getlocal(6).invoke("append", new PyTuple(new PyObject[] {frame.getlocal(2), frame.getlocal(4), frame.getlocal(3), frame.getlocal(8)}));
+                frame.getlocal(6).invoke("append", new PyTuple(new PyObject[]{frame.getlocal(2), frame.getlocal(4), frame.getlocal(3), frame.getlocal(8)}));
                 frame.setlocal(0, frame.getlocal(0).__getattr__("f_back"));
                 frame.setlocal(5, frame.getlocal(5)._add(i$26));
             }
             frame.getlocal(6).invoke("reverse");
             return frame.getlocal(6);
         }
-        
+
         private static PyObject tb_lineno$16(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Calculate correct line number of traceback given in tb.
             
                 Even works with -O on.
-                 */
+             */
             frame.setlocal(3, frame.getlocal(0).__getattr__("tb_frame").__getattr__("f_code"));
             if (frame.getglobal("hasattr").__call__(frame.getlocal(3), s$48).__not__().__nonzero__()) {
                 return frame.getlocal(0).__getattr__("tb_lineno");
@@ -665,45 +659,46 @@ public class traceback extends java.lang.Object {
             }
             return frame.getlocal(6);
         }
-        
+
         private static PyObject main$17(PyFrame frame) {
             frame.setglobal("__file__", s$49);
-            
+
             /* Extract, format and print information about Python stack traces. */
             frame.setlocal("linecache", org.python.core.imp.importOne("linecache", frame));
             frame.setlocal("sys", org.python.core.imp.importOne("sys", frame));
             frame.setlocal("types", org.python.core.imp.importOne("types", frame));
-            frame.setlocal("__all__", new PyList(new PyObject[] {s$1, s$2, s$3, s$4, s$5, s$6, s$7, s$8, s$9, s$10, s$11, s$12, s$13}));
-            frame.setlocal("_print", new PyFunction(frame.f_globals, new PyObject[] {s$14, s$15}, c$0__print));
-            frame.setlocal("print_list", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$1_print_list));
-            frame.setlocal("format_list", new PyFunction(frame.f_globals, new PyObject[] {}, c$2_format_list));
-            frame.setlocal("print_tb", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$3_print_tb));
-            frame.setlocal("format_tb", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$4_format_tb));
-            frame.setlocal("extract_tb", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$5_extract_tb));
-            frame.setlocal("print_exception", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$6_print_exception));
-            frame.setlocal("format_exception", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None")}, c$7_format_exception));
-            frame.setlocal("format_exception_only", new PyFunction(frame.f_globals, new PyObject[] {}, c$8_format_exception_only));
-            frame.setlocal("_some_str", new PyFunction(frame.f_globals, new PyObject[] {}, c$9__some_str));
-            frame.setlocal("print_exc", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$10_print_exc));
-            frame.setlocal("print_last", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$11_print_last));
-            frame.setlocal("print_stack", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None"), frame.getname("None")}, c$12_print_stack));
-            frame.setlocal("format_stack", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$13_format_stack));
-            frame.setlocal("extract_stack", new PyFunction(frame.f_globals, new PyObject[] {frame.getname("None"), frame.getname("None")}, c$14_extract_stack));
-            frame.setlocal("tb_lineno", new PyFunction(frame.f_globals, new PyObject[] {}, c$15_tb_lineno));
+            frame.setlocal("__all__", new PyList(new PyObject[]{s$1, s$2, s$3, s$4, s$5, s$6, s$7, s$8, s$9, s$10, s$11, s$12, s$13}));
+            frame.setlocal("_print", new PyFunction(frame.f_globals, new PyObject[]{s$14, s$15}, c$0__print));
+            frame.setlocal("print_list", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$1_print_list));
+            frame.setlocal("format_list", new PyFunction(frame.f_globals, new PyObject[]{}, c$2_format_list));
+            frame.setlocal("print_tb", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$3_print_tb));
+            frame.setlocal("format_tb", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$4_format_tb));
+            frame.setlocal("extract_tb", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$5_extract_tb));
+            frame.setlocal("print_exception", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$6_print_exception));
+            frame.setlocal("format_exception", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None")}, c$7_format_exception));
+            frame.setlocal("format_exception_only", new PyFunction(frame.f_globals, new PyObject[]{}, c$8_format_exception_only));
+            frame.setlocal("_some_str", new PyFunction(frame.f_globals, new PyObject[]{}, c$9__some_str));
+            frame.setlocal("print_exc", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$10_print_exc));
+            frame.setlocal("print_last", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$11_print_last));
+            frame.setlocal("print_stack", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None"), frame.getname("None")}, c$12_print_stack));
+            frame.setlocal("format_stack", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$13_format_stack));
+            frame.setlocal("extract_stack", new PyFunction(frame.f_globals, new PyObject[]{frame.getname("None"), frame.getname("None")}, c$14_extract_stack));
+            frame.setlocal("tb_lineno", new PyFunction(frame.f_globals, new PyObject[]{}, c$15_tb_lineno));
             return Py.None;
         }
-        
+
     }
+
     public static void moduleDictInit(PyObject dict) {
         dict.__setitem__("__name__", new PyString("traceback"));
         Py.runCode(new _PyInner().getMain(), dict, dict);
     }
-    
+
     public static void main(String[] args) throws Exception {
-        String[] newargs = new String[args.length+1];
+        String[] newargs = new String[args.length + 1];
         newargs[0] = "traceback";
         System.arraycopy(args, 0, newargs, 1, args.length);
-        Py.runMain(traceback._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[] {"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
+        Py.runMain(traceback._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[]{"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
     }
-    
+
 }

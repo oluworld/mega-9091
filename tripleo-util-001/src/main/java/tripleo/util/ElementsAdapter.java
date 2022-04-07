@@ -8,17 +8,18 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 public class ElementsAdapter implements Enumeration {
-	Iterator it;
 
-	public ElementsAdapter(Iterator ait) {
-		it = ait;
-	}
+    Iterator it;
 
-	public boolean hasMoreElements() {
-		return it.hasNext();
-	}
+    public ElementsAdapter(Iterator ait) {
+        it = ait;
+    }
 
-	public Object nextElement() {
-		return it.next();
-	}
+    public boolean hasMoreElements() {
+        return it.hasNext();
+    }
+
+    public Object nextElement() {
+        return it.next();
+    }
 }

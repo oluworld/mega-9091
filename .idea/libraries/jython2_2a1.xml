@@ -1,9 +1,9 @@
 <component name="libraryTable">
-  <library name="jython2.2a1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jython2.2a1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
+    <library name="jython2.2a1">
+        <CLASSES>
+            <root url="jar://$PROJECT_DIR$/lib/jython2.2a1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+    </library>
 </component>

@@ -1,3 +1,4 @@
 package tripleo.taliyah.ext;
 
-public class menuitem {}
+public class menuitem {
+}

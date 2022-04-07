@@ -2,12 +2,12 @@ package tripleo.http;
 
 public interface IHttpForm {
 
-	void action();
+    void action();
 
-	void setRequest(IRequest aReq);
+    void setRequest(IRequest aReq);
 
-	void setResponse(IResponse aRsp);
+    void setResponse(IResponse aRsp);
 
-	void validate();
+    void validate();
 
 }

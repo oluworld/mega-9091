@@ -6,7 +6,9 @@ package tripleo.util;
 
 public interface FIFO {
 
-	Object xout();
-	void xin(Object t);
-	boolean isEmpty();
+    Object xout();
+
+    void xin(Object t);
+
+    boolean isEmpty();
 }

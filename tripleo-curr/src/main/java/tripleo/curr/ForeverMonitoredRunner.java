@@ -6,10 +6,9 @@
  */
 package tripleo.curr;
 
-
-
 public final class ForeverMonitoredRunner implements MonitoredRunner {
-	public boolean stillRunning() {
-		return true;
-	}
+
+    public boolean stillRunning() {
+        return true;
+    }
 }

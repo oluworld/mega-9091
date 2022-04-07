@@ -14,44 +14,46 @@ import java.util.List;
 import rabbit.http.HTTPHeader;
 
 class Datum implements Serializable {
-	String a, b;
-	String category = "0"; //TODO: can't change categories
-	boolean active = true;
-	transient HTTPHeader header;
-	Collection v;
-	String rql;
-	byte[] cont; // FIXME: maybe this holds header content?
 
-	public Datum(String a, String b, HTTPHeader header, boolean active, String category) {
-		this.a = a;
-		this.b = b;
-		this.header = header;
-		this.active = active;
-		this.category = category;
-		v = header.copyOfHeaders();
-		rql = header.getRequestLine();
-		InputStream xa = header.getContentStream();
-		if (xa == null) {
-			final String content = header.getContent();
-			if (content == null)
-				cont = new byte[0];
-			else
-				cont = content.getBytes();
-		} else {
-			List<byte[]> l = new ArrayList<>();
-			int ba, ta = 0;
-			try {
-				while ((ba = xa.available()) > 0) {
-					byte[] tcont = new byte[ba];
-					xa.read(tcont);
-					l.add(tcont);
-					ta += ba;
-				}
-			} catch (IOException e) {
-				System.err.println("ignoring exception fromm create datum " + b + "\n" + e + "---------------");
-			} finally {
-				int x0 = 0;
-				cont = new byte[ta];
+    String a, b;
+    String category = "0"; //TODO: can't change categories
+    boolean active = true;
+    transient HTTPHeader header;
+    Collection v;
+    String rql;
+    byte[] cont; // FIXME: maybe this holds header content?
+
+    public Datum(String a, String b, HTTPHeader header, boolean active, String category) {
+        this.a = a;
+        this.b = b;
+        this.header = header;
+        this.active = active;
+        this.category = category;
+        v = header.copyOfHeaders();
+        rql = header.getRequestLine();
+        InputStream xa = header.getContentStream();
+        if (xa == null) {
+            final String content = header.getContent();
+            if (content == null) {
+                cont = new byte[0];
+            } else {
+                cont = content.getBytes();
+            }
+        } else {
+            List<byte[]> l = new ArrayList<>();
+            int ba, ta = 0;
+            try {
+                while ((ba = xa.available()) > 0) {
+                    byte[] tcont = new byte[ba];
+                    xa.read(tcont);
+                    l.add(tcont);
+                    ta += ba;
+                }
+            } catch (IOException e) {
+                System.err.println("ignoring exception fromm create datum " + b + "\n" + e + "---------------");
+            } finally {
+                int x0 = 0;
+                cont = new byte[ta];
                 /*(byte[])*/
                 for (byte[] bytes : l) {
                     System.arraycopy(bytes, 0, cont, x0, bytes.length);
@@ -59,23 +61,23 @@ class Datum implements Serializable {
                 }
 //				while (x0<ta)
 //					System.arraycopy();
-			}
-		}
-	}
+            }
+        }
+    }
 
-	public String toString() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append("Datum (");
-		sb.append(a);
-		sb.append(") (");
-		sb.append(b);
-		sb.append(") (");
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Datum (");
+        sb.append(a);
+        sb.append(") (");
+        sb.append(b);
+        sb.append(") (");
 //		sb.append(header);
 //		sb.append(") (");
-		sb.append(category);
-		sb.append(") (");
-		sb.append(active);
-		sb.append(")");
-		return sb.toString();
-	}
+        sb.append(category);
+        sb.append(") (");
+        sb.append(active);
+        sb.append(")");
+        return sb.toString();
+    }
 }

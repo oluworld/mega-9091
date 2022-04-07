@@ -15,18 +15,21 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class AtomBackRef extends Range
-{
- Expr expr;
- int  refNo;
+class AtomBackRef extends Range {
 
- AtomBackRef(Expr expr, int refNo)
-	{ super(); this.expr = expr; this.refNo = refNo; }
+    Expr expr;
+    int refNo;
 
- String rexToString()
-	{ return "<ref>#" + refNo + super.rexToString(); }
+    AtomBackRef(Expr expr, int refNo) {
+        super();
+        this.expr = expr;
+        this.refNo = refNo;
+    }
+
+    String rexToString() {
+        return "<ref>#" + refNo + super.rexToString();
+    }
 }

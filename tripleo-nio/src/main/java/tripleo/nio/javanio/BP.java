@@ -35,14 +35,13 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * A multi-threaded server which creates a pool of threads for use
- * by the server.  The Thread pool decides how to schedule those threads.
+ * A multi-threaded server which creates a pool of threads for use by the
+ * server. The Thread pool decides how to schedule those threads.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -50,26 +49,26 @@ import java.util.concurrent.Executors;
  */
 public class BP extends Server {
 
-	private static final int POOL_MULTIPLE = 4;
+    private static final int POOL_MULTIPLE = 4;
 
-	BP(int port, int backlog, boolean secure) throws Exception {
-		super(port, backlog, secure);
-	}
+    BP(int port, int backlog, boolean secure) throws Exception {
+        super(port, backlog, secure);
+    }
 
-	void runServer() throws Exception {
+    void runServer() throws Exception {
 
-		ExecutorService xec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * POOL_MULTIPLE);
+        ExecutorService xec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * POOL_MULTIPLE);
 
-		for (; ;) {
+        for (;;) {
 
-			SocketChannel sc = ssc.accept();
+            SocketChannel sc = ssc.accept();
 
-			ChannelIO cio = (sslContext != null ?
-			        null //ChannelIOSecure.getInstance(sc, true /* blocking */, sslContext) :
-			        : ChannelIO.getInstance(sc, true /* blocking */));
+            ChannelIO cio = (sslContext != null
+                    ? null //ChannelIOSecure.getInstance(sc, true /* blocking */, sslContext) :
+                    : ChannelIO.getInstance(sc, true /* blocking */));
 
-			RequestServicer svc = new RequestServicer(cio);
-			xec.execute(svc);
-		}
-	}
+            RequestServicer svc = new RequestServicer(cio);
+            xec.execute(svc);
+        }
+    }
 }

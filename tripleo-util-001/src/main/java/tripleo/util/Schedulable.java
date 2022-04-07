@@ -5,5 +5,6 @@
 package tripleo.util;
 
 public interface Schedulable {
-	void run(Scheduler aScheduler) throws Exception;
+
+    void run(Scheduler aScheduler) throws Exception;
 }

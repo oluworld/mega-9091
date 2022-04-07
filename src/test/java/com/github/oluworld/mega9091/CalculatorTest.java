@@ -17,7 +17,7 @@ public class CalculatorTest {
         var sum = Calculator.Add(num1, num2);
 
         //Assert
-        assertEquals(expectedValue, sum);        
+        assertEquals(expectedValue, sum);
     }
 
 }

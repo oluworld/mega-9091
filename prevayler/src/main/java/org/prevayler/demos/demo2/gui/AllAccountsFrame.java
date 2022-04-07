@@ -10,128 +10,130 @@ import java.awt.event.*;
 
 class AllAccountsFrame extends JInternalFrame implements BankListener, AccountListener {
 
-	private final Prevayler prevayler;
-	private final JList accountList;
+    private final Prevayler prevayler;
+    private final JList accountList;
 
-	AllAccountsFrame(Prevayler prevayler, Container container) {
-    		super("All Accounts", true);  //true means resizable.
-		this.prevayler = prevayler;
-		
-		accountList = new JList();
-		accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		bank().setBankListener(this);
-		listenToAccounts();
-		refreshAccounts();
-		
-		container.add(this);
-    		getContentPane().add(new JScrollPane(accountList), BorderLayout.CENTER);
-		getContentPane().add(accountButtons(), BorderLayout.SOUTH);
+    AllAccountsFrame(Prevayler prevayler, Container container) {
+        super("All Accounts", true);  //true means resizable.
+        this.prevayler = prevayler;
 
-		setBounds(10,10,330,240);
-		show();
-	}
-  
-	private void listenToAccounts() {
+        accountList = new JList();
+        accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        bank().setBankListener(this);
+        listenToAccounts();
+        refreshAccounts();
+
+        container.add(this);
+        getContentPane().add(new JScrollPane(accountList), BorderLayout.CENTER);
+        getContentPane().add(accountButtons(), BorderLayout.SOUTH);
+
+        setBounds(10, 10, 330, 240);
+        show();
+    }
+
+    private void listenToAccounts() {
         for (Object o : accounts()) {
             ((Account) o).addAccountListener(this);
         }
-	}
+    }
 
-	private void refreshAccounts() {
-		accountList.setListData(accounts().toArray());
-	}
-	
-	private java.util.List accounts() {
-		return bank().accounts();
-	}
-	
-	private Bank bank() {
-		return (Bank)prevayler.system();
-	}
-	
-	public void accountCreated(Account a) { //Implements BankListener.
-		a.addAccountListener(this);
-		refreshAccounts();
-	}
+    private void refreshAccounts() {
+        accountList.setListData(accounts().toArray());
+    }
 
-	public void accountDeleted(Account a) { //Implements BankListener.
-		a.removeAccountListener(this);
-		refreshAccounts();
-	}
+    private java.util.List accounts() {
+        return bank().accounts();
+    }
 
-	public void accountChanged() { //Implements AccountListener.
-		refreshAccounts();
-	}
-  
-	private JPanel accountButtons() {
-		JPanel result = new JPanel();
-   
-		result.add(new JButton(new AccountCreation()));
-		result.add(new JButton(new AccountEditAction()));
-		result.add(new JButton(new AccountDeleteAction()));
-    
-		return result;
-	}
+    private Bank bank() {
+        return (Bank) prevayler.system();
+    }
 
-	class AccountCreation extends AbstractAction {
-		
-		AccountCreation() {
-			super("Create");
-		}
+    public void accountCreated(Account a) { //Implements BankListener.
+        a.addAccountListener(this);
+        refreshAccounts();
+    }
 
-		public void actionPerformed(ActionEvent e) {
-			new NewAccountFrame(prevayler, getDesktopPane());
-		}
-		
-	}
-	
-	abstract class SelectedAccountAction extends RobustAction implements ListSelectionListener {
+    public void accountDeleted(Account a) { //Implements BankListener.
+        a.removeAccountListener(this);
+        refreshAccounts();
+    }
 
-		SelectedAccountAction(String name) {
-			super(name);
-			refreshEnabled();
-			accountList.addListSelectionListener(this);
-		}
-  		
-		private void refreshEnabled() {
-			this.setEnabled(accountList.getSelectedValue() != null);
-		}
+    public void accountChanged() { //Implements AccountListener.
+        refreshAccounts();
+    }
 
-		public void valueChanged(ListSelectionEvent event) {
-			refreshEnabled();
-		}
+    private JPanel accountButtons() {
+        JPanel result = new JPanel();
 
-		protected void action() throws Exception {
-			action((Account)accountList.getSelectedValue());
-		}
+        result.add(new JButton(new AccountCreation()));
+        result.add(new JButton(new AccountEditAction()));
+        result.add(new JButton(new AccountDeleteAction()));
 
-		abstract void action(Account account) throws Exception;
-	}
+        return result;
+    }
 
-	class AccountEditAction extends SelectedAccountAction {
-  	
-		AccountEditAction() {
-			super("Edit");
-		}
-		
-		void action(Account account) {
-			new AccountEditFrame(account, prevayler, getDesktopPane());
-		}
-	}
+    class AccountCreation extends AbstractAction {
 
-	class AccountDeleteAction extends SelectedAccountAction {
-  	
-		AccountDeleteAction() {
-			super("Delete");
-		}
-		
-		void action(Account account) throws Exception {
-			int option = JOptionPane.showConfirmDialog(null, "Delete selected account?", "Account Deletion", JOptionPane.YES_NO_OPTION);
-			if (option != JOptionPane.YES_OPTION) return;
-			
-			prevayler.executeCommand(new AccountDeletion(account));
-		}
-		  	
-	}
+        AccountCreation() {
+            super("Create");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            new NewAccountFrame(prevayler, getDesktopPane());
+        }
+
+    }
+
+    abstract class SelectedAccountAction extends RobustAction implements ListSelectionListener {
+
+        SelectedAccountAction(String name) {
+            super(name);
+            refreshEnabled();
+            accountList.addListSelectionListener(this);
+        }
+
+        private void refreshEnabled() {
+            this.setEnabled(accountList.getSelectedValue() != null);
+        }
+
+        public void valueChanged(ListSelectionEvent event) {
+            refreshEnabled();
+        }
+
+        protected void action() throws Exception {
+            action((Account) accountList.getSelectedValue());
+        }
+
+        abstract void action(Account account) throws Exception;
+    }
+
+    class AccountEditAction extends SelectedAccountAction {
+
+        AccountEditAction() {
+            super("Edit");
+        }
+
+        void action(Account account) {
+            new AccountEditFrame(account, prevayler, getDesktopPane());
+        }
+    }
+
+    class AccountDeleteAction extends SelectedAccountAction {
+
+        AccountDeleteAction() {
+            super("Delete");
+        }
+
+        void action(Account account) throws Exception {
+            int option = JOptionPane.showConfirmDialog(null, "Delete selected account?", "Account Deletion", JOptionPane.YES_NO_OPTION);
+            if (option != JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            prevayler.executeCommand(new AccountDeletion(account));
+        }
+
+    }
 
 }

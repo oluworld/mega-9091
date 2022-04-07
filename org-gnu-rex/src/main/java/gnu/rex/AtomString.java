@@ -15,35 +15,37 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class AtomString extends Range
-{
- char[] string;
+class AtomString extends Range {
 
- AtomString(int min, int max)
-	{ super(min, max); string = null; }
+    char[] string;
 
- AtomString(String string) { this(string, 1, 1); }
+    AtomString(int min, int max) {
+        super(min, max);
+        string = null;
+    }
 
- AtomString(String string, int min, int max)
- {
-	super(min, max);
-	this.string = new char[string.length()];
+    AtomString(String string) {
+        this(string, 1, 1);
+    }
 
-	string.getChars(0, string.length(), this.string, 0);
- }
+    AtomString(String string, int min, int max) {
+        super(min, max);
+        this.string = new char[string.length()];
 
- AtomString(char[] string, int min, int max)
- {
-	super(min, max);
-	this.string = new char[string.length];
+        string.getChars(0, string.length(), this.string, 0);
+    }
 
-	System.arraycopy(string, 0, this.string, 0, string.length);
- }
+    AtomString(char[] string, int min, int max) {
+        super(min, max);
+        this.string = new char[string.length];
 
- String rexToString()
-	{ return "<string>\"" + string + "\"" + super.rexToString(); }
+        System.arraycopy(string, 0, this.string, 0, string.length);
+    }
+
+    String rexToString() {
+        return "<string>\"" + string + "\"" + super.rexToString();
+    }
 }

@@ -5,6 +5,8 @@
 package tripleo.nio;
 
 public interface IAcceptable {
-	void handle_accept_failed(ISocket sock, Exception e);
-	void handle_accept(ISocket sock);
+
+    void handle_accept_failed(ISocket sock, Exception e);
+
+    void handle_accept(ISocket sock);
 }

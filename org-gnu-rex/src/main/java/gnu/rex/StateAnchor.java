@@ -15,18 +15,19 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
+class StateAnchor extends State {
 
-class StateAnchor extends State
-{
- char anchor;
+    char anchor;
 
- StateAnchor(char anchor)
-	{ this.anchor = anchor; }
+    StateAnchor(char anchor) {
+        this.anchor = anchor;
+    }
 
- String stateToString() { return anchor +"->"; }
+    String stateToString() {
+        return anchor + "->";
+    }
 
 }

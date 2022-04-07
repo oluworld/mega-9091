@@ -4,48 +4,52 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 class SourceViewAction extends Action {
-	private final SourceViewWindow window;
 
-	public SourceViewAction(SourceViewWindow w) {
-		window = w;
-		setToolTipText("Open a new SourceView window");
+    private final SourceViewWindow window;
+
+    public SourceViewAction(SourceViewWindow w) {
+        window = w;
+        setToolTipText("Open a new SourceView window");
 //		setText("Copy File &Names@Ctrl+Shift+C");
-		setText("Open Source View");
-		setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/copy.gif")));
-	}
+        setText("Open Source View");
+        setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/copy.gif")));
+    }
 
-	public void run() {
-		new SourceViewWindow().open();
-	}
+    public void run() {
+        new SourceViewWindow().open();
+    }
 }
 
 class ExitAction extends Action {
-	private final ControlExample window;
 
-	public ExitAction(ControlExample w) {
-		window = w;
-		setText("E&xit@Ctrl+W");
-		setToolTipText("Exit the application");
-		setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/close.gif")));
-	}
+    private final ControlExample window;
 
-	public void run() {
-		window.close();
-	}
+    public ExitAction(ControlExample w) {
+        window = w;
+        setText("E&xit@Ctrl+W");
+        setToolTipText("Exit the application");
+        setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/close.gif")));
+    }
+
+    public void run() {
+        window.close();
+    }
 }
+
 class PreferencesAction extends Action {
-	private final ControlExample window;
 
-	public PreferencesAction(ControlExample w) {
-		window = w;
-		setText("&Preferences@Ctrl+e");
-		setToolTipText("Preferences");
-		setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/close.gif")));
-	}
+    private final ControlExample window;
 
-	public void run() {
-		window.close();
-	}
+    public PreferencesAction(ControlExample w) {
+        window = w;
+        setText("&Preferences@Ctrl+e");
+        setToolTipText("Preferences");
+        setImageDescriptor(ImageDescriptor.createFromURL(Util.newURL("file:icons/close.gif")));
+    }
+
+    public void run() {
+        window.close();
+    }
 }
 
 
@@ -99,7 +103,7 @@ class PreferencesAction extends Action {
 		run();
 	}
 }*/
-/*class RefreshAction extends Action {
+ /*class RefreshAction extends Action {
 	private SourceViewMain window;
 
 	public RefreshAction(SourceViewMain w) {
@@ -114,4 +118,4 @@ class PreferencesAction extends Action {
 //		window.setStatus(string_buffer.toString());
 	}
 }
-*/
+ */

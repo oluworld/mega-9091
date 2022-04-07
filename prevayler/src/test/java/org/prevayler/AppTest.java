@@ -22,42 +22,42 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
 
-	protected static final ResourceBundle testMessages = ResourceBundle.getBundle("testMessages");
+    protected static final ResourceBundle testMessages = ResourceBundle.getBundle("testMessages");
 
-	@Captor
-	private ArgumentCaptor<String> captorLoggingMessage;
+    @Captor
+    private ArgumentCaptor<String> captorLoggingMessage;
 
-	PrintStream errorStream;
-	PrintStream loggingStream;
+    PrintStream errorStream;
+    PrintStream loggingStream;
 
-	@Test
-	public void testApp() {
-		App.main(new String[] {});
+    @Test
+    public void testApp() {
+        App.main(new String[]{});
 
-		verify(loggingStream, atLeastOnce()).println(captorLoggingMessage.capture());
-		final String loggingMessage = captorLoggingMessage.getValue();
-		assertEquals("[main] INFO App - Hello world!", loggingMessage);
-	}
+        verify(loggingStream, atLeastOnce()).println(captorLoggingMessage.capture());
+        final String loggingMessage = captorLoggingMessage.getValue();
+        assertEquals("[main] INFO App - Hello world!", loggingMessage);
+    }
 
-	@Test
-	public void testAppWithName() {
-		App.main(new String[] {"John"});
+    @Test
+    public void testAppWithName() {
+        App.main(new String[]{"John"});
 
-		verify(loggingStream, atLeastOnce()).println(captorLoggingMessage.capture());
-		final String loggingMessage = captorLoggingMessage.getValue();
-		assertEquals("[main] INFO App - Hello John! /by " + testMessages.getString("artifactId"), loggingMessage);
-	}
+        verify(loggingStream, atLeastOnce()).println(captorLoggingMessage.capture());
+        final String loggingMessage = captorLoggingMessage.getValue();
+        assertEquals("[main] INFO App - Hello John! /by " + testMessages.getString("artifactId"), loggingMessage);
+    }
 
-	@Before
-	public void setUp() {
-		errorStream = System.err;
-		loggingStream = spy(errorStream);
-		System.setErr(loggingStream);
-	}
+    @Before
+    public void setUp() {
+        errorStream = System.err;
+        loggingStream = spy(errorStream);
+        System.setErr(loggingStream);
+    }
 
-	@After
-	public void tearDown() {
-		System.setErr(errorStream);
-	}
+    @After
+    public void tearDown() {
+        System.setErr(errorStream);
+    }
 
 }

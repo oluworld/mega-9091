@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 /**
  * Exception class used when a request can't be properly parsed.
  *
@@ -45,13 +44,14 @@ package tripleo.nio.javanio;
  */
 public class MalformedRequestException extends Exception {
 
-	public MalformedRequestException() { }
+    public MalformedRequestException() {
+    }
 
-	MalformedRequestException(String msg) {
-		super(msg);
-	}
+    MalformedRequestException(String msg) {
+        super(msg);
+    }
 
-	MalformedRequestException(Exception x) {
-		super(x);
-	}
+    MalformedRequestException(Exception x) {
+        super(x);
+    }
 }

@@ -20,430 +20,502 @@ package tripleo.impohrt.scache;
  *  can also obtain it by writing to the Free Software Foundation,
  *  Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
-
 import java.io.*;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import tripleo.fs.File;
+
 public final class cachedir {
 
+    public static final String DIRINFO = ".cacheinfo";
+    public static boolean readonly;
+    static mgr parent;
 
-	public static final String DIRINFO = ".cacheinfo";
-	public static boolean readonly;
-	static mgr parent;
+    /* private data */
+    private String localdir;
+    private Hashtable<String, cacheobject> objects;
+    public String URLbase;
+    public boolean dirty;
 
-/* private data */
-	private String localdir;
-	private Hashtable<String,cacheobject> objects;
-	public String URLbase;
-	public boolean dirty;
+    cachedir(String locdir, String baseurl) {
+        objects = new Hashtable<String, cacheobject>();
+        localdir = locdir;
+        URLbase = baseurl;
+        File f = new File(locdir);
 
-	cachedir(String locdir, String baseurl) {
-		objects = new Hashtable<String, cacheobject>();
-		localdir = locdir;
-		URLbase = baseurl;
-		File f = new File(locdir);
+        /* nejdrive se vytvorit adresar */
+        if (!readonly) {
+            f.mkdirs();
+        }
 
-		/* nejdrive se vytvorit adresar */
-		if (!readonly) f.mkdirs();
+        /* pokud neexistuje nebo to neni adresar, tak mame problem */
+        if (!f.exists() || f.isFile()) {
+            if (readonly) {
+                localdir = null;
+                return;
+            }
+            /* likvidujeme up-dirs, mozna je to konflikt se souborem */
+            File thisdir = new File(f.getParent());
+            while (true) {
+                String par;
+                if (moveOutOfWay(thisdir)) {
+                    break;
+                }
+                par = thisdir.getParent();
+                if (par == null) {
+                    break;
+                }
+                thisdir = new File(par);
+            }
+            // druhy a posledni pokus o vytvoreni adresare
+            f.mkdirs();
+            if (!f.exists()) {
+                System.out.println("Cannot create directory " + localdir + " - turning caching off for it.");
+                localdir = null;
+                return;
+            }
+        }
 
-		/* pokud neexistuje nebo to neni adresar, tak mame problem */
-		if (!f.exists() || f.isFile()) {
-			if (readonly) {
-				localdir = null;
-				return;
-			}
-			/* likvidujeme up-dirs, mozna je to konflikt se souborem */
-			File thisdir = new File(f.getParent());
-			while (true) {
-				String par;
-				if (moveOutOfWay(thisdir)) break;
-				par = thisdir.getParent();
-				if (par == null) break;
-				thisdir = new File(par);
-			}
-			// druhy a posledni pokus o vytvoreni adresare
-			f.mkdirs();
-			if (!f.exists()) {
-				System.out.println("Cannot create directory " + localdir + " - turning caching off for it.");
-				localdir = null;
-				return;
-			}
-		}
+        dirty = false;
+        /* nacteme cachovane objekty */
 
-		dirty = false;
-		/* nacteme cachovane objekty */
+        DataInputStream is = null;
+        try {
+            is = new DataInputStream(new BufferedInputStream(new FileInputStream(localdir + DIRINFO), 4096));
 
-		DataInputStream is = null;
-		try {
-			is = new DataInputStream(new BufferedInputStream(new FileInputStream(localdir + DIRINFO), 4096));
+            int howmany = is.readInt();
+            byte version = 2;
+            if (howmany == 0x53433033) {
+                version = 3;
+                howmany = is.readInt();
+            } else if (howmany == 0x53433034) {
+                version = 4;
+                howmany = is.readInt();
+            }
 
-			int howmany = is.readInt();
-			byte version = 2;
-			if (howmany == 0x53433033) {
-				version = 3;
-				howmany = is.readInt();
-			} else if (howmany == 0x53433034) {
-				version = 4;
-				howmany = is.readInt();
-			}
+            for (int i = 0; i < howmany; i++) {
+                cacheobject o;
+                o = new cacheobject(is, this, version);
+                objects.put(o.getName(), o);
+            }
+            is.close();
+        } catch (IOException e) {
+            try {
+                if (is != null) {
+                    System.out.println("ERROR reading " + localdir + DIRINFO + ", file corrupted?");
+                    is.close();
+                }
+            } catch (IOException z) {
+            }
+        }
+    }
 
-			for (int i = 0; i < howmany; i++) {
-				cacheobject o;
-				o = new cacheobject(is, this, version);
-				objects.put(o.getName(), o);
-			}
-			is.close();
-		} catch (IOException e) {
-			try {
-				if (is != null) {
-					System.out.println("ERROR reading " + localdir + DIRINFO + ", file corrupted?");
-					is.close();
-				}
-			} catch (IOException z) {}
-		}
-    } /* konstruktor */
+    /* konstruktor */
+    final public synchronized void save() {
+        if (localdir == null || readonly == true) {
+            dirty = false;
+            return;
+        }
+        if (!dirty) {
+            return;
+        }
 
-	final public synchronized void save() {
-		if (localdir == null || readonly == true) {
-			dirty = false;
-			return;
-		}
-		if (!dirty) return;
+        dirty = false;
 
-		dirty = false;
+        /* smazat ty, ktere neukladame */
+        Enumeration<cacheobject> en = objects.elements();
+        while (en.hasMoreElements()) {
+            cacheobject o = en.nextElement();
+            if (!o.needSave()) {
+                objects.remove(o.getName());
+            }
+        }
+        int howmany;
+        howmany = objects.size();
+        if (howmany == 0) {
+            /* nemusime nic ukladat */
+            return;
+        }
 
-		/* smazat ty, ktere neukladame */
-		Enumeration<cacheobject> en = objects.elements();
-		while (en.hasMoreElements()) {
-			cacheobject o = en.nextElement();
-			if (!o.needSave())
-				objects.remove(o.getName());
-		}
-		int howmany;
-		howmany = objects.size();
-		if (howmany == 0) {
-			/* nemusime nic ukladat */
-			return;
-		}
+        try {
+            DataOutputStream os = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(localdir + DIRINFO), 4096));
 
-		try {
-			DataOutputStream os = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(localdir + DIRINFO), 4096));
+            os.writeInt(0x53433034); // VERSION 4
+            os.writeInt(howmany);
+            en = objects.elements();
+            while (en.hasMoreElements()) {
+                cacheobject o = en.nextElement();
+                if (o.needSave()) {
+                    o.save(os);
+                }
+            }
+            os.flush();
+            os.close();
+        } catch (FileNotFoundException e) /* nekdo nam smazal hot dir, ze by BFU nebo GC ? */ {
+            if (new File(localdir).exists()) {
+                /* .cacheinfo no perm for write */
+                System.out.println("No write access to " + localdir + DIRINFO);
+                return;
+            }
+            System.out.println("Lost Directory " + localdir);
+            localdir = null;
+            objects = new Hashtable<String, cacheobject>();
+            return;
+        } catch (IOException e) {
+            System.out.println("**DIRECTORY SAVE ERROR** " + localdir + "  (" + e + ")");
+        }
+    }
 
-			os.writeInt(0x53433034); // VERSION 4
-			os.writeInt(howmany);
-			en = objects.elements();
-			while (en.hasMoreElements()) {
-				cacheobject o = en.nextElement();
-				if (o.needSave())
-					o.save(os);
-			}
-			os.flush();
-			os.close();
-		} catch (FileNotFoundException e)
-		        /* nekdo nam smazal hot dir, ze by BFU nebo GC ? */ {
-			if (new File(localdir).exists()) { /* .cacheinfo no perm for write */
-				System.out.println("No write access to " + localdir + DIRINFO);
-				return;
-			}
-			System.out.println("Lost Directory " + localdir);
-			localdir = null;
-			objects = new Hashtable<String, cacheobject>();
-			return;
-		} catch (IOException e) {
-			System.out.println("**DIRECTORY SAVE ERROR** " + localdir + "  (" + e + ")");
-		}
-	}
+    /* returns number of deleted directories */
+    final int cleandir() {
+        if (localdir == null) {
+            return 0;
+        }
+        if (objects.size() != 0) {
+            return 0;
+            /* safe-check */
+        }
 
-/* returns number of deleted directories */
-	final int cleandir() {
-		if (localdir == null) return 0;
-		if (objects.size() != 0) return 0; /* safe-check */
+        int rc;
+        rc = 1;
 
-		int rc;
-		rc = 1;
-
-		File thisdir = new File(localdir.substring(0, localdir.length() - 1));
+        File thisdir = new File(localdir.substring(0, localdir.length() - 1));
 //   System.out.println("/debug/ Cleandir: STARTING for "+localdir);
-		localdir = null;
-		String filez[] = thisdir.list();
-		if (filez == null) return 1;
+        localdir = null;
+        String filez[] = thisdir.list();
+        if (filez == null) {
+            return 1;
+        }
 
-		/* delete any files found there */
-		for (String s : filez) {
-			//   System.out.println("/debug/ Cleandir: Trying to delete "+filez[i]);
-			if (!((new File(thisdir, s)).delete())) {
-				rc = 0;
-			}
-		}
+        /* delete any files found there */
+        for (String s : filez) {
+            //   System.out.println("/debug/ Cleandir: Trying to delete "+filez[i]);
+            if (!((new File(thisdir, s)).delete())) {
+                rc = 0;
+            }
+        }
 
-		if (rc == 0) {
-			return 0;
-		}
+        if (rc == 0) {
+            return 0;
+        }
 
-		rc = 0;
+        rc = 0;
 
-		/* likvidujeme up-dirs*/
-		while (thisdir.delete()) {
-			rc++;
+        /* likvidujeme up-dirs*/
+        while (thisdir.delete()) {
+            rc++;
 //     System.out.println("/debug/ Cleandir: Deleted dir "+thisdir+" rc="+rc);
-			String par;
-			par = thisdir.getParent();
-			if (par == null) break;
-			thisdir = new File(par);
-		}
+            String par;
+            par = thisdir.getParent();
+            if (par == null) {
+                break;
+            }
+            thisdir = new File(par);
+        }
 
-		return rc;
-	}
+        return rc;
+    }
 
-	final public int countObjects() {
-		return objects.size();
-	}
+    final public int countObjects() {
+        return objects.size();
+    }
 
-	final public synchronized cacheobject getObject(String name) {
-		cacheobject obj;
-		obj = objects.get(name);
-		if (obj != null) return obj;
-		obj = new cacheobject(name, this);
-		objects.put(name, obj);
-		return obj;
-	}
+    final public synchronized cacheobject getObject(String name) {
+        cacheobject obj;
+        obj = objects.get(name);
+        if (obj != null) {
+            return obj;
+        }
+        obj = new cacheobject(name, this);
+        objects.put(name, obj);
+        return obj;
+    }
 
-	final synchronized void putObject(cacheobject co) {
-		dirty = true;
-		objects.put(co.getName(), co);
-	}
+    final synchronized void putObject(cacheobject co) {
+        dirty = true;
+        objects.put(co.getName(), co);
+    }
 
-	final public boolean equals(Object o) {
-		if (o == null || !(o instanceof cachedir)) return false;
-		cachedir o1 = (cachedir) o;
+    final public boolean equals(Object o) {
+        if (o == null || !(o instanceof cachedir)) {
+            return false;
+        }
+        cachedir o1 = (cachedir) o;
 
-		return localdir.equals(o1.getLocalDir());
-	}
+        return localdir.equals(o1.getLocalDir());
+    }
 
-	final public String getLocalDir() {
-		return localdir;
-	}
+    final public String getLocalDir() {
+        return localdir;
+    }
 
-	final public String toString() {
-		return localdir;
-	}
+    final public String toString() {
+        return localdir;
+    }
 
-	final public int hashCode() {
-		if (localdir == null) return 0;
-		return localdir.hashCode();
-	}
+    final public int hashCode() {
+        if (localdir == null) {
+            return 0;
+        }
+        return localdir.hashCode();
+    }
 
-	final public void compressdir() {
-		// System.out.println("Compressing directory: "+localdir);
-		Enumeration<cacheobject> en = objects.elements();
-		while (en.hasMoreElements()) {
-			cacheobject o;
-			o = en.nextElement();
-			o.compress(9);
-		}
-	}
+    final public void compressdir() {
+        // System.out.println("Compressing directory: "+localdir);
+        Enumeration<cacheobject> en = objects.elements();
+        while (en.hasMoreElements()) {
+            cacheobject o;
+            o = en.nextElement();
+            o.compress(9);
+        }
+    }
 
-	final public String[] listLocalNames() {
-		String res[] = new String[objects.size()];
-		int i = 0;
-		Enumeration<cacheobject> en = objects.elements();
-		while (en.hasMoreElements()) {
-			cacheobject o = en.nextElement();
-			res[i++] = o.getLocalName();
-		}
-		return res;
-	}
+    final public String[] listLocalNames() {
+        String res[] = new String[objects.size()];
+        int i = 0;
+        Enumeration<cacheobject> en = objects.elements();
+        while (en.hasMoreElements()) {
+            cacheobject o = en.nextElement();
+            res[i++] = o.getLocalName();
+        }
+        return res;
+    }
 
-/* zjisti aktualnost objektu v adresari */
-/* smaze neexistujici objekty */
-/* vraci true pokud je vse OK */
-	final public boolean checkDir() {
-		Enumeration<cacheobject> en = objects.elements();
-		while (en.hasMoreElements()) {
-			cacheobject o = en.nextElement();
-			if (!o.isValid()) {
-				objects.remove(o.getName());
-				dirty = true;
-				if (garbage.gcloglevel > 2) System.out.println(" - Bad .cacheinfo data for " + localdir + o.getLocalName());
-			}
-		}
-		return !dirty;
-	}
+    /* zjisti aktualnost objektu v adresari */
+ /* smaze neexistujici objekty */
+ /* vraci true pokud je vse OK */
+    final public boolean checkDir() {
+        Enumeration<cacheobject> en = objects.elements();
+        while (en.hasMoreElements()) {
+            cacheobject o = en.nextElement();
+            if (!o.isValid()) {
+                objects.remove(o.getName());
+                dirty = true;
+                if (garbage.gcloglevel > 2) {
+                    System.out.println(" - Bad .cacheinfo data for " + localdir + o.getLocalName());
+                }
+            }
+        }
+        return !dirty;
+    }
 
-/* smaze referenci na objekt */
-	final public void remove(cacheobject o) {
-		objects.remove(o.getName());
-		dirty = true;
-	}
+    /* smaze referenci na objekt */
+    final public void remove(cacheobject o) {
+        objects.remove(o.getName());
+        dirty = true;
+    }
 
-	final public Enumeration<cacheobject> getObjects() {
-		return objects.elements();
-	}
+    final public Enumeration<cacheobject> getObjects() {
+        return objects.elements();
+    }
 
-	final public void export_to(cachedir nd, int type, long difftime) {
-		if (nd == null) return;
-		if (localdir == null) return;
-		long now = System.currentTimeMillis();
-		Enumeration<cacheobject> e = getObjects();
-		while (e.hasMoreElements()) {
-			cacheobject my, out;
-			boolean exp;
-			exp = false;
-			my = e.nextElement();
-			switch (type) {
-				case garbage.EXPORT_ALL:
-					exp = true;
-					break;
-				case garbage.EXPORT_LRU:
-					if (now - my.getLRU() <= difftime) { exp = true;}
-					break;
-				case garbage.EXPORT_DATE:
-					if (now - my.getDate() <= difftime) { exp = true;}
-					break;
-				case garbage.EXPORT_FILEDATE:
-					if (now - my.getDate() > difftime) break;
-					String ln;
-					ln = my.getLocalName();
-					if (ln == null || ln.equals(cacheobject.RESERVED)) break;
-					if (now - new File(localdir + ln).lastModified() <= difftime) exp = true;
-					break;
+    final public void export_to(cachedir nd, int type, long difftime) {
+        if (nd == null) {
+            return;
+        }
+        if (localdir == null) {
+            return;
+        }
+        long now = System.currentTimeMillis();
+        Enumeration<cacheobject> e = getObjects();
+        while (e.hasMoreElements()) {
+            cacheobject my, out;
+            boolean exp;
+            exp = false;
+            my = e.nextElement();
+            switch (type) {
+                case garbage.EXPORT_ALL:
+                    exp = true;
+                    break;
+                case garbage.EXPORT_LRU:
+                    if (now - my.getLRU() <= difftime) {
+                        exp = true;
+                    }
+                    break;
+                case garbage.EXPORT_DATE:
+                    if (now - my.getDate() <= difftime) {
+                        exp = true;
+                    }
+                    break;
+                case garbage.EXPORT_FILEDATE:
+                    if (now - my.getDate() > difftime) {
+                        break;
+                    }
+                    String ln;
+                    ln = my.getLocalName();
+                    if (ln == null || ln.equals(cacheobject.RESERVED)) {
+                        break;
+                    }
+                    if (now - new File(localdir + ln).lastModified() <= difftime) {
+                        exp = true;
+                    }
+                    break;
 
+            }
+            /* switch */
+            if (exp == false) {
+                continue;
+            }
+            if (!my.isValid()) {
+                System.out.println(" - " + localdir + my.getLocalName());
+                continue;
+            }
+            /* found valid object for export */
+            out = nd.getObject(my.getName());
+            out.delete();
+            /* delete old object */
+            File exp1, f2;
+            exp1 = new File(localdir, my.getLocalName());
 
-			} /* switch */
-			if (exp == false) continue;
-			if (!my.isValid()) {
-				System.out.println(" - " + localdir + my.getLocalName());
-				continue;
-			}
-			/* found valid object for export */
-			out = nd.getObject(my.getName());
-			out.delete(); /* delete old object */
-			File exp1, f2;
-			exp1 = new File(localdir, my.getLocalName());
+            my.setDirectory(nd); // needed for localname generation
+            // generovat nove jmeno
+            my.regenName();
+            f2 = new File(nd.getLocalDir(), my.getLocalName());
 
-			my.setDirectory(nd); // needed for localname generation
-			// generovat nove jmeno
-			my.regenName();
-			f2 = new File(nd.getLocalDir(), my.getLocalName());
+            if (copyfile(exp1, f2) == false) {
+                continue;
+            }
+            // musime udelat touch na date
+            my.touch();
+            nd.putObject(my);
+        }
+        /* elements */
+    }
 
-			if (copyfile(exp1, f2) == false) { continue;}
-			// musime udelat touch na date
-			my.touch();
-			nd.putObject(my);
-		} /* elements */
-	}
-
-/*
+    /*
   merge current directory with data in new, file will be moved/copied
-*/
+     */
+    final public void merge(cachedir nd) {
+        if (nd == null) {
+            return;
+        }
+        if (localdir == null) {
+            return;
+        }
+        // nd.checkDir();  //already done by garbage.import0
+        Enumeration<cacheobject> e1 = nd.getObjects();
+        while (e1.hasMoreElements()) {
+            cacheobject o, o2;
+            /*  o - novy objekt */
+ /*  o2 - stary objekt v cache */
+            o = e1.nextElement();
+            if (o.getLocalName() == null) {
+                continue; // transient object
+            }
+            o2 = objects.get(o.getName());
+            // System.out.println("OBJ="+o.getName()+" O2="+o2);
+            if (o2 != null) {
+                if (!o2.isValid()) {
+                    System.out.println(" - " + localdir + o2.getLocalName());
+                    o2.delete(); // KILL our BAD object
+                    o2 = null;
+                } else if (o2.getDate() > o.getDate()) {
+                    continue;
+                    /* our VALID object is newer */
+                }
+            }
+            // import object o into our directory
 
-	final public void merge(cachedir nd) {
-		if (nd == null) return;
-		if (localdir == null) return;
-		// nd.checkDir();  //already done by garbage.import0
-		Enumeration<cacheobject> e1 = nd.getObjects();
-		while (e1.hasMoreElements()) {
-			cacheobject o, o2;
-			/*  o - novy objekt */
-			/*  o2 - stary objekt v cache */
-			o = e1.nextElement();
-			if (o.getLocalName() == null) continue; // transient object
-			o2 = objects.get(o.getName());
-			// System.out.println("OBJ="+o.getName()+" O2="+o2);
-			if (o2 != null) {
-				if (!o2.isValid()) {
-					System.out.println(" - " + localdir + o2.getLocalName());
-					o2.delete(); // KILL our BAD object
-					o2 = null;
-				} else if (o2.getDate() > o.getDate()) continue; /* our VALID object is newer */
-			}
-			// import object o into our directory
+            // step1 - prepare f and f2
+            /* f - soubor k importu, f2 - importovat do... */
+            File f, f2;
+            f = new File(o.getDirectory().getLocalDir(), o.getLocalName());
+            o.setDirectory(this); // needed for localname generation
+            if (o2 != null) {
+                o2.delete(); // delete old object
+            }
+            // generovat nove jmeno
+            o.regenName();
+            f2 = new File(localdir, o.getLocalName());
 
-			// step1 - prepare f and f2
-			/* f - soubor k importu, f2 - importovat do... */
-			File f, f2;
-			f = new File(o.getDirectory().getLocalDir(), o.getLocalName());
-			o.setDirectory(this); // needed for localname generation
-			if (o2 != null) {
-				o2.delete(); // delete old object
-			}
-			// generovat nove jmeno
-			o.regenName();
-			f2 = new File(localdir, o.getLocalName());
+            // System.out.println("f2="+f2);
+            // jmeno vygenerovano
+            //step2 - presun souboru pod nove jmeno
+            if (!f.renameTo(f2)) {
+                /* rename selhalo, kopiruje se */
+                if (copyfile(f, f2) == false) {
+                    continue;
+                }
+                // musime udelat touch na date
+                o.touch();
+            }
 
-			// System.out.println("f2="+f2);
-			// jmeno vygenerovano
+            // touch imported OBJ's LRU
+            o.touchLRU();
 
-			//step2 - presun souboru pod nove jmeno
-			if (!f.renameTo(f2)) {
-				/* rename selhalo, kopiruje se */
-				if (copyfile(f, f2) == false) { continue;}
-				// musime udelat touch na date
-				o.touch();
-			}
+            //step3 - vymenit objekt v adresari
+            objects.put(o.getName(), o);
+            if (cacheobject.auto_compress > 0) {
+                o.compress(9);
+            }
 
-			// touch imported OBJ's LRU
-			o.touchLRU();
+            dirty = true;
+        }
+    }
 
-			//step3 - vymenit objekt v adresari
-			objects.put(o.getName(), o);
-			if (cacheobject.auto_compress > 0) o.compress(9);
+    /* merge */
+    private static boolean copyfile(File f, File f2) {
+        System.out.println("[INFO] Copying " + f + " -> " + f2);
+        try {
+            DataInputStream is = new DataInputStream(new BufferedInputStream(f.fis(), 4096));
+            DataOutputStream os = new DataOutputStream(new BufferedOutputStream(f2.fos(), 4096));
 
-			dirty = true;
-		}
-	} /* merge */
+            byte b[] = new byte[4096];
+            while (true) {
+                int rb;
+                rb = is.read(b);
+                if (rb == -1) {
+                    break;
+                    /* konec dat! */
+                }
+                os.write(b, 0, rb);
+            }
+            os.close();
+            is.close();
+        } catch (IOException ioe) {
+            System.out.println("[ERROR] Failed copy " + f + " -> " + f2);
+            f2.delete(); // try to delete new file...
+            return false;
+        }
+        return true;
+    }
 
-	private static boolean copyfile(File f, File f2) {
-		System.out.println("[INFO] Copying " + f + " -> " + f2);
-		try {
-			DataInputStream is = new DataInputStream(new BufferedInputStream(f.fis(), 4096));
-			DataOutputStream os = new DataOutputStream(new BufferedOutputStream(f2.fos(), 4096));
-
-			byte b[] = new byte[4096];
-			while (true) {
-				int rb;
-				rb = is.read(b);
-				if (rb == -1) break; /* konec dat! */
-				os.write(b, 0, rb);
-			}
-			os.close();
-			is.close();
-		} catch (IOException ioe) {
-			System.out.println("[ERROR] Failed copy " + f + " -> " + f2);
-			f2.delete(); // try to delete new file...
-			return false;
-		}
-		return true;
-	}
-
-/* 
+    /* 
  * odklidi soubor pryc aby se mohl vytvorit adresar,
  * - prejmenuje ho a updatne .cacheinfo 
- */
-	private static boolean moveOutOfWay(File what) {
-		if (!what.exists()) return false;
-		if (what.isDirectory()) return false; // no way to rename directory
-		/* 1. ziskat jeho adresar */
-		String home, urlp;
-		home = what.getParent() + File.separatorChar;
-		urlp = ui.directoryToURL(home);
-		// System.out.println("/debug/ moveout file= "+what+" in dir="+home+" uribase="+urlp);
-		cachedir d = httpreq.mgr.getDir(home, urlp);
-		cacheobject o;
-		/* 2. projit objekty a najit ten co nam tam vadi */
-		Enumeration<cacheobject> en = d.getObjects();
-		while (en.hasMoreElements()) {
-			o = en.nextElement();
-			if (!o.needSave()) continue;
-			if (o.getLocalName().equalsIgnoreCase(what.getName())) {
-				o.regenName();
-				File to = new File(home + o.getLocalName());
-				if (!o.rename(what, to)) o.delete();
-			}
-		}
-		// delete if still exists
-		what.delete();
-		return true;
-	}
-} /* class */
+     */
+    private static boolean moveOutOfWay(File what) {
+        if (!what.exists()) {
+            return false;
+        }
+        if (what.isDirectory()) {
+            return false; // no way to rename directory
+        }
+        /* 1. ziskat jeho adresar */
+        String home, urlp;
+        home = what.getParent() + File.separatorChar;
+        urlp = ui.directoryToURL(home);
+        // System.out.println("/debug/ moveout file= "+what+" in dir="+home+" uribase="+urlp);
+        cachedir d = httpreq.mgr.getDir(home, urlp);
+        cacheobject o;
+        /* 2. projit objekty a najit ten co nam tam vadi */
+        Enumeration<cacheobject> en = d.getObjects();
+        while (en.hasMoreElements()) {
+            o = en.nextElement();
+            if (!o.needSave()) {
+                continue;
+            }
+            if (o.getLocalName().equalsIgnoreCase(what.getName())) {
+                o.regenName();
+                File to = new File(home + o.getLocalName());
+                if (!o.rename(what, to)) {
+                    o.delete();
+                }
+            }
+        }
+        // delete if still exists
+        what.delete();
+        return true;
+    }
+}
+/* class */

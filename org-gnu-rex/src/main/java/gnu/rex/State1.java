@@ -15,18 +15,23 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class State1 extends State
-{
- char sig;
+class State1 extends State {
 
- State1(char sig) { this.sig = sig; }
+    char sig;
 
- final boolean hasTransitionOn(char sig) { return sig == this.sig; }
+    State1(char sig) {
+        this.sig = sig;
+    }
 
- String stateToString() { return "\'" + sig +"\'->"; }
+    final boolean hasTransitionOn(char sig) {
+        return sig == this.sig;
+    }
+
+    String stateToString() {
+        return "\'" + sig + "\'->";
+    }
 
 }

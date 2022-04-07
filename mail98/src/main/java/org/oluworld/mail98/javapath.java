@@ -3,10 +3,12 @@ package org.oluworld.mail98;
 import org.python.core.*;
 
 public class javapath extends java.lang.Object {
-    static String[] jpy$properties = new String[] {"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
-    static String[] jpy$packages = new String[] {"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
-    
+
+    static String[] jpy$properties = new String[]{"python.modules.builtin", "exceptions:org.python.core.exceptions", "python.options.showJavaExceptions", "true"};
+    static String[] jpy$packages = new String[]{"java.io", null, "javax.swing.text", null, "javax.swing.tree", null, "java.awt.print", null, "java.awt.peer", null, "java.awt.font", null, "javax.swing.colorchooser", null, "java.awt.datatransfer", null, "java.awt.geom", null, "java.lang", null, "javax.swing.undo", null, "java.awt", "Choice,PrintGraphics,ImageCapabilities,DisplayMode,Cursor,GradientPaint,Robot,GridLayout,CheckboxMenuItem,Window,GraphicsConfiguration,BasicStroke,AWTEvent,TextField,AWTException,Menu,Insets,Shape,PointerInfo,GraphicsEnvironment,MenuShortcut,LayoutManager2,AlphaComposite,GridBagLayout,Frame,Font,KeyEventPostProcessor,Scrollbar,Panel,MouseInfo,FileDialog,ScrollPaneAdjustable,Event,Checkbox,ItemSelectable,DefaultKeyboardFocusManager,GraphicsConfigTemplate,FontMetrics,ComponentOrientation,BufferCapabilities,AWTKeyStroke,DefaultFocusTraversalPolicy,PaintContext,List,CompositeContext,MenuContainer,TextComponent,KeyEventDispatcher,PrintJob,SystemColor,ActiveEvent,TextArea,GraphicsDevice,Adjustable,FontFormatException,Rectangle,FocusTraversalPolicy,RenderingHints,AWTPermission,Component,TexturePaint,AWTEventMulticaster,Stroke,MediaTracker,BorderLayout,Point,HeadlessException,Paint,ScrollPane,Graphics,MenuBar,Color,FlowLayout,Label,Button,Transparency,Graphics2D,GridBagConstraints,IllegalComponentStateException,CardLayout,KeyboardFocusManager,CheckboxGroup,Toolkit,Dialog,Polygon,PageAttributes,Container,Composite,JobAttributes,MenuComponent,Canvas,ContainerOrderFocusTraversalPolicy,EventQueue,PopupMenu,LayoutManager,MenuItem,Image,Dimension,AWTError", "javax.swing.event", "PopupMenuListener,HyperlinkEvent,MenuKeyEvent,UndoableEditEvent,MenuDragMouseListener,ChangeEvent,TreeExpansionEvent,InternalFrameListener,TreeWillExpandListener,AncestorEvent,ListSelectionEvent,HyperlinkListener,DocumentListener,TableColumnModelEvent,AncestorListener,TreeModelEvent,TableModelEvent,TreeExpansionListener,ListSelectionListener,InternalFrameEvent,MouseInputListener,TreeSelectionEvent,SwingPropertyChangeSupport,ChangeListener,ListDataEvent,TableModelListener,CaretEvent,PopupMenuEvent,EventListenerList,MenuEvent,MouseInputAdapter,UndoableEditListener,ListDataListener,MenuListener,DocumentEvent,MenuDragMouseEvent,InternalFrameAdapter,CaretListener,TreeModelListener,MenuKeyListener,TableColumnModelListener,CellEditorListener,TreeSelectionListener", "javax.swing.border", null, "javax.swing.filechooser", null, "java.awt.im", null, "java.awt.image", null, "javax.swing.table", "TableColumnModel,TableColumn,TableCellEditor,DefaultTableModel,AbstractTableModel,DefaultTableColumnModel,JTableHeader,TableModel,TableCellRenderer,DefaultTableCellRenderer", "java.awt.dnd", null, "java.awt.color", null, "java.awt.event", "ComponentEvent,PaintEvent,InvocationEvent,FocusListener,HierarchyBoundsAdapter,MouseListener,MouseWheelEvent,FocusEvent,WindowEvent,AdjustmentListener,MouseEvent,ComponentListener,ItemEvent,KeyListener,HierarchyEvent,KeyEvent,InputEvent,WindowListener,HierarchyBoundsListener,MouseMotionListener,ActionListener,WindowAdapter,WindowStateListener,InputMethodEvent,MouseWheelListener,TextListener,KeyAdapter,AdjustmentEvent,ItemListener,ContainerAdapter,ActionEvent,InputMethodListener,MouseAdapter,FocusAdapter,TextEvent,HierarchyListener,ContainerListener,AWTEventListenerProxy,WindowFocusListener,ComponentAdapter,MouseMotionAdapter,AWTEventListener,ContainerEvent", "javax.swing", "WindowConstants,ComboBoxModel,DefaultListModel,PopupFactory,Timer,JRootPane,AbstractAction,DebugGraphics,DefaultButtonModel,ListSelectionModel,JMenuItem,ScrollPaneConstants,ComponentInputMap,DefaultComboBoxModel,UIManager,JTextField,AbstractButton,MutableComboBoxModel,AbstractCellEditor,SpinnerModel,JLabel,OverlayLayout,DesktopManager,JColorChooser,ToolTipManager,DefaultListCellRenderer,BoxLayout,SpringLayout,SwingUtilities,JTabbedPane,ProgressMonitorInputStream,JInternalFrame,ImageIcon,JRadioButton,TransferHandler,Box,SizeRequirements,InternalFrameFocusTraversalPolicy,LookAndFeel,ViewportLayout,JProgressBar,ButtonGroup,JToolBar,JDialog,BorderFactory,JTextArea,Renderer,JSeparator,JApplet,MenuElement,JToggleButton,JPasswordField,SpinnerDateModel,ListCellRenderer,JTree,InputVerifier,AbstractListModel,JMenu,JComboBox,MenuSelectionManager,JScrollPane,UIDefaults,FocusManager,SingleSelectionModel,InputMap,CellEditor,JFrame,JFormattedTextField,JTable,Spring,ButtonModel,JComponent,ComboBoxEditor,RootPaneContainer,SortingFocusTraversalPolicy,SpinnerListModel,JSpinner,BoundedRangeModel,JCheckBox,DefaultBoundedRangeModel,JMenuBar,JPopupMenu,ProgressMonitor,Popup,CellRendererPane,RepaintManager,Scrollable,AbstractSpinnerModel,ListModel,DefaultSingleSelectionModel,GrayFilter,KeyStroke,SizeSequence,UnsupportedLookAndFeelException,JLayeredPane,LayoutFocusTraversalPolicy,JCheckBoxMenuItem,ScrollPaneLayout,DefaultDesktopManager,JSplitPane,SpinnerNumberModel,JPanel,JDesktopPane,DefaultFocusManager,JRadioButtonMenuItem,JWindow,JToolTip,JSlider,JList,Action,JViewport,JTextPane,JScrollBar,JEditorPane,DefaultListSelectionModel,JFileChooser,JButton,DefaultCellEditor,SwingConstants,JOptionPane,Icon,ActionMap", "javax.swing.plaf", null};
+
     public static class _PyInner extends PyFunctionTable implements PyRunnable {
+
         private static PyObject s$0;
         private static PyObject s$1;
         private static PyObject s$2;
@@ -61,6 +63,7 @@ public class javapath extends java.lang.Object {
         private static PyCode c$20_abspath;
         private static PyCode c$21_getsize;
         private static PyCode c$22_main;
+
         private static void initConstants() {
             s$0 = Py.newString("Common pathname manipulations, JDK version.\012\012Instead of importing this module directly, import os and refer to this\012module as os.path.\012\012");
             s$1 = Py.newString("Return the directory component of a pathname");
@@ -93,131 +96,131 @@ public class javapath extends java.lang.Object {
             s$28 = Py.newString("No such file or directory");
             s$29 = Py.newString("/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py");
             funcTable = new _PyInner();
-            c$0_dirname = Py.newCode(1, new String[] {"path", "result"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "dirname", false, false, funcTable, 0, null, null, 0, 1);
-            c$1_basename = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "basename", false, false, funcTable, 1, null, null, 0, 1);
-            c$2_split = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "split", false, false, funcTable, 2, null, null, 0, 1);
-            c$3_splitext = Py.newCode(1, new String[] {"path", "i", "c", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "splitext", false, false, funcTable, 3, null, null, 0, 1);
-            c$4_splitdrive = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "splitdrive", false, false, funcTable, 4, null, null, 0, 1);
-            c$5_exists = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "exists", false, false, funcTable, 5, null, null, 0, 1);
-            c$6_isabs = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isabs", false, false, funcTable, 6, null, null, 0, 1);
-            c$7_isfile = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isfile", false, false, funcTable, 7, null, null, 0, 1);
-            c$8_isdir = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isdir", false, false, funcTable, 8, null, null, 0, 1);
-            c$9_join = Py.newCode(2, new String[] {"path", "args", "a", "g", "f"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "join", true, false, funcTable, 9, null, null, 0, 1);
-            c$10_normcase = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "normcase", false, false, funcTable, 10, null, null, 0, 1);
-            c$11_commonprefix = Py.newCode(1, new String[] {"m", "i", "item", "prefix"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "commonprefix", false, false, funcTable, 11, null, null, 0, 1);
-            c$12_islink = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "islink", false, false, funcTable, 12, null, null, 0, 1);
-            c$13_samefile = Py.newCode(2, new String[] {"path", "path2", "f", "f2"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "samefile", false, false, funcTable, 13, null, null, 0, 1);
-            c$14_ismount = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "ismount", false, false, funcTable, 14, null, null, 0, 1);
-            c$15_walk = Py.newCode(3, new String[] {"top", "func", "arg", "name", "names"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "walk", false, false, funcTable, 15, null, null, 0, 1);
-            c$16_expanduser = Py.newCode(1, new String[] {"path", "c"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "expanduser", false, false, funcTable, 16, null, null, 0, 1);
-            c$17_getuser = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "getuser", false, false, funcTable, 17, null, null, 0, 1);
-            c$18_gethome = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "gethome", false, false, funcTable, 18, null, null, 0, 1);
-            c$19_normpath = Py.newCode(1, new String[] {"path", "comps", "i", "pardir", "string", "slashes", "curdir", "sep"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "normpath", false, false, funcTable, 19, null, null, 0, 1);
-            c$20_abspath = Py.newCode(1, new String[] {"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "abspath", false, false, funcTable, 20, null, null, 0, 1);
-            c$21_getsize = Py.newCode(1, new String[] {"path", "size", "f"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "getsize", false, false, funcTable, 21, null, null, 0, 1);
-            c$22_main = Py.newCode(0, new String[] {}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "main", false, false, funcTable, 22, null, null, 0, 0);
+            c$0_dirname = Py.newCode(1, new String[]{"path", "result"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "dirname", false, false, funcTable, 0, null, null, 0, 1);
+            c$1_basename = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "basename", false, false, funcTable, 1, null, null, 0, 1);
+            c$2_split = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "split", false, false, funcTable, 2, null, null, 0, 1);
+            c$3_splitext = Py.newCode(1, new String[]{"path", "i", "c", "n"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "splitext", false, false, funcTable, 3, null, null, 0, 1);
+            c$4_splitdrive = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "splitdrive", false, false, funcTable, 4, null, null, 0, 1);
+            c$5_exists = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "exists", false, false, funcTable, 5, null, null, 0, 1);
+            c$6_isabs = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isabs", false, false, funcTable, 6, null, null, 0, 1);
+            c$7_isfile = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isfile", false, false, funcTable, 7, null, null, 0, 1);
+            c$8_isdir = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "isdir", false, false, funcTable, 8, null, null, 0, 1);
+            c$9_join = Py.newCode(2, new String[]{"path", "args", "a", "g", "f"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "join", true, false, funcTable, 9, null, null, 0, 1);
+            c$10_normcase = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "normcase", false, false, funcTable, 10, null, null, 0, 1);
+            c$11_commonprefix = Py.newCode(1, new String[]{"m", "i", "item", "prefix"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "commonprefix", false, false, funcTable, 11, null, null, 0, 1);
+            c$12_islink = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "islink", false, false, funcTable, 12, null, null, 0, 1);
+            c$13_samefile = Py.newCode(2, new String[]{"path", "path2", "f", "f2"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "samefile", false, false, funcTable, 13, null, null, 0, 1);
+            c$14_ismount = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "ismount", false, false, funcTable, 14, null, null, 0, 1);
+            c$15_walk = Py.newCode(3, new String[]{"top", "func", "arg", "name", "names"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "walk", false, false, funcTable, 15, null, null, 0, 1);
+            c$16_expanduser = Py.newCode(1, new String[]{"path", "c"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "expanduser", false, false, funcTable, 16, null, null, 0, 1);
+            c$17_getuser = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "getuser", false, false, funcTable, 17, null, null, 0, 1);
+            c$18_gethome = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "gethome", false, false, funcTable, 18, null, null, 0, 1);
+            c$19_normpath = Py.newCode(1, new String[]{"path", "comps", "i", "pardir", "string", "slashes", "curdir", "sep"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "normpath", false, false, funcTable, 19, null, null, 0, 1);
+            c$20_abspath = Py.newCode(1, new String[]{"path"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "abspath", false, false, funcTable, 20, null, null, 0, 1);
+            c$21_getsize = Py.newCode(1, new String[]{"path", "size", "f"}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "getsize", false, false, funcTable, 21, null, null, 0, 1);
+            c$22_main = Py.newCode(0, new String[]{}, "/fm/appz/jython_2.1a3__GG/runtime/Lib/javapath.py", "main", false, false, funcTable, 22, null, null, 0, 0);
         }
-        
-        
+
         public PyCode getMain() {
-            if (c$22_main == null) _PyInner.initConstants();
+            if (c$22_main == null) {
+                _PyInner.initConstants();
+            }
             return c$22_main;
         }
-        
+
         public PyObject call_function(int index, PyFrame frame) {
-            switch (index){
+            switch (index) {
                 case 0:
-                return _PyInner.dirname$1(frame);
+                    return _PyInner.dirname$1(frame);
                 case 1:
-                return _PyInner.basename$2(frame);
+                    return _PyInner.basename$2(frame);
                 case 2:
-                return _PyInner.split$3(frame);
+                    return _PyInner.split$3(frame);
                 case 3:
-                return _PyInner.splitext$4(frame);
+                    return _PyInner.splitext$4(frame);
                 case 4:
-                return _PyInner.splitdrive$5(frame);
+                    return _PyInner.splitdrive$5(frame);
                 case 5:
-                return _PyInner.exists$6(frame);
+                    return _PyInner.exists$6(frame);
                 case 6:
-                return _PyInner.isabs$7(frame);
+                    return _PyInner.isabs$7(frame);
                 case 7:
-                return _PyInner.isfile$8(frame);
+                    return _PyInner.isfile$8(frame);
                 case 8:
-                return _PyInner.isdir$9(frame);
+                    return _PyInner.isdir$9(frame);
                 case 9:
-                return _PyInner.join$10(frame);
+                    return _PyInner.join$10(frame);
                 case 10:
-                return _PyInner.normcase$11(frame);
+                    return _PyInner.normcase$11(frame);
                 case 11:
-                return _PyInner.commonprefix$12(frame);
+                    return _PyInner.commonprefix$12(frame);
                 case 12:
-                return _PyInner.islink$13(frame);
+                    return _PyInner.islink$13(frame);
                 case 13:
-                return _PyInner.samefile$14(frame);
+                    return _PyInner.samefile$14(frame);
                 case 14:
-                return _PyInner.ismount$15(frame);
+                    return _PyInner.ismount$15(frame);
                 case 15:
-                return _PyInner.walk$16(frame);
+                    return _PyInner.walk$16(frame);
                 case 16:
-                return _PyInner.expanduser$17(frame);
+                    return _PyInner.expanduser$17(frame);
                 case 17:
-                return _PyInner.getuser$18(frame);
+                    return _PyInner.getuser$18(frame);
                 case 18:
-                return _PyInner.gethome$19(frame);
+                    return _PyInner.gethome$19(frame);
                 case 19:
-                return _PyInner.normpath$20(frame);
+                    return _PyInner.normpath$20(frame);
                 case 20:
-                return _PyInner.abspath$21(frame);
+                    return _PyInner.abspath$21(frame);
                 case 21:
-                return _PyInner.getsize$22(frame);
+                    return _PyInner.getsize$22(frame);
                 case 22:
-                return _PyInner.main$23(frame);
+                    return _PyInner.main$23(frame);
                 default:
-                return null;
+                    return null;
             }
         }
-        
+
         private static PyObject dirname$1(PyFrame frame) {
             /* Return the directory component of a pathname */
             frame.setlocal(1, frame.getglobal("File").__call__(frame.getlocal(0)).invoke("getParent"));
             if (frame.getlocal(1).__not__().__nonzero__()) {
                 if (frame.getglobal("isabs").__call__(frame.getlocal(0)).__nonzero__()) {
                     frame.setlocal(1, frame.getlocal(0));
-                }
-                else {
+                } else {
                     frame.setlocal(1, s$2);
                 }
             }
             return frame.getlocal(1);
         }
-        
+
         private static PyObject basename$2(PyFrame frame) {
             /* Return the final component of a pathname */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("getName");
         }
-        
+
         private static PyObject split$3(PyFrame frame) {
             /* Split a pathname.
             
                 Return tuple "(head, tail)" where "tail" is everything after the
                 final slash.  Either part may be empty.
             
-                 */
-            return new PyTuple(new PyObject[] {frame.getglobal("dirname").__call__(frame.getlocal(0)), frame.getglobal("basename").__call__(frame.getlocal(0))});
+             */
+            return new PyTuple(new PyObject[]{frame.getglobal("dirname").__call__(frame.getlocal(0)), frame.getglobal("basename").__call__(frame.getlocal(0))});
         }
-        
+
         private static PyObject splitext$4(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Split the extension from a pathname.
             
                 Extension is everything from the last dot to the end.  Return
                 "(root, ext)", either part may be empty.
             
-                 */
+             */
             frame.setlocal(1, i$6);
             frame.setlocal(3, i$7.__neg__());
             t$0$int = 0;
@@ -230,52 +233,51 @@ public class javapath extends java.lang.Object {
                 frame.setlocal(1, frame.getlocal(1)._add(i$7));
             }
             if (frame.getlocal(3)._lt(i$6).__nonzero__()) {
-                return new PyTuple(new PyObject[] {frame.getlocal(0), s$2});
-            }
-            else {
-                return new PyTuple(new PyObject[] {frame.getlocal(0).__getslice__(null, frame.getlocal(3), null), frame.getlocal(0).__getslice__(frame.getlocal(3), null, null)});
+                return new PyTuple(new PyObject[]{frame.getlocal(0), s$2});
+            } else {
+                return new PyTuple(new PyObject[]{frame.getlocal(0).__getslice__(null, frame.getlocal(3), null), frame.getlocal(0).__getslice__(frame.getlocal(3), null, null)});
             }
         }
-        
+
         private static PyObject splitdrive$5(PyFrame frame) {
             /* Split a pathname into drive and path.
             
                 On JDK, drive is always empty.
                 XXX This isn't correct for JDK on DOS/Windows!
             
-                 */
-            return new PyTuple(new PyObject[] {s$2, frame.getlocal(0)});
+             */
+            return new PyTuple(new PyObject[]{s$2, frame.getlocal(0)});
         }
-        
+
         private static PyObject exists$6(PyFrame frame) {
             /* Test whether a path exists.
             
                 Returns false for broken symbolic links.
             
-                 */
+             */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("exists");
         }
-        
+
         private static PyObject isabs$7(PyFrame frame) {
             /* Test whether a path is absolute */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("isAbsolute");
         }
-        
+
         private static PyObject isfile$8(PyFrame frame) {
             /* Test whether a path is a regular file */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("isFile");
         }
-        
+
         private static PyObject isdir$9(PyFrame frame) {
             /* Test whether a path is a directory */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("isDirectory");
         }
-        
+
         private static PyObject join$10(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject;
-            
+
             // Code
             /* Join two or more pathname components, inserting os.sep as needed */
             frame.setlocal(4, frame.getglobal("File").__call__(frame.getlocal(0)));
@@ -286,28 +288,27 @@ public class javapath extends java.lang.Object {
                 frame.setlocal(3, frame.getglobal("File").__call__(frame.getlocal(2)));
                 if (((t$2$PyObject = frame.getlocal(3).invoke("isAbsolute")).__nonzero__() ? t$2$PyObject : frame.getglobal("len").__call__(frame.getlocal(4).invoke("getPath"))._eq(i$6)).__nonzero__()) {
                     frame.setlocal(4, frame.getlocal(3));
-                }
-                else {
+                } else {
                     frame.setlocal(4, frame.getglobal("File").__call__(frame.getlocal(4), frame.getlocal(2)));
                 }
             }
             return frame.getlocal(4).invoke("getPath");
         }
-        
+
         private static PyObject normcase$11(PyFrame frame) {
             /* Normalize case of pathname.
             
                 XXX Not done right under JDK.
             
-                 */
+             */
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("getPath");
         }
-        
+
         private static PyObject commonprefix$12(PyFrame frame) {
             // Temporary Variables
             int t$0$int, t$1$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject, t$3$PyObject;
-            
+
             // Code
             /* Given a list of pathnames, return the longest common leading component */
             if (frame.getlocal(0).__not__().__nonzero__()) {
@@ -333,38 +334,38 @@ public class javapath extends java.lang.Object {
             }
             return frame.getlocal(3);
         }
-        
+
         private static PyObject islink$13(PyFrame frame) {
             /* Test whether a path is a symbolic link.
             
                 XXX This incorrectly always returns false under JDK.
             
-                 */
+             */
             return i$6;
         }
-        
+
         private static PyObject samefile$14(PyFrame frame) {
             /* Test whether two pathnames reference the same actual file */
             frame.setlocal(2, frame.getglobal("File").__call__(frame.getlocal(0)));
             frame.setlocal(3, frame.getglobal("File").__call__(frame.getlocal(1)));
             return frame.getlocal(2).invoke("getCanonicalPath")._eq(frame.getlocal(3).invoke("getCanonicalPath"));
         }
-        
+
         private static PyObject ismount$15(PyFrame frame) {
             /* Test whether a path is a mount point.
             
                 XXX This incorrectly always returns false under JDK.
             
-                 */
+             */
             return i$6;
         }
-        
+
         private static PyObject walk$16(PyFrame frame) {
             // Temporary Variables
             int t$0$int;
             PyObject t$0$PyObject, t$1$PyObject, t$2$PyObject;
             PyException t$0$PyException;
-            
+
             // Code
             /* Walk a directory tree.
             
@@ -372,16 +373,16 @@ public class javapath extends java.lang.Object {
                 "d" in the tree rooted at "top" (including "top" itself).  "files"
                 is a list of all the files and subdirs in directory "d".
             
-                 */
+             */
             try {
                 frame.setlocal(4, frame.getglobal("os").__getattr__("listdir").__call__(frame.getlocal(0)));
-            }
-            catch (Throwable x$0) {
+            } catch (Throwable x$0) {
                 t$0$PyException = Py.setException(x$0, frame);
                 if (Py.matchException(t$0$PyException, frame.getglobal("os").__getattr__("error"))) {
                     return Py.None;
+                } else {
+                    throw t$0$PyException;
                 }
-                else throw t$0$PyException;
             }
             frame.getlocal(1).__call__(frame.getlocal(2), frame.getlocal(0), frame.getlocal(4));
             t$0$int = 0;
@@ -395,7 +396,7 @@ public class javapath extends java.lang.Object {
             }
             return Py.None;
         }
-        
+
         private static PyObject expanduser$17(PyFrame frame) {
             if (frame.getlocal(0).__getslice__(null, i$7, null)._eq(s$21).__nonzero__()) {
                 frame.setlocal(1, frame.getlocal(0).__getslice__(i$7, i$22, null));
@@ -408,19 +409,19 @@ public class javapath extends java.lang.Object {
             }
             return frame.getlocal(0);
         }
-        
+
         private static PyObject getuser$18(PyFrame frame) {
             return frame.getglobal("System").__getattr__("getProperty").__call__(s$23);
         }
-        
+
         private static PyObject gethome$19(PyFrame frame) {
             return frame.getglobal("System").__getattr__("getProperty").__call__(s$24);
         }
-        
+
         private static PyObject normpath$20(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject, t$1$PyObject;
-            
+
             // Code
             /* Normalize path, eliminating double slashes, etc. */
             frame.setlocal(7, frame.getglobal("os").__getattr__("sep"));
@@ -443,15 +444,12 @@ public class javapath extends java.lang.Object {
                     while (((t$0$PyObject = frame.getlocal(2)._lt(frame.getglobal("len").__call__(frame.getlocal(1)))).__nonzero__() ? frame.getlocal(1).__getitem__(frame.getlocal(2))._eq(s$2) : t$0$PyObject).__nonzero__()) {
                         frame.getlocal(1).__delitem__(frame.getlocal(2));
                     }
-                }
-                else if (((t$0$PyObject = ((t$1$PyObject = frame.getlocal(1).__getitem__(frame.getlocal(2))._eq(frame.getlocal(3))).__nonzero__() ? frame.getlocal(2)._gt(i$6) : t$1$PyObject)).__nonzero__() ? frame.getlocal(1).__getitem__(frame.getlocal(2)._sub(i$7))._notin(new PyTuple(new PyObject[] {s$2, frame.getlocal(3)})) : t$0$PyObject).__nonzero__()) {
+                } else if (((t$0$PyObject = ((t$1$PyObject = frame.getlocal(1).__getitem__(frame.getlocal(2))._eq(frame.getlocal(3))).__nonzero__() ? frame.getlocal(2)._gt(i$6) : t$1$PyObject)).__nonzero__() ? frame.getlocal(1).__getitem__(frame.getlocal(2)._sub(i$7))._notin(new PyTuple(new PyObject[]{s$2, frame.getlocal(3)})) : t$0$PyObject).__nonzero__()) {
                     frame.getlocal(1).__delslice__(frame.getlocal(2)._sub(i$7), frame.getlocal(2)._add(i$7), null);
                     frame.setlocal(2, frame.getlocal(2)._sub(i$7));
-                }
-                else if (((t$0$PyObject = ((t$1$PyObject = frame.getlocal(1).__getitem__(frame.getlocal(2))._eq(s$2)).__nonzero__() ? frame.getlocal(2)._gt(i$6) : t$1$PyObject)).__nonzero__() ? frame.getlocal(1).__getitem__(frame.getlocal(2)._sub(i$7))._ne(s$2) : t$0$PyObject).__nonzero__()) {
+                } else if (((t$0$PyObject = ((t$1$PyObject = frame.getlocal(1).__getitem__(frame.getlocal(2))._eq(s$2)).__nonzero__() ? frame.getlocal(2)._gt(i$6) : t$1$PyObject)).__nonzero__() ? frame.getlocal(1).__getitem__(frame.getlocal(2)._sub(i$7))._ne(s$2) : t$0$PyObject).__nonzero__()) {
                     frame.getlocal(1).__delitem__(frame.getlocal(2));
-                }
-                else {
+                } else {
                     frame.setlocal(2, frame.getlocal(2)._add(i$7));
                 }
             }
@@ -460,15 +458,15 @@ public class javapath extends java.lang.Object {
             }
             return frame.getlocal(5)._add(frame.getlocal(4).__getattr__("joinfields").__call__(frame.getlocal(1), frame.getlocal(7)));
         }
-        
+
         private static PyObject abspath$21(PyFrame frame) {
             return frame.getglobal("File").__call__(frame.getlocal(0)).invoke("getAbsolutePath");
         }
-        
+
         private static PyObject getsize$22(PyFrame frame) {
             // Temporary Variables
             PyObject t$0$PyObject;
-            
+
             // Code
             frame.setlocal(2, frame.getglobal("File").__call__(frame.getlocal(0)));
             frame.setlocal(1, frame.getlocal(2).invoke("length"));
@@ -477,10 +475,10 @@ public class javapath extends java.lang.Object {
             }
             return frame.getlocal(1);
         }
-        
+
         private static PyObject main$23(PyFrame frame) {
             frame.setglobal("__file__", s$29);
-            
+
             PyObject[] imp_accu;
             // Code
             /* Common pathname manipulations, JDK version.
@@ -490,47 +488,48 @@ public class javapath extends java.lang.Object {
             
              */
             frame.setlocal("java", org.python.core.imp.importOne("java", frame));
-            imp_accu = org.python.core.imp.importFrom("java.io", new String[] {"File"}, frame);
+            imp_accu = org.python.core.imp.importFrom("java.io", new String[]{"File"}, frame);
             frame.setlocal("File", imp_accu[0]);
-            imp_accu = org.python.core.imp.importFrom("java.lang", new String[] {"System"}, frame);
+            imp_accu = org.python.core.imp.importFrom("java.lang", new String[]{"System"}, frame);
             frame.setlocal("System", imp_accu[0]);
             frame.setlocal("os", org.python.core.imp.importOne("os", frame));
-            frame.setlocal("dirname", new PyFunction(frame.f_globals, new PyObject[] {}, c$0_dirname));
-            frame.setlocal("basename", new PyFunction(frame.f_globals, new PyObject[] {}, c$1_basename));
-            frame.setlocal("split", new PyFunction(frame.f_globals, new PyObject[] {}, c$2_split));
-            frame.setlocal("splitext", new PyFunction(frame.f_globals, new PyObject[] {}, c$3_splitext));
-            frame.setlocal("splitdrive", new PyFunction(frame.f_globals, new PyObject[] {}, c$4_splitdrive));
-            frame.setlocal("exists", new PyFunction(frame.f_globals, new PyObject[] {}, c$5_exists));
-            frame.setlocal("isabs", new PyFunction(frame.f_globals, new PyObject[] {}, c$6_isabs));
-            frame.setlocal("isfile", new PyFunction(frame.f_globals, new PyObject[] {}, c$7_isfile));
-            frame.setlocal("isdir", new PyFunction(frame.f_globals, new PyObject[] {}, c$8_isdir));
-            frame.setlocal("join", new PyFunction(frame.f_globals, new PyObject[] {}, c$9_join));
-            frame.setlocal("normcase", new PyFunction(frame.f_globals, new PyObject[] {}, c$10_normcase));
-            frame.setlocal("commonprefix", new PyFunction(frame.f_globals, new PyObject[] {}, c$11_commonprefix));
-            frame.setlocal("islink", new PyFunction(frame.f_globals, new PyObject[] {}, c$12_islink));
-            frame.setlocal("samefile", new PyFunction(frame.f_globals, new PyObject[] {}, c$13_samefile));
-            frame.setlocal("ismount", new PyFunction(frame.f_globals, new PyObject[] {}, c$14_ismount));
-            frame.setlocal("walk", new PyFunction(frame.f_globals, new PyObject[] {}, c$15_walk));
-            frame.setlocal("expanduser", new PyFunction(frame.f_globals, new PyObject[] {}, c$16_expanduser));
-            frame.setlocal("getuser", new PyFunction(frame.f_globals, new PyObject[] {}, c$17_getuser));
-            frame.setlocal("gethome", new PyFunction(frame.f_globals, new PyObject[] {}, c$18_gethome));
-            frame.setlocal("normpath", new PyFunction(frame.f_globals, new PyObject[] {}, c$19_normpath));
-            frame.setlocal("abspath", new PyFunction(frame.f_globals, new PyObject[] {}, c$20_abspath));
-            frame.setlocal("getsize", new PyFunction(frame.f_globals, new PyObject[] {}, c$21_getsize));
+            frame.setlocal("dirname", new PyFunction(frame.f_globals, new PyObject[]{}, c$0_dirname));
+            frame.setlocal("basename", new PyFunction(frame.f_globals, new PyObject[]{}, c$1_basename));
+            frame.setlocal("split", new PyFunction(frame.f_globals, new PyObject[]{}, c$2_split));
+            frame.setlocal("splitext", new PyFunction(frame.f_globals, new PyObject[]{}, c$3_splitext));
+            frame.setlocal("splitdrive", new PyFunction(frame.f_globals, new PyObject[]{}, c$4_splitdrive));
+            frame.setlocal("exists", new PyFunction(frame.f_globals, new PyObject[]{}, c$5_exists));
+            frame.setlocal("isabs", new PyFunction(frame.f_globals, new PyObject[]{}, c$6_isabs));
+            frame.setlocal("isfile", new PyFunction(frame.f_globals, new PyObject[]{}, c$7_isfile));
+            frame.setlocal("isdir", new PyFunction(frame.f_globals, new PyObject[]{}, c$8_isdir));
+            frame.setlocal("join", new PyFunction(frame.f_globals, new PyObject[]{}, c$9_join));
+            frame.setlocal("normcase", new PyFunction(frame.f_globals, new PyObject[]{}, c$10_normcase));
+            frame.setlocal("commonprefix", new PyFunction(frame.f_globals, new PyObject[]{}, c$11_commonprefix));
+            frame.setlocal("islink", new PyFunction(frame.f_globals, new PyObject[]{}, c$12_islink));
+            frame.setlocal("samefile", new PyFunction(frame.f_globals, new PyObject[]{}, c$13_samefile));
+            frame.setlocal("ismount", new PyFunction(frame.f_globals, new PyObject[]{}, c$14_ismount));
+            frame.setlocal("walk", new PyFunction(frame.f_globals, new PyObject[]{}, c$15_walk));
+            frame.setlocal("expanduser", new PyFunction(frame.f_globals, new PyObject[]{}, c$16_expanduser));
+            frame.setlocal("getuser", new PyFunction(frame.f_globals, new PyObject[]{}, c$17_getuser));
+            frame.setlocal("gethome", new PyFunction(frame.f_globals, new PyObject[]{}, c$18_gethome));
+            frame.setlocal("normpath", new PyFunction(frame.f_globals, new PyObject[]{}, c$19_normpath));
+            frame.setlocal("abspath", new PyFunction(frame.f_globals, new PyObject[]{}, c$20_abspath));
+            frame.setlocal("getsize", new PyFunction(frame.f_globals, new PyObject[]{}, c$21_getsize));
             return Py.None;
         }
-        
+
     }
+
     public static void moduleDictInit(PyObject dict) {
         dict.__setitem__("__name__", new PyString("javapath"));
         Py.runCode(new _PyInner().getMain(), dict, dict);
     }
-    
+
     public static void main(String[] args) throws Exception {
-        String[] newargs = new String[args.length+1];
+        String[] newargs = new String[args.length + 1];
         newargs[0] = "javapath";
         System.arraycopy(args, 0, newargs, 1, args.length);
-        Py.runMain(javapath._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[] {"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
+        Py.runMain(javapath._PyInner.class, newargs, jpy$packages, jpy$properties, "mail98", new String[]{"DBi.Server", "etoffiutils", "DBi.Handle", "javapath", "MMS", "traceback", "stat", "string", "linecache", "DBi.__init__", "javaos", "rfc822"});
     }
-    
+
 }

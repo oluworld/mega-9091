@@ -15,39 +15,58 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class StateCntrl extends State
-{
- short next0;
- short next1;
- boolean accept;
+class StateCntrl extends State {
 
- StateCntrl() { this(IMPASSE, IMPASSE); }
+    short next0;
+    short next1;
+    boolean accept;
 
- StateCntrl(short next0, short next1)
- 	{ this.next0 = next0; this.next1 = next1; }
+    StateCntrl() {
+        this(IMPASSE, IMPASSE);
+    }
 
- StateCntrl(int next0, int next1)
- 	{ this((short)next0, (short)next1); }
+    StateCntrl(short next0, short next1) {
+        this.next0 = next0;
+        this.next1 = next1;
+    }
 
- void setAccept() { accept = true; }
+    StateCntrl(int next0, int next1) {
+        this((short) next0, (short) next1);
+    }
 
- void resetAccept() { accept = false; }
+    void setAccept() {
+        accept = true;
+    }
 
- boolean canAccept() { return accept; }
+    void resetAccept() {
+        accept = false;
+    }
 
- short getNext0() { return next0; }
+    boolean canAccept() {
+        return accept;
+    }
 
- short getNext1() { return next1; }
+    short getNext0() {
+        return next0;
+    }
 
- final void setNext0(int next0) { this.next0 = (short)next0; }
+    short getNext1() {
+        return next1;
+    }
 
- void setNext1(int next1) { this.next1 = (short)next1; }
+    final void setNext0(int next0) {
+        this.next0 = (short) next0;
+    }
 
- String stateToString()
-        { return accept? "<ACCPT>" :  (next0 + "," + next1); }
+    void setNext1(int next1) {
+        this.next1 = (short) next1;
+    }
+
+    String stateToString() {
+        return accept ? "<ACCPT>" : (next0 + "," + next1);
+    }
 
 }

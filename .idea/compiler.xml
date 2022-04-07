@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="tripleo-impohrt-pj" />
-        <module name="tripleo-freebase" />
-        <module name="tripleo-impohrt-scache" />
-        <module name="tripleo-appz-pythondebug" />
-        <module name="tripleo-mega9091-graphicalresources" />
-        <module name="org-gnu-rex" />
-        <module name="tripleo-impohrt-elifarley" />
-        <module name="tripleo-http" />
-        <module name="rabbit-minimal" />
-        <module name="tripleo-nio" />
-        <module name="tripleo-space" />
-        <module name="tripleo-impohrt-games-bounce" />
-        <module name="tripleo-linuxtuples" />
-        <module name="oswego-concurrent" />
-        <module name="tripleo-impohrt-andreasnibbles" />
-        <module name="tripleo-impohrt-cl" />
-        <module name="tripleo-appz-net-urlsink" />
-        <module name="mail98" />
-        <module name="tripleo-histore" />
-        <module name="elifarley-razip-all" />
-        <module name="tripleo-adt" />
-        <module name="tripleo-taliyah" />
-        <module name="tripleo-curr" />
-        <module name="tripleo-bobcat" />
-        <module name="thinlet" />
-        <module name="tripleo-fs" />
-        <module name="tripleo-impohrt-pacman1" />
-        <module name="thinlet-examples" />
-        <module name="tripleo-impohrt-ant" />
-        <module name="tripleo-pyyaml" />
-        <module name="tripleo-util-001" />
-        <module name="prevayler" />
-        <module name="tripleo-appz-net-number_server" />
-        <module name="tripleo-cottontail" />
-        <module name="thinMMS" />
-        <module name="tripleo-ope" />
-      </profile>
-    </annotationProcessing>
-  </component>
+    <component name="CompilerConfiguration">
+        <annotationProcessing>
+            <profile name="Maven default annotation processors profile" enabled="true">
+                <sourceOutputDir name="target/generated-sources/annotations" />
+                <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+                <outputRelativeToContentRoot value="true" />
+                <module name="tripleo-impohrt-pj" />
+                <module name="tripleo-freebase" />
+                <module name="tripleo-impohrt-scache" />
+                <module name="tripleo-appz-pythondebug" />
+                <module name="tripleo-mega9091-graphicalresources" />
+                <module name="org-gnu-rex" />
+                <module name="tripleo-impohrt-elifarley" />
+                <module name="tripleo-http" />
+                <module name="rabbit-minimal" />
+                <module name="tripleo-nio" />
+                <module name="tripleo-space" />
+                <module name="tripleo-impohrt-games-bounce" />
+                <module name="tripleo-linuxtuples" />
+                <module name="oswego-concurrent" />
+                <module name="tripleo-impohrt-andreasnibbles" />
+                <module name="tripleo-impohrt-cl" />
+                <module name="tripleo-appz-net-urlsink" />
+                <module name="mail98" />
+                <module name="tripleo-histore" />
+                <module name="elifarley-razip-all" />
+                <module name="tripleo-adt" />
+                <module name="tripleo-taliyah" />
+                <module name="tripleo-curr" />
+                <module name="tripleo-bobcat" />
+                <module name="thinlet" />
+                <module name="tripleo-fs" />
+                <module name="tripleo-impohrt-pacman1" />
+                <module name="thinlet-examples" />
+                <module name="tripleo-impohrt-ant" />
+                <module name="tripleo-pyyaml" />
+                <module name="tripleo-util-001" />
+                <module name="prevayler" />
+                <module name="tripleo-appz-net-number_server" />
+                <module name="tripleo-cottontail" />
+                <module name="thinMMS" />
+                <module name="tripleo-ope" />
+            </profile>
+        </annotationProcessing>
+    </component>
 </project>

@@ -9,4 +9,3 @@ package tripleo.annotation;
 public @interface ErrorNull {
 
 }
-

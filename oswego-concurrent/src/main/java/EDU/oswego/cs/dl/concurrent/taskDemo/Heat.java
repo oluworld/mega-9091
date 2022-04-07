@@ -27,270 +27,290 @@ package EDU.oswego.cs.dl.concurrent.taskDemo;/*
    * prior written authorization from the Massachusetts Institute of
    * Technology.
    *  
-*/
+ */
 
 import EDU.oswego.cs.dl.concurrent.FJTask;
 import EDU.oswego.cs.dl.concurrent.FJTaskRunnerGroup;
 
 public class Heat {
 
-  // Parameters
-  static int nx;
-  static int ny;
-  static int nt;
-  static int leafmaxcol;
+    // Parameters
+    static int nx;
+    static int ny;
+    static int nt;
+    static int leafmaxcol;
 
-  // the matrix representing the cells
-  static double[][] newm;
+    // the matrix representing the cells
+    static double[][] newm;
 
-  // alternating workspace matrix
-  static double[][] oldm;
+    // alternating workspace matrix
+    static double[][] oldm;
 
+    public static void main(String[] args) {
+        int procs = 1;
+        int benchmark = 0;
 
-  public static void main(String[] args) {
-    int procs = 1;
-    int benchmark = 0;
+        try {
+            procs = Integer.parseInt(args[0]);
+            benchmark = Integer.parseInt(args[1]);
+        } catch (Exception e) {
+            System.out.println("Usage: java Heat <threads> <0-4>");
+            return;
+        }
 
-    try {
-      procs = Integer.parseInt(args[0]);
-      benchmark = Integer.parseInt(args[1]);
+        switch (benchmark) {
+            case 0:
+                /* cilk demo defaults */
+                nx = 4096;
+                ny = 512;
+                nt = 100;
+                leafmaxcol = 10;
+                break;
+            case 1:
+                /* cilk short benchmark options */
+                nx = 512;
+                ny = 512;
+                nt = 1;
+                leafmaxcol = 10;
+                break;
+            case 2:
+                /* cilk standard benchmark options */
+                nx = 4096;
+                ny = 512;
+                nt = 40;
+                leafmaxcol = 10;
+                break;
+            case 3:
+                /* cilk long benchmark options */
+                nx = 4096;
+                ny = 1024;
+                nt = 100;
+                leafmaxcol = 1;
+                break;
+            case 4:
+                /* hood demo faults */
+                nx = 1024;
+                ny = 512;
+                nt = 100;
+                leafmaxcol = 16;
+                break;
+            default:
+                System.out.println("Usage: java Heat <threads> <0-4>");
+                return;
+        }
+
+        System.out.print("Parameters: ");
+        System.out.print(" granularity = " + leafmaxcol);
+        System.out.print(" rows = " + nx);
+        System.out.print(" columns = " + ny);
+        System.out.println(" steps = " + nt);
+
+        oldm = new double[nx][ny];
+        newm = new double[nx][ny];
+
+        try {
+
+            FJTaskRunnerGroup g = new FJTaskRunnerGroup(procs);
+
+            FJTask main = new FJTask() {
+                public void run() {
+                    for (int timestep = 0; timestep <= nt; timestep++) {
+                        FJTask.invoke(new Compute(0, nx, timestep));
+                    }
+                }
+            };
+
+            g.invoke(main);
+
+            g.stats();
+
+        } catch (InterruptedException ex) {
+            return;
+        }
+
     }
-    catch (Exception e) {
-      System.out.println("Usage: java Heat <threads> <0-4>");
-      return;
+
+    // constants (at least for this demo)
+    static final double xu = 0.0;
+    static final double xo = 1.570796326794896558;
+    static final double yu = 0.0;
+    static final double yo = 1.570796326794896558;
+    static final double tu = 0.0;
+    static final double to = 0.0000001;
+
+    static final double dx = (xo - xu) / (nx - 1);
+    static final double dy = (yo - yu) / (ny - 1);
+    static final double dt = (to - tu) / nt;
+    static final double dtdxsq = dt / (dx * dx);
+    static final double dtdysq = dt / (dy * dy);
+
+    // the function being applied across the cells
+    static double f(double x, double y) {
+        return Math.sin(x) * Math.sin(y);
     }
 
-    switch (benchmark) {
-    case 0:      /* cilk demo defaults */
-      nx = 4096; ny = 512; nt = 100; leafmaxcol = 10; 
-      break;
-    case 1:      /* cilk short benchmark options */
-      nx = 512; ny = 512; nt = 1; leafmaxcol = 10;
-      break;
-    case 2:      /* cilk standard benchmark options */
-      nx = 4096; ny = 512; nt = 40; leafmaxcol = 10;
-      break;
-    case 3:      /* cilk long benchmark options */
-      nx = 4096; ny = 1024; nt = 100; leafmaxcol = 1;
-      break;
-    case 4:      /* hood demo faults */
-      nx = 1024; ny = 512; nt = 100; leafmaxcol = 16;
-      break;
-    default:
-      System.out.println("Usage: java Heat <threads> <0-4>");
-      return;
+    // random starting values
+    static double randa(double x, double t) {
+        return 0.0;
     }
 
-    System.out.print("Parameters: ");
-    System.out.print(" granularity = " + leafmaxcol);
-    System.out.print(" rows = " + nx);
-    System.out.print(" columns = " + ny);
-    System.out.println(" steps = " + nt);
+    static double randb(double x, double t) {
+        return Math.exp(-2 * t) * Math.sin(x);
+    }
 
-    
-    oldm = new double[nx][ny];
-    newm = new double[nx][ny];
+    static double randc(double y, double t) {
+        return 0.0;
+    }
 
-    try {  
-    
-      FJTaskRunnerGroup g = new FJTaskRunnerGroup(procs);
-      
-      FJTask main = new FJTask() {
+    static double randd(double y, double t) {
+        return Math.exp(-2 * t) * Math.sin(y);
+    }
+
+    static double solu(double x, double y, double t) {
+        return Math.exp(-2 * t) * Math.sin(x) * Math.sin(y);
+    }
+
+    static final class Compute extends FJTask {
+
+        final int lb;
+        final int ub;
+        final int time;
+
+        Compute(int lowerBound, int upperBound, int timestep) {
+            lb = lowerBound;
+            ub = upperBound;
+            time = timestep;
+        }
+
         public void run() {
-          for (int timestep = 0; timestep <= nt; timestep++) {
-            FJTask.invoke(new Compute(0, nx, timestep));
-          }
+            if (ub - lb > leafmaxcol) {
+                int mid = (lb + ub) / 2;
+                coInvoke(new Compute(lb, mid, time),
+                        new Compute(mid, ub, time));
+            } else if (time == 0) // if first pass, initialize cells
+            {
+                init();
+            } else if (time % 2 != 0) // alternate new/old
+            {
+                compstripe(newm, oldm);
+            } else {
+                compstripe(oldm, newm);
+            }
         }
-      };
-      
-      g.invoke(main);
 
-      g.stats();
+        /**
+         * Update all cells *
+         */
+        final void compstripe(double[][] newMat, double[][] oldMat) {
 
-    }
-    catch (InterruptedException ex) { return; }
+            // manually mangled to reduce array indexing
+            final int llb = (lb == 0) ? 1 : lb;
+            final int lub = (ub == nx) ? nx - 1 : ub;
 
+            double[] west;
+            double[] row = oldMat[llb - 1];
+            double[] east = oldMat[llb];
 
-  }
+            for (int a = llb; a < lub; a++) {
 
+                west = row;
+                row = east;
+                east = oldMat[a + 1];
 
-  // constants (at least for this demo)
-  static final double xu = 0.0;
-  static final double xo = 1.570796326794896558;
-  static final double yu = 0.0;
-  static final double yo = 1.570796326794896558;
-  static final double tu = 0.0;
-  static final double to = 0.0000001;
+                double prev;
+                double cell = row[0];
+                double next = row[1];
 
-  static final double dx = (xo - xu) / (nx - 1);
-  static final double dy = (yo - yu) / (ny - 1);
-  static final double dt = (to - tu) / nt;	
-  static final double dtdxsq = dt / (dx * dx);
-  static final double dtdysq = dt / (dy * dy);
+                double[] nv = newMat[a];
 
+                for (int b = 1; b < ny - 1; b++) {
 
-  // the function being applied across the cells
-  static double f(double x, double y) {
-    return Math.sin(x) * Math.sin(y); 
-  }
+                    prev = cell;
+                    cell = next;
+                    double twoc = 2 * cell;
+                    next = row[b + 1];
 
-  // random starting values
+                    nv[b] = cell
+                            + dtdysq * (prev - twoc + next)
+                            + dtdxsq * (east[b] - twoc + west[b]);
 
-  static double randa(double x, double t) {
-    return 0.0; 
-  }
-  static double randb(double x, double t) {
-    return Math.exp(-2*t) * Math.sin(x); 
-  }
-  static double randc(double y, double t) {
-    return 0.0; 
-  }
-  static double randd(double y, double t) {
-    return Math.exp(-2*t) * Math.sin(y); 
-  }
-  static double solu(double x, double y, double t) {
-    return Math.exp(-2*t) * Math.sin(x) * Math.sin(y); 
-  }
+                }
+            }
 
+            edges(newMat, llb, lub, tu + time * dt);
+        }
 
+        // the original version from cilk
+        final void origcompstripe(double[][] newMat, double[][] oldMat) {
 
+            final int llb = (lb == 0) ? 1 : lb;
+            final int lub = (ub == nx) ? nx - 1 : ub;
 
-  static final class Compute extends FJTask {
+            for (int a = llb; a < lub; a++) {
+                for (int b = 1; b < ny - 1; b++) {
+                    double cell = oldMat[a][b];
+                    double twoc = 2 * cell;
+                    newMat[a][b] = cell
+                            + dtdxsq * (oldMat[a + 1][b] - twoc + oldMat[a - 1][b])
+                            + dtdysq * (oldMat[a][b + 1] - twoc + oldMat[a][b - 1]);
 
-    final int lb;
-    final int ub;
-    final int time;
+                }
+            }
 
-    Compute(int lowerBound, int upperBound, int timestep) {
-      lb = lowerBound;
-      ub = upperBound;
-      time = timestep;
-    }
-     
-    public void run() {
-      if (ub - lb > leafmaxcol) {
-        int mid = (lb + ub) / 2;
-        coInvoke(new Compute(lb, mid, time),
-                 new Compute(mid, ub, time));
-      }
-      else if (time == 0)     // if first pass, initialize cells
-        init();
-      else if (time %2 != 0)  // alternate new/old
-        compstripe(newm, oldm);
-      else
-        compstripe(oldm, newm);
-    }
+            edges(newMat, llb, lub, tu + time * dt);
+        }
 
+        /**
+         * Initialize all cells *
+         */
+        final void init() {
+            final int llb = (lb == 0) ? 1 : lb;
+            final int lub = (ub == nx) ? nx - 1 : ub;
 
-    /** Update all cells **/
-    final void compstripe(double[][] newMat, double[][] oldMat) {
+            for (int a = llb; a < lub; a++) {
+                /* inner nodes */
+                double[] ov = oldm[a];
+                double x = xu + a * dx;
+                double y = yu;
+                for (int b = 1; b < ny - 1; b++) {
+                    y += dy;
+                    ov[b] = f(x, y);
+                }
+            }
 
-      // manually mangled to reduce array indexing
-
-      final int llb = (lb == 0)  ? 1 : lb;
-      final int lub = (ub == nx) ? nx - 1 : ub;
-
-      double[] west;
-      double[] row = oldMat[llb-1];
-      double[] east = oldMat[llb];
-
-      for (int a = llb; a < lub; a++) {
-
-        west = row;
-        row =  east;
-        east = oldMat[a+1];
-
-        double prev;
-        double cell = row[0];
-        double next = row[1];
-
-        double[] nv = newMat[a];
-
-        for (int b = 1; b < ny-1; b++) {
-
-          prev = cell;
-          cell = next;
-          double twoc = 2 * cell;
-          next = row[b+1];
-
-          nv[b] = cell
-            + dtdysq * (prev    - twoc + next)
-            + dtdxsq * (east[b] - twoc + west[b]);
+            edges(oldm, llb, lub, 0);
 
         }
-      }
 
-      edges(newMat, llb, lub,  tu + time * dt);
-    }
+        /**
+         * Fill in edges with boundary values *
+         */
+        final void edges(double[][] m, int llb, int lub, double t) {
 
+            for (int a = llb; a < lub; a++) {
+                double[] v = m[a];
+                double x = xu + a * dx;
+                v[0] = randa(x, t);
+                v[ny - 1] = randb(x, t);
+            }
 
-    // the original version from cilk
-    final void origcompstripe(double[][] newMat, double[][] oldMat) {
-      
-      final int llb = (lb == 0)  ? 1 : lb;
-      final int lub = (ub == nx) ? nx - 1 : ub;
+            if (lb == 0) {
+                double[] v = m[0];
+                double y = yu;
+                for (int b = 0; b < ny; b++) {
+                    y += dy;
+                    v[b] = randc(y, t);
+                }
+            }
 
-      for (int a = llb; a < lub; a++) {
-        for (int b = 1; b < ny-1; b++) {
-          double cell = oldMat[a][b];
-          double twoc = 2 * cell;
-          newMat[a][b] = cell
-            + dtdxsq * (oldMat[a+1][b] - twoc + oldMat[a-1][b])
-            + dtdysq * (oldMat[a][b+1] - twoc + oldMat[a][b-1]);
-
+            if (ub == nx) {
+                double[] v = m[nx - 1];
+                double y = yu;
+                for (int b = 0; b < ny; b++) {
+                    y += dy;
+                    v[b] = randd(y, t);
+                }
+            }
         }
-      }
-
-      edges(newMat, llb, lub,  tu + time * dt);
     }
-
-
-    /** Initialize all cells **/
-    final void init() {
-      final int llb = (lb == 0) ? 1 : lb;
-      final int lub = (ub == nx) ? nx - 1 : ub;
-
-      for (int a = llb; a < lub; a++) {	/* inner nodes */
-        double[] ov = oldm[a];
-        double x = xu + a * dx;
-        double y = yu;
-        for (int b = 1; b < ny-1; b++) {
-          y += dy;
-          ov[b] = f(x, y);
-        }
-      }
-
-      edges(oldm, llb, lub, 0);
-
-    }
-
-    /** Fill in edges with boundary values **/
-    final void edges(double [][] m, int llb, int lub, double t) {
-
-      for (int a = llb; a < lub; a++) {
-        double[] v = m[a];
-        double x = xu + a * dx;
-        v[0] = randa(x, t);
-        v[ny-1] = randb(x, t);
-      }
-
-      if (lb == 0) {
-        double[] v = m[0];
-        double y = yu;
-        for (int b = 0; b < ny; b++) {
-          y += dy;
-          v[b] = randc(y, t);
-        }
-      }
-
-      if (ub == nx) {
-        double[] v = m[nx - 1]; 
-        double y = yu;
-        for (int b = 0; b < ny; b++) {
-          y += dy;
-          v[b] = randd(y, t);
-        }
-      }
-    }
-  }
 }

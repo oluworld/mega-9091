@@ -1,61 +1,67 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <panel name='top' gap="4" top="4" left="4" columns="1" >
-	<panel gap='4'>
-		<label text="Number Server" /> <!-- <hbar /> <panel> ... -->
-		<textfield name="ns-host" text='localhost' />
-		<textfield name="ns-port" text='9070' columns='5'/>
-		<button text="Connect" action="set_ns(ns-host.text, ns-port.text)"/>
-		<!-- </panel> -->
-	</panel>
-	<panel gap='4'>
-		<checkbox name='Proxy' action='fixvis(Proxy,pr_pnl)'/>
-		<label text='Proxy enabled' />
-		<panel gap='2' name='pr_pnl'>
-			<!-- <vbar /> -->
-			<label text='hostname'/><textfield name="proxy-root" text='localhost'/>
-			<label text='portnum' /><textfield name="proxy-port" text='8080' columns='7'/>
-			<button text="Launch"/><!--xaction="connectToNewRoot(proxy-root.text, proxy-port.text)" />-->
-		</panel>
-	</panel>
-	<panel gap='4'>
-		<checkbox name='SimpleTestClient'  action='fixvis(SimpleTestClient,stc_pnl)'/>
-		<label text='SimpleTestClient' />
-		<panel gap='2' name='stc_pnl'>
-			<!-- <vbar /> -->
-			<label text='hostname'/><textfield name="stc-root" text='localhost'/>
-			<label text='portnum' /><textfield name="stc-port" text='66080' columns='7'/>
-			<button name='stc-launch' text='Launch' action='start_stc()' enabled='false' />
-		</panel>
-	</panel>
-	<panel gap='4'>
-		<checkbox name='XmlRpcServer'  action='fixvis(XmlRpcServer,xml_pnl)'/>
-		<label text='XmlRpcServer' />
-		<panel gap='2' name='xml_pnl'>
-			<!-- <vbar /> -->
-			<label text='hostname'/><textfield name="proxy-root" text='localhost'/>
-			<label text='portnum' /><textfield name="proxy-port" text='8080' columns='7'/>
-			<button text='Launch' action='start_xmlsrv()'/>
-		</panel>
-	</panel>
-	<panel gap='4'>
-		<button text='start Number Server' name='run' action='run_()'/>
-		<button text='start Number Server using Python' name='pyrun' action='pyrun()'/>
-	</panel>
-	<panel gap='4'>
-		<checkbox name="timeout_cb" text="timeout" action="checkcheckBox(timeout, timeout_cb.enabled)" />
-		<textfield name="timeout" text="10:00" />
-		<button name='exit' text='Shutdown application' action='ShutDown' />
-	</panel>
-	<panel>
-		<!--	<label text="+" />
-			<textfield name="number1" columns="4" />
-			<textfield name="number2" columns="4" />
-			<button text="=" action="calculate(number1.text, number2.text, result)" />
-			<textfield name="result" editable="false" /> -->
+    <panel gap='4'>
+        <label text="Number Server" /> <!-- <hbar /> <panel> ... -->
+        <textfield name="ns-host" text='localhost' />
+        <textfield name="ns-port" text='9070' columns='5'/>
+        <button text="Connect" action="set_ns(ns-host.text, ns-port.text)"/>
+        <!-- </panel> -->
+    </panel>
+    <panel gap='4'>
+        <checkbox name='Proxy' action='fixvis(Proxy,pr_pnl)'/>
+        <label text='Proxy enabled' />
+        <panel gap='2' name='pr_pnl'>
+            <!-- <vbar /> -->
+            <label text='hostname'/>
+            <textfield name="proxy-root" text='localhost'/>
+            <label text='portnum' />
+            <textfield name="proxy-port" text='8080' columns='7'/>
+            <button text="Launch"/><!--xaction="connectToNewRoot(proxy-root.text, proxy-port.text)" />-->
+        </panel>
+    </panel>
+    <panel gap='4'>
+        <checkbox name='SimpleTestClient'  action='fixvis(SimpleTestClient,stc_pnl)'/>
+        <label text='SimpleTestClient' />
+        <panel gap='2' name='stc_pnl'>
+            <!-- <vbar /> -->
+            <label text='hostname'/>
+            <textfield name="stc-root" text='localhost'/>
+            <label text='portnum' />
+            <textfield name="stc-port" text='66080' columns='7'/>
+            <button name='stc-launch' text='Launch' action='start_stc()' enabled='false' />
+        </panel>
+    </panel>
+    <panel gap='4'>
+        <checkbox name='XmlRpcServer'  action='fixvis(XmlRpcServer,xml_pnl)'/>
+        <label text='XmlRpcServer' />
+        <panel gap='2' name='xml_pnl'>
+            <!-- <vbar /> -->
+            <label text='hostname'/>
+            <textfield name="proxy-root" text='localhost'/>
+            <label text='portnum' />
+            <textfield name="proxy-port" text='8080' columns='7'/>
+            <button text='Launch' action='start_xmlsrv()'/>
+        </panel>
+    </panel>
+    <panel gap='4'>
+        <button text='start Number Server' name='run' action='run_()'/>
+        <button text='start Number Server using Python' name='pyrun' action='pyrun()'/>
+    </panel>
+    <panel gap='4'>
+        <checkbox name="timeout_cb" text="timeout" action="checkcheckBox(timeout, timeout_cb.enabled)" />
+        <textfield name="timeout" text="10:00" />
+        <button name='exit' text='Shutdown application' action='ShutDown' />
+    </panel>
+    <panel>
+        <!--	<label text="+" />
+        <textfield name="number1" columns="4" />
+        <textfield name="number2" columns="4" />
+        <button text="=" action="calculate(number1.text, number2.text, result)" />
+        <textfield name="result" editable="false" /> -->
 
-		<list name='status'/>
-		<textarea name="errors" editable="false"/>
-	</panel>
+        <list name='status'/>
+        <textarea name="errors" editable="false"/>
+    </panel>
 </panel>
 

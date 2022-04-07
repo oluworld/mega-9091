@@ -5,54 +5,53 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.impohrt.cl;
 
-
 public class clThreadData {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected clThreadData(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      clJNI.delete_clThreadData(swigCPtr);
+    protected clThreadData(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(clThreadData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setSock(SWIGTYPE_p_SOCKET sock) {
-    clJNI.set_clThreadData_sock(swigCPtr, SWIGTYPE_p_SOCKET.getCPtr(sock));
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            clJNI.delete_clThreadData(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public SWIGTYPE_p_SOCKET getSock() {
-    return new SWIGTYPE_p_SOCKET(clJNI.get_clThreadData_sock(swigCPtr), true);
-  }
+    protected static long getCPtr(clThreadData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setData(SWIGTYPE_p_void data) {
-    clJNI.set_clThreadData_data(swigCPtr, SWIGTYPE_p_void.getCPtr(data));
-  }
+    public void setSock(SWIGTYPE_p_SOCKET sock) {
+        clJNI.set_clThreadData_sock(swigCPtr, SWIGTYPE_p_SOCKET.getCPtr(sock));
+    }
 
-  public SWIGTYPE_p_void getData() {
-    long cPtr = clJNI.get_clThreadData_data(swigCPtr);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
-  }
+    public SWIGTYPE_p_SOCKET getSock() {
+        return new SWIGTYPE_p_SOCKET(clJNI.get_clThreadData_sock(swigCPtr), true);
+    }
 
-  public clThreadData() {
-    this(clJNI.new_clThreadData(), true);
-  }
+    public void setData(SWIGTYPE_p_void data) {
+        clJNI.set_clThreadData_data(swigCPtr, SWIGTYPE_p_void.getCPtr(data));
+    }
+
+    public SWIGTYPE_p_void getData() {
+        long cPtr = clJNI.get_clThreadData_data(swigCPtr);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+    }
+
+    public clThreadData() {
+        this(clJNI.new_clThreadData(), true);
+    }
 
 }

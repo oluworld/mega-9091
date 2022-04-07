@@ -5,14 +5,14 @@ import java.io.Serializable;
 
 public class AccountDeletion extends BankCommand {
 
-	private final long accountNumber;
+    private final long accountNumber;
 
-	public AccountDeletion(Account account) {
-		accountNumber = account.number();
-	}
+    public AccountDeletion(Account account) {
+        accountNumber = account.number();
+    }
 
-	protected Serializable execute(Bank bank) throws Bank.AccountNotFound {
-		bank.deleteAccount(accountNumber);
-		return null;
-	}
+    protected Serializable execute(Bank bank) throws Bank.AccountNotFound {
+        bank.deleteAccount(accountNumber);
+        return null;
+    }
 }

@@ -17,17 +17,17 @@ import tripleo.http.impl.*;
 
 public abstract class ResponseFactory {
 
-	public static IResponse FromOutputStream(OutputStream os, IRequest req) {
-		return new OS_Response(os, req);
-	}
+    public static IResponse FromOutputStream(OutputStream os, IRequest req) {
+        return new OS_Response(os, req);
+    }
 
-	public static IResponse ForStringBuilder(IRequest req) {
-		return new SB_Response(req);
-	}
+    public static IResponse ForStringBuilder(IRequest req) {
+        return new SB_Response(req);
+    }
 
-	public static IResponse FromApache(HttpClient aHttpClient, GetMethod aGetmeth) {
-		return new HC_Response(aHttpClient, aGetmeth);
-	}
+    public static IResponse FromApache(HttpClient aHttpClient, GetMethod aGetmeth) {
+        return new HC_Response(aHttpClient, aGetmeth);
+    }
 }
 
 /*

@@ -35,13 +35,12 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
 
 /**
  * A Blocking/Multi-threaded Server which creates a new thread for each
- * connection.  This is not efficient for large numbers of connections.
+ * connection. This is not efficient for large numbers of connections.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -49,22 +48,22 @@ import java.nio.channels.SocketChannel;
  */
 public class BN extends Server {
 
-	BN(int port, int backlog, boolean secure) throws Exception {
-		super(port, backlog, secure);
-	}
+    BN(int port, int backlog, boolean secure) throws Exception {
+        super(port, backlog, secure);
+    }
 
-	void runServer() throws IOException {
-		for (; ;) {
+    void runServer() throws IOException {
+        for (;;) {
 
-			SocketChannel sc = ssc.accept();
+            SocketChannel sc = ssc.accept();
 
-			ChannelIO cio = (sslContext != null ?
-			        null //ChannelIOSecure.getInstance(sc, true /* blocking */, sslContext) :
-			        : ChannelIO.getInstance(sc, true /* blocking */));
+            ChannelIO cio = (sslContext != null
+                    ? null //ChannelIOSecure.getInstance(sc, true /* blocking */, sslContext) :
+                    : ChannelIO.getInstance(sc, true /* blocking */));
 
-			RequestServicer svc = new RequestServicer(cio);
-			Thread th = new Thread(svc);
-			th.start();
-		}
-	}
+            RequestServicer svc = new RequestServicer(cio);
+            Thread th = new Thread(svc);
+            th.start();
+        }
+    }
 }

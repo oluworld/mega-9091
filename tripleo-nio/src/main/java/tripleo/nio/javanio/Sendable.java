@@ -35,12 +35,10 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 
 /**
- * Method definitions used for preparing, sending, and release
- * content.
+ * Method definitions used for preparing, sending, and release content.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -48,13 +46,13 @@ import java.io.IOException;
  */
 public interface Sendable {
 
-	void prepare() throws IOException;
+    void prepare() throws IOException;
 
-	// Sends (some) content to the given channel.
-	// Returns true if more bytes remain to be written.
-	// Throws IllegalStateException if not prepared.
-	//
-	boolean send(ChannelIO cio) throws IOException;
+    // Sends (some) content to the given channel.
+    // Returns true if more bytes remain to be written.
+    // Throws IllegalStateException if not prepared.
+    //
+    boolean send(ChannelIO cio) throws IOException;
 
-	void release() throws IOException;
+    void release() throws IOException;
 }

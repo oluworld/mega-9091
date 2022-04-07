@@ -15,8 +15,7 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
 
@@ -31,13 +30,16 @@ package gnu.rex;
  * What did they expect the class would be useful for except its static
  * methods applications????????
  */
+class IntPtr {
 
-class IntPtr
-{
- public int value;
+    public int value;
 
- public IntPtr() { this(0); }
+    public IntPtr() {
+        this(0);
+    }
 
- public IntPtr(int value) { this.value = value; }
+    public IntPtr(int value) {
+        this.value = value;
+    }
 
 }

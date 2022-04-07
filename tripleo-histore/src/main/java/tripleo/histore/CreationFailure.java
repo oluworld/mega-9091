@@ -6,13 +6,13 @@ package tripleo.histore;
 
 public class CreationFailure extends Exception {
 
-	private final Exception ae;
+    private final Exception ae;
 
-	public CreationFailure(Exception aException) {
-		ae= aException;
-	}
+    public CreationFailure(Exception aException) {
+        ae = aException;
+    }
 
-	public String toString() {
-		return "CreationFailure: "+ae.toString();
-	}
+    public String toString() {
+        return "CreationFailure: " + ae.toString();
+    }
 }

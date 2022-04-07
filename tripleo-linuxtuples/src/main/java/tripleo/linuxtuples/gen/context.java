@@ -5,69 +5,68 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen;
 
-
 public class context {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected context(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      tuplesJNI.delete_context(swigCPtr);
+    protected context(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(context obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setServername(String servername) {
-    tuplesJNI.set_context_servername(swigCPtr, servername);
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            tuplesJNI.delete_context(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public String getServername() {
-    return tuplesJNI.get_context_servername(swigCPtr);
-  }
+    protected static long getCPtr(context obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setPortnumber(int portnumber) {
-    tuplesJNI.set_context_portnumber(swigCPtr, portnumber);
-  }
+    public void setServername(String servername) {
+        tuplesJNI.set_context_servername(swigCPtr, servername);
+    }
 
-  public int getPortnumber() {
-    return tuplesJNI.get_context_portnumber(swigCPtr);
-  }
+    public String getServername() {
+        return tuplesJNI.get_context_servername(swigCPtr);
+    }
 
-  public void setSock(int sock) {
-    tuplesJNI.set_context_sock(swigCPtr, sock);
-  }
+    public void setPortnumber(int portnumber) {
+        tuplesJNI.set_context_portnumber(swigCPtr, portnumber);
+    }
 
-  public int getSock() {
-    return tuplesJNI.get_context_sock(swigCPtr);
-  }
+    public int getPortnumber() {
+        return tuplesJNI.get_context_portnumber(swigCPtr);
+    }
 
-  public void setThr(SWIGTYPE_p_pthread_t thr) {
-    tuplesJNI.set_context_thr(swigCPtr, SWIGTYPE_p_pthread_t.getCPtr(thr));
-  }
+    public void setSock(int sock) {
+        tuplesJNI.set_context_sock(swigCPtr, sock);
+    }
 
-  public SWIGTYPE_p_pthread_t getThr() {
-    return new SWIGTYPE_p_pthread_t(tuplesJNI.get_context_thr(swigCPtr), true);
-  }
+    public int getSock() {
+        return tuplesJNI.get_context_sock(swigCPtr);
+    }
 
-  public context() {
-    this(tuplesJNI.new_context(), true);
-  }
+    public void setThr(SWIGTYPE_p_pthread_t thr) {
+        tuplesJNI.set_context_thr(swigCPtr, SWIGTYPE_p_pthread_t.getCPtr(thr));
+    }
+
+    public SWIGTYPE_p_pthread_t getThr() {
+        return new SWIGTYPE_p_pthread_t(tuplesJNI.get_context_thr(swigCPtr), true);
+    }
+
+    public context() {
+        this(tuplesJNI.new_context(), true);
+    }
 
 }

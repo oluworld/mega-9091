@@ -1,5 +1,6 @@
 package tripleo.cottontail.webserver;
 
-public interface Transaction <E> {
-	void start();
+public interface Transaction<E> {
+
+    void start();
 }

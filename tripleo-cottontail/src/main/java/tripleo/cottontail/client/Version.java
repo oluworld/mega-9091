@@ -4,47 +4,59 @@ import java.io.*;
 import java.util.Iterator;
 
 /**
- * Date: Feb 27, 2005
- * Time: 5:22:20 PM
+ * Date: Feb 27, 2005 Time: 5:22:20 PM
  * <p/>
  * $Id: Version.java,v 1.1.1.1 2005/03/11 07:38:06 olu Exp $
  */
 class Version implements IVersion {
-	private final VerKey rv;
-	private final Resource res;
 
-	Version(VerKey arv, Resource aResource) {
-		rv  = arv;
-		res = aResource;
-	}
+    private final VerKey rv;
+    private final Resource res;
 
-	public void setName(String aName) {	name = aName;	}
+    Version(VerKey arv, Resource aResource) {
+        rv = arv;
+        res = aResource;
+    }
 
-	public void setContent(String aContent) {	content = aContent;	}
-	public void setComment(String aComment) {	comment = aComment;	}
+    public void setName(String aName) {
+        name = aName;
+    }
 
-	public Iterator<CmntKey> comments() {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
-	}
+    public void setContent(String aContent) {
+        content = aContent;
+    }
 
-	public String getName()     {	return rv.get();	}
-	public String getComment()  {	return comment;		}
+    public void setComment(String aComment) {
+        comment = aComment;
+    }
 
-	public String getContent() {
-		final File file = res.rk.get();
-		String R;
-		try {
-			final FileReader fr = new FileReader(file);
-			final int l = (int) file.length();
-			final char[] by = new char[l];
-			fr.read(by);
-			fr.close();
-			return R = new String(by);
-		} catch (IOException e) {
-			return "exception: [" + e + "]";
-		}
-	}
+    public Iterator<CmntKey> comments() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
-	String name, content, comment;
+    public String getName() {
+        return rv.get();
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getContent() {
+        final File file = res.rk.get();
+        String R;
+        try {
+            final FileReader fr = new FileReader(file);
+            final int l = (int) file.length();
+            final char[] by = new char[l];
+            fr.read(by);
+            fr.close();
+            return R = new String(by);
+        } catch (IOException e) {
+            return "exception: [" + e + "]";
+        }
+    }
+
+    String name, content, comment;
 
 }

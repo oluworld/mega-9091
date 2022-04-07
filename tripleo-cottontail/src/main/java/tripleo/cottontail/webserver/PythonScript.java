@@ -9,51 +9,56 @@ import java.util.HashMap;
 import java.io.IOException;
 
 public class PythonScript {
-	private final IContainer ctr;
 
-	public PythonScript(String aName, IContainer actr) {
-		script_name = aName;
-		ctr = actr;
-	}
+    private final IContainer ctr;
 
-	String script_name, content;
+    public PythonScript(String aName, IContainer actr) {
+        script_name = aName;
+        ctr = actr;
+    }
 
-	void preprocess(String aCode) {}
+    String script_name, content;
 
-	void set_content(String s) {content = s;}
+    void preprocess(String aCode) {
+    }
 
-	Map<String,Param> params=new HashMap<>();
+    void set_content(String s) {
+        content = s;
+    }
 
-	static class Param {
-		/**
-		 * @param aS
-		 * @param aT
-		 * @param aReq
-		 */
-		public Param(String aS, String aT, boolean aReq) {
-			param_name=aS;
-			type=aT;
-			req= aReq;
-		}
-		String param_name;
-		String type;
-		boolean req; /*enum {STRING} Type;*/
-	}
+    Map<String, Param> params = new HashMap<>();
 
+    static class Param {
 
-	void add_param(String s, String t, boolean aReq) {
-		params.put(s, new Param(s, t, aReq));
-	}
+        /**
+         * @param aS
+         * @param aT
+         * @param aReq
+         */
+        public Param(String aS, String aT, boolean aReq) {
+            param_name = aS;
+            type = aT;
+            req = aReq;
+        }
+        String param_name;
+        String type;
+        boolean req;
+        /*enum {STRING} Type;*/
+    }
 
-	void write() throws AllocationFailure, ConsistencyFailure, IOException {
-		HiStoreEntry e = ctr.alloc(script_name); // TODO: whole path
+    void add_param(String s, String t, boolean aReq) {
+        params.put(s, new Param(s, t, aReq));
+    }
 
-		final Map<String, Pair> tree = ((Cottontail)ctr).tree;
-		assert !tree.containsKey(script_name);
-		tree.put(script_name, Pair.make(new Long(e.getIdentifier()),new HashMap()));
+    void write() throws AllocationFailure, ConsistencyFailure, IOException {
+        HiStoreEntry e = ctr.alloc(script_name); // TODO: whole path
 
-		e.contentWriter().write(content.getBytes("UTF-8"));
-		e.contentWriter().close();
+        final Map<String, Pair> tree = ((Cottontail) ctr).tree;
+        assert !tree.containsKey(script_name);
+        tree.put(script_name, Pair.make(new Long(e.getIdentifier()), new HashMap()));
+
+        e.contentWriter().write(content.getBytes("UTF-8"));
+        e.contentWriter().close();
 //		}
 //		HiStoreEntry e = n.insert("101");
 //		try {
@@ -63,6 +68,5 @@ public class PythonScript {
 //			UT.errW.println("Success in double insert");
 //		}
 
-
-	}
+    }
 }

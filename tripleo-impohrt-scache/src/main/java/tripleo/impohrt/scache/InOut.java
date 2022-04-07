@@ -20,43 +20,48 @@ package tripleo.impohrt.scache;
  *  can also obtain it by writing to the Free Software Foundation,
  *  Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
-
 import java.io.*;
 import tripleo.fs.File;
 
 public class InOut implements Runnable {
-	InputStream in;
-	OutputStream out;
-	Thread notify;
 
-	InOut(InputStream is, OutputStream os, Thread intr) {
-		in = is;
-		out = os;
-		notify = intr;
-	}
+    InputStream in;
+    OutputStream out;
+    Thread notify;
 
-	public void run() {
-		byte b[];
-		int rb;
+    InOut(InputStream is, OutputStream os, Thread intr) {
+        in = is;
+        out = os;
+        notify = intr;
+    }
 
-		b = new byte[512];
+    public void run() {
+        byte b[];
+        int rb;
 
-		mainloop:while (true) {
-			try {
-				if (Thread.interrupted()) return;
-				rb = in.read(b);
-				if (rb == -1) break mainloop;
-				out.write(b, 0, rb);
-				out.flush();
-			} catch (InterruptedIOException timeout) {
-				notify.interrupt();
-				return;
-			} catch (IOException data_error) {
-				notify.interrupt();
-				return;
-			}
-		}
-		notify.interrupt();
-	}
+        b = new byte[512];
+
+        mainloop:
+        while (true) {
+            try {
+                if (Thread.interrupted()) {
+                    return;
+                }
+                rb = in.read(b);
+                if (rb == -1) {
+                    break mainloop;
+                }
+                out.write(b, 0, rb);
+                out.flush();
+            } catch (InterruptedIOException timeout) {
+                notify.interrupt();
+                return;
+            } catch (IOException data_error) {
+                notify.interrupt();
+                return;
+            }
+        }
+        notify.interrupt();
+    }
 
 }/*class*/

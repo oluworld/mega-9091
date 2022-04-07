@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.*;
 import java.util.Iterator;
@@ -43,8 +42,7 @@ import java.util.Iterator;
 /**
  * A single-threaded dispatcher.
  * <P>
- * When a SelectionKey is ready, it dispatches the job in this
- * thread.
+ * When a SelectionKey is ready, it dispatches the job in this thread.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -52,35 +50,35 @@ import java.util.Iterator;
  */
 class Dispatcher1 implements Dispatcher {
 
-	private final Selector sel;
+    private final Selector sel;
 
-	Dispatcher1() throws IOException {
-		sel = Selector.open();
-	}
+    Dispatcher1() throws IOException {
+        sel = Selector.open();
+    }
 
-	// Doesn't really need to be runnable
-	public void run() {
-		for (; ;) {
-			try {
-				dispatch();
-			} catch (IOException x) {
-				x.printStackTrace();
-			}
-		}
-	}
+    // Doesn't really need to be runnable
+    public void run() {
+        for (;;) {
+            try {
+                dispatch();
+            } catch (IOException x) {
+                x.printStackTrace();
+            }
+        }
+    }
 
-	private void dispatch() throws IOException {
-		sel.select();
-		for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
-			SelectionKey sk = (SelectionKey) i.next();
-			i.remove();
-			Handler h = (Handler) sk.attachment();
-			h.handle(sk);
-		}
-	}
+    private void dispatch() throws IOException {
+        sel.select();
+        for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
+            SelectionKey sk = (SelectionKey) i.next();
+            i.remove();
+            Handler h = (Handler) sk.attachment();
+            h.handle(sk);
+        }
+    }
 
-	public void register(SelectableChannel ch, int ops, Handler h)
-	        throws IOException {
-		ch.register(sel, ops, h);
-	}
+    public void register(SelectableChannel ch, int ops, Handler h)
+            throws IOException {
+        ch.register(sel, ops, h);
+    }
 }

@@ -9,8 +9,8 @@ package tripleo.annotation;
 import java.lang.annotation.*;
 
 /**
- * The target variable is only assigned within a constructor 
- * 
+ * The target variable is only assigned within a constructor
+ *
  * @author alimoe
  *
  */
@@ -19,4 +19,3 @@ import java.lang.annotation.*;
 public @interface CtorSet {
 
 }
-

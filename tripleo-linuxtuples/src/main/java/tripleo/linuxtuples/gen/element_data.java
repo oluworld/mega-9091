@@ -5,53 +5,52 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen;
 
-
 public class element_data {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected element_data(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      tuplesJNI.delete_element_data(swigCPtr);
+    protected element_data(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(element_data obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setI(int i) {
-    tuplesJNI.set_element_data_i(swigCPtr, i);
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            tuplesJNI.delete_element_data(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public int getI() {
-    return tuplesJNI.get_element_data_i(swigCPtr);
-  }
+    protected static long getCPtr(element_data obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setD(double d) {
-    tuplesJNI.set_element_data_d(swigCPtr, d);
-  }
+    public void setI(int i) {
+        tuplesJNI.set_element_data_i(swigCPtr, i);
+    }
 
-  public double getD() {
-    return tuplesJNI.get_element_data_d(swigCPtr);
-  }
+    public int getI() {
+        return tuplesJNI.get_element_data_i(swigCPtr);
+    }
 
-  public element_data() {
-    this(tuplesJNI.new_element_data(), true);
-  }
+    public void setD(double d) {
+        tuplesJNI.set_element_data_d(swigCPtr, d);
+    }
+
+    public double getD() {
+        return tuplesJNI.get_element_data_d(swigCPtr);
+    }
+
+    public element_data() {
+        this(tuplesJNI.new_element_data(), true);
+    }
 
 }

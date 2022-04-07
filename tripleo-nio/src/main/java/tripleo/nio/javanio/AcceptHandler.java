@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.*;
 
@@ -43,10 +42,9 @@ import javax.net.ssl.SSLContext;
 
 import tripleo.nio.javanio.http.RequestHandler;
 
-
 /**
- * A single threaded Handler that performs accepts SocketChannels and
- * registers the Channels with the read/write Selector.
+ * A single threaded Handler that performs accepts SocketChannels and registers
+ * the Channels with the read/write Selector.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -54,34 +52,36 @@ import tripleo.nio.javanio.http.RequestHandler;
  */
 class AcceptHandler implements Handler {
 
-	private final ServerSocketChannel channel;
-	private final Dispatcher dsp;
+    private final ServerSocketChannel channel;
+    private final Dispatcher dsp;
 
-	private final SSLContext sslContext;
+    private final SSLContext sslContext;
 
-	AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp,
-	              SSLContext sslContext) {
-		channel = ssc;
-		this.dsp = dsp;
-		this.sslContext = sslContext;
-	}
+    AcceptHandler(ServerSocketChannel ssc, Dispatcher dsp,
+            SSLContext sslContext) {
+        channel = ssc;
+        this.dsp = dsp;
+        this.sslContext = sslContext;
+    }
 
-	public void handle(SelectionKey sk) throws IOException {
+    public void handle(SelectionKey sk) throws IOException {
 
-		if (!sk.isAcceptable())
-			return;
+        if (!sk.isAcceptable()) {
+            return;
+        }
 
-		SocketChannel sc = channel.accept();
-		if (sc == null) {
-			return;
-		}
+        SocketChannel sc = channel.accept();
+        if (sc == null) {
+            return;
+        }
 
-		final boolean nb = false; /* non-blocking */
-		ChannelIO cio = (sslContext != null ?
-		        null //ChannelIOSecure.getInstance(sc, nb, sslContext)
-		        : ChannelIO.getInstance(sc, nb));
+        final boolean nb = false;
+        /* non-blocking */
+        ChannelIO cio = (sslContext != null
+                ? null //ChannelIOSecure.getInstance(sc, nb, sslContext)
+                : ChannelIO.getInstance(sc, nb));
 
-		RequestHandler rh = new RequestHandler(cio);
-		dsp.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
-	}
+        RequestHandler rh = new RequestHandler(cio);
+        dsp.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
+    }
 }

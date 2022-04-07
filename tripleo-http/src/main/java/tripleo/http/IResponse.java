@@ -11,43 +11,47 @@ import java.util.List;
 
 public interface IResponse {
 
-	/** Each response is to a particular request
-	 * @return the assocaited request object
-	 */
-	IRequest getRequest();
+    /**
+     * Each response is to a particular request
+     *
+     * @return the assocaited request object
+     */
+    IRequest getRequest();
 
-	IResponse setHeader(String name, String value);
-	IResponse addHeader(String name, String value);
-	//
-	
-	/**
-	 * Reset the contetn stream
-	 * 
-	 * @param cs What we now want it to be
-	 * @return self (to chain
-	 */
-	IResponse setContent(CharSequence cs);
+    IResponse setHeader(String name, String value);
 
-	CharSequence getContent() throws IOException;
+    IResponse addHeader(String name, String value);
+    //
 
-	/**
-	 * Add some text to the end of our content
-	 * 
-	 * @param cs What to add
-	 * @return self (to chain
-	 */
-	IResponse append(CharSequence cs);
-	
-	/**
-	 * Each response is associated with a channel.
-	 * This method sends the header and content over that channel
-	 * @throws HttpException 
-	 */
-	void send() throws HttpException;
+    /**
+     * Reset the contetn stream
+     *
+     * @param cs What we now want it to be
+     * @return self (to chain
+     */
+    IResponse setContent(CharSequence cs);
 
-	IResponse firstline(String aMethod, int aCode, String aCodeString);
+    CharSequence getContent() throws IOException;
 
-	String firstline();
+    /**
+     * Add some text to the end of our content
+     *
+     * @param cs What to add
+     * @return self (to chain
+     */
+    IResponse append(CharSequence cs);
 
-	List<IHeader> copyOfHeaders();
+    /**
+     * Each response is associated with a channel. This method sends the header
+     * and content over that channel
+     *
+     * @throws HttpException
+     */
+    void send() throws HttpException;
+
+    IResponse firstline(String aMethod, int aCode, String aCodeString);
+
+    String firstline();
+
+    List<IHeader> copyOfHeaders();
 }

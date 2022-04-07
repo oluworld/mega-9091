@@ -35,46 +35,46 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 
 /**
- * A simple example to illustrate using a URL to access a resource
- * and then store the result to a File.
+ * A simple example to illustrate using a URL to access a resource and then
+ * store the result to a File.
  * <P>
- * Any type of URL can be used:  http, https, ftp, etc.
+ * Any type of URL can be used: http, https, ftp, etc.
  *
  * @author Brad R. Wetmore
  * @author Mark Reinhold
  * @version 1.2, 04/07/26
  */
 public class URLDumper {
-	public static void main(String[] args) throws Exception {
 
-		if (args.length != 2) {
-			System.out.println("Usage:  URLDumper <URL> <file>");
-			System.exit(1);
-		}
+    public static void main(String[] args) throws Exception {
 
-		String location = args[0];
-		String file = args[1];
+        if (args.length != 2) {
+            System.out.println("Usage:  URLDumper <URL> <file>");
+            System.exit(1);
+        }
 
-		URL url = new URL(location);
-		FileOutputStream fos = new FileOutputStream(file);
+        String location = args[0];
+        String file = args[1];
 
-		byte[] bytes = new byte[4096];
+        URL url = new URL(location);
+        FileOutputStream fos = new FileOutputStream(file);
 
-		InputStream is = url.openStream();
+        byte[] bytes = new byte[4096];
 
-		int read;
+        InputStream is = url.openStream();
 
-		while ((read = is.read(bytes)) != -1) {
-			fos.write(bytes, 0, read);
-		}
+        int read;
 
-		is.close();
-		fos.close();
-	}
+        while ((read = is.read(bytes)) != -1) {
+            fos.write(bytes, 0, read);
+        }
+
+        is.close();
+        fos.close();
+    }
 }

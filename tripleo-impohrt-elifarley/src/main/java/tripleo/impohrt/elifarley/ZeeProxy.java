@@ -42,9 +42,9 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-*/
+ */
 
-/* ZeeProxy 1.0.0 alpha 2 -- Example application.
+ /* ZeeProxy 1.0.0 alpha 2 -- Example application.
  * Copyright (C) 2001 Elifarley Callado Coelho
  
  * This program is free software; you can redistribute it and/or
@@ -69,7 +69,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  
  */
-
 import java.io.IOException;
 
 import elifarley.io.VersaStream;
@@ -80,163 +79,165 @@ import elifarley.razip.RAZipConstants;
 
 public class ZeeProxy implements RAZipConstants {
 
-	protected static boolean archLoaded = false;
-	public static final int PORT = 11443;
-	public static VersaFS myVFS;
+    protected static boolean archLoaded = false;
+    public static final int PORT = 11443;
+    public static VersaFS myVFS;
 
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 
-		int port = PORT;
+        int port = PORT;
 
-		String archName = "default-arc";
+        String archName = "default-arc";
 
-		try {
-			if (args.length > 0)
-				archName = args[0];
-			if (args.length > 1)
-				port = Integer.parseInt(args[1]);
-			if (args.length > 2) {
-				System.out.println("Usage: java ZeeProxy [file] [port]");
-				return;
-			}
-		} catch (NumberFormatException e) {}
+        try {
+            if (args.length > 0) {
+                archName = args[0];
+            }
+            if (args.length > 1) {
+                port = Integer.parseInt(args[1]);
+            }
+            if (args.length > 2) {
+                System.out.println("Usage: java ZeeProxy [file] [port]");
+                return;
+            }
+        } catch (NumberFormatException e) {
+        }
 
-		try {
+        try {
 
-			//System.out.println("Oh well, let's sleep...");
-			// this will release the inflater and put it in its cache
-			//Thread.sleep(10000);
+            //System.out.println("Oh well, let's sleep...");
+            // this will release the inflater and put it in its cache
+            //Thread.sleep(10000);
+            System.out.println("Opening archive " + archName);
 
-			System.out.println("Opening archive " + archName);
+            VersaStream vs;
 
-			VersaStream vs;
+            // If the file is compressed in RAZip or GZip format,
+            // vs will access the uncompressed content of it.
+            // Otherwise, vs will access the raw content of it.
+            vs = VersaStreamFactory.getVersaStream(archName, "r");
 
+            // When mounting the TAR FS, we will sequentially read the file, so let's
+            // optimize the VersaStream to sequential access
+            vs.setAccessPriority(VersaStream.AP_SEQUENTIAL);
 
-			// If the file is compressed in RAZip or GZip format,
-			// vs will access the uncompressed content of it.
-			// Otherwise, vs will access the raw content of it.
-			vs = VersaStreamFactory.getVersaStream(archName, "r");
+            System.out.println("File open, let's sleep a bit...");
+            Thread.sleep(5000);
 
-			// When mounting the TAR FS, we will sequentially read the file, so let's
-			// optimize the VersaStream to sequential access
-			vs.setAccessPriority(VersaStream.AP_SEQUENTIAL);
+            System.out.println("Now let's mount the File System...");
 
-			System.out.println("File open, let's sleep a bit...");
-			Thread.sleep(5000);
+            long itime = System.currentTimeMillis();
 
-			System.out.println("Now let's mount the File System...");
+            myVFS = VersaFSFactory.getVersaFS(vs);
+            //myVFS = (TarFS) VersaFSFactory.getVersaFS(archName, "r");
 
-			long itime = System.currentTimeMillis();
+            long ftime = System.currentTimeMillis();
 
-			myVFS = VersaFSFactory.getVersaFS(vs);
-			//myVFS = (TarFS) VersaFSFactory.getVersaFS(archName, "r");
+            System.out.println("Time: " + (ftime - itime) / 1000f + "s");
+            System.out.println("Entries: " + myVFS.getCount());
+            System.out.println("Time per entry: " + (ftime - itime) * 1f / myVFS.getCount() + "ms");
+            System.out.println("Entries per second: " + 1000f * myVFS.getCount() / (ftime - itime));
 
-			long ftime = System.currentTimeMillis();
+            archLoaded = true;
 
-			System.out.println("Time: " + (ftime - itime) / 1000f + "s");
-			System.out.println("Entries: " + myVFS.getCount());
-			System.out.println("Time per entry: " + (ftime - itime) * 1f / myVFS.getCount() + "ms");
-			System.out.println("Entries per second: " + 1000f * myVFS.getCount() / (ftime - itime));
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.err.println(e.toString());
+        }
 
+        HTTPServer server = new HTTPServer(null);
+        server.onCommand = (new HTTPEventListener() {
+            public void HTTPCommand(HTTPEvent e) {
+                serve(e);
+            }
+        });
 
-			archLoaded = true;
+        try {
+            server.setPort(port);
+            server.setActive(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			//System.err.println(e.toString());
-		}
+        System.out.println("Server is active on port " + server.getPort());
 
-		HTTPServer server = new HTTPServer(null);
-		server.onCommand = (new HTTPEventListener() {
-			public void HTTPCommand(HTTPEvent e) {
-				serve(e);
-			}
-		});
+        int lastTN = -1, TN;
 
-		try {
-			server.setPort(port);
-			server.setActive(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
+        while (true) {
+            try {
+                if ((TN = server.getThreads().size()) != lastTN) {
+                    lastTN = TN;
+                    System.out.println("Threads: " + TN);
+                }
+                Thread.sleep(500);
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+                break;
+            }
 
-		System.out.println("Server is active on port " + server.getPort());
+        }
 
-		int lastTN = -1, TN;
+    }
 
-		while (true) {
-			try {
-				if ((TN = server.getThreads().size()) != lastTN) {
-					lastTN = TN;
-					System.out.println("Threads: " + TN);
-				}
-				Thread.sleep(500);
-			} catch (InterruptedException ie) {
-				ie.printStackTrace();
-				break;
-			}
+    public static void serve(HTTPEvent e) {
 
-		}
+        int contentLength = 0;
 
-	}
+        if (!archLoaded) {
+            return;
+        }
 
-	public static void serve(HTTPEvent e) {
+        final HTTPResponseInfo rspi = e.responseInfo;
+        rspi.setIsProxy(true);
+        rspi.setConnectionKeepAlive(false);
+        rspi.setServerSoftware("ZeeProxy / alpha 2 (Java)");
 
-		int contentLength = 0;
+        final HTTPRequestInfo rqi = e.requestInfo;
+        System.out.println("Entry: " + rqi.getHost() + rqi.getDocument());
 
-		if (!archLoaded)
-			return;
+        VersaFSEntry myVFSE;
 
-		final HTTPResponseInfo rspi = e.responseInfo;
-		rspi.setIsProxy(true);
-		rspi.setConnectionKeepAlive(false);
-		rspi.setServerSoftware("ZeeProxy / alpha 2 (Java)");
+        try {
+            myVFSE = myVFS.getEntry(rqi.getHost() + rqi.getDocument());
+            contentLength = (int) myVFSE.getSize();
+        } catch (IOException ioe) {
+            rspi.setResponseNo(404);
+            rspi.setContentText("<B>" + rspi.getResponseText() + "</B><P>" + ioe);
+            return;
+        }
 
-		final HTTPRequestInfo rqi = e.requestInfo;
-		System.out.println("Entry: " + rqi.getHost() + rqi.getDocument());
+        // --------------------------------------
+        // Quick hack to determine content type
+        String sCType = "text/html";
 
-		VersaFSEntry myVFSE;
+        if (rqi.getDocument().toLowerCase().endsWith(".html")) {
+            sCType = "text/html";
+        }
 
-		try {
-			myVFSE = myVFS.getEntry(rqi.getHost() + rqi.getDocument());
-			contentLength = (int) myVFSE.getSize();
-		} catch (IOException ioe) {
-			rspi.setResponseNo(404);
-			rspi.setContentText("<B>" + rspi.getResponseText() + "</B><P>" + ioe);
-			return;
-		}
+        if (rqi.getDocument().toLowerCase().endsWith(".htm")) {
+            sCType = "text/html";
+        }
 
+        if (rqi.getDocument().toLowerCase().endsWith(".gif")) {
+            sCType = "image/gif";
+        }
 
-		// --------------------------------------
-		// Quick hack to determine content type
-		String sCType = "text/html";
+        if (rqi.getDocument().toLowerCase().endsWith(".jpg")) {
+            sCType = "image/jpeg";
+        }
+        // --------------------------------------
 
-		if (rqi.getDocument().toLowerCase().endsWith(".html"))
-			sCType = "text/html";
+        try {
+            VersaStream cvs = myVFS.getVersaStream(myVFSE);
+            rspi.setContentType(sCType);
+            rspi.setContentLength(contentLength);
+            rspi.setContentStream(cvs);
+        } catch (IOException ioe) {
+            rspi.setResponseNo(500);
+            rspi.setContentText("Error sending stream: " + ioe);
+        }
 
-		if (rqi.getDocument().toLowerCase().endsWith(".htm"))
-			sCType = "text/html";
-
-		if (rqi.getDocument().toLowerCase().endsWith(".gif"))
-			sCType = "image/gif";
-
-		if (rqi.getDocument().toLowerCase().endsWith(".jpg"))
-			sCType = "image/jpeg";
-		// --------------------------------------
-
-
-		try {
-			VersaStream cvs = myVFS.getVersaStream(myVFSE);
-			rspi.setContentType(sCType);
-			rspi.setContentLength(contentLength);
-			rspi.setContentStream(cvs);
-		} catch (IOException ioe) {
-			rspi.setResponseNo(500);
-			rspi.setContentText("Error sending stream: " + ioe);
-		}
-
-
-	}
+    }
 
 }

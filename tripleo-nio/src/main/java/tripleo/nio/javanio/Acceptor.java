@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.*;
 
@@ -43,10 +42,9 @@ import javax.net.ssl.SSLContext;
 
 import tripleo.nio.javanio.http.RequestHandler;
 
-
 /**
- * A Runnable class which sits in a loop accepting SocketChannels,
- * then registers the Channels with the read/write Selector.
+ * A Runnable class which sits in a loop accepting SocketChannels, then
+ * registers the Channels with the read/write Selector.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -54,34 +52,34 @@ import tripleo.nio.javanio.http.RequestHandler;
  */
 class Acceptor implements Runnable {
 
-	private final ServerSocketChannel ssc;
-	private final Dispatcher d;
+    private final ServerSocketChannel ssc;
+    private final Dispatcher d;
 
-	private final SSLContext sslContext;
+    private final SSLContext sslContext;
 
-	Acceptor(ServerSocketChannel assc, Dispatcher ad, SSLContext asslContext) {
-		this.ssc        = assc;
-		this.d          = ad;
-		this.sslContext = asslContext;
-	}
+    Acceptor(ServerSocketChannel assc, Dispatcher ad, SSLContext asslContext) {
+        this.ssc = assc;
+        this.d = ad;
+        this.sslContext = asslContext;
+    }
 
-	public void run() {
-		for (; ;) {
-			try {
-				SocketChannel sc = ssc.accept();
+    public void run() {
+        for (;;) {
+            try {
+                SocketChannel sc = ssc.accept();
 
-				ChannelIO cio = (sslContext != null ?
-				        null //ChannelIOSecure.getInstance(sc, false /* non-blocking */, sslContext)
-				        : ChannelIO.getInstance(sc, false /* non-blocking */));
+                ChannelIO cio = (sslContext != null
+                        ? null //ChannelIOSecure.getInstance(sc, false /* non-blocking */, sslContext)
+                        : ChannelIO.getInstance(sc, false /* non-blocking */));
 
-				RequestHandler rh = new RequestHandler(cio);
+                RequestHandler rh = new RequestHandler(cio);
 
-				d.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
+                d.register(cio.getSocketChannel(), SelectionKey.OP_READ, rh);
 
-			} catch (IOException x) {
-				x.printStackTrace();
-				break;
-			}
-		}
-	}
+            } catch (IOException x) {
+                x.printStackTrace();
+                break;
+            }
+        }
+    }
 }

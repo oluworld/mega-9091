@@ -14,22 +14,20 @@ import rabbit.http.HTTPHeader;
 class VecVecVecStore extends AbstractPrevalentSystem {
 
 //    private static final long serialVersionUID = 3690480199305476150L;
-	
     /*private*/ final List<Datum> requests = new ArrayList<>();
 
+    void deactivate(String aDate, String aURI) {
+        //numbers.add(new VecVecVec.VecVecVecStore.Datum(aDate, aURI));
+        //TODO:
+    }
 
-	void deactivate(String aDate, String aURI) {
-		//numbers.add(new VecVecVec.VecVecVecStore.Datum(aDate, aURI));
-		//TODO:
-	}
+    void keep(String aDate, String aURI, HTTPHeader header) {
+        requests.add(new Datum(aDate, aURI, header, true, "falsecat"));
+    }
 
-	void keep(String aDate, String aURI, HTTPHeader header) {
-		requests.add(new Datum(aDate, aURI, header, true, "falsecat"));
-	}
-
-	List<Datum> storage() {
-		return requests;
-	}
+    List<Datum> storage() {
+        return requests;
+    }
 
 //		long lastNumber() {
 //			return numbers.isEmpty() ? 0 : ((Long) numbers.get(numbers.size() - 1))

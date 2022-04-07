@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 
@@ -48,6 +47,6 @@ import java.nio.channels.SelectionKey;
  */
 public interface Handler {
 
-	void handle(SelectionKey sk) throws IOException;
+    void handle(SelectionKey sk) throws IOException;
 
 }

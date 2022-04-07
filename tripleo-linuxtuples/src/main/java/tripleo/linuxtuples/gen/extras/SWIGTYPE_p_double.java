@@ -5,23 +5,21 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen.extras;
 
-
 public class SWIGTYPE_p_double {
-  private final long swigCPtr;
 
-  protected SWIGTYPE_p_double(long cPtr, boolean bFutureUse) {
-    swigCPtr = cPtr;
-  }
+    private final long swigCPtr;
 
-  protected SWIGTYPE_p_double() {
-    swigCPtr = 0;
-  }
+    protected SWIGTYPE_p_double(long cPtr, boolean bFutureUse) {
+        swigCPtr = cPtr;
+    }
 
-  public static long getCPtr(SWIGTYPE_p_double obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected SWIGTYPE_p_double() {
+        swigCPtr = 0;
+    }
+
+    public static long getCPtr(SWIGTYPE_p_double obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 }
-

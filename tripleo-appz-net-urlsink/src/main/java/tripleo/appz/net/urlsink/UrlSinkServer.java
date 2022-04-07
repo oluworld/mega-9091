@@ -26,7 +26,6 @@ import tripleo.util.UT;
 /**
  * This is a very simple webserver used for some simple testing of RabbIT2
  */
-
 public class UrlSinkServer implements Runnable {
 
     static class PickApartList {
@@ -37,9 +36,8 @@ public class UrlSinkServer implements Runnable {
 
         /**
          * take the last MAXSIZE elements from aList
-         * 
-         * @param aList
-         *            the list to break
+         *
+         * @param aList the list to break
          */
         public void pick_apart_list(final List<Datum> aList) {
             final int MAXSIZE = 10;
@@ -57,11 +55,11 @@ public class UrlSinkServer implements Runnable {
 
     }
 
-    static final  String  CRLF = GeneralHeader.CRLF;
-    static final  String  ct   = "text/plain";
-    static           int  nn   = 0;
-    private ServerSocket  ss;
-    private final PickApartList pal  = new PickApartList();
+    static final String CRLF = GeneralHeader.CRLF;
+    static final String ct = "text/plain";
+    static int nn = 0;
+    private ServerSocket ss;
+    private final PickApartList pal = new PickApartList();
 //    private static String basedir = null;
 
     /* private */
@@ -110,7 +108,6 @@ public class UrlSinkServer implements Runnable {
             // int read;
             // while ((read = fis.read(buf)) > 0)
             // os.write(buf, 0, read);
-
             try {
                 final RequestStorageCommand command = new RequestStorageCommand(
                         ddate(), requesturi, header);
@@ -138,7 +135,6 @@ public class UrlSinkServer implements Runnable {
 //        List l1 = new Vector();
 //        l1.add(new Integer(pal.mStart));
 //        l1.add(pal.mList);
-
         Pair R = Pair.make(new Integer(pal.mStart), pal.mList);
         return R;
 //        return l1;
@@ -157,32 +153,32 @@ public class UrlSinkServer implements Runnable {
         while (true) {
             if (still_serving())
 	            try {
-	                Socket s = ss.accept();
-	                HTTPInputStream in = new HTTPInputStream(
-	                        new BufferedInputStream(s.getInputStream()));
-	                OutputStream os = s.getOutputStream();
-	                action(s, in, os);
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+                Socket s = ss.accept();
+                HTTPInputStream in = new HTTPInputStream(
+                        new BufferedInputStream(s.getInputStream()));
+                OutputStream os = s.getOutputStream();
+                action(s, in, os);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-	private boolean still_serving() {
-		return !UrlSinkMain.stop;
-	}
+    private boolean still_serving() {
+        return !UrlSinkMain.stop;
+    }
 
-	void serve(OutputStream os, HTTPHeader header, String method, int n,
+    void serve(OutputStream os, HTTPHeader header, String method, int n,
             String act, String cont) throws IOException {
         UT.vvv("started serving " + n);
         //
-        String S = method + " 200 OK" + CRLF +
-                "Server: who cares" + CRLF +
-                // "Date: who cares"+CRLF+
+        String S = method + " 200 OK" + CRLF
+                + "Server: who cares" + CRLF
+                + // "Date: who cares"+CRLF+
                 // "Last-Modified: who cares"+CRLF+
-                "Content-type: "   + act + CRLF +
-                "Content-length: " + cont.length() + CRLF +
-                CRLF + cont;
+                "Content-type: " + act + CRLF
+                + "Content-length: " + cont.length() + CRLF
+                + CRLF + cont;
         os.write(S.getBytes());
     }
 
@@ -193,32 +189,34 @@ public class UrlSinkServer implements Runnable {
      * @throws IOException
      */
     private void view_action(OutputStream os, HTTPHeader header, String requesturi) throws IOException {
-        int n=0, max=10;
-        Dictionary<String,String> d=new Hashtable<>();
-        String m=requesturi.substring(("http://view.view/").length());
-        if (m.charAt(0)=='?') {
+        int n = 0, max = 10;
+        Dictionary<String, String> d = new Hashtable<>();
+        String m = requesturi.substring(("http://view.view/").length());
+        if (m.charAt(0) == '?') {
             String[] ml = m.substring(1).split("&");
             for (String s : ml) {
                 String[] ml2 = s.split("=");
                 for (int j = 0; j < ml2.length; j += 2) {
-                    if (ml2.length == 2)
+                    if (ml2.length == 2) {
                         d.put(ml2[0], ml2[1]);
+                    }
                 }
             }
         }
         //
         try {
-            final String fromstr = (String)d.get("from");
-            if (fromstr != null)
-                n   = Integer.parseInt(fromstr);
+            final String fromstr = (String) d.get("from");
+            if (fromstr != null) {
+                n = Integer.parseInt(fromstr);
+            }
         } catch (NumberFormatException e) {
             // TODO warn user (or just log)
             // resp.d['errs]+=Error(...);
             e.printStackTrace();
         }
         try {
-            final String maxstr = (String)d.get("max");
-            if (maxstr !=null) {
+            final String maxstr = (String) d.get("max");
+            if (maxstr != null) {
                 max = Integer.parseInt(maxstr);
             }
         } catch (NumberFormatException e1) {
@@ -246,10 +244,10 @@ public class UrlSinkServer implements Runnable {
         final Pair m = pick_apart_list(store.requests);
 //        int nn = ((Integer) m.get(0)).intValue();
 //        final List subList = (List) m.get(1);
-        final int  nn      = ((Integer)m.first ).intValue();
-        final List subList = (List)m.second;
+        final int nn = ((Integer) m.first).intValue();
+        final List subList = (List) m.second;
         cont += "" + preserve_list(subList, nn);
-        serve(os, header, "HTTP/1.0", nn+1, "text/html", cont);
+        serve(os, header, "HTTP/1.0", nn + 1, "text/html", cont);
     }
 
     /**
@@ -270,14 +268,14 @@ public class UrlSinkServer implements Runnable {
         final VecVecVecStore store = (VecVecVecStore) UrlSinkMain.D.prevayler
                 .system();
         final List<Datum> reqs = store.requests;
-        
-        int n=Math.max(0,start);
-        while (n<start+aMax) {
+
+        int n = Math.max(0, start);
+        while (n < start + aMax) {
             String a;
             try {
-                a = ((Datum)reqs.get(n)).b;
+                a = ((Datum) reqs.get(n)).b;
                 // else ...
-                cont += "<a href='"+a+"'>[ "+n+" ]  "+a+"</a><br/>\n"; 
+                cont += "<a href='" + a + "'>[ " + n + " ]  " + a + "</a><br/>\n";
                 n++;
                 // ...
             } catch (IndexOutOfBoundsException e) {
@@ -285,17 +283,19 @@ public class UrlSinkServer implements Runnable {
                 break;
             }
         }
-        
-        cont += "<p><a href='http://view.view/?from="+Math.max(0,start-aMax)+"'>prev page</a>  ";
-        if (reqs.size()>(start+aMax))
-            cont += "<a href='http://view.view/?from="+Math.min(5000,start+aMax)+"'>next page</a></p>";
-        
+
+        cont += "<p><a href='http://view.view/?from=" + Math.max(0, start - aMax) + "'>prev page</a>  ";
+        if (reqs.size() > (start + aMax)) {
+            cont += "<a href='http://view.view/?from=" + Math.min(5000, start + aMax) + "'>next page</a></p>";
+        }
+
         serve(os, header, "HTTP/1.0", -1, "text/html", cont);
     }
 }
+
 class CGI_PY {
 
-/*
+    /*
 	 def parse_qs(qs, keep_blank_values=0, strict_parsing=0):
 	 """Parse a query given as a string argument.
 
@@ -314,30 +314,29 @@ class CGI_PY {
 	 If false (the default), errors are silently ignored.
 	 If true, errors raise a ValueError exception.
 	 """
-	 */
-
-	//    Dict parse_qs(String qs, boolean keep_blank_values, boolean strict_parsing) {
-	//        Dict dict = new Dict();
-	//        AA A = parse_qsl(qs, keep_blank_values, strict_parsing);
-	//        //
-	//        boolean G=A.next();;
-	//        while (G) {
-	//
-	//            name  = A.key();
-	//            value = A.value();
-	//
-	//            if (value.length() || keep_blank_values) {
-	//                if (dict.has_key(name)){
-	//                    dict[name].append(value);}
-	//                else{
-	//                    dict.set(name,value);}
-	//
-	//            }
-	//        }
-	//
-	//        return dict;
-	//    }
-	/*
+     */
+    //    Dict parse_qs(String qs, boolean keep_blank_values, boolean strict_parsing) {
+    //        Dict dict = new Dict();
+    //        AA A = parse_qsl(qs, keep_blank_values, strict_parsing);
+    //        //
+    //        boolean G=A.next();;
+    //        while (G) {
+    //
+    //            name  = A.key();
+    //            value = A.value();
+    //
+    //            if (value.length() || keep_blank_values) {
+    //                if (dict.has_key(name)){
+    //                    dict[name].append(value);}
+    //                else{
+    //                    dict.set(name,value);}
+    //
+    //            }
+    //        }
+    //
+    //        return dict;
+    //    }
+    /*
 	 def parse_qsl(qs, keep_blank_values=0, strict_parsing=0):
 	 """Parse a query given as a string argument.
 
@@ -372,6 +371,5 @@ class CGI_PY {
 
 	 return r
 
-	 */
+     */
 }
-

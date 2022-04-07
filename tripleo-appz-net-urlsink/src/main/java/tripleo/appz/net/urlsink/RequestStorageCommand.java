@@ -13,19 +13,18 @@ import rabbit.http.HTTPHeader;
 
 class RequestStorageCommand implements Command {
 
-	final String date;
-	final String uri;
-	final HTTPHeader header;
+    final String date;
+    final String uri;
+    final HTTPHeader header;
 
+    public RequestStorageCommand(String date, String uri, HTTPHeader header) {
+        this.date = date;
+        this.uri = uri;
+        this.header = header;
+    }
 
-	public RequestStorageCommand(String date, String uri, HTTPHeader header) {
-		this.date = date;
-		this.uri = uri;
-		this.header = header;
-	}
-
-	public Serializable execute(PrevalentSystem system) throws Exception {
-		((VecVecVecStore) system).keep(date, uri, header);
-		return null;
-	}
+    public Serializable execute(PrevalentSystem system) throws Exception {
+        ((VecVecVecStore) system).keep(date, uri, header);
+        return null;
+    }
 }

@@ -15,103 +15,115 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
+class Expr extends Range {
 
-class Expr extends Range
-{
- static int numberSequence = 0;
+    static int numberSequence = 0;
 
- Atom list;
- Atom curp;
- Atom curpAlt;
+    Atom list;
+    Atom curp;
+    Atom curpAlt;
 
- int altLevel;
- int number;
+    int altLevel;
+    int number;
 
- Atom firstAtom;
+    Atom firstAtom;
 
- Expr() { this(true); }
+    Expr() {
+        this(true);
+    }
 
- Expr(boolean newNumber)
- {
+    Expr(boolean newNumber) {
 
-	list = curp = curpAlt = null;
-	altLevel = 0;
+        list = curp = curpAlt = null;
+        altLevel = 0;
 
-	if(newNumber)
-		number = numberSequence++;
- }
+        if (newNumber) {
+            number = numberSequence++;
+        }
+    }
 
- Atom getHead() { return list; }
- boolean isEmpty() { return list == null; }
+    Atom getHead() {
+        return list;
+    }
 
- Atom append(Atom cons)
- {
-	if(altLevel > 0)
-	{
-		--altLevel;
+    boolean isEmpty() {
+        return list == null;
+    }
 
-		if(curpAlt == null)
-			return appendAlt(cons,altLevel);
+    Atom append(Atom cons) {
+        if (altLevel > 0) {
+            --altLevel;
 
-	   return curpAlt = curpAlt.rplacd(cons);
-	}
+            if (curpAlt == null) {
+                return appendAlt(cons, altLevel);
+            }
 
-	curpAlt = null;
+            return curpAlt = curpAlt.rplacd(cons);
+        }
 
-    return curp = curp==null? (list=cons) : curp.rplacd(cons);
- }
+        curpAlt = null;
 
- final Atom appendAlt(Atom atom) { return appendAlt(atom,0); }
+        return curp = curp == null ? (list = cons) : curp.rplacd(cons);
+    }
 
- final Atom appendAlt(Atom cons, int al)
- {
-	if(curp == null)
-		return append(cons);
+    final Atom appendAlt(Atom atom) {
+        return appendAlt(atom, 0);
+    }
 
-	if(curpAlt == null)
-		curpAlt = curp;
+    final Atom appendAlt(Atom cons, int al) {
+        if (curp == null) {
+            return append(cons);
+        }
 
-	altLevel = al;
+        if (curpAlt == null) {
+            curpAlt = curp;
+        }
 
-    return curpAlt = curpAlt.rplacp(cons);
- }
+        altLevel = al;
 
- final void setAltLevel(int al) { altLevel = al; }
+        return curpAlt = curpAlt.rplacp(cons);
+    }
 
- final int getAltLevel() { return altLevel; }
+    final void setAltLevel(int al) {
+        altLevel = al;
+    }
 
- private String listToString()
- {
-    StringBuilder ret = new StringBuilder("");
+    final int getAltLevel() {
+        return altLevel;
+    }
 
-	for(Atom rc = list; rc != null; rc = rc.cdr())
-	{
-		if(rc != list)
-			ret.append(' ');
+    private String listToString() {
+        StringBuilder ret = new StringBuilder("");
 
-		ret.append(rc.rexToString());
+        for (Atom rc = list; rc != null; rc = rc.cdr()) {
+            if (rc != list) {
+                ret.append(' ');
+            }
 
-		for(Atom rp = rc.cpr(); rp != null; rp = rp.cpr())
-		{
-			ret.append("\n\tOR");
+            ret.append(rc.rexToString());
 
-			for(Atom ra = rp; ra != null; ra = ra.cdr())
-				ret.append(" " + ra.rexToString());
-		}
-	}
+            for (Atom rp = rc.cpr(); rp != null; rp = rp.cpr()) {
+                ret.append("\n\tOR");
 
-    return ret.toString();
- }
+                for (Atom ra = rp; ra != null; ra = ra.cdr()) {
+                    ret.append(" " + ra.rexToString());
+                }
+            }
+        }
 
- final void setFirstAtom()
-	{ firstAtom = list.car(); }
+        return ret.toString();
+    }
 
- String rexToString()
-	{ return "( " + listToString() +
-		" ){" + min + "," + (max==MAX_VALUE? "Max" : ""+max) + "}"; }
+    final void setFirstAtom() {
+        firstAtom = list.car();
+    }
+
+    String rexToString() {
+        return "( " + listToString()
+                + " ){" + min + "," + (max == MAX_VALUE ? "Max" : "" + max) + "}";
+    }
 
 }

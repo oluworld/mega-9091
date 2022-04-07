@@ -35,10 +35,9 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 /**
- * A non-blocking/dual-threaded which performs accept()s in one thread,
- * and services requests in a second.  Both threads use select().
+ * A non-blocking/dual-threaded which performs accept()s in one thread, and
+ * services requests in a second. Both threads use select().
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -46,14 +45,14 @@ package tripleo.nio.javanio;
  */
 public class N2 extends Server {
 
-	public N2(int port, int backlog, boolean secure) throws Exception {
-		super(port, backlog, secure);
-	}
+    public N2(int port, int backlog, boolean secure) throws Exception {
+        super(port, backlog, secure);
+    }
 
-	public void runServer() throws Exception {
-		Dispatcher d = new DispatcherN();
-		Acceptor a = new Acceptor(ssc, d, sslContext);
-		new Thread(a).start();
-		d.run();
-	}
+    public void runServer() throws Exception {
+        Dispatcher d = new DispatcherN();
+        Acceptor a = new Acceptor(ssc, d, sslContext);
+        new Thread(a).start();
+        d.run();
+    }
 }

@@ -11,49 +11,51 @@ import javax.swing.*;
  * Gui for the highscore
  */
 public class HighScoreGui extends JDialog {
-	private final HighScore highScore = new HighScore("highscore.dat");
-	private final JButton cancelButton = new JButton("Cancel");
-	private final JLabel nameLabel = new JLabel("Name:");
-	private final JLabel roundLabel = new JLabel("Round:");
-	private final JLabel scoreLabel = new JLabel("Score:");
-	private JLabel tempLabel = null;
 
-	/**
-	 * constructor for load the gui and higescore
-	 */
-	public HighScoreGui(JFrame frame) {
-		super(frame, "HighScore");
-		Container contentPane = this.getContentPane();
-		contentPane.setLayout(new GridLayout(0, 3));
-		contentPane.add(nameLabel);
-		contentPane.add(roundLabel);
-		contentPane.add(scoreLabel);
-		cancelButton.addActionListener(new CancelListener());
-		this.setResizable(false);
+    private final HighScore highScore = new HighScore("highscore.dat");
+    private final JButton cancelButton = new JButton("Cancel");
+    private final JLabel nameLabel = new JLabel("Name:");
+    private final JLabel roundLabel = new JLabel("Round:");
+    private final JLabel scoreLabel = new JLabel("Score:");
+    private JLabel tempLabel = null;
 
-		int l = 1;
-		for (int i = 0; i < 10; i++) // add all the results
-		{
-			Score score;
-			score = (Score) highScore.getPos(i);
-			tempLabel = new JLabel(l + ". " + score.getName());
-			contentPane.add(tempLabel);
-			tempLabel = new JLabel(score.getRound());
-			contentPane.add(tempLabel);
-			tempLabel = new JLabel(score.getScore());
-			contentPane.add(tempLabel);
-			l++;
-		}
-		contentPane.add(new JPanel());
-		contentPane.add(cancelButton);
+    /**
+     * constructor for load the gui and higescore
+     */
+    public HighScoreGui(JFrame frame) {
+        super(frame, "HighScore");
+        Container contentPane = this.getContentPane();
+        contentPane.setLayout(new GridLayout(0, 3));
+        contentPane.add(nameLabel);
+        contentPane.add(roundLabel);
+        contentPane.add(scoreLabel);
+        cancelButton.addActionListener(new CancelListener());
+        this.setResizable(false);
 
-		setSize(400, 400);
-		setVisible(true);
-	}
+        int l = 1;
+        for (int i = 0; i < 10; i++) // add all the results
+        {
+            Score score;
+            score = (Score) highScore.getPos(i);
+            tempLabel = new JLabel(l + ". " + score.getName());
+            contentPane.add(tempLabel);
+            tempLabel = new JLabel(score.getRound());
+            contentPane.add(tempLabel);
+            tempLabel = new JLabel(score.getScore());
+            contentPane.add(tempLabel);
+            l++;
+        }
+        contentPane.add(new JPanel());
+        contentPane.add(cancelButton);
 
-	public class CancelListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-		}
-	}
+        setSize(400, 400);
+        setVisible(true);
+    }
+
+    public class CancelListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+        }
+    }
 }

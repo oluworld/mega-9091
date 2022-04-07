@@ -5,55 +5,54 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen;
 
-
 public class tuple_list {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected tuple_list(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      tuplesJNI.delete_tuple_list(swigCPtr);
+    protected tuple_list(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(tuple_list obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setNext(tuple_list next) {
-    tuplesJNI.set_tuple_list_next(swigCPtr, tuple_list.getCPtr(next));
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            tuplesJNI.delete_tuple_list(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public tuple_list getNext() {
-    long cPtr = tuplesJNI.get_tuple_list_next(swigCPtr);
-    return (cPtr == 0) ? null : new tuple_list(cPtr, false);
-  }
+    protected static long getCPtr(tuple_list obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void setTup(tuple tup) {
-    tuplesJNI.set_tuple_list_tup(swigCPtr, tuple.getCPtr(tup));
-  }
+    public void setNext(tuple_list next) {
+        tuplesJNI.set_tuple_list_next(swigCPtr, tuple_list.getCPtr(next));
+    }
 
-  public tuple getTup() {
-    long cPtr = tuplesJNI.get_tuple_list_tup(swigCPtr);
-    return (cPtr == 0) ? null : new tuple(cPtr, false);
-  }
+    public tuple_list getNext() {
+        long cPtr = tuplesJNI.get_tuple_list_next(swigCPtr);
+        return (cPtr == 0) ? null : new tuple_list(cPtr, false);
+    }
 
-  public tuple_list() {
-    this(tuplesJNI.new_tuple_list(), true);
-  }
+    public void setTup(tuple tup) {
+        tuplesJNI.set_tuple_list_tup(swigCPtr, tuple.getCPtr(tup));
+    }
+
+    public tuple getTup() {
+        long cPtr = tuplesJNI.get_tuple_list_tup(swigCPtr);
+        return (cPtr == 0) ? null : new tuple(cPtr, false);
+    }
+
+    public tuple_list() {
+        this(tuplesJNI.new_tuple_list(), true);
+    }
 
 }

@@ -22,200 +22,252 @@ package tripleo.impohrt.scache;
  *  can also obtain it by writing to the Free Software Foundation,
  *  Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
-
 import tripleo.fs.File;
 
 public final class regexp {
-	public boolean ignoreCase;
 
-	private String elements[];
+    public boolean ignoreCase;
 
-	private String prefix;
-	private String suffix;
+    private String elements[];
 
-	private int prefixlen;
-	private int suffixlen;
+    private String prefix;
+    private String suffix;
 
-	private boolean exact;
+    private int prefixlen;
+    private int suffixlen;
 
+    private boolean exact;
 
-	regexp(String exp, boolean ign) {
-		ignoreCase = ign;
-		exact = false;
-		int i;
+    regexp(String exp, boolean ign) {
+        ignoreCase = ign;
+        exact = false;
+        int i;
 
-		if (exp.indexOf('*', 0) == -1) {
-			exact = true;
-			prefix = exp;
-			prefixlen = exp.length();
-			if (ign) prefix = prefix.toLowerCase();
-			return;
-		}
-		i = 1;
-		if (!exp.startsWith("*")) {
-			/* mame prefix */
-			prefix = exp.substring(0, exp.indexOf('*', 0));
-			if (ign) prefix = prefix.toLowerCase();
-			prefixlen = prefix.length();
-			i = prefixlen + 1;
-		}
-		int pos;
-		String part;
-		while (true) {
-			pos = exp.indexOf('*', i);
-			if (pos == -1) {
-				/* mame suffix */
-				if (i == exp.length()) return;
-				suffix = exp.substring(i);
-				if (ign) suffix = suffix.toLowerCase();
-				suffixlen = suffix.length();
-				return;
-			}
+        if (exp.indexOf('*', 0) == -1) {
+            exact = true;
+            prefix = exp;
+            prefixlen = exp.length();
+            if (ign) {
+                prefix = prefix.toLowerCase();
+            }
+            return;
+        }
+        i = 1;
+        if (!exp.startsWith("*")) {
+            /* mame prefix */
+            prefix = exp.substring(0, exp.indexOf('*', 0));
+            if (ign) {
+                prefix = prefix.toLowerCase();
+            }
+            prefixlen = prefix.length();
+            i = prefixlen + 1;
+        }
+        int pos;
+        String part;
+        while (true) {
+            pos = exp.indexOf('*', i);
+            if (pos == -1) {
+                /* mame suffix */
+                if (i == exp.length()) {
+                    return;
+                }
+                suffix = exp.substring(i);
+                if (ign) {
+                    suffix = suffix.toLowerCase();
+                }
+                suffixlen = suffix.length();
+                return;
+            }
 
-			part = exp.substring(i, pos);
-			if (ign) part = part.toLowerCase();
-			if (!part.equals("")) {
-				/* pridame part do pole */
+            part = exp.substring(i, pos);
+            if (ign) {
+                part = part.toLowerCase();
+            }
+            if (!part.equals("")) {
+                /* pridame part do pole */
 
-				if (elements == null)
-					elements = new String[1];
-				else {
-					String tmp[] = new String[elements.length + 1];
-					System.arraycopy(elements, 0, tmp, 0, elements.length);
-					elements = tmp;
-				}
-				elements[elements.length - 1] = part;
-			}/* pridani */
+                if (elements == null) {
+                    elements = new String[1];
+                } else {
+                    String tmp[] = new String[elements.length + 1];
+                    System.arraycopy(elements, 0, tmp, 0, elements.length);
+                    elements = tmp;
+                }
+                elements[elements.length - 1] = part;
+            }/* pridani */
 
-			i = pos + 1;
-			if (i >= exp.length()) break;
+            i = pos + 1;
+            if (i >= exp.length()) {
+                break;
+            }
 
-		}/* while */
+        }/* while */
 
-	}
+    }
 
-	public String dump() {
-		String result = "exact=" + exact + " prefix=" + prefix + " suffix=" + suffix + "  elements=";
-		if (elements == null) return result += "null";
-        for (String element : elements) result += element + ",";
+    public String dump() {
+        String result = "exact=" + exact + " prefix=" + prefix + " suffix=" + suffix + "  elements=";
+        if (elements == null) {
+            return result += "null";
+        }
+        for (String element : elements) {
+            result += element + ",";
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	final public String toString() {
-		if (exact == true) return prefix;
-		String result;
-		if (prefix == null)
-			result = "*";
-		else
-			result = prefix + "*";
-		/* pridat elementy */
-		if (elements != null)
-            for (String element : elements) result += element + "*";
-
-		/* suffix */
-		if (suffix != null) result += suffix;
-
-		return result;
-	}
-
-	final public boolean matches(String str) {
-		int pos;
-		pos = 0;
-		if (ignoreCase) str = str.toLowerCase();
-		if (exact) return str.equals(prefix);
-
-		if (prefix != null)
-			if (!str.startsWith(prefix))
-				return false;
-			else
-				pos = prefixlen;
-		if (elements != null) {
-			int j = elements.length;
+    final public String toString() {
+        if (exact == true) {
+            return prefix;
+        }
+        String result;
+        if (prefix == null) {
+            result = "*";
+        } else {
+            result = prefix + "*";
+        }
+        /* pridat elementy */
+        if (elements != null) {
             for (String element : elements) {
-                if ((pos = str.indexOf(element, pos)) == -1) return false;
+                result += element + "*";
+            }
+        }
+
+        /* suffix */
+        if (suffix != null) {
+            result += suffix;
+        }
+
+        return result;
+    }
+
+    final public boolean matches(String str) {
+        int pos;
+        pos = 0;
+        if (ignoreCase) {
+            str = str.toLowerCase();
+        }
+        if (exact) {
+            return str.equals(prefix);
+        }
+
+        if (prefix != null) {
+            if (!str.startsWith(prefix)) {
+                return false;
+            } else {
+                pos = prefixlen;
+            }
+        }
+        if (elements != null) {
+            int j = elements.length;
+            for (String element : elements) {
+                if ((pos = str.indexOf(element, pos)) == -1) {
+                    return false;
+                }
                 pos += element.length();
             }
-		}
-		if (suffix == null) return true;
-		if (str.length() - pos < suffixlen) return false;
+        }
+        if (suffix == null) {
+            return true;
+        }
+        if (str.length() - pos < suffixlen) {
+            return false;
+        }
 
-		return str.endsWith(suffix);
-	}
+        return str.endsWith(suffix);
+    }
 
-	/* vraci pole stringu nahrazujicich * */
-	/* nebo null pri nenalezeni */
-	final public String[] search(String str) {
-		int pos = 0; // pozice v testovacim stringu
-		int rsize = 1;  // velikost result size
-		int rpos = 0;   // pozice v result bufferu
+    /* vraci pole stringu nahrazujicich * */
+ /* nebo null pri nenalezeni */
+    final public String[] search(String str) {
+        int pos = 0; // pozice v testovacim stringu
+        int rsize = 1;  // velikost result size
+        int rpos = 0;   // pozice v result bufferu
 
-		String result[];
-		String origstr = str;
+        String result[];
+        String origstr = str;
 
-		if (ignoreCase) str = str.toLowerCase();
-		if (exact)
-			if (str.equals(prefix))
-				return new String[0];
-			else
-				return null;
+        if (ignoreCase) {
+            str = str.toLowerCase();
+        }
+        if (exact) {
+            if (str.equals(prefix)) {
+                return new String[0];
+            } else {
+                return null;
+            }
+        }
 
-		/* urceni velikosti resultu:
+        /* urceni velikosti resultu:
 		 *   mozne pripady:
 		 *      *      = 1
 		 *    pre*     = 1
 		 *    *sfix    = 1
 		 *    pre*sfix = 1
 		 *    pre*1*sfix = 2
-		 */
-
-		if (prefix != null)
-			if (!str.startsWith(prefix))
-				return null;
-			else
-				pos = prefixlen;
-		/*
+         */
+        if (prefix != null) {
+            if (!str.startsWith(prefix)) {
+                return null;
+            } else {
+                pos = prefixlen;
+            }
+        }
+        /*
 		else
 		    rsize=1;
-		    */
+         */
 
-		if (elements != null) rsize += elements.length;
+        if (elements != null) {
+            rsize += elements.length;
+        }
 
-		result = new String[rsize];
+        result = new String[rsize];
 
-		if (elements != null) {
-			int j = elements.length;
+        if (elements != null) {
+            int j = elements.length;
             for (String element : elements) {
                 int npos;
                 npos = str.indexOf(element, pos);
-                if (npos == -1) return null;
+                if (npos == -1) {
+                    return null;
+                }
                 result[rpos++] = origstr.substring(pos, npos);
                 pos = npos + element.length();
             }
-		}
+        }
 
-		if (suffix == null) {
-			// add last match
-			result[rpos] = origstr.substring(pos);
-			return result;
-		}
-		if (str.length() - pos < suffixlen) return null;
-		if (!str.endsWith(suffix)) return null;
-		result[rpos] = origstr.substring(pos, str.length() - suffixlen);
+        if (suffix == null) {
+            // add last match
+            result[rpos] = origstr.substring(pos);
+            return result;
+        }
+        if (str.length() - pos < suffixlen) {
+            return null;
+        }
+        if (!str.endsWith(suffix)) {
+            return null;
+        }
+        result[rpos] = origstr.substring(pos, str.length() - suffixlen);
 
-		return result;
-	}
+        return result;
+    }
 
-	public static void main(String argv[]) {
-		if (argv.length < 2) return;
-		String res[];
-		regexp r = new regexp(argv[0], false);
-		System.out.println("Regexp: " + r + " compiled: " + r.dump());
-		System.out.println("Matches: " + argv[1] + " : " + r.matches(argv[1]));
-		res = r.search(argv[1]);
-		System.out.println("Search: " + argv[1] + " : " + res);
-		if (res != null)
-			for (int i = 0; i < res.length; i++)
-				System.out.println("  Substring[" + i + "] = " + res[i]);
-	}
+    public static void main(String argv[]) {
+        if (argv.length < 2) {
+            return;
+        }
+        String res[];
+        regexp r = new regexp(argv[0], false);
+        System.out.println("Regexp: " + r + " compiled: " + r.dump());
+        System.out.println("Matches: " + argv[1] + " : " + r.matches(argv[1]));
+        res = r.search(argv[1]);
+        System.out.println("Search: " + argv[1] + " : " + res);
+        if (res != null) {
+            for (int i = 0; i < res.length; i++) {
+                System.out.println("  Substring[" + i + "] = " + res[i]);
+            }
+        }
+    }
 }

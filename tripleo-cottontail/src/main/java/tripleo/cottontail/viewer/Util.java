@@ -6,46 +6,49 @@ import org.eclipse.swt.widgets.*;
 import java.net.*;
 
 class Util {
-	private static ImageRegistry image_registry;
+
+    private static ImageRegistry image_registry;
 //	private static Clipboard clipboard;
 
-	private Util() {}
+    private Util() {
+    }
 
-	public static URL newURL(String url_name) {
-		try {
-			return new URL(url_name);
-		} catch (MalformedURLException e) {
-			throw new RuntimeException("Malformed URL " + url_name);//, e); //TODO
-		}
-	}
+    public static URL newURL(String url_name) {
+        try {
+            return new URL(url_name);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Malformed URL " + url_name);//, e); //TODO
+        }
+    }
 
-	public static ImageRegistry getImageRegistry() {
-		if (Util.image_registry == null) {
-			Util.image_registry = new ImageRegistry();
-			Util.image_registry.put("folder",
-			        ImageDescriptor.createFromURL(Util.newURL("file:icons/folder.gif")));
-			Util.image_registry.put("file",
-			        ImageDescriptor.createFromURL(Util.newURL("file:icons/file.gif")));
-		}
-		return Util.image_registry;
-	}
+    public static ImageRegistry getImageRegistry() {
+        if (Util.image_registry == null) {
+            Util.image_registry = new ImageRegistry();
+            Util.image_registry.put("folder",
+                    ImageDescriptor.createFromURL(Util.newURL("file:icons/folder.gif")));
+            Util.image_registry.put("file",
+                    ImageDescriptor.createFromURL(Util.newURL("file:icons/file.gif")));
+        }
+        return Util.image_registry;
+    }
 
-/*	public static Clipboard getClipboard() {
+    /*	public static Clipboard getClipboard() {
 		if (Util.clipboard == null) {
 			Util.clipboard = new Clipboard(Display.getCurrent());
 		}
 
 		return Util.clipboard;
 	}
-*/
-	public static TabItem add_tab_to_folder(final TabFolder aTabFolder, final String title, final Composite content, final Object data) {
-		TabItem item = new TabItem(aTabFolder, 0);
-		item.setText(title);
-		item.setControl(content);
-		item.setData(data);
-		return item;
-	}
+     */
+    public static TabItem add_tab_to_folder(final TabFolder aTabFolder, final String title, final Composite content, final Object data) {
+        TabItem item = new TabItem(aTabFolder, 0);
+        item.setText(title);
+        item.setControl(content);
+        item.setData(data);
+        return item;
+    }
 }
+
 /*
 class FileTreeLabelProvider extends LabelProvider implements IColorProvider {
 	public String getText(Object element) {
@@ -152,36 +155,35 @@ class FileSorter extends ViewerSorter {
 		return ((File) element).isDirectory() ? 0 : 1;
 	}
 }
-*/
+ */
+class FileContentWrapper<T> {
 
-class FileContentWrapper <T> {
+    public FileContentWrapper(T aKid) {
+        kid = (T) aKid;
+        id = FileContentWrapper.i++;
+    }
 
-	public FileContentWrapper(T aKid) {
-		kid = (T) aKid;
-		id = FileContentWrapper.i++;
-	}
+    public boolean isOdd() {
+        return (id % 2) == 0x0;
+    }
 
-	public boolean isOdd() {
-		return (id % 2) == 0x0;
-	}
-
-	public T kid() {
-		return kid;
-	}
+    public T kid() {
+        return kid;
+    }
 
 // ------------------------------
-	private Object[] kids;
-	private final T kid;
-	private final int id;
-	private boolean checked;
-	private static int i = 1;
+    private Object[] kids;
+    private final T kid;
+    private final int id;
+    private boolean checked;
+    private static int i = 1;
 // ------------------------------
 
-	public String getContentText() {
-		return "" + id;
-	}
+    public String getContentText() {
+        return "" + id;
+    }
 
-/*
+    /*
 	private Object[] __getKids() {
 		File[] kids1 = ((File) (Object) kid).listFiles(); // TODO: hardcoded
 		Object[] R;
@@ -202,9 +204,9 @@ class FileContentWrapper <T> {
 		}
 		return R;
 	}
-*/
+     */
 
-/*
+ /*
 	public Object[] getKids() {
 		Object[] R;
 		if (checked) {
@@ -216,7 +218,7 @@ class FileContentWrapper <T> {
 		}
 		return R;
 	}
-*/
+     */
 }
 
 /*
@@ -257,4 +259,4 @@ class ListContentProvider implements ITreeContentProvider {
 	public void inputChanged(Viewer viewer, Object old_input, Object new_input) {
 	}
 }
-*/
+ */

@@ -7,19 +7,20 @@ package tripleo.util;
 import java.util.Vector;
 
 public class FIFOImpl implements FIFO {
-	public Vector l = new Vector(); // for iterator
 
-	public boolean isEmpty() {
-		return l.size() == 0;
-	}
+    public Vector l = new Vector(); // for iterator
 
-	public Object xout() {
-		Object o = l.lastElement();
-		l.removeElementAt(l.size() - 1);
-		return o;
-	}
+    public boolean isEmpty() {
+        return l.size() == 0;
+    }
 
-	public void xin(Object t) {
-		l.addElement(t);
-	}
+    public Object xout() {
+        Object o = l.lastElement();
+        l.removeElementAt(l.size() - 1);
+        return o;
+    }
+
+    public void xin(Object t) {
+        l.addElement(t);
+    }
 }

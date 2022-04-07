@@ -9,7 +9,6 @@
  *  Please first read the full copyright statement in file copyright.html
  *
  */
-
 package tripleo.appz.pythondebug;
 
 import tripleo.util.Assert;
@@ -22,90 +21,96 @@ import java.util.Vector;
 /**
  * This is the main IsaViz class - usd to launch the application. You can pass a
  * file as argument. If its extension is .isv, isaViz will attempt to load it as
- * an IsaViz project. Otherwise, it will try to import it through Jena+GraphViz/Dot.
+ * an IsaViz project. Otherwise, it will try to import it through
+ * Jena+GraphViz/Dot.
  * <br> It contains the main definitions, references to all managers and GUI
  * components + the internal model and methods to modify it.
  */
 public class PythonDebug /*implements AnimationListener*/ {
 
-	/*namespaces and default prefixes*/
-	static String isavizURI = "http://www.w3.org/2001/10/IsaViz";     /*isaviz namespace*/
-	static String RDFMS_NAMESPACE_PREFIX = "rdf";                     /*RDF model and syntax namespace*/
-	static String RDFMS_NAMESPACE_URI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-	static String RDFS_NAMESPACE_PREFIX = "rdfs"; /*RDF Schema namespace*/
-	static String RDFS_NAMESPACE_URI = "http://www.w3.org/2000/01/rdf-schema#";
-	static String XSD_NAMESPACE_PREFIX = "xsd"; /*XML Schema datatypes*/
-	static String XSD_NAMESPACE_URI = "http://www.w3.org/2001/XMLSchema#";
+    /*namespaces and default prefixes*/
+    static String isavizURI = "http://www.w3.org/2001/10/IsaViz";
+    /*isaviz namespace*/
+    static String RDFMS_NAMESPACE_PREFIX = "rdf";
+    /*RDF model and syntax namespace*/
+    static String RDFMS_NAMESPACE_URI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+    static String RDFS_NAMESPACE_PREFIX = "rdfs";
+    /*RDF Schema namespace*/
+    static String RDFS_NAMESPACE_URI = "http://www.w3.org/2000/01/rdf-schema#";
+    static String XSD_NAMESPACE_PREFIX = "xsd";
+    /*XML Schema datatypes*/
+    static String XSD_NAMESPACE_URI = "http://www.w3.org/2001/XMLSchema#";
 
-	/*The string to use as the model's base URI when none is available - e.g. for the RDF that is directly entered into the input form, or coming from a plug-in*/
-	static String DEFAULT_BASE_URI = "";
+    /*The string to use as the model's base URI when none is available - e.g. for the RDF that is directly entered into the input form, or coming from a plug-in*/
+    static String DEFAULT_BASE_URI = "";
 
-	/*the actual base URI of the document*/
-	static String BASE_URI = DEFAULT_BASE_URI;
+    /*the actual base URI of the document*/
+    static String BASE_URI = DEFAULT_BASE_URI;
 
-	/*The string to use for to prefix anonymous nodes*/
-	static String ANON_NODE = "genid:";
+    /*The string to use for to prefix anonymous nodes*/
+    static String ANON_NODE = "genid:";
 
-	/*Misc. constants*/
-	/*value displayed in the property type table for the auto-numbering membership property constructor (should begin with a string identifying it uniquely based on its first 3 chars like '_??' since a test depends on this in createNewProperty())*/
-	static String MEMBERSHIP_PROP_CONSTRUCTOR = "_??   (Membership property auto-numbering: _1, _2, ...)";
-	/*default language used in literals*/
-	static String DEFAULT_LANGUAGE_IN_LITERALS = "en";
-	/*if true, xml:lang is added for each literal, even when lang is default*/
-	static boolean ALWAYS_INCLUDE_LANG_IN_LITERALS = false;
-	/*tells whether RDFWriter should output standard or abbreviated syntax*/
-	static boolean ABBREV_SYNTAX = true;
-	/*tells whether we should display the URI (false) or the label (true) of a resource in the ellipse*/
-	static boolean DISP_AS_LABEL = true;
-	/*max number of chars displayed in the graph for literals*/
-	static int MAX_LIT_CHAR_COUNT = 40;
-	/*orientation of the graph (when computed by GraphViz) - can be "LR" or "TB"*/
-	static String GRAPH_ORIENTATION = "LR";
-	/*GraphViz version 1.7.6 is no longer supported in IsaViz 2.0 (we are at version 1.9.0 available for all platforms, so don't bother)*/
+    /*Misc. constants*/
+ /*value displayed in the property type table for the auto-numbering membership property constructor (should begin with a string identifying it uniquely based on its first 3 chars like '_??' since a test depends on this in createNewProperty())*/
+    static String MEMBERSHIP_PROP_CONSTRUCTOR = "_??   (Membership property auto-numbering: _1, _2, ...)";
+    /*default language used in literals*/
+    static String DEFAULT_LANGUAGE_IN_LITERALS = "en";
+    /*if true, xml:lang is added for each literal, even when lang is default*/
+    static boolean ALWAYS_INCLUDE_LANG_IN_LITERALS = false;
+    /*tells whether RDFWriter should output standard or abbreviated syntax*/
+    static boolean ABBREV_SYNTAX = true;
+    /*tells whether we should display the URI (false) or the label (true) of a resource in the ellipse*/
+    static boolean DISP_AS_LABEL = true;
+    /*max number of chars displayed in the graph for literals*/
+    static int MAX_LIT_CHAR_COUNT = 40;
+    /*orientation of the graph (when computed by GraphViz) - can be "LR" or "TB"*/
+    static String GRAPH_ORIENTATION = "LR";
+    /*GraphViz version 1.7.6 is no longer supported in IsaViz 2.0 (we are at version 1.9.0 available for all platforms, so don't bother)*/
 //     /*which version of graphviz (changes the way we parse the SVG file) 0=GraphViz 1.7.6 ; 1=GraphViz 1.7.11 or later*/
 //     static int GRAPHVIZ_VERSION=1;
 
-	/*directories and files*/
-	JFileChooser fc;
-	/*location of the configuration file - at init time, we look for it in the user's home dir.
+    /*directories and files*/
+    JFileChooser fc;
+    /*location of the configuration file - at init time, we look for it in the user's home dir.
 	 If it is not there, we take the one in IsaViz dir.*/
-	static File cfgFile;
-	/*rdf/isv file passed as argument from the command line (if any)*/
-	static String argFile;
-	/*gss file passed as argument from the command line (if any)*/
-	static String gssFile;
-	/*file for the current project - set by openProject(), used by saveProject()*/
-	static File projectFile = null;
-	/*last RDF file/URL imported*/
-	static String lastRDF = null;
-	/*temp xml-serialization of the current model used to display model as RDF/XML*/
-	static String tmpRdfFile = "tmp/serial.rdf";
-	/*path to GraphViz/DOT executable*/
-	static File m_GraphVizPath = new File("C:\\ATT\\Graphviz\\bin\\dot.exe");
-	/*path to Graphviz font dir (did not seem to matter, at least under Win32 and Linux)*/
-	static File m_GraphVizFontDir = new File("C:\\ATT\\Graphviz");
-	/*temporary directory (temp .rdf, .dot and .svg files)*/
-	static File m_TmpDir = new File("tmp");
-	/*IsaViz project files (.isv)*/
-	static File projectDir = new File("projects");
-	static File lastOpenPrjDir = null; //remember these 2 so that next file
-	static File lastSavePrjDir = null;  //dialog gets open in the same place
-	/*Import/Export directory*/
-	static File rdfDir = new File("export");
-	static File lastImportRDFDir = null; //remember these 2 so that next file
-	static File lastExportRDFDir = null; //dialog gets open in the same place
+    static File cfgFile;
+    /*rdf/isv file passed as argument from the command line (if any)*/
+    static String argFile;
+    /*gss file passed as argument from the command line (if any)*/
+    static String gssFile;
+    /*file for the current project - set by openProject(), used by saveProject()*/
+    static File projectFile = null;
+    /*last RDF file/URL imported*/
+    static String lastRDF = null;
+    /*temp xml-serialization of the current model used to display model as RDF/XML*/
+    static String tmpRdfFile = "tmp/serial.rdf";
+    /*path to GraphViz/DOT executable*/
+    static File m_GraphVizPath = new File("C:\\ATT\\Graphviz\\bin\\dot.exe");
+    /*path to Graphviz font dir (did not seem to matter, at least under Win32 and Linux)*/
+    static File m_GraphVizFontDir = new File("C:\\ATT\\Graphviz");
+    /*temporary directory (temp .rdf, .dot and .svg files)*/
+    static File m_TmpDir = new File("tmp");
+    /*IsaViz project files (.isv)*/
+    static File projectDir = new File("projects");
+    static File lastOpenPrjDir = null; //remember these 2 so that next file
+    static File lastSavePrjDir = null;  //dialog gets open in the same place
+    /*Import/Export directory*/
+    static File rdfDir = new File("export");
+    static File lastImportRDFDir = null; //remember these 2 so that next file
+    static File lastExportRDFDir = null; //dialog gets open in the same place
 
-	/*delete temporary files on exit*/
-	static boolean dltOnExit = true;
-	/*maximum number of resources remembered (for back button) when navigating in the property browser tab (TablePanel)*/
-	static int MAX_BRW_LIST_SIZE = 10;
-	/*maximum number of operations remembered (for Undo)*/
-	static int UNDO_SIZE = 5;
-	/*should the window positions and sizes be saved and restored next time IsaViz is started*/
-	static boolean SAVE_WINDOW_LAYOUT = false;
+    /*delete temporary files on exit*/
+    static boolean dltOnExit = true;
+    /*maximum number of resources remembered (for back button) when navigating in the property browser tab (TablePanel)*/
+    static int MAX_BRW_LIST_SIZE = 10;
+    /*maximum number of operations remembered (for Undo)*/
+    static int UNDO_SIZE = 5;
+    /*should the window positions and sizes be saved and restored next time IsaViz is started*/
+    static boolean SAVE_WINDOW_LAYOUT = false;
 
-	/*VTM data*/
-	static final String mainVirtualSpace = "rdfSpace"; /*name of the main VTM virtual space*/
+    /*VTM data*/
+    static final String mainVirtualSpace = "rdfSpace";
+    /*name of the main VTM virtual space*/
 //	static VirtualSpace mSpace;                /*the main (rdf graph) space itself*/
 //	static final String rdRegionVirtualSpace = "radarSpace"; /*name of the VTM virtual space holding the rectangle delimiting the region seen by main view in radar view*/
 //	static VirtualSpace rSpace;                /*the radar (region rect) space itself*/
@@ -113,33 +118,33 @@ public class PythonDebug /*implements AnimationListener*/ {
 //	static View mView;                               /*main view itself*/
 //	static final String radarView = "Overview";        /*name of radar VTM view*/
 //	static View rView;                               /*radar view itself*/
-	static final String resShapeType = "resG";       //VTM glyph types associated with
-	static final String resTextType = "resT";          //the entities of the graph (resources,
-	static final String propPathType = "prdG";         //properties, literals). Actions fired
-	static final String propHeadType = "prdH";         //in the VTM event handler (EditorEvtHdlr)
-	static final String propTextType = "prdT";         //depend on these (or part of these, like {G,T,H}).
-	static final String propCellType = "prdC";         //depend on these (or part of these, like {G,T,H}).
-	static final String litShapeType = "litG";         //Modify at your own risks
-	static final String litTextType = "litT";
+    static final String resShapeType = "resG";       //VTM glyph types associated with
+    static final String resTextType = "resT";          //the entities of the graph (resources,
+    static final String propPathType = "prdG";         //properties, literals). Actions fired
+    static final String propHeadType = "prdH";         //in the VTM event handler (EditorEvtHdlr)
+    static final String propTextType = "prdT";         //depend on these (or part of these, like {G,T,H}).
+    static final String propCellType = "prdC";         //depend on these (or part of these, like {G,T,H}).
+    static final String litShapeType = "litG";         //Modify at your own risks
+    static final String litTextType = "litT";
 
-	/*L&F data*/
-	static Font smallFont = new Font("Dialog", Font.PLAIN, 10);
-	static Font tinyFont = new Font("Dialog", Font.PLAIN, 9);
+    /*L&F data*/
+    static Font smallFont = new Font("Dialog", Font.PLAIN, 10);
+    static Font tinyFont = new Font("Dialog", Font.PLAIN, 9);
 
-	/*Font used in VTM view - info also used when generating the DOT file for GraphViz*/
-	static String vtmFontName = "Dialog";
-	static int vtmFontSize = 10;
-	static Font vtmFont = new Font(vtmFontName, Font.PLAIN, vtmFontSize);
-	/*Font used in Swing components that need to be able to receive i18n content*/
-	static String swingFontName = "Dialog";
-	static int swingFontSize = 10;
-	static Font swingFont = new Font(swingFontName, Font.PLAIN, swingFontSize);
-	static int tinySwingFontSize = 9;
-	static Font tinySwingFont = new Font(swingFontName, Font.PLAIN, tinySwingFontSize);
+    /*Font used in VTM view - info also used when generating the DOT file for GraphViz*/
+    static String vtmFontName = "Dialog";
+    static int vtmFontSize = 10;
+    static Font vtmFont = new Font(vtmFontName, Font.PLAIN, vtmFontSize);
+    /*Font used in Swing components that need to be able to receive i18n content*/
+    static String swingFontName = "Dialog";
+    static int swingFontSize = 10;
+    static Font swingFont = new Font(swingFontName, Font.PLAIN, swingFontSize);
+    static int tinySwingFontSize = 9;
+    static Font tinySwingFont = new Font(swingFontName, Font.PLAIN, tinySwingFontSize);
 
-	static boolean ANTIALIASING = false;  //sets antialiasing in VTM views
+    static boolean ANTIALIASING = false;  //sets antialiasing in VTM views
 
-	/*VTM main class*/
+    /*VTM main class*/
 //	static VirtualSpaceManager vsm;
 //	/*class that receives the events sent from VTM main view (include mouse click, entering object,...)*/
 //	EditorEvtHdlr eeh;
@@ -151,14 +156,14 @@ public class PythonDebug /*implements AnimationListener*/ {
 //	XMLManager xmlMngr;
 //	/*in charge of building and analysing ISV DOM Trees*/
 //	ISVManager isvMngr;
-	/*configuration (user prefs) manager*/
-	ConfigManager cfgMngr;
+    /*configuration (user prefs) manager*/
+    ConfigManager cfgMngr;
 //	/*graph stylesheet manager*/
 //	static GSSManager gssMngr;
 //	/*methods to adjust path start/end points, text inside ellipses, etc...*/
 //	GeometryManager geomMngr;
-	/*methods to manage contextual menus associated with nodes and edges*/
-	//ContMenuManager ctmnMngr;
+    /*methods to manage contextual menus associated with nodes and edges*/
+    //ContMenuManager ctmnMngr;
 //	/*represents the region seen by main view in the radar view*/
 //	static VRectangle observedRegion;
 //
@@ -175,9 +180,9 @@ public class PythonDebug /*implements AnimationListener*/ {
 //	static Vector previousLocations;
 //
 //	/*Swing panels*/
-	static MainCmdPanel cmp;   //main swing command panel (menus,...)
+    static MainCmdPanel cmp;   //main swing command panel (menus,...)
 //	static TablePanel tblp;    //swing panel with tables for namespaces, properties, resource types...
-	static PropsPanel propsp;  //swing panel showing the attributes of the last selected node/edge (can be edited through this panel)
+    static PropsPanel propsp;  //swing panel showing the attributes of the last selected node/edge (can be edited through this panel)
 //	static NavPanel navp;      //swing panel showing directional arrows and zoom buttons for navigation in main zvtm view
 //
 //	/*External (platform-dependant) browser*/
@@ -189,89 +194,94 @@ public class PythonDebug /*implements AnimationListener*/ {
 //	static File browserPath = new File("");
 //	//browser command line options
 //	static String browserOptions = "";
-	protected Dummy gssMngr;
+    protected Dummy gssMngr;
 
-	/*proxy/firewall configuration*/
-	static boolean useProxy = false;
-	static String proxyHost = "";    //proxy hostname
-	static String proxyPort = "80";    //default value for the JVM proxyPort system property
+    /*proxy/firewall configuration*/
+    static boolean useProxy = false;
+    static String proxyHost = "";    //proxy hostname
+    static String proxyPort = "80";    //default value for the JVM proxyPort system property
 
-	/*In memory data structures used to store the model*/
+    /*In memory data structures used to store the model*/
 
-	/*a dictionary containing all resources in the model*/
+ /*a dictionary containing all resources in the model*/
 //	Hashtable resourcesByURI; //key is a String whose value is a resource's URI or ID (obtained by IResource.getIdent()) ; value is the corresponding IResource
 //	/*a dictionary containing all property instances (predicates) in the model*/
 //	Hashtable propertiesByURI; //key is a string representing a property URI ; value is a vector containing all IProperty whose URI is equal to key
 //	/*a list of all literals in the model (literals with the same value are different ILiteral objects)*/
 //	Vector literals; //vector of ILiteral
 
-	/*next unique anonymous ID to be assigned to an anonymous resource - DOES NOT CONTAIN THE ANON_NODE PREFIX*/
-	StringBuffer nextAnonID = new StringBuffer("0");
+    /*next unique anonymous ID to be assigned to an anonymous resource - DOES NOT CONTAIN THE ANON_NODE PREFIX*/
+    StringBuffer nextAnonID = new StringBuffer("0");
 
-	/*selected graph entities*/
-	Vector selectedResources = new Vector();
-	Vector selectedLiterals = new Vector();
-	Vector selectedPredicates = new Vector();
+    /*selected graph entities*/
+    Vector selectedResources = new Vector();
+    Vector selectedLiterals = new Vector();
+    Vector selectedPredicates = new Vector();
 //	static INode lastSelectedItem;   //last node/edge selected by user
 
-	/*copied graph entities (isaviz clipboard, for cut/copy/paste)*/
-	Vector copiedResources = new Vector();
-	Vector copiedLiterals = new Vector();
-	Vector copiedPredicates = new Vector();
+    /*copied graph entities (isaviz clipboard, for cut/copy/paste)*/
+    Vector copiedResources = new Vector();
+    Vector copiedLiterals = new Vector();
+    Vector copiedPredicates = new Vector();
 
-	/*Jena rdf model (instantiated when importing/exporting RDF/XML or NTriples)*/
+    /*Jena rdf model (instantiated when importing/exporting RDF/XML or NTriples)*/
 //	Model rdfModel;
 
-	/*selected row in the table of Properties (one such row needs to be selected when creating a new property instance in the graph)*/
-	String selectedPropertyConstructorNS;
-	String selectedPropertyConstructorLN;
+    /*selected row in the table of Properties (one such row needs to be selected when creating a new property instance in the graph)*/
+    String selectedPropertyConstructorNS;
+    String selectedPropertyConstructorLN;
 
-	/*quick search variables*/
-	int searchIndex = 0;
-	String lastSearchedString = "";
-	Vector matchingList = new Vector();
+    /*quick search variables*/
+    int searchIndex = 0;
+    String lastSearchedString = "";
+    Vector matchingList = new Vector();
 //	INode lastMatchingEntity = null;  //remember it so that its color can be reset after the search ends
 
-	/*error management*/
-	StringBuffer errorMessages;
-	boolean reportError;
+    /*error management*/
+    StringBuffer errorMessages;
+    boolean reportError;
 
-	/*translation constants*/
-	static short MOVE_UP = 0;
-	static short MOVE_DOWN = 1;
-	static short MOVE_LEFT = 2;
-	static short MOVE_RIGHT = 3;
-	static short MOVE_UP_LEFT = 4;
-	static short MOVE_UP_RIGHT = 5;
-	static short MOVE_DOWN_LEFT = 6;
-	static short MOVE_DOWN_RIGHT = 7;
+    /*translation constants*/
+    static short MOVE_UP = 0;
+    static short MOVE_DOWN = 1;
+    static short MOVE_LEFT = 2;
+    static short MOVE_RIGHT = 3;
+    static short MOVE_UP_LEFT = 4;
+    static short MOVE_UP_RIGHT = 5;
+    static short MOVE_DOWN_LEFT = 6;
+    static short MOVE_DOWN_RIGHT = 7;
 
-	/*main constructor - called from main()*/
-	public PythonDebug() {
-		SplashWindow sp = new SplashWindow(2000, "images/IsavizSplash.gif", false, null); //displays a splash screen
+    /*main constructor - called from main()*/
+    public PythonDebug() {
+        SplashWindow sp = new SplashWindow(2000, "images/IsavizSplash.gif", false, null); //displays a splash screen
 
-		File f = new File(System.getProperty("user.home") + "/isaviz.cfg");
-		if (f.exists()) {cfgFile = f;} else {cfgFile = new File("isaviz.cfg");}
-		sp.setMessage("Loading Preferences from " + cfgFile.getAbsolutePath());
-		// 	System.out.println("Loading config file from "+cfgFile);
+        File f = new File(System.getProperty("user.home") + "/isaviz.cfg");
+        if (f.exists()) {
+            cfgFile = f;
+        } else {
+            cfgFile = new File("isaviz.cfg");
+        }
+        sp.setMessage("Loading Preferences from " + cfgFile.getAbsolutePath());
+
+        // 	System.out.println("Loading config file from "+cfgFile);
 /*		vsm = new VirtualSpaceManager();//VTM main class
 		// 	System.out.println("DEVEL Version - switch DEBUG off in public release -----");
 		// 	vsm.setDebug(true);   //COMMENT OUT IN PUBLIC RELEASES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		vsm.setZoomLimit(-90);
 		vsm.animator.setAnimationListener(this);
-*/		cfgMngr = new ConfigManager(this);
-/*		geomMngr = new GeometryManager(this);
+         */ cfgMngr = new ConfigManager(this);
+        /*		geomMngr = new GeometryManager(this);
 		isvMngr = new ISVManager(this);
 		gssMngr = new GSSManager(this);
 		//ctmnMngr=new ContMenuManager(this);
 		sp.setProgressBarValue(10);
-*/		cfgMngr.initLookAndFeel();    //fonts, Swing colors
-		sp.setProgressBarValue(20);
-		sp.setMessage("Looking for plug-ins");
-		cfgMngr.initWindows();                //Swing panels and VTM views (default layout) - plus plug-in initialisation
-		sp.setProgressBarValue(30);
-		sp.setMessage("Initializing XML parser");
-/*		xmlMngr = new XMLManager(this); //must happen before initConfig(), initHistory() and any project opening/file import
+         */ cfgMngr.initLookAndFeel();    //fonts, Swing colors
+        sp.setProgressBarValue(20);
+        sp.setMessage("Looking for plug-ins");
+        cfgMngr.initWindows();                //Swing panels and VTM views (default layout) - plus plug-in initialisation
+        sp.setProgressBarValue(30);
+        sp.setMessage("Initializing XML parser");
+        /*		xmlMngr = new XMLManager(this); //must happen before initConfig(), initHistory() and any project opening/file import
 		sp.setProgressBarValue(40);
 		sp.setMessage("Initializing Internal Data Structures");
 		resourcesByURI = new Hashtable();
@@ -290,10 +300,10 @@ public class PythonDebug /*implements AnimationListener*/ {
 		sp.setProgressBarValue(80);
 		cfgMngr.initConfig();
 		vsm.setMainFont(vtmFont);
-*/		sp.setProgressBarValue(90);
-		cfgMngr.layoutWindows();
-		sp.setProgressBarValue(100);
-		cfgFile = new File(System.getProperty("user.home") + "/isaviz.cfg"); //the user's prefs will be saved in his home dir, no matter whether there was a cfg file there or not
+         */ sp.setProgressBarValue(90);
+        cfgMngr.layoutWindows();
+        sp.setProgressBarValue(100);
+        cfgFile = new File(System.getProperty("user.home") + "/isaviz.cfg"); //the user's prefs will be saved in his home dir, no matter whether there was a cfg file there or not
 /*		if (m_TmpDir.exists()) {
 			if (gssFile != null) {
 				File f2 = new File(gssFile);
@@ -322,10 +332,10 @@ public class PythonDebug /*implements AnimationListener*/ {
 		} else {
 			JOptionPane.showMessageDialog(cmp, "You need to select a temporary directory for IsaViz\nin the Directories tab of the Preferences Panel, or some functions will not work properly.\nThe current directory (" + m_TmpDir + ") does not exist.");
 		}
-*/
-	}
+         */
+    }
 
-	/*GUI warning before reset*/
+    /*GUI warning before reset*/
 //	void promptReset() {
 //		Object[] options = {"Yes", "No"};
 //		int option = JOptionPane.showOptionDialog(null, Messages.resetWarning, "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
@@ -336,8 +346,8 @@ public class PythonDebug /*implements AnimationListener*/ {
 //		}
 //	}
 
-	/*reset project*/
-	public void reset(boolean resetNSBindings) {
+    /*reset project*/
+    public void reset(boolean resetNSBindings) {
 //		if (rdfLdr != null) {rdfLdr.reset();}
 //		projectFile = null;
 //		propsp.reset();
@@ -364,24 +374,24 @@ public class PythonDebug /*implements AnimationListener*/ {
 //						 project loaded from ISV (which uses SVGReader.createPath())*/
 //		vsm.getVirtualSpace(Editor.mainVirtualSpace).getCamera(0).setAltitude(0);
 //		vsm.getVirtualSpace(Editor.mainVirtualSpace).getCamera(0).setLocation(0, 0);
-	}
+    }
 
-	/*called by reset()*/
-	void resetSelected() {
+    /*called by reset()*/
+    void resetSelected() {
 //		selectedResources.removeAllElements();   //selected nodes/edges
 //		selectedLiterals.removeAllElements();
 //		selectedPredicates.removeAllElements();
-	}
+    }
 
-	/*called by reset() and each time we do a new copy*/
-	void resetCopied() {
+    /*called by reset() and each time we do a new copy*/
+    void resetCopied() {
 //		copiedResources.removeAllElements();   //reset clipboard
 //		copiedLiterals.removeAllElements();
 //		copiedPredicates.removeAllElements();
 //		cmp.enablePaste(false);
-	}
+    }
 
-	/*called by reset()*/
+    /*called by reset()*/
 //	void resetNamespaceBindings() {
 //		tblp.resetNamespaceTable();
 //		addNamespaceBinding(RDFMS_NAMESPACE_PREFIX, RDFMS_NAMESPACE_URI, new Boolean(true), true, false);
@@ -2665,8 +2675,8 @@ public class PythonDebug /*implements AnimationListener*/ {
 //		}
 //	}
 
-	/*opens a print dialog box*/
-	void printRequest() {
+    /*opens a print dialog box*/
+    void printRequest() {
 //		java.awt.image.BufferedImage bi = vsm.getView(mainView).getImage();
 //		if (bi != null) {
 //			PrintUtilities pu = new PrintUtilities(bi);
@@ -2678,7 +2688,7 @@ public class PythonDebug /*implements AnimationListener*/ {
 //// 		catch (Exception ex){ex.printStackTrace();}
 //// 	    }
 //		}
-	}
+    }
 //
 //	/*opens a window and dislays information about the project (file name, number of resources, etc)*/
 //	void showPrjSummary() {
@@ -2717,55 +2727,56 @@ public class PythonDebug /*implements AnimationListener*/ {
 //		vsm.setRepaintPolicy(b);
 //	}
 
-	/*antialias ON/OFF for views*/
-	void setAntialiasing(boolean b) {
-		ANTIALIASING = b;
+    /*antialias ON/OFF for views*/
+    void setAntialiasing(boolean b) {
+        ANTIALIASING = b;
 //		vsm.getView(mainView).setAntialiasing(ANTIALIASING);
-	}
+    }
 //
 ////     void clearBitmapCache(){
 //// 	if (gssMngr!=null){gssMngr.clearBitmapCache();}
 ////     }
 
-	/*save user preferences*/
-	void saveConfig() {/*cfgMngr.saveConfig();*/}
+    /*save user preferences*/
+    void saveConfig() {/*cfgMngr.saveConfig();*/
+    }
 
-	static void collectGarbage() {
-		System.gc();
-	}
+    static void collectGarbage() {
+        System.gc();
+    }
 
-	/*exit from IsaViz, save bookmarks*/
-	public void exit() {
+    /*exit from IsaViz, save bookmarks*/
+    public void exit() {
 //		cfgMngr.saveURLs();
-		System.exit(0);
-	}
+        System.exit(0);
+    }
 
-	//debug
-	void summary() {
+    //debug
+    void summary() {
 //		System.out.println("Resources " + resourcesByURI.size());
 //		System.out.println("Literals " + literals.size());
-		int i = 0;
+        int i = 0;
 //		for (Enumeration e1 = propertiesByURI.elements(); e1.hasMoreElements();) {
 //			for (Enumeration e2 = ((Vector) e1.nextElement()).elements(); e2.hasMoreElements();) {
 //				e2.nextElement();
 //				i++;
 //			}
 //		}
-		System.out.println("Properties " + i);
-	}
+        System.out.println("Properties " + i);
+    }
 
-	//debug
-	void nsBindings() {
-		System.out.println("Namespace bindings");
+    //debug
+    void nsBindings() {
+        System.out.println("Namespace bindings");
 //		for (int i = 0; i < tblp.nsTableModel.getRowCount(); i++) {
 //			System.out.println("p=" + tblp.nsTableModel.getValueAt(i, 0) + " uri=" + tblp.nsTableModel.getValueAt(i, 1) + " disp=" + tblp.nsTableModel.getValueAt(i, 2));
 //		}
-	}
+    }
 
-	//debug
-	void printClipboard() {
-		System.out.println("Clipboard");
-		System.out.print("[");
+    //debug
+    void printClipboard() {
+        System.out.println("Clipboard");
+        System.out.print("[");
 //		if (!copiedResources.isEmpty()) {
 //			for (int i = 0; i < copiedResources.size() - 1; i++) {
 //				System.out.print(copiedResources.elementAt(i).toString() + ",");
@@ -2786,15 +2797,15 @@ public class PythonDebug /*implements AnimationListener*/ {
 //			}
 //			System.out.println(copiedPredicates.lastElement().toString() + "]");
 //		}
-	}
+    }
 
-	public static void commandLineHelp() {
-		System.out.println("Usage : ");
-		System.out.println("  java org.w3c.IsaView [options] [file_name.isv|file_name.rdf|file_name.nt|file_name.n3]");
-		System.out.println("  Options:");
-		System.out.println("          -gss  file_name.gss   loads a GSS stylesheet");
-		System.exit(0);
-	}
+    public static void commandLineHelp() {
+        System.out.println("Usage : ");
+        System.out.println("  java org.w3c.IsaView [options] [file_name.isv|file_name.rdf|file_name.nt|file_name.n3]");
+        System.out.println("  Options:");
+        System.out.println("          -gss  file_name.gss   loads a GSS stylesheet");
+        System.exit(0);
+    }
 
 ////     private static void debugCharset(){
 //// 	java.util.Map availcs=java.nio.charset.Charset.availableCharsets();
@@ -2803,193 +2814,199 @@ public class PythonDebug /*implements AnimationListener*/ {
 //// 	    System.out.println(iter.next());
 //// 	}
 ////     }
+    //MAIN - update from the Sesame plug-in version
+    public static void main(String[] args) {
+        if (args.length > 3) {
+            commandLineHelp();
+        } else if (args.length == 3) {//both a gss file and a file to parse specified
+            if (args[0].equals("-gss")) {
+                gssFile = args[1];
+                argFile = args[2];
+            } else if (args[1].equals("-gss")) {
+                gssFile = args[2];
+                argFile = args[0];
+            } else {
+                commandLineHelp();
+            }
+        } else if (args.length == 2) {//just a gss file specified
+            if (args[0].equals("-gss")) {
+                gssFile = args[1];
+            } else {
+                commandLineHelp();
+            }
+        } else if (args.length == 1) {//just a file to parse specified
+            argFile = args[0];
+        }
+        PythonDebug appli = new PythonDebug();
+    }
 
-	//MAIN - update from the Sesame plug-in version
-	public static void main(String[] args) {
-		if (args.length > 3) {
-			commandLineHelp();
-		} else if (args.length == 3) {//both a gss file and a file to parse specified
-			if (args[0].equals("-gss")) {
-				gssFile = args[1];
-				argFile = args[2];
-			} else if (args[1].equals("-gss")) {
-				gssFile = args[2];
-				argFile = args[0];
-			} else {
-				commandLineHelp();
-			}
-		} else if (args.length == 2) {//just a gss file specified
-			if (args[0].equals("-gss")) {
-				gssFile = args[1];
-			} else {
-				commandLineHelp();
-			}
-		} else if (args.length == 1) {//just a file to parse specified
-			argFile = args[0];
-		}
-		PythonDebug appli = new PythonDebug();
-	}
+    /**
+     * @param aB
+     */
+    public void alwaysUpdateViews(boolean aB) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aB
-	 */
-	public void alwaysUpdateViews(boolean aB) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    /**
+     *
+     */
+    public void deleteSelectedEntities() {
+        // TODO Auto-generated meth----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------b
 
-	/**
-	 * 
-	 */
-	public void deleteSelectedEntities() {
-		// TODO Auto-generated meth----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------b
+    }
 
-	}
+    /**
+     * @param aR
+     */
+    public void displayResOutgoingPredicates(IResource aR) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aR
-	 */
-	public void displayResOutgoingPredicates(IResource aR) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    /**
+     * @param aR
+     */
+    public void makeAnonymous(IResource aR) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aR
-	 */
-	public void makeAnonymous(IResource aR) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    /**
+     * @param aR
+     * @param aText
+     * @param aB
+     */
+    public void changeResourceURI(IResource aR, String aText, boolean aB) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aR
-	 * @param aText
-	 * @param aB
-	 */
-	public void changeResourceURI(IResource aR, String aText, boolean aB) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    /**
+     * @param aUri
+     * @return
+     */
+    public String tryToSolveBinding(String aUri) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * @param aUri
-	 * @return
-	 */
-	public String tryToSolveBinding(String aUri) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @param aP
+     * @param aString
+     * @param aString2
+     */
+    public void changePropertyURI(IProperty aP, String aString, String aString2) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aP
-	 * @param aString
-	 * @param aString2
-	 */
-	public void changePropertyURI(IProperty aP, String aString, String aString2) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    /**
+     * @param aString
+     * @return
+     */
+    public Vector getProperties4NS(String aString) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * @param aString
-	 * @return
-	 */
-	public Vector getProperties4NS(String aString) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @param aNamespace
+     * @return
+     */
+    public String getNSBinding(Object aNamespace) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * @param aNamespace
-	 * @return
-	 */
-	public String getNSBinding(Object aNamespace) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @return
+     */
+    public Vector getAllPropertyNS() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * @return
-	 */
-	public Vector getAllPropertyNS() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @param aL
+     * @param aText
+     */
+    public void setLiteralValue(ILiteral aL, String aText) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aL
-	 * @param aText
-	 */
-	public void setLiteralValue(ILiteral aL, String aText) {
-		// TODO Auto-generated method stub
-
-	}
+    }
 
 }
 
 class Editor extends PythonDebug {
-	public void alwaysUpdateViews(boolean b) {}
 
-	public void changePropertyURI(IProperty aProperty, String s, String s1) {
-		// TODO: implement me
-		Assert.not_implemented();
+    public void alwaysUpdateViews(boolean b) {
+    }
 
-	}
+    public void changePropertyURI(IProperty aProperty, String s, String s1) {
+        // TODO: implement me
+        Assert.not_implemented();
 
-	public Vector getProperties4NS(String s) {
-		return new Vector()
-		        ;
-	}
+    }
 
-	/**
-	 * @return
-	 */
-	public Vector getAllPropertyNS() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Vector getProperties4NS(String s) {
+        return new Vector();
+    }
 
-	/**
-	 * 
-	 */
-	public void deleteSelectedEntities() {
-		// TODO Auto-generated method stub
+    /**
+     * @return
+     */
+    public Vector getAllPropertyNS() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	}
+    /**
+     *
+     */
+    public void deleteSelectedEntities() {
+        // TODO Auto-generated method stub
 
-	/**
-	 * @param aText
-	 * @return
-	 */
-	public static RDFDatatype displayAvailableDataTypes(String aText) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
+
+    /**
+     * @param aText
+     * @return
+     */
+    public static RDFDatatype displayAvailableDataTypes(String aText) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
 
 class Dummy {
 
-	/**
-	 * @param aL
-	 */
-	public void incStyling(ILiteral aL) {
-		// TODO Auto-generated method stub
+    /**
+     * @param aL
+     */
+    public void incStyling(ILiteral aL) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 }
 
 interface ILiteral {
 
-	String getLang() ;
-	RDFDatatype getDatatype() ;
-	void setDatatype(String aString) ;
-	void setLanguage(String aString) ;
-	void setDatatype(RDFDatatype aDt) ;
-	String getValue() ;
+    String getLang();
+
+    RDFDatatype getDatatype();
+
+    void setDatatype(String aString);
+
+    void setLanguage(String aString);
+
+    void setDatatype(RDFDatatype aDt);
+
+    String getValue();
 
 }
 
 interface RDFDatatype {
-	String getURI() ;
+
+    String getURI();
 }

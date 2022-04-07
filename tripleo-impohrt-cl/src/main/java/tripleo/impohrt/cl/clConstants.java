@@ -7,31 +7,30 @@ package tripleo.impohrt.cl;
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
-
 public interface clConstants {
-  // enums and constants
-  int ERRMSG_SIZE = clJNI.get_ERRMSG_SIZE();
-  int HOSTNAME_SIZE = clJNI.get_HOSTNAME_SIZE();
-  int CL_ERR = clJNI.get_CL_ERR();
-  int CL_ERR_NOERROR = clJNI.get_CL_ERR_NOERROR();
-  int CL_ERR_UNKNOWN_HOST = clJNI.get_CL_ERR_UNKNOWN_HOST();
-  int CL_ERR_INVALID_SOCKET = clJNI.get_CL_ERR_INVALID_SOCKET();
-  int CL_ERR_CONNECTION_UNAVAIL = clJNI.get_CL_ERR_CONNECTION_UNAVAIL();
-  int CL_ERR_UNKNOWN_SERVICE = clJNI.get_CL_ERR_UNKNOWN_SERVICE();
-  int CL_ERR_INIT_FAILED = clJNI.get_CL_ERR_INIT_FAILED();
-  int CL_ERR_LIBCLOSE_FAILED = clJNI.get_CL_ERR_LIBCLOSE_FAILED();
-  int CL_ERR_CLOSE_SOCKET = clJNI.get_CL_ERR_CLOSE_SOCKET();
-  int CL_ERR_MEMORY_ALLOC = clJNI.get_CL_ERR_MEMORY_ALLOC();
-  int CL_ERR_NULL_POINTER = clJNI.get_CL_ERR_NULL_POINTER();
-  int CL_ERR_SOCKET_ATTR = clJNI.get_CL_ERR_SOCKET_ATTR();
-  int CL_ERR_SOCKET_BIND = clJNI.get_CL_ERR_SOCKET_BIND();
-  int CL_ERR_TIMEOUT = clJNI.get_CL_ERR_TIMEOUT();
-  int CL_ERR_SOCKET_BROADCAST = clJNI.get_CL_ERR_SOCKET_BROADCAST();
-  int CL_ERR_SOCKET_CREATE = clJNI.get_CL_ERR_SOCKET_CREATE();
-  int CL_ERR_ACCEPT = clJNI.get_CL_ERR_ACCEPT();
-  int CL_ERRX_FORK = clJNI.get_CL_ERRX_FORK();
-  int CL_ERRW_THREAD = clJNI.get_CL_ERRW_THREAD();
-  int CL_ERR_SELECT = clJNI.get_CL_ERR_SELECT();
-  SWIGTYPE_p_f_p_char_int__void errCallback = new SWIGTYPE_p_f_p_char_int__void(clJNI.get_errCallback(), false);
+    // enums and constants
+
+    int ERRMSG_SIZE = clJNI.get_ERRMSG_SIZE();
+    int HOSTNAME_SIZE = clJNI.get_HOSTNAME_SIZE();
+    int CL_ERR = clJNI.get_CL_ERR();
+    int CL_ERR_NOERROR = clJNI.get_CL_ERR_NOERROR();
+    int CL_ERR_UNKNOWN_HOST = clJNI.get_CL_ERR_UNKNOWN_HOST();
+    int CL_ERR_INVALID_SOCKET = clJNI.get_CL_ERR_INVALID_SOCKET();
+    int CL_ERR_CONNECTION_UNAVAIL = clJNI.get_CL_ERR_CONNECTION_UNAVAIL();
+    int CL_ERR_UNKNOWN_SERVICE = clJNI.get_CL_ERR_UNKNOWN_SERVICE();
+    int CL_ERR_INIT_FAILED = clJNI.get_CL_ERR_INIT_FAILED();
+    int CL_ERR_LIBCLOSE_FAILED = clJNI.get_CL_ERR_LIBCLOSE_FAILED();
+    int CL_ERR_CLOSE_SOCKET = clJNI.get_CL_ERR_CLOSE_SOCKET();
+    int CL_ERR_MEMORY_ALLOC = clJNI.get_CL_ERR_MEMORY_ALLOC();
+    int CL_ERR_NULL_POINTER = clJNI.get_CL_ERR_NULL_POINTER();
+    int CL_ERR_SOCKET_ATTR = clJNI.get_CL_ERR_SOCKET_ATTR();
+    int CL_ERR_SOCKET_BIND = clJNI.get_CL_ERR_SOCKET_BIND();
+    int CL_ERR_TIMEOUT = clJNI.get_CL_ERR_TIMEOUT();
+    int CL_ERR_SOCKET_BROADCAST = clJNI.get_CL_ERR_SOCKET_BROADCAST();
+    int CL_ERR_SOCKET_CREATE = clJNI.get_CL_ERR_SOCKET_CREATE();
+    int CL_ERR_ACCEPT = clJNI.get_CL_ERR_ACCEPT();
+    int CL_ERRX_FORK = clJNI.get_CL_ERRX_FORK();
+    int CL_ERRW_THREAD = clJNI.get_CL_ERRW_THREAD();
+    int CL_ERR_SELECT = clJNI.get_CL_ERR_SELECT();
+    SWIGTYPE_p_f_p_char_int__void errCallback = new SWIGTYPE_p_f_p_char_int__void(clJNI.get_errCallback(), false);
 }

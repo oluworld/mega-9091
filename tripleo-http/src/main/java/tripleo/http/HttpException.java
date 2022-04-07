@@ -10,18 +10,16 @@ import java.io.IOException;
 
 public class HttpException extends Exception {
 
-	public HttpException(Exception aE) {
-		super(aE);
-	}
+    public HttpException(Exception aE) {
+        super(aE);
+    }
 
-	public HttpException(String aMessage, Throwable aCause) {
-		super(aMessage, aCause);
-	}
+    public HttpException(String aMessage, Throwable aCause) {
+        super(aMessage, aCause);
+    }
 
-
-	public static HttpException wrap(Exception exception) {
-		HttpException e = new HttpException(exception);
-		return e;
-	}
+    public static HttpException wrap(Exception exception) {
+        HttpException e = new HttpException(exception);
+        return e;
+    }
 }
-

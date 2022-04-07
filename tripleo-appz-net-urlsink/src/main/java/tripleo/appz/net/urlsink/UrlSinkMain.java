@@ -14,20 +14,20 @@ import tripleo.util.Assert;
 
 public class UrlSinkMain {
 
-static volatile boolean stop;
+    static volatile boolean stop;
 
-public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //	try {
-		D = new DD();
+        D = new DD();
 //	} catch (Exception e) {
 //	}
-	Assert.check("prevayler created", D!=null);
-	new UrlSinkServer();
-	new UrlSinkTester(false);
+        Assert.check("prevayler created", D != null);
+        new UrlSinkServer();
+        new UrlSinkTester(false);
 //	stop = true;
-}
+    }
 
-	static DD D ;
+    static DD D;
 
 //public static String string_times(int i) {
 //	StringBuffer R = new StringBuffer();
@@ -40,34 +40,34 @@ public static void main(String[] args) throws Exception {
 //static synchronized void vvv(String aString) {
 //	System.out.println(aString);
 //}
+    static class DD {
 
-	static class DD {
-		final Prevayler prevayler;
+        final Prevayler prevayler;
 
-		public DD() throws Exception {
-			try {
-				prevayler = new SnapshotPrevayler(new VecVecVecStore(), "vec-vec-vec");
-				if (prevayler instanceof SnapshotPrevayler) {
-					// snapshot as soon as possible
-					// reduce state space
-					// assemble all log states into latest [meta] state
-					((SnapshotPrevayler) prevayler).takeSnapshot();
-				}
-			} catch (IOException e) {
-				RabbitUT.xerr_a0("~~ [UrlSink::createPrevayler] " + e);
-				throw e;
-			} catch (ClassNotFoundException e) {
-				RabbitUT.xerr_a0("~~ [UrlSink::createPrevayler] " + e);
-				throw e;
-			}
-		}
+        public DD() throws Exception {
+            try {
+                prevayler = new SnapshotPrevayler(new VecVecVecStore(), "vec-vec-vec");
+                if (prevayler instanceof SnapshotPrevayler) {
+                    // snapshot as soon as possible
+                    // reduce state space
+                    // assemble all log states into latest [meta] state
+                    ((SnapshotPrevayler) prevayler).takeSnapshot();
+                }
+            } catch (IOException e) {
+                RabbitUT.xerr_a0("~~ [UrlSink::createPrevayler] " + e);
+                throw e;
+            } catch (ClassNotFoundException e) {
+                RabbitUT.xerr_a0("~~ [UrlSink::createPrevayler] " + e);
+                throw e;
+            }
+        }
 
-		public VecVecVecStore storage() {
-			return (VecVecVecStore) (D.prevayler.system());
-		}
-	}
+        public VecVecVecStore storage() {
+            return (VecVecVecStore) (D.prevayler.system());
+        }
+    }
 
-	static void processRequest(final RequestStorageCommand aCommand) throws Exception {
-		D.prevayler.executeCommand(aCommand);
-	}
+    static void processRequest(final RequestStorageCommand aCommand) throws Exception {
+        D.prevayler.executeCommand(aCommand);
+    }
 }

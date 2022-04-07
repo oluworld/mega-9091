@@ -5,16 +5,19 @@
 package tripleo.util;
 
 public interface SchedulerListener {
-	void handlerError(Exception e);
-	void handleSuccess();
-	//void expired(Scheduler sch);
 
-	class NullListener implements SchedulerListener {
-		public void handlerError(Exception e) {
-		}
+    void handlerError(Exception e);
 
-		public void handleSuccess() {
-		}
-	}
+    void handleSuccess();
+    //void expired(Scheduler sch);
+
+    class NullListener implements SchedulerListener {
+
+        public void handlerError(Exception e) {
+        }
+
+        public void handleSuccess() {
+        }
+    }
 
 }

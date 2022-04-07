@@ -15,24 +15,25 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
+class Anchor extends Atom {
 
-class Anchor extends Atom
-{
- static final byte END		= 1;
- static final byte START	= 2;
- static final byte SUFFIX	= 3;
- static final byte PREFIX	= 4;
+    static final byte END = 1;
+    static final byte START = 2;
+    static final byte SUFFIX = 3;
+    static final byte PREFIX = 4;
 
- static final String anchor[] = { "<$>", "<^>", "<\\>", "</>" };
+    static final String anchor[] = {"<$>", "<^>", "<\\>", "</>"};
 
- byte anchorType;
+    byte anchorType;
 
- Anchor(byte anchorType)
-	{ this.anchorType = anchorType; }
+    Anchor(byte anchorType) {
+        this.anchorType = anchorType;
+    }
 
- String rexToString() { return anchor[anchorType-1]; }
+    String rexToString() {
+        return anchor[anchorType - 1];
+    }
 }

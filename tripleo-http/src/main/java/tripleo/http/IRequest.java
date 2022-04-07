@@ -8,13 +8,19 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 public interface IRequest {
-	String     getUri() ;
-	List       getHeaders() ;
-	ByteBuffer getContent();
-	
-	String version();
-	List<IHeader> copyOfHeaders();
-	String requestLine();
-	IHTTPRequestLine getRequestLine();
-	
+
+    String getUri();
+
+    List getHeaders();
+
+    ByteBuffer getContent();
+
+    String version();
+
+    List<IHeader> copyOfHeaders();
+
+    String requestLine();
+
+    IHTTPRequestLine getRequestLine();
+
 }

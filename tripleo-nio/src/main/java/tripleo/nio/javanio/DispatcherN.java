@@ -35,7 +35,6 @@ package tripleo.nio.javanio;
  * for use in the design, construction, operation or maintenance of any
  * nuclear facility.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.channels.*;
@@ -44,8 +43,7 @@ import java.util.Iterator;
 /**
  * A Multi-threaded dispatcher.
  * <P>
- * In this example, one thread does accepts, and the second
- * does read/writes.
+ * In this example, one thread does accepts, and the second does read/writes.
  *
  * @author Mark Reinhold
  * @author Brad R. Wetmore
@@ -53,47 +51,48 @@ import java.util.Iterator;
  */
 class DispatcherN implements Dispatcher {
 
-	private final Selector sel;
+    private final Selector sel;
 
-	DispatcherN() throws IOException {
-		sel = Selector.open();
-	}
+    DispatcherN() throws IOException {
+        sel = Selector.open();
+    }
 
-	public void run() {
-		for (; ;) {
-			try {
-				dispatch();
-			} catch (IOException x) {
-				x.printStackTrace();
-			}
-		}
-	}
+    public void run() {
+        for (;;) {
+            try {
+                dispatch();
+            } catch (IOException x) {
+                x.printStackTrace();
+            }
+        }
+    }
 
-	private final Object gate = new Object();
+    private final Object gate = new Object();
 
-	private void dispatch() throws IOException {
-		sel.select();
-		for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
-			SelectionKey sk = (SelectionKey) i.next();
-			i.remove();
-			Handler h = (Handler) sk.attachment();
-			try {
-				h.handle(sk); 
-			} catch (Exception e) {
-				System.err.println("SWallowing exception ============================================");
-				e.printStackTrace(new PrintWriter(System.err)); // TODO: add to log
-				System.err.println("==================== ======================================= done");
-			}
-		}
-		synchronized (gate) { }
-	}
+    private void dispatch() throws IOException {
+        sel.select();
+        for (Iterator<SelectionKey> i = sel.selectedKeys().iterator(); i.hasNext();) {
+            SelectionKey sk = (SelectionKey) i.next();
+            i.remove();
+            Handler h = (Handler) sk.attachment();
+            try {
+                h.handle(sk);
+            } catch (Exception e) {
+                System.err.println("SWallowing exception ============================================");
+                e.printStackTrace(new PrintWriter(System.err)); // TODO: add to log
+                System.err.println("==================== ======================================= done");
+            }
+        }
+        synchronized (gate) {
+        }
+    }
 
-	public void register(SelectableChannel ch, int ops, Handler h)
-	        throws IOException {
-		synchronized (gate) {
-			sel.wakeup();
-			ch.register(sel, ops, h);
-		}
-	}
+    public void register(SelectableChannel ch, int ops, Handler h)
+            throws IOException {
+        synchronized (gate) {
+            sel.wakeup();
+            ch.register(sel, ops, h);
+        }
+    }
 
 }

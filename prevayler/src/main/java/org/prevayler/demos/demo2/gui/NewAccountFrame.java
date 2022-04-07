@@ -6,27 +6,27 @@ import javax.swing.*;
 import java.awt.Container;
 
 class NewAccountFrame extends AccountFrame {
-	
-	NewAccountFrame(Prevayler prevayler, Container container) {
-		super("New Account", prevayler, container);
 
-		setBounds(50,50,240,114);
-	}
+    NewAccountFrame(Prevayler prevayler, Container container) {
+        super("New Account", prevayler, container);
 
-	protected void addButtons(JPanel buttonPanel) {
-		buttonPanel.add(new JButton(new OKAction()));
-	}
-	
-	private class OKAction extends RobustAction {
+        setBounds(50, 50, 240, 114);
+    }
 
-		OKAction() {
-			super("OK");
-		}
+    protected void addButtons(JPanel buttonPanel) {
+        buttonPanel.add(new JButton(new OKAction()));
+    }
 
-		protected void action() throws Exception {
-			prevayler.executeCommand(new AccountCreation(holderText()));
-			dispose();
-		}
-	}
+    private class OKAction extends RobustAction {
+
+        OKAction() {
+            super("OK");
+        }
+
+        protected void action() throws Exception {
+            prevayler.executeCommand(new AccountCreation(holderText()));
+            dispose();
+        }
+    }
 
 }

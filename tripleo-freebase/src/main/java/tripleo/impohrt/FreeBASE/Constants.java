@@ -1,5 +1,5 @@
 /* -*- Mode: Java; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/*
+ /*
  *
  * The contents of this library are released under the LGPL licence v3,
  * the GNU Lesser General Public License text was downloaded from
@@ -12,7 +12,7 @@ package tripleo.impohrt.FreeBASE;
  * Created 9/27/21 6:24 AM
  */
 public enum Constants {
-	LOADED, RUNNING, UNLOADED
+    LOADED, RUNNING, UNLOADED
 }
 
 //

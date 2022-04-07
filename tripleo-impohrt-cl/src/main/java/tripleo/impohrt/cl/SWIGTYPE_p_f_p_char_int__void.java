@@ -5,23 +5,21 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.impohrt.cl;
 
-
 public class SWIGTYPE_p_f_p_char_int__void {
-  private final long swigCPtr;
 
-  protected SWIGTYPE_p_f_p_char_int__void(long cPtr, boolean bFutureUse) {
-    swigCPtr = cPtr;
-  }
+    private final long swigCPtr;
 
-  protected SWIGTYPE_p_f_p_char_int__void() {
-    swigCPtr = 0;
-  }
+    protected SWIGTYPE_p_f_p_char_int__void(long cPtr, boolean bFutureUse) {
+        swigCPtr = cPtr;
+    }
 
-  protected static long getCPtr(SWIGTYPE_p_f_p_char_int__void obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected SWIGTYPE_p_f_p_char_int__void() {
+        swigCPtr = 0;
+    }
+
+    protected static long getCPtr(SWIGTYPE_p_f_p_char_int__void obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 }
-

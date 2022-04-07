@@ -34,7 +34,6 @@ package tripleo.impohrt.scache;
  * SUCH DAMAGE. 
  */
 // Id: WebConnection.java,v 1.7 2001/09/02 13:37:22 robo Exp
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -44,152 +43,164 @@ import tripleo.fs.File;
  * A class to handle a open connection to the Internet.
  */
 public class WebConnection {
-	public Socket socket;
-	public DataInputStream webis;
-	public DataOutputStream webos;
-	public InetAddress ia;
-	public int port;
-	public long releasedAt;
-	public boolean keepalive;
 
-	/**
-	 * Create a new WebConnection to the given InetAddress and port.
-	 *
-	 * @param ia   the computer to connect to.
-	 * @param port the port number to connect to.
-	 */
-	public WebConnection(InetAddress ia, int port) throws IOException {
-		this.ia = ia;
-		this.port = port;
+    public Socket socket;
+    public DataInputStream webis;
+    public DataOutputStream webos;
+    public InetAddress ia;
+    public int port;
+    public long releasedAt;
+    public boolean keepalive;
 
-		if (port <= 0 || port > 65535) throw new java.net.UnknownHostException("Port number out of range");
-		if (ia == null) throw new java.net.UnknownHostException("Host not found in WebConnection");
-		socket = null;
-		reconnect();
-	}
+    /**
+     * Create a new WebConnection to the given InetAddress and port.
+     *
+     * @param ia the computer to connect to.
+     * @param port the port number to connect to.
+     */
+    public WebConnection(InetAddress ia, int port) throws IOException {
+        this.ia = ia;
+        this.port = port;
 
-	// fake WC for file input
-	public WebConnection(DataInputStream is) {
-		keepalive = false;
-		webis = is;
-	}
+        if (port <= 0 || port > 65535) {
+            throw new java.net.UnknownHostException("Port number out of range");
+        }
+        if (ia == null) {
+            throw new java.net.UnknownHostException("Host not found in WebConnection");
+        }
+        socket = null;
+        reconnect();
+    }
 
-	public void reconnect() throws IOException {
-		keepalive = false;
-		releasedAt = 0;
+    // fake WC for file input
+    public WebConnection(DataInputStream is) {
+        keepalive = false;
+        webis = is;
+    }
 
-		if (socket != null)
+    public void reconnect() throws IOException {
+        keepalive = false;
+        releasedAt = 0;
+
+        if (socket != null)
 			try {
-				socket.close();
-			} catch (Exception ignore) {
-			}
+            socket.close();
+        } catch (Exception ignore) {
+        }
 
-		socket = new Socket(ia, port);
-		socket.setTcpNoDelay(true); // disable  nagle
+        socket = new Socket(ia, port);
+        socket.setTcpNoDelay(true); // disable  nagle
 
-		webos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream(), 2048));
+        webos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream(), 2048));
 
-		webis = new DataInputStream(new BufferedInputStream(socket.getInputStream(), 2048));
-	}
+        webis = new DataInputStream(new BufferedInputStream(socket.getInputStream(), 2048));
+    }
 
-	/**
-	 * Close the connection.
-	 */
-	public void close() throws IOException {
-		try {
-			if (webos != null) webos.close();
-			if (webis != null) webis.close();
-			if (socket != null) socket.close();
-		} catch (IOException e) {
-			// System.out.println("couldnt close WebConnection: " + e.getMessage ());
-			throw e;
-		} finally {
-			webos = null;
-			webis = null;
-			socket = null;
-			ia = null;
-			releasedAt = 0;
-			keepalive = false;
-		}
-	}
+    /**
+     * Close the connection.
+     */
+    public void close() throws IOException {
+        try {
+            if (webos != null) {
+                webos.close();
+            }
+            if (webis != null) {
+                webis.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            // System.out.println("couldnt close WebConnection: " + e.getMessage ());
+            throw e;
+        } finally {
+            webos = null;
+            webis = null;
+            socket = null;
+            ia = null;
+            releasedAt = 0;
+            keepalive = false;
+        }
+    }
 
-	/**
-	 * Get the InetAddress that this WebConnection is connected to.
-	 *
-	 * @return the InetAddress.
-	 */
-	public InetAddress getInetAddress() {
-		return ia;
-	}
+    /**
+     * Get the InetAddress that this WebConnection is connected to.
+     *
+     * @return the InetAddress.
+     */
+    public InetAddress getInetAddress() {
+        return ia;
+    }
 
-	/**
-	 * Get the port number this WebConnection is connected to.
-	 *
-	 * @return the port number.
-	 */
-	public int getPort() {
-		return port;
-	}
+    /**
+     * Get the port number this WebConnection is connected to.
+     *
+     * @return the port number.
+     */
+    public int getPort() {
+        return port;
+    }
 
-	/**
-	 * Mark this WebConnection as released at current time.
-	 */
-	public void setReleased() {
-		setReleased(System.currentTimeMillis());
-	}
+    /**
+     * Mark this WebConnection as released at current time.
+     */
+    public void setReleased() {
+        setReleased(System.currentTimeMillis());
+    }
 
-	/**
-	 * Mark this WebConnection as released at given time.
-	 *
-	 * @param d the time that this WebConnection is released.
-	 */
-	public void setReleased(long d) {
-		releasedAt = d;
-		keepalive = false;
-	}
+    /**
+     * Mark this WebConnection as released at given time.
+     *
+     * @param d the time that this WebConnection is released.
+     */
+    public void setReleased(long d) {
+        releasedAt = d;
+        keepalive = false;
+    }
 
-	/**
-	 * Get the time that this WebConnection was released.
-	 */
-	public long getReleasedAt() {
-		return releasedAt;
-	}
+    /**
+     * Get the time that this WebConnection was released.
+     */
+    public long getReleasedAt() {
+        return releasedAt;
+    }
 
-	/**
-	 * Get the InputStream.
-	 *
-	 * @return an DataInputStream.
-	 */
-	public DataInputStream getInputStream() {
-		return webis;
-	}
+    /**
+     * Get the InputStream.
+     *
+     * @return an DataInputStream.
+     */
+    public DataInputStream getInputStream() {
+        return webis;
+    }
 
-	/**
-	 * Get the OutputStream of this WebConnection.
-	 *
-	 * @return an DataOutputStream.
-	 */
-	public DataOutputStream getOutputStream() {
-		return webos;
-	}
+    /**
+     * Get the OutputStream of this WebConnection.
+     *
+     * @return an DataOutputStream.
+     */
+    public DataOutputStream getOutputStream() {
+        return webos;
+    }
 
-	/**
-	 * Get the keepalive value of this WebConnection.
-	 *
-	 * @return true if this WebConnection may be reused.
-	 */
-	public boolean getKeepAlive() {
-		return keepalive;
-	}
+    /**
+     * Get the keepalive value of this WebConnection.
+     *
+     * @return true if this WebConnection may be reused.
+     */
+    public boolean getKeepAlive() {
+        return keepalive;
+    }
 
-	public void setKeepAlive(boolean ka) {
-		keepalive = ka;
-	}
+    public void setKeepAlive(boolean ka) {
+        keepalive = ka;
+    }
 
-	public String toString() {
-		if (ia != null)
-			return ia.getHostAddress() + ":" + port;
-		else
-			return "UNKNOWN/Closed";
-	}
+    public String toString() {
+        if (ia != null) {
+            return ia.getHostAddress() + ":" + port;
+        } else {
+            return "UNKNOWN/Closed";
+        }
+    }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class AccountCreation extends BankCommand {
 
     private final String holder;
-    
+
     public AccountCreation(String holder) {
         this.holder = holder;
     }

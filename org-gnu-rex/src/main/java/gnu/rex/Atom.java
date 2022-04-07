@@ -15,46 +15,59 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-abstract class Atom implements Cloneable
-{
- Atom Cdr;
- Atom Cpr;
+abstract class Atom implements Cloneable {
 
- final static int MAX_VALUE = 256;
- final static int DEBUG_LEVEL = 0;
+    Atom Cdr;
+    Atom Cpr;
 
- /*
+    final static int MAX_VALUE = 256;
+    final static int DEBUG_LEVEL = 0;
+
+    /*
   * This method added to allow for atom duplication when same
   * copy cannot be used more than once.
   *
   * Contributed by:
   * Peter Kutschera <peter@pinguin1.arcs.ac.at>
-  */
+     */
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            // Ignore for now
+        }
 
- public Object clone()
- {
-	try {
-		return super.clone();
-	} catch (CloneNotSupportedException e) {
-		// Ignore for now
-	}
+        return this;
+    }
 
-    return this;
-  }
+    final Atom cdr() {
+        return Cdr;
+    }
 
- final Atom cdr() { return Cdr; }
- final Atom cpr() { return Cpr; }
+    final Atom cpr() {
+        return Cpr;
+    }
 
- final Atom car() { return this; }
- final Atom rplacd(Atom d) { return Cdr = d; }
- final Atom rplacp(Atom p) { return Cpr = p; }
+    final Atom car() {
+        return this;
+    }
 
- void setRange(int n, int x) {}
+    final Atom rplacd(Atom d) {
+        return Cdr = d;
+    }
 
- String rexToString() { return ""; }
+    final Atom rplacp(Atom p) {
+        return Cpr = p;
+    }
+
+    void setRange(int n, int x) {
+    }
+
+    String rexToString() {
+        return "";
+    }
 
 }

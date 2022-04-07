@@ -15,26 +15,33 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
-class StateBackRef extends State1
-{
- byte backRef;
- boolean accept;
+class StateBackRef extends State1 {
 
- StateBackRef(int backRef)
-	{ super((char)0); this.backRef = (byte)backRef; }
+    byte backRef;
+    boolean accept;
 
- final void setAccept() { accept = true; }
+    StateBackRef(int backRef) {
+        super((char) 0);
+        this.backRef = (byte) backRef;
+    }
 
- final void resetAccept() { accept = false; }
+    final void setAccept() {
+        accept = true;
+    }
 
- final boolean canAccept() { return accept; }
+    final void resetAccept() {
+        accept = false;
+    }
 
- String stateToString()
-	{ return "br#" + backRef + (accept? "<ACCPT>->" : "->"); }
+    final boolean canAccept() {
+        return accept;
+    }
 
+    String stateToString() {
+        return "br#" + backRef + (accept ? "<ACCPT>->" : "->");
+    }
 
 }

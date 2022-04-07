@@ -63,32 +63,29 @@ package tripleo.impohrt.scache;
 ** BUGS:
 **
 **
-*/
-
+ */
 import tripleo.fs.File;
 
 /* Library include files */
-
 public final class HTUU {
 
+    private final static byte six2pr[] = {
+        // 'A','B','C','D','E','F','G','H','I','J','K','L','M',
+        65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,
+        // 'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+        78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+        // 'a','b','c','d','e','f','g','h','i','j','k','l','m',
+        97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
+        // 'n','o','p','q','r','s','t','u','v','w','x','y','z',
+        110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122,
+        // '0','1','2','3','4','5','6','7','8','9','+','/'
+        48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47
+    };
 
-	private final static byte six2pr[] = {
-		// 'A','B','C','D','E','F','G','H','I','J','K','L','M',
-		65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,
-		// 'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-		78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
-		// 'a','b','c','d','e','f','g','h','i','j','k','l','m',
-		97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
-		// 'n','o','p','q','r','s','t','u','v','w','x','y','z',
-		110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122,
-		// '0','1','2','3','4','5','6','7','8','9','+','/'
-		48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47
-	};
-
-	private static final byte[] pr2six = new byte[256];
+    private static final byte[] pr2six = new byte[256];
 // unsigned
 
-/*--- function HTUU_encode -----------------------------------------------
+    /*--- function HTUU_encode -----------------------------------------------
  *
  *   Encode a single line of binary data to a standard format that
  *   uses only printing ASCII characters (but takes up 33% more bytes).
@@ -107,69 +104,67 @@ public final class HTUU {
  *                      two '=' characters used as padding at the end.
  *                      The last byte is a zero byte.
  *             Returns the number of ASCII characters in "bufcoded".
- */
+     */
+    public static byte[] encode(String s) {
+        return encode(s.getBytes());
+    }
 
-	public static byte[] encode(String s) {
-		return encode(s.getBytes());
-	}
+    public static String encode_string(String s) {
+        byte ascii[] = encode(s.getBytes());
+        return new String(ascii, 0, 0, ascii.length);
+    }
 
-	public static String encode_string(String s) {
-		byte ascii[] = encode(s.getBytes());
-		return new String(ascii, 0, 0, ascii.length);
-	}
-
-	public static byte[] encode(byte bufin[]) {
-/* ENC is the basic 1 character encoding function to make a char printing */
+    public static byte[] encode(byte bufin[]) {
+        /* ENC is the basic 1 character encoding function to make a char printing */
 // #define ENC(c) six2pr[c]
 
-		int nbytes = bufin.length;
-		byte bufcoded[];
+        int nbytes = bufin.length;
+        byte bufcoded[];
 
-		if (nbytes % 3 == 0) {
-			bufcoded = new byte[4 * nbytes / 3];
-		} else {
-			bufcoded = new byte[(nbytes / 3 + 1) * 4];
-			byte tmp[];
-			tmp = new byte[(nbytes / 3 + 1) * 3];
-			System.arraycopy(bufin, 0, tmp, 0, nbytes);
-			bufin = tmp;
-		}
+        if (nbytes % 3 == 0) {
+            bufcoded = new byte[4 * nbytes / 3];
+        } else {
+            bufcoded = new byte[(nbytes / 3 + 1) * 4];
+            byte tmp[];
+            tmp = new byte[(nbytes / 3 + 1) * 3];
+            System.arraycopy(bufin, 0, tmp, 0, nbytes);
+            bufin = tmp;
+        }
 
-		// register char *outptr = bufcoded;
-		int outptr = 0;
-		int i;
+        // register char *outptr = bufcoded;
+        int outptr = 0;
+        int i;
 
-		for (i = 0; i < nbytes; i += 3) {
-			//*(outptr++) = ENC(*bufin >> 2);
-			bufcoded[outptr++] = six2pr[bufin[i] >> 2];
+        for (i = 0; i < nbytes; i += 3) {
+            //*(outptr++) = ENC(*bufin >> 2);
+            bufcoded[outptr++] = six2pr[bufin[i] >> 2];
 
-			//*(outptr++) = ENC(((*bufin << 4) & 060) | ((bufin[1] >> 4) & 017)); /*c2*/
-			bufcoded[outptr++] = six2pr[((bufin[i] << 4) & 060) | ((bufin[i + 1] >> 4) & 017)];
+            //*(outptr++) = ENC(((*bufin << 4) & 060) | ((bufin[1] >> 4) & 017)); /*c2*/
+            bufcoded[outptr++] = six2pr[((bufin[i] << 4) & 060) | ((bufin[i + 1] >> 4) & 017)];
 
-			// *(outptr++) = ENC(((bufin[1] << 2) & 074) | ((bufin[2] >> 6) & 03));/*c3*/
-			bufcoded[outptr++] = six2pr[((bufin[i + 1] << 2) & 074) | ((bufin[i + 2] >> 6) & 03)];
-			// *(outptr++) = ENC(bufin[2] & 077);         /* c4 */
-			bufcoded[outptr++] = six2pr[bufin[i + 2] & 077];
-			//bufin += 3;
-		}
+            // *(outptr++) = ENC(((bufin[1] << 2) & 074) | ((bufin[2] >> 6) & 03));/*c3*/
+            bufcoded[outptr++] = six2pr[((bufin[i + 1] << 2) & 074) | ((bufin[i + 2] >> 6) & 03)];
+            // *(outptr++) = ENC(bufin[2] & 077);         /* c4 */
+            bufcoded[outptr++] = six2pr[bufin[i + 2] & 077];
+            //bufin += 3;
+        }
 
-		/* If nbytes was not a multiple of 3, then we have encoded too
+        /* If nbytes was not a multiple of 3, then we have encoded too
 		 * many characters.  Adjust appropriately.
-		 */
-		if (i == nbytes + 1) {
-			/* There were only 2 bytes in that last group */
-			bufcoded[outptr - 1] = 61;
-		} else if (i == nbytes + 2) {
-			/* There was only 1 byte in that last group */
-			bufcoded[outptr - 1] = 61;
-			bufcoded[outptr - 2] = 61;
-		}
-		// *outptr = '\0';
-		// return(outptr - bufcoded);
-		//for(i=0;i<bufcoded.length;i++)
-		// System.out.print((char)bufcoded[i]);
-		return bufcoded;
-	}
-
+         */
+        if (i == nbytes + 1) {
+            /* There were only 2 bytes in that last group */
+            bufcoded[outptr - 1] = 61;
+        } else if (i == nbytes + 2) {
+            /* There was only 1 byte in that last group */
+            bufcoded[outptr - 1] = 61;
+            bufcoded[outptr - 2] = 61;
+        }
+        // *outptr = '\0';
+        // return(outptr - bufcoded);
+        //for(i=0;i<bufcoded.length;i++)
+        // System.out.print((char)bufcoded[i]);
+        return bufcoded;
+    }
 
 }

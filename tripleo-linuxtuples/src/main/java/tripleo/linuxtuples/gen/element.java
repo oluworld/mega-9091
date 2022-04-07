@@ -5,50 +5,49 @@
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
-
 package tripleo.linuxtuples.gen;
 
-
 public class element {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
 
-  protected element(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected void finalize() {
-    delete();
-  }
-
-  public void delete() {
-    if(swigCPtr != 0 && swigCMemOwn) {
-      swigCMemOwn = false;
-      tuplesJNI.delete_element(swigCPtr);
+    protected element(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    swigCPtr = 0;
-  }
 
-  protected static long getCPtr(element obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void setTag(int tag) {
-    tuplesJNI.set_element_tag(swigCPtr, tag);
-  }
+    public void delete() {
+        if (swigCPtr != 0 && swigCMemOwn) {
+            swigCMemOwn = false;
+            tuplesJNI.delete_element(swigCPtr);
+        }
+        swigCPtr = 0;
+    }
 
-  public int getTag() {
-    return tuplesJNI.get_element_tag(swigCPtr);
-  }
+    protected static long getCPtr(element obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public element_data getData() {
-    long cPtr = tuplesJNI.get_element_data(swigCPtr);
-    return (cPtr == 0) ? null : new element_data(cPtr, false);
-  }
+    public void setTag(int tag) {
+        tuplesJNI.set_element_tag(swigCPtr, tag);
+    }
 
-  public element() {
-    this(tuplesJNI.new_element(), true);
-  }
+    public int getTag() {
+        return tuplesJNI.get_element_tag(swigCPtr);
+    }
+
+    public element_data getData() {
+        long cPtr = tuplesJNI.get_element_data(swigCPtr);
+        return (cPtr == 0) ? null : new element_data(cPtr, false);
+    }
+
+    public element() {
+        this(tuplesJNI.new_element(), true);
+    }
 
 }

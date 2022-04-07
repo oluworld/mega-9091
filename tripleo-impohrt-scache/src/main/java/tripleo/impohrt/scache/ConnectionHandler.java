@@ -34,182 +34,196 @@ package tripleo.impohrt.scache;
  * SUCH DAMAGE. 
  */
 // Id: ConnectionHandler.java,v 1.11 2003/01/04 15:12:22 robo Exp
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.*;
-import tripleo.fs.File;import tripleo.fs.File;
-
+import tripleo.fs.File;
+import tripleo.fs.File;
 
 /**
- * A class to handle the connections to the net. Should reuse connections if possible.
+ * A class to handle the connections to the net. Should reuse connections if
+ * possible.
  */
 public final class ConnectionHandler extends Thread {
-	public static boolean trace_keepalive;
 
-	// The available connections.
-	private static Hashtable<String,Vector<WebConnection>> activeConnections;
+    public static boolean trace_keepalive;
 
-	// The cleaner thread.
-	private static Thread cleaner;
+    // The available connections.
+    private static Hashtable<String, Vector<WebConnection>> activeConnections;
 
-	// the keepalivetime.
-	public static long keepalivetime = 25000;
+    // The cleaner thread.
+    private static Thread cleaner;
 
-	/**
-	 * Create a new ConnectionHandler for use.
-	 */
-	public static void init() {
-		if (activeConnections != null) return; //
-		activeConnections = new Hashtable<String, Vector<WebConnection>>();
-		cleaner = new ConnectionHandler();
-		cleaner.setDaemon(true);
-		cleaner.start();
-	}
+    // the keepalivetime.
+    public static long keepalivetime = 25000;
 
-	/**
-	 * Check if the cleaner of this ConnectionHandler is running.
-	 */
-	public static boolean isCleanerRunning() {
-		if (cleaner != null)
-			if (cleaner.isAlive())
-				return true;
-		return false;
-	}
+    /**
+     * Create a new ConnectionHandler for use.
+     */
+    public static void init() {
+        if (activeConnections != null) {
+            return; //
+        }
+        activeConnections = new Hashtable<String, Vector<WebConnection>>();
+        cleaner = new ConnectionHandler();
+        cleaner.setDaemon(true);
+        cleaner.start();
+    }
 
-	/**
-	 * Get the connections keept.
-	 *
-	 * @return an Enumeration of Vectors with WebConnections.
-	 */
-	public static Enumeration<Vector<WebConnection>> getConnections() {
-		return activeConnections.elements();
-	}
+    /**
+     * Check if the cleaner of this ConnectionHandler is running.
+     */
+    public static boolean isCleanerRunning() {
+        if (cleaner != null) {
+            if (cleaner.isAlive()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Get the addresses we have connections to.
-	 */
-	public static Enumeration<String> getAddresses() {
-		return activeConnections.keys();
-	}
+    /**
+     * Get the connections keept.
+     *
+     * @return an Enumeration of Vectors with WebConnections.
+     */
+    public static Enumeration<Vector<WebConnection>> getConnections() {
+        return activeConnections.elements();
+    }
 
-	/**
-	 * Get the pool for an Address.
-	 * NOTE! synchronize on the pool if you are taking connections from it.
-	 */
-	public static Vector<WebConnection> getPool(String a) {
-		return activeConnections.get(a);
-	}
+    /**
+     * Get the addresses we have connections to.
+     */
+    public static Enumeration<String> getAddresses() {
+        return activeConnections.keys();
+    }
 
-	/**
-	 * Get a WebConnection for the given IP:Port
-	 *
-	 * @return a WebConnection.
-	 */
-	public static WebConnection getConnection(InetAddress ia, int port) throws IOException {
-		WebConnection wc = null;
-		String a;
-		if (ia == null) throw new java.net.UnknownHostException("Host not found");
-		a = ia.getHostAddress() + ":" + port;
-		Vector<WebConnection> pool = activeConnections.get(a);
-		if (pool == null) return new WebConnection(ia, port);
-		synchronized (pool) {
-			if (pool.size() > 0) {
-				wc = pool.elementAt(pool.size() - 1);
-				pool.removeElementAt(pool.size() - 1);
-				if (trace_keepalive) {
-					System.out.println("[TRACE " + Thread.currentThread().getName() + "] * Getting connection from pool to " + a);
-				}
-			} else {
-				wc = new WebConnection(ia, port);
-			}
-			return wc;
-		}
-	}
+    /**
+     * Get the pool for an Address. NOTE! synchronize on the pool if you are
+     * taking connections from it.
+     */
+    public static Vector<WebConnection> getPool(String a) {
+        return activeConnections.get(a);
+    }
 
-	/**
-	 * Return a WebConnection to the pool so that it may be reused.
-	 *
-	 * @param wc the WebConnection to return.
-	 */
-	public static void releaseConnection(WebConnection wc) {
-		if (!wc.keepalive || keepalivetime <= 0)
+    /**
+     * Get a WebConnection for the given IP:Port
+     *
+     * @return a WebConnection.
+     */
+    public static WebConnection getConnection(InetAddress ia, int port) throws IOException {
+        WebConnection wc = null;
+        String a;
+        if (ia == null) {
+            throw new java.net.UnknownHostException("Host not found");
+        }
+        a = ia.getHostAddress() + ":" + port;
+        Vector<WebConnection> pool = activeConnections.get(a);
+        if (pool == null) {
+            return new WebConnection(ia, port);
+        }
+        synchronized (pool) {
+            if (pool.size() > 0) {
+                wc = pool.elementAt(pool.size() - 1);
+                pool.removeElementAt(pool.size() - 1);
+                if (trace_keepalive) {
+                    System.out.println("[TRACE " + Thread.currentThread().getName() + "] * Getting connection from pool to " + a);
+                }
+            } else {
+                wc = new WebConnection(ia, port);
+            }
+            return wc;
+        }
+    }
+
+    /**
+     * Return a WebConnection to the pool so that it may be reused.
+     *
+     * @param wc the WebConnection to return.
+     */
+    public static void releaseConnection(WebConnection wc) {
+        if (!wc.keepalive || keepalivetime <= 0)
 			try {
-				wc.close();
-			} catch (IOException e) {} finally {
-				return;
-			}
-		String a = wc.ia.getHostAddress() + ":" + wc.port;
-		wc.setReleased();
-		if (trace_keepalive) {
-			System.out.println("[TRACE " + Thread.currentThread().getName() + "] * Puting " + a + " to pool.");
-		}
-		synchronized (activeConnections) {
-			Vector<WebConnection> pool = activeConnections.computeIfAbsent(a, k -> new Vector<WebConnection>());
-			pool.addElement(wc);
-		}
-	}
+            wc.close();
+        } catch (IOException e) {
+        } finally {
+            return;
+        }
+        String a = wc.ia.getHostAddress() + ":" + wc.port;
+        wc.setReleased();
+        if (trace_keepalive) {
+            System.out.println("[TRACE " + Thread.currentThread().getName() + "] * Puting " + a + " to pool.");
+        }
+        synchronized (activeConnections) {
+            Vector<WebConnection> pool = activeConnections.computeIfAbsent(a, k -> new Vector<WebConnection>());
+            pool.addElement(wc);
+        }
+    }
 
-	/**
-	 * Set the keep alive time for this handler.
-	 *
-	 * @param milis the keep alive time in miliseconds.
-	 */
-	public static void setKeepaliveTime(long milis) {
-		keepalivetime = milis;
-	}
+    /**
+     * Set the keep alive time for this handler.
+     *
+     * @param milis the keep alive time in miliseconds.
+     */
+    public static void setKeepaliveTime(long milis) {
+        keepalivetime = milis;
+    }
 
-	/**
-	 * Get the current keep alive time.
-	 *
-	 * @return the keep alive time in miliseconds.
-	 */
-	public static long getKeepaliveTime() {
-		return keepalivetime;
-	}
+    /**
+     * Get the current keep alive time.
+     *
+     * @return the keep alive time in miliseconds.
+     */
+    public static long getKeepaliveTime() {
+        return keepalivetime;
+    }
 
-	/**
-	 * The cleaner thread.
-	 */
-	public void run() {
-		long d;
-		int vsize;
-		Object key;
-		if (keepalivetime <= 0) return;
-		while (!isInterrupted()) {
-			d = System.currentTimeMillis() - keepalivetime;
-			Enumeration<String> e = activeConnections.keys();
-			while (e.hasMoreElements()) {
-				key = e.nextElement();
-				Vector<WebConnection> v = activeConnections.get(key);
-				synchronized (v) {
-					vsize = v.size();
-					for (int i = vsize - 1; i >= 0; i--) {
-						WebConnection wc = v.elementAt(i);
-						if (wc.releasedAt == 0) {
-							System.out.println("[Internal error] Someone closed a released connection.");
-						}
-						if (wc.releasedAt < d) {
-							v.removeElementAt(i);
-							if (trace_keepalive)
-								System.out.println("[Pool cleaner] * Closing connection to " + wc + " TTL exceed by " + ((d - wc.getReleasedAt()) / 1000L) + "s.");
-							try {
-								wc.close();
-							} catch (IOException ignore) {}
-						}
-					}
-				}
-				if (vsize == 0)
+    /**
+     * The cleaner thread.
+     */
+    public void run() {
+        long d;
+        int vsize;
+        Object key;
+        if (keepalivetime <= 0) {
+            return;
+        }
+        while (!isInterrupted()) {
+            d = System.currentTimeMillis() - keepalivetime;
+            Enumeration<String> e = activeConnections.keys();
+            while (e.hasMoreElements()) {
+                key = e.nextElement();
+                Vector<WebConnection> v = activeConnections.get(key);
+                synchronized (v) {
+                    vsize = v.size();
+                    for (int i = vsize - 1; i >= 0; i--) {
+                        WebConnection wc = v.elementAt(i);
+                        if (wc.releasedAt == 0) {
+                            System.out.println("[Internal error] Someone closed a released connection.");
+                        }
+                        if (wc.releasedAt < d) {
+                            v.removeElementAt(i);
+                            if (trace_keepalive) {
+                                System.out.println("[Pool cleaner] * Closing connection to " + wc + " TTL exceed by " + ((d - wc.getReleasedAt()) / 1000L) + "s.");
+                            }
+                            try {
+                                wc.close();
+                            } catch (IOException ignore) {
+                            }
+                        }
+                    }
+                }
+                if (vsize == 0)
 					synchronized (activeConnections) {
-						activeConnections.remove(key);
-					}
-			}
-			try {
-				sleep(keepalivetime);
-			} catch (InterruptedException ie) {
-				// ignore
-			}
-		}
-	}
+                    activeConnections.remove(key);
+                }
+            }
+            try {
+                sleep(keepalivetime);
+            } catch (InterruptedException ie) {
+                // ignore
+            }
+        }
+    }
 
 }

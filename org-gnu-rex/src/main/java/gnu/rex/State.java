@@ -15,39 +15,57 @@ You should have received a copy of the GNU Library General Public
 License along with this library; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA  02111-1307, USA.
-*/
-
+ */
 package gnu.rex;
 
+abstract class State {
 
-abstract class State
-{
- static final short IMPASSE = -1;
- static final short DEFTRAN = IMPASSE;
+    static final short IMPASSE = -1;
+    static final short DEFTRAN = IMPASSE;
 
- byte backRef = -1;
+    byte backRef = -1;
 
- short getNext0() { return IMPASSE; }
- short getNext1() { return IMPASSE; }
+    short getNext0() {
+        return IMPASSE;
+    }
 
- boolean hasTransitionOn(char c) { return false; }
+    short getNext1() {
+        return IMPASSE;
+    }
 
- void setAccept() {}
- void resetAccept() {}
+    boolean hasTransitionOn(char c) {
+        return false;
+    }
 
- boolean canAccept() { return false; }
+    void setAccept() {
+    }
 
- short getMin() { return 0; }
- 
- short getMax() { return 0; }
- 
- short getPass() { return -1; }
- 
- short incPass() { return -1; }
- 
- void reset() {}
+    void resetAccept() {
+    }
 
- abstract String stateToString();
+    boolean canAccept() {
+        return false;
+    }
+
+    short getMin() {
+        return 0;
+    }
+
+    short getMax() {
+        return 0;
+    }
+
+    short getPass() {
+        return -1;
+    }
+
+    short incPass() {
+        return -1;
+    }
+
+    void reset() {
+    }
+
+    abstract String stateToString();
 
 }
-
