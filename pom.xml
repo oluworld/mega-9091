@@ -170,6 +170,7 @@
         <module>tripleo-curr</module>
         <module>tripleo-bobcat</module>
         <module>tripleo-nio</module>
+        <module>tripleo-nio-http</module>
         <module>tripleo-http</module>
         <module>tripleo-space</module>
         <module>tripleo-adt</module>
